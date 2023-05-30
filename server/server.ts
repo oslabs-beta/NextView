@@ -38,6 +38,10 @@ app.get('/testerror', (req: Request, res: Response, next: NextFunction) => {
   });
 });
 
+app.get('/test', (req: Request, res: Response) => {
+  res.status(200).send('Hello world');
+});
+
 // if running from production, serve bundled files
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(path.resolve(), 'dist')));
@@ -74,6 +78,4 @@ app.use(
   },
 );
 
-app.listen(PORT, () => console.log('listening on port ', PORT));
-
-export default app;
+export default app.listen(PORT, () => console.log('listening on port ', PORT));
