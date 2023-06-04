@@ -1,13 +1,10 @@
 import express from 'express';
-import pagesRouter from './pages';
+import pagesRouter from './pagesRouter';
 const appsRouter = express.Router();
 
 appsRouter.use('/:appId/pages', pagesRouter);
 
-appsRouter.use('/api', (req, res, next) => {
-  res.status(200).send('app data logging controller not yet implemented');
-});
-
+// TODO add controllers
 appsRouter.get('/:appId/data', (req, res, next) => {
   res.status(200).send('app data retrieval controller not yet implemented');
 });
