@@ -6,6 +6,8 @@ import express, {
   ErrorRequestHandler,
 } from 'express';
 import path from 'path';
+import usersRouter from './routes/users';
+import appsRouter from './routes/apps';
 
 const PORT = process.env.PORT || 3000;
 
@@ -26,9 +28,8 @@ app.use(express.urlencoded({ extended: true }));
  * This can be very useful for adding authorization to certain routes...
  */
 
-app.get('/api', (req: Request, res: Response) => {
-  res.send('test');
-});
+app.use('/users', usersRouter);
+app.use('/apps', appsRouter);
 
 app.get('/testerror', (req: Request, res: Response, next: NextFunction) => {
   next({
