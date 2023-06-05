@@ -1,9 +1,10 @@
-import jwt, { JwtPayload, VerifyCallback, VerifyErrors } from 'jsonwebtoken'; // Import JSON Web Token library
+import jwt from 'jsonwebtoken'; // Import JSON Web Token library
 import { Request, RequestHandler } from 'express';
 
 const authenticateController: AuthenticateController = {
   authenticate: (req, res, next) => {
-    //since now im using cookies dont need authorization in the header
+    return next();
+    // TODO enable below code once login on front-end is up and running
     const token = req.cookies.jwtToken;
 
     // If no token is provided, send 400  status and end the function
