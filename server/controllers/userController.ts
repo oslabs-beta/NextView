@@ -1,18 +1,17 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from 'express';
+import db from '../models/dataModels';
 
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
       const text =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
       const values = [req.body.username, hashedPassword];
-      // TODO: add db query
-      // const newUser = await db.query(text, values);
-      // res.locals.user = newUser.rows[0];
+      const newUser = await db.query(text, values);
+      res.locals.user = newUser.rows[0];
 
       return next();
     } catch (err) {
@@ -30,10 +29,7 @@ const userController: UserController = {
       // Get user with the given username
       const text = 'SELECT * FROM users WHERE username = $1';
       const values = [req.body.username];
-      // TODO add db.query
-      const user = {
-        rows: [{ password: 'test', _id: 'test', username: 'test' }],
-      }; //= await db.query(text, values);
+      const user = await db.query(text, values);
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
