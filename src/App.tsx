@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home fakeProp='fakeProp' />} />
           <Route
-            path='/Dashboard'
+            path='/dashboard'
             element={<DashboardPage fakeProp='fakeProp' />}
           />
         </Routes>
