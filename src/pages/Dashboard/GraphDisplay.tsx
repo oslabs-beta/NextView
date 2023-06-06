@@ -6,7 +6,6 @@ import LineChart from './LineChart';
 const GraphDisplay = () => {
   return (
     <div>
-      <h1>GraphDisplay</h1>
       <Textbox />
       <PieChart />
       <BarGraph />
