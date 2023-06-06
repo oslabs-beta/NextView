@@ -43,3 +43,9 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+
+@layer components {
+  .sideNavBar-icon {
+    @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-800 shadow-sm transition-all duration-500 ease-linear hover:rounded-xl hover:bg-slate-500;
+  }
+}
