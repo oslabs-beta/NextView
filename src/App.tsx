@@ -1,16 +1,20 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 
-import Page1 from './pages/Page1';
-import Page2 from './pages/Page2';
+// import Page1 from './pages/Dashboard';
+import Home from './pages/Home';
+import DashboardPage from './pages/Dashboard';
 
 function App() {
   return (
     <>
       <div>
         <Routes>
-          <Route path='/' element={<Page1 fakeProp='fakeProp' />} />
-          <Route path='/Page2' element={<Page2 fakeProp='fakeProp' />} />
+          <Route path='/' element={<Home fakeProp='fakeProp' />} />
+          <Route
+            path='/Dashboard'
+            element={<DashboardPage fakeProp='fakeProp' />}
+          />
         </Routes>
       </div>
     </>
