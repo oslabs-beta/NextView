@@ -16,8 +16,10 @@
     "concurrently": "^8.0.1",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "pg": "^8.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2"
@@ -29,6 +31,7 @@
     "@types/jest": "^29.5.2",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.2.5",
+    "@types/pg": "^8.10.1",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/supertest": "^2.0.12",
@@ -54,7 +57,7 @@
     "vite": "^4.3.9"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,jsx,css,md}": "eslint --cache --fix",
+    "*.{js,ts,tsx,jsx}": "eslint --cache --fix",
     "*.{js,css,md,ts,tsx,jsx}": "prettier --write"
   }
 }
