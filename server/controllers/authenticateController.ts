@@ -1,11 +1,15 @@
 import jwt from 'jsonwebtoken'; // Import JSON Web Token library
 import { Request, RequestHandler } from 'express';
-
+import UserController from './userController';
 const authenticateController: AuthenticateController = {
-  authenticate: (req, res, next) => {
-    return next();
-    // TODO enable below code once login on front-end is up and running
-    const token = req.cookies.jwtToken;
+  authenticate: async (req, res, next) => {
+    let token;
+
+    if (process.env.NODE_ENV === 'development') {
+      token = jwt.sign({ userId: 1 }, process.env.JWT_SECRET as jwt.Secret, {
+        expiresIn: '1h',
+      });
+    } else token = req.cookies.jwtToken;
 
     // If no token is provided, send 400  status and end the function
     if (!token) {
@@ -18,7 +22,12 @@ const authenticateController: AuthenticateController = {
 
     // Verify the provided token with the secret key
     try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET as jwt.Secret);
+      const decoded = <jwt.UserJwtPayload>(
+        jwt.verify(
+          token,
+          process.env.JWT_SECRET || ('MISSING_SECRET' as jwt.Secret),
+        )
+      );
 
       // If token is valid, attach decoded (user) to the request object
       req.user = decoded;
