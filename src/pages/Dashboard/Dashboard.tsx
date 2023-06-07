@@ -3,9 +3,9 @@ import Sidebar from './Sidebar';
 
 const Dashboard = () => {
   return (
-    <div className='flex h-screen w-screen flex-row overflow-hidden bg-neutral-200'>
+    <div className='flex h-screen w-screen flex-row bg-neutral-200'>
       <Sidebar />
-      <div className='flex-1'>
+      <div className='ml-36 flex-1'>
         <MainDisplay />
       </div>
     </div>

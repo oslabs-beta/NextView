@@ -6,7 +6,7 @@ const Topbar = () => {
     <div>
       <div className='flex h-16 w-screen items-end bg-neutral-300 px-4'>
         <p>The Past </p>
-        <DropdownList />
+        {/* <DropdownList /> */}
         <div>LOGO</div>
       </div>
     </div>
