@@ -13,7 +13,7 @@ const pool = new Pool({
 // This will be required in the controllers to be the access point to the database
 export default {
   query: (text: QueryParams[0], params: QueryParams[1]) => {
-    console.log('executed query', text);
+    // console.log('executed query', text);
     return pool.query(text, params);
   },
 };
