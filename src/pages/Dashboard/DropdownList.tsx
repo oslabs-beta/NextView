@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { BsCheck2, BsChevronDoubleDown } from 'react-icons/bs';
+import { v4 as uuidv4 } from 'uuid';
 
 //TODO:add handle onClick functionality to trigger post & get requests
 //TODO:styling
@@ -65,8 +66,6 @@ const DropdownList = () => {
   //       unit = 'h';
   //   }
 
-  //   console.log(period);
-
   //   //TODO: update setState using React context
   //   fetch(`/apps/{process.env.API_KEY}/data?interval=${interval}&unit=${unit}`)
   //   .then(res => res.json())
@@ -98,9 +97,9 @@ const DropdownList = () => {
             leaveTo='opacity-0'
           >
             <Listbox.Options className='absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm'>
-              {durationList.map((duration, durationId) => (
+              {durationList.map((duration) => (
                 <Listbox.Option
-                  key={durationId}
+                  key={uuidv4()}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
