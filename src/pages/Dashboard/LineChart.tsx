@@ -42,8 +42,6 @@ const LineChartComponent = () => {
       />
       <Line type='monotone' dataKey='server' stroke='#0088ff' />
       <Line type='monotone' dataKey='internal' stroke='#82ca9d' />
-      <Line type='monotone' dataKey='consumer' stroke='#ff0000' />
-      <Line type='monotone' dataKey='producer' stroke='#ffdb58' />
     </LineChart>
   );
 };
