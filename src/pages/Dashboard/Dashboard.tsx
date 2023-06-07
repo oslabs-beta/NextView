@@ -3,10 +3,11 @@ import Sidebar from './Sidebar';
 
 const Dashboard = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <div className='flex h-screen w-screen flex-row overflow-hidden bg-neutral-200'>
       <Sidebar />
-      <MainDisplay />
+      <div className='flex-1'>
+        <MainDisplay />
+      </div>
     </div>
   );
 };
