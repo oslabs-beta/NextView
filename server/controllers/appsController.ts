@@ -55,12 +55,107 @@ const appsController: AppsController = {
       });
     }
   },
+
+  retrieveOverallAvg: async (req, res, next) => {
+    try {
+      const query =
+        'SELECT EXTRACT(epoch from avg(duration)) * 1000 AS duration_avg_ms  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW();';
+      const values = [req.params.appId, res.locals.interval];
+      const data = await db.query(query, values);
+      res.locals.metrics.overallAvg = data.rows[0].duration_avg_ms;
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveOverallAvg controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
+  },
+
+  retrieveTotalTraces: async (req, res, next) => {
+    try {
+      const query =
+        'SELECT CAST (COUNT(DISTINCT trace_id) AS INTEGER) AS trace_count FROM spans WHERE app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW();';
+      const values = [req.params.appId, res.locals.interval];
+      const data = await db.query(query, values);
+      res.locals.metrics.traceCount = data.rows[0].trace_count;
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveTotalTraces controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
+  },
+
+  retrieveAvgPageDurations: async (req, res, next) => {
+    try {
+      const query =
+        'SELECT http_target, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;';
+      const values = [req.params.appId, res.locals.interval];
+      const data = await db.query(query, values);
+      res.locals.metrics.pageAvgDurations = data.rows;
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveTotalTraces controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
+  },
+
+  retrieveAvgKindDurations: async (req, res, next) => {
+    try {
+      const query =
+        'SELECT kind_id, kind, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY kind_id, kind;';
+      const values = [req.params.appId, res.locals.interval];
+      const data = await db.query(query, values);
+      res.locals.metrics.kindAvgDurations = data.rows;
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveTotalTraces controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
+  },
+
+  setInterval: (req, res, next) => {
+    switch (req.query.filter) {
+      case 'day':
+        res.locals.interval = '24 HOURS';
+        break;
+      case 'week':
+        res.locals.interval = '7 DAYS';
+        break;
+      case 'month':
+        res.locals.interval = '1 MONTH';
+        break;
+      default:
+        return next({
+          log: `Error in setInterval controller method: No date filter provided`,
+          status: 400,
+          message: 'No date filter provided',
+        });
+    }
+    res.locals.metrics = {};
+    return next();
+  },
 };
 
 type AppsController = {
   createApiKey: RequestHandler;
   registerApp: RequestHandler;
   retrieveApps: RequestHandler;
+  retrieveOverallAvg: RequestHandler;
+  retrieveTotalTraces: RequestHandler;
+  retrieveAvgPageDurations: RequestHandler;
+  retrieveAvgKindDurations: RequestHandler;
+  setInterval: RequestHandler;
 };
 
 export default appsController;
