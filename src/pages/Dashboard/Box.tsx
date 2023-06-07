@@ -2,6 +2,9 @@ interface BoxProps {
   title: string;
   data: number;
 }
+
+//TODO:styling
+
 const Box = ({ title, data }: BoxProps) => {
   return (
     <div className='textbox'>

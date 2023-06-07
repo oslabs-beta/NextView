@@ -3,7 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 // if data1 == undefined ? '-' : data1
 // if data2 === undefined ? '-' : data2
-//TODO: replace hard coded metrics
+//TODO: update boxData with state
+//TODO:styling
+
 const boxData = [
   { title: 'Average Page Load Duration (milliseconds)', data: 3542 },
   { title: 'Total No.of Traces (milliseconds)', data: 352 },
