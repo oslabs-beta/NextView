@@ -7,9 +7,17 @@ const appsRouter = express.Router();
 appsRouter.use('/:appId/pages', pagesRouter);
 
 // TODO add controllers
-appsRouter.get('/:appId/data', (req, res, next) => {
-  res.status(200).send('app data retrieval controller not yet implemented');
-});
+appsRouter.get(
+  '/:appId/data',
+  appsController.setInterval,
+  appsController.retrieveOverallAvg,
+  appsController.retrieveTotalTraces,
+  appsController.retrieveAvgPageDurations,
+  appsController.retrieveAvgKindDurations,
+  (req, res, next) => {
+    res.status(200).send(res.locals.metrics);
+  },
+);
 
 appsRouter.delete('/:appId', (req, res, next) => {
   res.status(204).send('app deletion controller not yet implemented');
