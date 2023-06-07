@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { BarGraphContext } from './Contexts';
 import {
   BarChart,
   Bar,
@@ -9,33 +11,10 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-// will replace with state
-const data = [
-  {
-    name: 'Page A',
-    duration: 4000,
-  },
-  {
-    name: 'Page B',
-    duration: 3000,
-  },
-  {
-    name: 'Page C',
-    duration: 2780,
-  },
-  {
-    name: 'Page D',
-    duration: 2000,
-  },
-  {
-    name: 'Page E',
-    duration: 1890,
-  },
-];
-
-const num = data.length;
-
 const BarGraph = () => {
+  const barGraphData = useContext(BarGraphContext);
+  const num = barGraphData?.length;
+
   return (
     <div className='bar-graph'>
       <p>Top {num} Slowest Page</p>
@@ -43,7 +22,7 @@ const BarGraph = () => {
         <BarChart
           width={500}
           height={500}
-          data={data}
+          data={barGraphData}
           margin={{
             top: 5,
             right: 30,
