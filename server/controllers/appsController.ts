@@ -125,21 +125,39 @@ const appsController: AppsController = {
   },
 
   setInterval: (req, res, next) => {
-    switch (req.query.filter) {
-      case 'day':
-        res.locals.interval = '24 HOURS';
+    const { interval, unit } = req.query;
+
+    if (interval === undefined || unit === undefined)
+      return next({
+        log: `Error in setInterval controller method: Date interval not provided`,
+        status: 400,
+        message: 'Date interval not provided',
+      });
+
+    switch (unit) {
+      case 'h':
+        res.locals.interval = `${interval} HOURS`;
         break;
-      case 'week':
-        res.locals.interval = '7 DAYS';
+      case 'd':
+        res.locals.interval = `${interval} DAYS`;
         break;
-      case 'month':
-        res.locals.interval = '1 MONTH';
+      case 'w':
+        res.locals.interval = `${interval} WEEKS`;
+        break;
+      case 'y':
+        res.locals.interval = `${interval} YEARS`;
+        break;
+      case 'm':
+        res.locals.interval = `${interval} MONTHS`;
+        break;
+      case 'min':
+        res.locals.interval = `${interval} MINUTES`;
         break;
       default:
         return next({
-          log: `Error in setInterval controller method: No date filter provided`,
+          log: `Error in setInterval controller method: Incorrect date format`,
           status: 400,
-          message: 'No date filter provided',
+          message: 'Incorrect date filter provided',
         });
     }
     res.locals.metrics = {};
