@@ -6,14 +6,15 @@ const appsRouter = express.Router();
 
 appsRouter.use('/:appId/pages', pagesRouter);
 
-// TODO add controllers
 appsRouter.get(
   '/:appId/data',
   appsController.setInterval,
+  appsController.retrievePages,
   appsController.retrieveOverallAvg,
   appsController.retrieveTotalTraces,
   appsController.retrieveAvgPageDurations,
   appsController.retrieveAvgKindDurations,
+  appsController.retrieveAvgKindDurationsOverTime,
   (req, res, next) => {
     res.status(200).send(res.locals.metrics);
   },

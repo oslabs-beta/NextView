@@ -93,7 +93,7 @@ const appsController: AppsController = {
   retrieveAvgPageDurations: async (req, res, next) => {
     try {
       const query =
-        'SELECT http_target, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;';
+        'SELECT http_target as page, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;';
       const values = [req.params.appId, res.locals.interval];
       const data = await db.query(query, values);
       res.locals.metrics.pageAvgDurations = data.rows;
@@ -114,6 +114,57 @@ const appsController: AppsController = {
       const values = [req.params.appId, res.locals.interval];
       const data = await db.query(query, values);
       res.locals.metrics.kindAvgDurations = data.rows;
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveTotalTraces controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
+  },
+
+  retrieveAvgKindDurationsOverTime: async (req, res, next) => {
+    // TODO modifiy this query so it works for different time intervals
+    const query = `SELECT periods.period, CASE WHEN Internal>0 THEN Internal ELSE 0 END AS internal, 
+      CASE WHEN server>0 THEN server ELSE 0 END AS server,
+      CASE WHEN client>0 THEN client ELSE 0 END AS client
+      FROM (
+      select to_char(date_trunc('hour', hour_series), 'HH12:MI:SS AM') AS period, hour_series
+      from generate_series(date_trunc('hour', NOW()) - interval '23' hour, date_trunc('hour', NOW()) , interval '1' hour) hour_series) as periods
+      left outer join (
+      SELECT
+          to_char(date_trunc('hour', timestamp), 'HH12:MI:SS AM') AS period,
+          COUNT(*), EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg, date_trunc('hour', timestamp) as hour,
+          EXTRACT(epoch from avg(duration) filter (where kind_id = 0)) * 1000 as internal,
+          EXTRACT(epoch from avg(duration) filter (where kind_id = 1)) * 1000 as server,
+          EXTRACT(epoch from avg(duration) filter (where kind_id = 2)) * 1000 as client,
+          EXTRACT(epoch from avg(duration) filter (where kind_id = 3)) * 1000 as producer,
+          EXTRACT(epoch from avg(duration) filter (where kind_id = 4)) * 1000 as consumer
+      FROM 
+          spans
+      WHERE app_id = $1
+      GROUP BY date_trunc('hour', timestamp)) as avgs on periods.hour_series = avgs.hour`;
+    try {
+      const data = await db.query(query, [req.params.appId]);
+      res.locals.metrics.kindAvgDurationsOverTime = data.rows;
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveAvgKindDurationsOverTime controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
+  },
+
+  retrievePages: async (req, res, next) => {
+    try {
+      const query =
+        'SELECT http_target as page FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc;';
+      const values = [req.params.appId, res.locals.interval];
+      const data = await db.query(query, values);
+      res.locals.metrics.pages = data.rows;
       return next();
     } catch (err) {
       return next({
@@ -173,6 +224,8 @@ type AppsController = {
   retrieveTotalTraces: RequestHandler;
   retrieveAvgPageDurations: RequestHandler;
   retrieveAvgKindDurations: RequestHandler;
+  retrieveAvgKindDurationsOverTime: RequestHandler;
+  retrievePages: RequestHandler;
   setInterval: RequestHandler;
 };
 
