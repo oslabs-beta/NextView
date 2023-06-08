@@ -7,7 +7,7 @@ interface Period {
 
 interface PeriodContextType {
   period: Period;
-  setPeriod: (period: number) => number;
+  setPeriod: (value: Period) => void;
 }
 
 interface TextBox {
@@ -33,7 +33,7 @@ interface PieDataItem {
   ms_avg: number;
 }
 
-export const PeriodContext = createContext<Period | null>(null);
+export const PeriodContext = createContext<PeriodContextType | null>(null);
 //export const PeriodContext = createContext<PeriodContextType | null>(null);
 export const TraceTextboxContext = createContext(0);
 export const DurationTextboxContext = createContext(0);
