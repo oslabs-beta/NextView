@@ -37,11 +37,10 @@ const num = data.length;
 
 const BarGraph = () => {
   return (
-    <div className='bar-graph h-96 w-96'>
+    <div className='bar-graph w-[600px]'>
       <p>Top {num} Slowest Page</p>
       <ResponsiveContainer width='100%' aspect={3}>
         <BarChart
-          width={500}
           height={500}
           data={data}
           margin={{

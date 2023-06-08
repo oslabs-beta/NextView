@@ -4,7 +4,7 @@ import DropdownList from './DropdownList';
 const Topbar = () => {
   return (
     <div>
-      <div className='flex h-16 w-screen items-end bg-neutral-300 px-4'>
+      <div className='flex h-16 items-end bg-neutral-300 px-4'>
         <p>The Past </p>
         <DropdownList />
         <div>LOGO</div>

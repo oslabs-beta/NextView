@@ -5,8 +5,8 @@ import LineChart from './LineChart';
 
 const GraphDisplay = () => {
   return (
-    <div className='w-10/12'>
-      <div className='flex flex-row justify-evenly'>
+    <div className='flex h-[calc(100%-64px)] flex-col justify-evenly'>
+      <div className='m-1 flex flex-row justify-evenly'>
         <BoxWrapper>
           <Textbox />
         </BoxWrapper>
@@ -17,7 +17,7 @@ const GraphDisplay = () => {
           <BarGraph />
         </BoxWrapper>
       </div>
-      <div className='flex w-full flex-row gap-4'>
+      <div>
         <LineChart />
       </div>
     </div>
@@ -25,7 +25,11 @@ const GraphDisplay = () => {
 };
 
 function BoxWrapper({ children }) {
-  return <div className='flex items-center bg-neutral-400'>{children}</div>;
+  return (
+    <div className='flex flex-col justify-evenly bg-neutral-400'>
+      {children}
+    </div>
+  );
 }
 
 export default GraphDisplay;
