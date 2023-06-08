@@ -97,8 +97,8 @@ export default function App() {
         data={data}
         cx={200}
         cy={200}
-        innerRadius={60}
-        outerRadius={120}
+        innerRadius={50}
+        outerRadius={100}
         fill='#8884d8'
         dataKey='value'
         onMouseEnter={onPieEnter}

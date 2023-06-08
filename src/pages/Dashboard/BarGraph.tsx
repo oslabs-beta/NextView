@@ -38,7 +38,7 @@ const num = data.length;
 const BarGraph = () => {
   return (
     <div className='bar-graph w-[600px]'>
-      <p>Top {num} Slowest Page</p>
+      <p>Top {num} Slowest Pages</p>
       <ResponsiveContainer width='100%' aspect={3}>
         <BarChart
           height={500}
@@ -56,7 +56,7 @@ const BarGraph = () => {
             label={{ value: 'Pages', position: 'insideBottomRight', offset: 0 }}
           />
           <YAxis
-            padding={{ top: 50 }}
+            padding={{ top: 20 }}
             tickSize={6}
             label={{
               value: 'Duration(milliseconds)',

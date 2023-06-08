@@ -13,7 +13,7 @@ const boxData = [
 
 const Textbox = () => {
   return (
-    <div className='textbox-container flex h-full flex-col justify-evenly'>
+    <div className='textbox-container flex h-full w-64 flex-col justify-evenly text-center font-semibold'>
       {boxData.map(({ title, data }) => (
         <Box key={uuidv4()} title={title} data={data} />
       ))}

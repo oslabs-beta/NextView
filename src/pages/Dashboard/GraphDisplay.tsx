@@ -25,11 +25,7 @@ const GraphDisplay = () => {
 };
 
 function BoxWrapper({ children }) {
-  return (
-    <div className='flex flex-col justify-evenly bg-neutral-400'>
-      {children}
-    </div>
-  );
+  return <div className='flex flex-col justify-evenly'>{children}</div>;
 }
 
 export default GraphDisplay;

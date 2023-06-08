@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // TODO: Add algo to display all pages of developer's app
 function MainNavBar() {
   return (
-    <div className='flex h-screen w-40 flex-col items-center bg-slate-600 text-white'>
+    <div className='flex h-screen w-44 flex-col items-center bg-slate-600 text-white'>
       <p className='mb-5 mt-10 rounded-lg px-8 py-2 font-sans text-lg font-semibold visited:text-white hover:bg-slate-500 hover:no-underline'>
         Overview
       </p>

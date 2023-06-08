@@ -4,10 +4,18 @@ import DropdownList from './DropdownList';
 const Topbar = () => {
   return (
     <div>
-      <div className='flex h-16 items-end bg-neutral-300 px-4'>
-        <p>The Past </p>
-        <DropdownList />
-        <div>LOGO</div>
+      <div className='flex h-16 justify-end bg-neutral-300 px-4'>
+        <div className='flex'>
+          <p>The Past </p>
+          <DropdownList />
+        </div>
+        <div className='flex justify-end'>
+          <img
+            src='./logo2.png'
+            alt='nextview-logo'
+            className='h-24 w-24'
+          ></img>
+        </div>
       </div>
     </div>
   );
