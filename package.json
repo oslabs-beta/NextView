@@ -12,6 +12,7 @@
     "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
     "bcryptjs": "^2.4.3",
     "concurrently": "^8.0.1",
     "cookie-parser": "^1.4.6",
@@ -22,7 +23,9 @@
     "pg": "^8.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.9.0",
     "react-router-dom": "^6.11.2",
+    "recharts": "^2.6.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
