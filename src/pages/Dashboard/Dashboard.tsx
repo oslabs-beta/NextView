@@ -3,50 +3,18 @@ import MainDisplay from './MainDisplay';
 import Sidebar from './Sidebar';
 import {
   PeriodContext,
-  TextboxContext,
   BarGraphContext,
   LineChartContext,
   PieChartContext,
   TraceTextboxContext,
   DurationTextboxContext,
+  LineDataItem,
+  BarDataItem,
+  PieDataItem,
 } from './Contexts';
-
-// interface Period {
-//   interval: number;
-//   unit: string;
-// }
-
-// interface PeriodContextType {
-//   period: Period;
-//   setPeriod: (period: number) => number
-// }
-
-// interface TextBox {
-//   overallAvg: number;
-//   traceCount: number;
-// }
-
-interface LineDataItem {
-  period: string;
-  client: number;
-  server: number;
-  internal: number;
-}
-
-interface BarDataItem {
-  page: string;
-  ms_avg: number;
-}
-
-interface PieDataItem {
-  kind_id: number;
-  kind: string;
-  ms_avg: number;
-}
 
 const Dashboard = () => {
   const [period, setPeriod] = useState({ interval: 24, unit: 'h' });
-  // const [textboxData, setTextboxData] = useState<TextBox | null>(null);
   const [traceCount, setTraceCount] = useState(0);
   const [overallAvgDuration, setOverallAvgDuration] = useState(0);
   const [barData, setBarData] = useState<BarDataItem[] | undefined>(undefined);
@@ -90,7 +58,7 @@ const Dashboard = () => {
     return (
       <TraceTextboxContext.Provider value={traceCount}>
         <DurationTextboxContext.Provider value={overallAvgDuration}>
-          <PeriodContext.Provider value={period}>
+          <PeriodContext.Provider value={{ period, setPeriod }}>
             <BarGraphContext.Provider value={barData}>
               <LineChartContext.Provider value={lineData}>
                 <PieChartContext.Provider value={pieData}>
