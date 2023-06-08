@@ -1,13 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
+import { PieChartContext } from './Contexts';
 import { PieChart, Pie, Cell, Legend } from 'recharts';
-
-const data = [
-  { name: 'Server', value: 200 },
-  { name: 'Internal', value: 200 },
-  { name: 'Client', value: 200 },
-  // { name: "Producer", value: 200 },
-  // { name: "Consumer", value: 200 }
-];
 
 const COLORS = ['#006d77', '#83c5be', '#e29578', '#ffe1a8', '#b56576'];
 
@@ -38,19 +31,21 @@ const renderCustomizedLabel = ({
   );
 };
 export default function PieGraph() {
+  const pieChartData = useContext(PieChartContext);
+
   return (
     <PieChart width={400} height={400}>
       <Pie
-        data={data}
+        data={pieChartData}
         cx={200}
         cy={200}
         labelLine={false}
         label={renderCustomizedLabel}
         outerRadius={80}
         fill='#8884d8'
-        dataKey='value'
+        dataKey='ms_avg'
       >
-        {data.map((entry, index) => (
+        {pieChartData?.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
