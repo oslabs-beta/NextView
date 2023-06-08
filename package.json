@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development concurrently -n BROWSER,SERVER -c bgBlue.bold,bgCyan.bold \"vite --open\" \"nodemon server/server.ts\"",
+    "dev": "cross-env NODE_ENV=development concurrently -n BROWSER,SERVER -c bgBlue.bold,bgCyan.bold \"sleep 1 && vite --open\" \"nodemon server/server.ts\"",
     "build": "cross-env NODE_ENV=production vite build",
     "start": "cross-env NODE_ENV=production ts-node server/server.ts",
     "lint": "eslint .",
