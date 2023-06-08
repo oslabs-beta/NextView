@@ -2,7 +2,7 @@ import { Fragment, useState, useContext } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { BsCheck2, BsChevronDoubleDown } from 'react-icons/bs';
 import { v4 as uuidv4 } from 'uuid';
-import { PeriodContext } from './Contexts';
+import { PeriodContext, PeriodContextType } from './Contexts';
 
 //TODO:styling
 const durationList = [
@@ -19,11 +19,6 @@ const durationList = [
 interface Period {
   interval: number;
   unit: string;
-}
-
-interface PeriodContextType {
-  period: Period;
-  setPeriod: (value: Period) => void;
 }
 
 const DropdownList = () => {

@@ -15,19 +15,19 @@ interface TextBox {
   traceCount: number;
 }
 
-interface LineDataItem {
+export interface LineDataItem {
   period: string;
   client: number;
   server: number;
   internal: number;
 }
 
-interface BarDataItem {
+export interface BarDataItem {
   page: string;
   ms_avg: number;
 }
 
-interface PieDataItem {
+export interface PieDataItem {
   kind_id: number;
   kind: string;
   ms_avg: number;
