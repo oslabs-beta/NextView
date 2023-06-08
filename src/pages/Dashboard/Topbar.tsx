@@ -1,7 +1,10 @@
+import { PeriodContext } from './Contexts';
 import DropdownList from './DropdownList';
 //TODO:styling
+import { useContext } from 'react';
 
 const Topbar = () => {
+  // const [period, setPeriod] = useContext(PeriodContext);
   return (
     <div>
       <div className='flex h-16 w-screen items-end bg-neutral-300 px-4'>

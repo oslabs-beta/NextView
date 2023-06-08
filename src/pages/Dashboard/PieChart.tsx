@@ -32,7 +32,6 @@ const renderCustomizedLabel = ({
 };
 export default function PieGraph() {
   const pieChartData = useContext(PieChartContext);
-  console.log('pieChartData', pieChartData);
 
   return (
     <PieChart width={400} height={400}>

@@ -14,7 +14,6 @@ import {
 const BarGraph = () => {
   const barGraphData = useContext(BarGraphContext);
   const num = barGraphData?.length;
-  console.log('barGraphData', barGraphData);
 
   return (
     <div className='bar-graph'>
