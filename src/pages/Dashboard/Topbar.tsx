@@ -4,7 +4,6 @@ import DropdownList from './DropdownList';
 import { useContext } from 'react';
 
 const Topbar = () => {
-  // const [period, setPeriod] = useContext(PeriodContext);
   return (
     <div>
       <div className='flex h-16 w-screen items-end bg-neutral-300 px-4'>

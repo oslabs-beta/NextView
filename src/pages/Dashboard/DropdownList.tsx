@@ -1,7 +1,8 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useContext } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { BsCheck2, BsChevronDoubleDown } from 'react-icons/bs';
 import { v4 as uuidv4 } from 'uuid';
+import { PeriodContext } from './Contexts';
 
 //TODO:styling
 const durationList = [
@@ -15,16 +16,29 @@ const durationList = [
   '30 days',
 ];
 
+interface Period {
+  interval: number;
+  unit: string;
+}
+
+interface PeriodContextType {
+  period: Period;
+  setPeriod: (value: Period) => void;
+}
+
 const DropdownList = () => {
-  //TODO: replace useState with React context
-  const [period, setPeriod] = useState('24 hours');
+  const periodContext = useContext<PeriodContextType>(
+    PeriodContext as React.Context<PeriodContextType>,
+  );
+  const { period, setPeriod } = periodContext;
+  console.log('variables', { period, setPeriod });
 
   return (
     <div className='fixed top-16 w-60'>
-      <Listbox value={period} onChange={setPeriod}>
+      <Listbox value={`${period.interval} hours`} onChange={setPeriod}>
         <div className='relative mt-1'>
           <Listbox.Button className='relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm'>
-            <span className='block truncate'>{period}</span>
+            <span className='block truncate'>{`${period.interval} hours`}</span>
             <span className='pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2'>
               <BsChevronDoubleDown
                 className='h-5 w-5 text-gray-400'

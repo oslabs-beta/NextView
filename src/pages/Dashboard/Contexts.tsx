@@ -5,7 +5,7 @@ interface Period {
   unit: string;
 }
 
-interface PeriodContextType {
+export interface PeriodContextType {
   period: Period;
   setPeriod: (value: Period) => void;
 }
@@ -34,7 +34,6 @@ interface PieDataItem {
 }
 
 export const PeriodContext = createContext<PeriodContextType | null>(null);
-//export const PeriodContext = createContext<PeriodContextType | null>(null);
 export const TraceTextboxContext = createContext(0);
 export const DurationTextboxContext = createContext(0);
 export const TextboxContext = createContext<TextBox | null>(null);
