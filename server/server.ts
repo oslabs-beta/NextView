@@ -6,6 +6,11 @@ import express, {
   ErrorRequestHandler,
 } from 'express';
 import path from 'path';
+import userRouter from './routes/userRouter';
+import appsRouter from './routes/appsRouter';
+import apiRouter from './routes/apiRouter';
+import authenticateController from './controllers/authenticateController';
+import cookieParser from 'cookie-parser';
 
 const PORT = process.env.PORT || 3000;
 
@@ -17,6 +22,7 @@ const app: Express = express();
  */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 /**
  * --- Express Routes ---
@@ -26,16 +32,20 @@ app.use(express.urlencoded({ extended: true }));
  * This can be very useful for adding authorization to certain routes...
  */
 
-app.get('/api', (req: Request, res: Response) => {
-  res.send('test');
-});
+app.use('/user', userRouter);
+app.use('/apps', authenticateController.authenticate, appsRouter);
+app.use('/api', apiRouter);
 
-app.get('/testerror', (req: Request, res: Response, next: NextFunction) => {
+app.get('/testerror', (req, res, next) => {
   next({
     log: `getDBName has an error`,
     status: 400,
     message: { err: 'An error occurred' },
   });
+});
+
+app.get('/test', (req, res) => {
+  res.status(200).send('Hello world');
 });
 
 // if running from production, serve bundled files
@@ -49,7 +59,7 @@ if (process.env.NODE_ENV === 'production') {
 /**
  * 404 handler
  */
-app.use('*', (req: Request, res: Response) => {
+app.use('*', (req, res) => {
   res.status(404).send('Not Found');
 });
 
@@ -74,6 +84,4 @@ app.use(
   },
 );
 
-app.listen(PORT, () => console.log('listening on port ', PORT));
-
-export default app;
+export default app.listen(PORT, () => console.log('listening on port ', PORT));

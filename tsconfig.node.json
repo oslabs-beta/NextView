@@ -1,10 +1,16 @@
 {
   "compilerOptions": {
+    "module": "CommonJS", 
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "esModuleInterop": true,
     "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "typeRoots": ["./types"],
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["vite.config.ts"]
 }
