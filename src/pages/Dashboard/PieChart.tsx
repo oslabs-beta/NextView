@@ -32,6 +32,7 @@ const renderCustomizedLabel = ({
 };
 export default function PieGraph() {
   const pieChartData = useContext(PieChartContext);
+  console.log('pieChartData', pieChartData);
 
   return (
     <PieChart width={400} height={400}>
@@ -43,7 +44,7 @@ export default function PieGraph() {
         label={renderCustomizedLabel}
         outerRadius={80}
         fill='#8884d8'
-        dataKey='value'
+        dataKey='ms_avg'
       >
         {pieChartData?.map((entry, index) => (
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

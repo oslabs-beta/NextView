@@ -1,20 +1,21 @@
 import { createContext } from 'react';
 
 interface LineDataItem {
-  name: string;
+  period: string;
   client: number;
   server: number;
   internal: number;
 }
 
 interface BarDataItem {
-  name: string;
-  duration: number;
+  page: string;
+  ms_avg: number;
 }
 
 interface PieDataItem {
-  name: string;
-  value: number;
+  kind_id: number;
+  kind: string;
+  ms_avg: number;
 }
 
 export const PeriodContext = createContext('');

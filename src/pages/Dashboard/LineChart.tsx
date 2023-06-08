@@ -29,7 +29,7 @@ const LineChartComponent = () => {
       }}
     >
       <CartesianGrid strokeDasharray='3 3' />
-      <XAxis dataKey='name' />
+      <XAxis dataKey='period' />
       <Label value='Duration' />
       <YAxis label={{ value: 'Duration (ms)', angle: -90, position: 'left' }} />
       <Tooltip />

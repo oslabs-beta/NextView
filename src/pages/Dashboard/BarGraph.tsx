@@ -14,6 +14,7 @@ import {
 const BarGraph = () => {
   const barGraphData = useContext(BarGraphContext);
   const num = barGraphData?.length;
+  console.log('barGraphData', barGraphData);
 
   return (
     <div className='bar-graph'>
@@ -32,7 +33,7 @@ const BarGraph = () => {
         >
           <CartesianGrid stroke='#ccc' strokeDasharray='3 5' />
           <XAxis
-            dataKey='name'
+            dataKey='page'
             label={{ value: 'Pages', position: 'insideBottomRight', offset: 0 }}
           />
           <YAxis
@@ -51,7 +52,7 @@ const BarGraph = () => {
           <Legend width={100} />
           <Bar
             radius={[8, 8, 8, 8]}
-            dataKey='duration'
+            dataKey='ms_avg'
             barSize={50}
             fill='#8884d8'
             animationBegin={5}
