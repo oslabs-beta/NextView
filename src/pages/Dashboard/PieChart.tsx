@@ -1,11 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
+import { PieChartContext } from './Contexts';
 import { PieChart, Pie, Sector } from 'recharts';
-
-const data = [
-  { name: 'Server', value: 400 },
-  { name: 'Internal', value: 300 },
-  { name: 'Client', value: 300 },
-];
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -35,7 +30,7 @@ const renderActiveShape = (props: any) => {
   return (
     <g>
       <text x={cx} y={cy} dy={8} textAnchor='middle' fill={fill}>
-        {payload.name}
+        {payload.kind}
       </text>
       <Sector
         cx={cx}
@@ -66,7 +61,7 @@ const renderActiveShape = (props: any) => {
         y={ey}
         textAnchor={textAnchor}
         fill='#333'
-      >{`${value}`}</text>
+      >{`${value}ms`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -83,24 +78,27 @@ const renderActiveShape = (props: any) => {
 export default function App() {
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
-    (_, index) => {
+    (_: any, index: number) => {
       setActiveIndex(index);
     },
     [setActiveIndex],
   );
+
+  const pieChartData = useContext(PieChartContext);
+  console.log(pieChartData);
 
   return (
     <PieChart width={400} height={400}>
       <Pie
         activeIndex={activeIndex}
         activeShape={renderActiveShape}
-        data={data}
+        data={pieChartData}
         cx={200}
         cy={200}
         innerRadius={50}
         outerRadius={100}
         fill='#e56b6f'
-        dataKey='value'
+        dataKey='ms_avg'
         onMouseEnter={onPieEnter}
       />
     </PieChart>

@@ -1,17 +1,24 @@
 import Box from './Box';
 import { v4 as uuidv4 } from 'uuid';
+import { useContext } from 'react';
+import {
+  DurationTextboxContext,
+  TextboxContext,
+  TraceTextboxContext,
+} from './Contexts';
 
 // if data1 == undefined ? '-' : data1
 // if data2 === undefined ? '-' : data2
-//TODO: update boxData with state
-//TODO:styling
-
-const boxData = [
-  { title: 'Average Page Load Duration (ms)', data: 3542 },
-  { title: 'Total No.of Traces (ms)', data: 352 },
-];
 
 const Textbox = () => {
+  const traceCount = useContext(TraceTextboxContext);
+  const duration = useContext(DurationTextboxContext);
+
+  const boxData = [
+    { title: 'Average Page Load Duration (milliseconds)', data: duration },
+    { title: 'Total No.of Traces (milliseconds)', data: traceCount },
+  ];
+
   return (
     <div className='textbox-container flex h-full w-64 flex-col justify-evenly text-center font-semibold'>
       {boxData.map(({ title, data }) => (

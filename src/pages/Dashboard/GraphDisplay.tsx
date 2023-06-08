@@ -24,7 +24,7 @@ const GraphDisplay = () => {
   );
 };
 
-function BoxWrapper({ children }) {
+function BoxWrapper({ children }: any) {
   return <div className='flex flex-col justify-evenly'>{children}</div>;
 }
 
