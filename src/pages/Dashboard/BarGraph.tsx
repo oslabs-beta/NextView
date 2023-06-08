@@ -54,7 +54,7 @@ const BarGraph = () => {
         <Tooltip
           offset={0}
           // content={(props) => <CustomTooltip {...props} />}
-          wrapperStyle={{ width: 275, backgroundColor: '#ccc' }}
+          wrapperStyle={{ width: 150, backgroundColor: '#ccc' }}
         />
         <Legend width={100} verticalAlign='top' align='right' />
         <Bar
