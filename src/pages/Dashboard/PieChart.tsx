@@ -99,7 +99,7 @@ export default function App() {
         cy={200}
         innerRadius={50}
         outerRadius={100}
-        fill='#8884d8'
+        fill='#e56b6f'
         dataKey='value'
         onMouseEnter={onPieEnter}
       />

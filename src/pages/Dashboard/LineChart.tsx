@@ -262,13 +262,13 @@ const LineChartComponent = () => {
         <Line
           type='monotone'
           dataKey='client'
-          stroke='#8884d8'
+          stroke='#264653'
           activeDot={{ r: 8 }}
         />
-        <Line type='monotone' dataKey='server' stroke='#0088ff' />
-        <Line type='monotone' dataKey='internal' stroke='#82ca9d' />
-        <Line type='monotone' dataKey='consumer' stroke='#ff0000' />
-        <Line type='monotone' dataKey='producer' stroke='#ffdb58' />
+        <Line type='monotone' dataKey='server' stroke='#2a9d8f' />
+        <Line type='monotone' dataKey='internal' stroke='#e76f51' />
+        <Line type='monotone' dataKey='consumer' stroke='#f4a261' />
+        <Line type='monotone' dataKey='producer' stroke='#e9c46a' />
       </LineChart>
     </ResponsiveContainer>
   );

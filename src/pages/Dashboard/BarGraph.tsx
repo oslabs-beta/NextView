@@ -37,47 +37,52 @@ const num = data.length;
 
 const BarGraph = () => {
   return (
-    <div className='bar-graph w-[600px]'>
+    <div className='bar-graph'>
       <p>Top {num} Slowest Pages</p>
-      <ResponsiveContainer width='100%' aspect={3}>
-        <BarChart
-          height={500}
-          data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
+      {/* <ResponsiveContainer width='100%' aspect={3}> */}
+      <BarChart
+        height={400}
+        width={700}
+        data={data}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 40,
+        }}
+      >
+        <CartesianGrid stroke='#ccc' strokeDasharray='3 5' />
+        <XAxis
+          dataKey='name'
+          label={{
+            value: 'Pages',
+            position: 'insideBottom',
+            offset: -10,
           }}
-        >
-          <CartesianGrid stroke='#ccc' strokeDasharray='3 5' />
-          <XAxis
-            dataKey='name'
-            label={{ value: 'Pages', position: 'insideBottomRight', offset: 0 }}
-          />
-          <YAxis
-            padding={{ top: 20 }}
-            tickSize={6}
-            label={{
-              value: 'Duration(milliseconds)',
-              angle: -90,
-              position: 'left',
-            }}
-          />
-          <Tooltip
-            offset={0}
-            wrapperStyle={{ width: 150, backgroundColor: '#ccc' }}
-          />
-          <Legend width={100} />
-          <Bar
-            radius={[8, 8, 8, 8]}
-            dataKey='duration'
-            barSize={50}
-            fill='#8884d8'
-            animationBegin={5}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+        />
+        <YAxis
+          padding={{ top: 20 }}
+          tickSize={6}
+          label={{
+            value: 'Duration(milliseconds)',
+            angle: -90,
+            position: 'insideLeft',
+          }}
+        />
+        <Tooltip
+          offset={0}
+          wrapperStyle={{ width: 150, backgroundColor: '#ccc' }}
+        />
+        <Legend width={100} verticalAlign='top' align='right' />
+        <Bar
+          radius={[8, 8, 8, 8]}
+          dataKey='duration'
+          barSize={50}
+          fill='#2a9d8f'
+          animationBegin={5}
+        />
+      </BarChart>
+      {/* </ResponsiveContainer> */}
     </div>
   );
 };
