@@ -3,7 +3,7 @@ import SideNavbar from './SideNavbar';
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className='flex'>
       <SideNavbar />
       <MainNavbar />
     </div>

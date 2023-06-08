@@ -125,17 +125,18 @@ const appsController: AppsController = {
   },
 
   retrieveAvgKindDurationsOverTime: async (req, res, next) => {
-    // TODO modifiy this query so it works for different time intervals
+    // TODO modify this query so it works for different time intervals
+    // TODO modify this query so it doesnt set timezone
     const query = `SELECT periods.period, CASE WHEN Internal>0 THEN Internal ELSE 0 END AS internal, 
       CASE WHEN server>0 THEN server ELSE 0 END AS server,
       CASE WHEN client>0 THEN client ELSE 0 END AS client
       FROM (
-      select to_char(date_trunc('hour', hour_series), 'HH12:MI:SS AM') AS period, hour_series
-      from generate_series(date_trunc('hour', NOW()) - interval '23' hour, date_trunc('hour', NOW()) , interval '1' hour) hour_series) as periods
+      select to_char(date_trunc('hour', datetime), 'FMHH12:MI AM') AS period, datetime
+      from generate_series(date_trunc('hour', TIMEZONE('America/New_York', NOW())) - interval '23' hour, date_trunc('hour', TIMEZONE('America/New_York', NOW())) , interval '1' hour) datetime) as periods
       left outer join (
       SELECT
-          to_char(date_trunc('hour', timestamp), 'HH12:MI:SS AM') AS period,
-          COUNT(*), EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg, date_trunc('hour', timestamp) as hour,
+          to_char(date_trunc('hour', TIMEZONE('America/New_York', timestamp)), 'FMHH12:MI AM') AS period,
+          COUNT(*), EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg, date_trunc('hour', TIMEZONE('America/New_York', timestamp)) as datetime,
           EXTRACT(epoch from avg(duration) filter (where kind_id = 0)) * 1000 as internal,
           EXTRACT(epoch from avg(duration) filter (where kind_id = 1)) * 1000 as server,
           EXTRACT(epoch from avg(duration) filter (where kind_id = 2)) * 1000 as client,
@@ -144,7 +145,7 @@ const appsController: AppsController = {
       FROM 
           spans
       WHERE app_id = $1
-      GROUP BY date_trunc('hour', timestamp)) as avgs on periods.hour_series = avgs.hour`;
+      GROUP BY date_trunc('hour', TIMEZONE('America/New_York', timestamp))) as avgs on periods.datetime = avgs.datetime`;
     try {
       const data = await db.query(query, [req.params.appId]);
       res.locals.metrics.kindAvgDurationsOverTime = data.rows;
