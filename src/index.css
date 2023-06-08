@@ -46,17 +46,12 @@ h1 {
 
 @layer components {
   .sideNavBar-icon {
-    @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-800 shadow-sm transition-all duration-500 ease-linear hover:rounded-xl hover:bg-slate-500;
+    @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-800 shadow-sm transition-all duration-500 ease-linear hover:rounded-xl hover:bg-slate-500 hover:text-white;
   }
 }
 /* KW: to replace with tailwind CSS */
-.textbox-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
 
-.textbox {
+/* .textbox {
   flex: 1;
   margin: 0px 20px;
   padding: 30px;
@@ -64,7 +59,7 @@ h1 {
   cursor: pointer;
   -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-}
+} */
 
 .textData {
   margin-top: 5px;

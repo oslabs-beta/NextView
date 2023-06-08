@@ -78,7 +78,7 @@ const Dashboard = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [period.interval, period.unit]);
 
   useEffect(() => {
     console.log('barData', barData);
@@ -94,11 +94,9 @@ const Dashboard = () => {
             <BarGraphContext.Provider value={barData}>
               <LineChartContext.Provider value={lineData}>
                 <PieChartContext.Provider value={pieData}>
-                  <div className='flex h-screen w-screen flex-row bg-neutral-200'>
+                  <div className='flex w-full bg-neutral-200'>
                     <Sidebar />
-                    <div className='flex-1'>
-                      <MainDisplay />
-                    </div>
+                    <MainDisplay />
                   </div>
                 </PieChartContext.Provider>
               </LineChartContext.Provider>

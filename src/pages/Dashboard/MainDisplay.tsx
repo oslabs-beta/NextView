@@ -3,7 +3,7 @@ import GraphDisplay from './GraphDisplay';
 
 const MainDisplay = () => {
   return (
-    <div>
+    <div className='h-screen w-[calc(100%-216px)]'>
       <Topbar />
       <GraphDisplay />
     </div>
