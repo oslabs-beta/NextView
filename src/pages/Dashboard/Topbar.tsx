@@ -6,7 +6,6 @@ import logo from './logo2.png';
 import { useContext } from 'react';
 
 const Topbar = () => {
-  // const [period, setPeriod] = useContext(PeriodContext);
   return (
     <div>
       <div className='flex h-16 justify-end gap-x-10 bg-neutral-300 px-4'>

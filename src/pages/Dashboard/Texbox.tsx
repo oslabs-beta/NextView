@@ -1,11 +1,7 @@
 import Box from './Box';
 import { v4 as uuidv4 } from 'uuid';
 import { useContext } from 'react';
-import {
-  DurationTextboxContext,
-  TextboxContext,
-  TraceTextboxContext,
-} from './Contexts';
+import { DurationTextboxContext, TraceTextboxContext } from './Contexts';
 
 // if data1 == undefined ? '-' : data1
 // if data2 === undefined ? '-' : data2

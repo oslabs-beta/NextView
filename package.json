@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development concurrently -n BROWSER,SERVER -c bgBlue.bold,bgCyan.bold \"sleep 1 && vite --open\" \"nodemon server/server.ts\"",
     "build": "cross-env NODE_ENV=production vite build",
-    "start": "cross-env NODE_ENV=production ts-node server/server.ts",
+    "start": "cross-env NODE_ENV=production tsx server/server.ts",
     "lint": "eslint .",
     "prettierConflictCheck": "eslint-config-prettier src/main.tsx",
     "prepare": "husky install",
@@ -26,6 +26,7 @@
     "react-icons": "^4.9.0",
     "react-router-dom": "^6.11.2",
     "recharts": "^2.6.2",
+    "tsx": "^3.12.7",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
