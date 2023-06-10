@@ -1,6 +1,6 @@
 {
   "name": "nextview-tracing",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "OpenTelemetry Tracing Package for Next.js Applications",
   "main": "index.js",
   "scripts": {
@@ -8,9 +8,6 @@
     "preinstall": "node preInstall.js"
   },
   "dependencies": {
-    "@opentelemetry/auto-instrumentations-node": "^0.37.0",
-    "@opentelemetry/exporter-collector": "^0.25.0",
-    "@opentelemetry/exporter-metrics-otlp-http": "^0.40.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.40.0",
     "@opentelemetry/instrumentation": "^0.40.0",
     "@opentelemetry/instrumentation-express": "^0.32.3",
@@ -18,15 +15,13 @@
     "@opentelemetry/instrumentation-mongoose": "^0.32.3",
     "@opentelemetry/instrumentation-pg": "^0.35.2",
     "@opentelemetry/resources": "^1.14.0",
-    "@opentelemetry/sdk-metrics-base": "^0.31.0",
     "@opentelemetry/sdk-node": "^0.40.0",
-    "@opentelemetry/sdk-trace-base": "^1.14.0",
+    "@opentelemetry/instrumentation-mongodb": "^0.34.2",
     "@opentelemetry/sdk-trace-node": "^1.14.0",
     "@opentelemetry/semantic-conventions": "^1.14.0",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
-    "opentelemetry-resource-detector-service": "^0.28.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "5.1.3"

@@ -4,7 +4,7 @@
   "parserOptions": { "ecmaVersion": "latest", "sourceType": "module" },
   "plugins": ["@typescript-eslint", "react-refresh"],
   "root": true,
-  "ignorePatterns": ["node_modules", "dist"],
+  "ignorePatterns": ["node_modules", "dist", "package"],
   "rules": {
     "react-refresh/only-export-components": "warn",
     "no-unused-vars": ["off", { "vars": "local" }],
