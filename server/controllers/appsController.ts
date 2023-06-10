@@ -126,17 +126,16 @@ const appsController: AppsController = {
 
   retrieveAvgKindDurationsOverTime: async (req, res, next) => {
     // TODO modify this query so it works for different time intervals
-    // TODO modify this query so it doesnt set timezone
     const query = `SELECT periods.period, CASE WHEN Internal>0 THEN Internal ELSE 0 END AS internal, 
       CASE WHEN server>0 THEN server ELSE 0 END AS server,
       CASE WHEN client>0 THEN client ELSE 0 END AS client
       FROM (
       select to_char(date_trunc('hour', datetime), 'FMHH12:MI AM') AS period, datetime
-      from generate_series(date_trunc('hour', TIMEZONE('America/New_York', NOW())) - interval '23' hour, date_trunc('hour', TIMEZONE('America/New_York', NOW())) , interval '1' hour) datetime) as periods
+      from generate_series(date_trunc('hour', TIMEZONE($2, NOW())) - interval '23' hour, date_trunc('hour', TIMEZONE($2, NOW())) , interval '1' hour) datetime) as periods
       left outer join (
       SELECT
-          to_char(date_trunc('hour', TIMEZONE('America/New_York', timestamp)), 'FMHH12:MI AM') AS period,
-          COUNT(*), EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg, date_trunc('hour', TIMEZONE('America/New_York', timestamp)) as datetime,
+          to_char(date_trunc('hour', TIMEZONE($2, timestamp)), 'FMHH12:MI AM') AS period,
+          COUNT(*), EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg, date_trunc('hour', TIMEZONE($2, timestamp)) as datetime,
           EXTRACT(epoch from avg(duration) filter (where kind_id = 0)) * 1000 as internal,
           EXTRACT(epoch from avg(duration) filter (where kind_id = 1)) * 1000 as server,
           EXTRACT(epoch from avg(duration) filter (where kind_id = 2)) * 1000 as client,
@@ -145,9 +144,10 @@ const appsController: AppsController = {
       FROM 
           spans
       WHERE app_id = $1
-      GROUP BY date_trunc('hour', TIMEZONE('America/New_York', timestamp))) as avgs on periods.datetime = avgs.datetime`;
+      GROUP BY date_trunc('hour', TIMEZONE($2, timestamp))) as avgs on periods.datetime = avgs.datetime`;
     try {
-      const data = await db.query(query, [req.params.appId]);
+      const values = [req.params.appId, res.locals.timezone];
+      const data = await db.query(query, values);
       res.locals.metrics.kindAvgDurationsOverTime = data.rows;
       return next();
     } catch (err) {
@@ -162,8 +162,8 @@ const appsController: AppsController = {
   retrievePages: async (req, res, next) => {
     try {
       const query =
-        'SELECT http_target as page FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc;';
-      const values = [req.params.appId, res.locals.interval];
+        'SELECT http_target as page FROM spans WHERE parent_id is null AND app_id = $1 GROUP BY http_target ORDER BY avg(duration) desc;';
+      const values = [req.params.appId];
       const data = await db.query(query, values);
       res.locals.metrics.pages = data.rows;
       return next();
@@ -212,7 +212,20 @@ const appsController: AppsController = {
           message: 'Incorrect date filter provided',
         });
     }
+    return next();
+  },
+
+  setTimezone: (req, res, next) => {
+    const { timezone } = req.body;
+
+    res.locals.timezone = timezone || 'GMT';
+
+    return next();
+  },
+
+  initializeMetrics: (req, res, next) => {
     res.locals.metrics = {};
+
     return next();
   },
 };
@@ -228,6 +241,8 @@ type AppsController = {
   retrieveAvgKindDurationsOverTime: RequestHandler;
   retrievePages: RequestHandler;
   setInterval: RequestHandler;
+  setTimezone: RequestHandler;
+  initializeMetrics: RequestHandler;
 };
 
 export default appsController;
