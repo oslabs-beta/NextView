@@ -1,0 +1,55 @@
+receivers:
+  otlp:
+    protocols: #HTTP or gRPC
+      http:
+        endpoint: 0.0.0.0:4318
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+exporters: # EXPORTERS
+  prometheus: # For Metrics
+    endpoint: "0.0.0.0:8889"
+    send_timestamps: true
+    namespace: promexample
+    const_labels:
+      label1: value1
+
+  logging: # Logging to console
+    loglevel: DEBUG
+
+  # zipkin:
+  #   endpoint: "http://zipkin-all-in-one:9411/api/v2/spans"
+  #   format: proto
+
+  jaeger:
+    endpoint: jaeger-all-in-one:14250
+    tls:
+      insecure: true
+
+processors: # PROCESSORS
+  batch:
+    timeout: 5s # in production, this will be > 5s for sure
+  resource: # alters the data that will be sent! Adds attribute of test key & value
+    attributes:
+      - key: test.key
+        value: "gateway"
+        action: insert # insert, upsert, delete - see documentation
+
+extensions: # EXTENSIONS
+  health_check:
+  pprof:
+    endpoint: :1888
+  zpages:
+    endpoint: :55679
+
+service: # SERVICES
+  extensions: [pprof, zpages, health_check]
+  pipelines: # 2 pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch, resource]
+      exporters: [logging, jaeger]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, prometheus]
