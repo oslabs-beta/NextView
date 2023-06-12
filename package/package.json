@@ -1,14 +1,48 @@
 {
   "name": "nextview-tracing",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "OpenTelemetry Tracing Package for Next.js Applications",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "preinstall": "node preInstall.js"
   },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "edge": {
+        "default": "./dist/index.edge.js"
+      },
+      "edge-light": {
+        "default": "./dist/index.edge.js"
+      },
+      "browser": {
+        "default": "./dist/index.edge.js"
+      },
+      "worker": {
+        "default": "./dist/index.edge.js"
+      },
+      "workerd": {
+        "default": "./dist/index.edge.js"
+      },
+      "import": {
+        "default": "./dist/instrumentation.node.js"
+      },
+      "node": {
+        "default": "./dist/instrumentation.node.js"
+      },
+      "default": "./dist/index.edge.js"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "18.16.1",
+    "typescript": "^5.0.4"
+  },
   "dependencies": {
     "@opentelemetry/exporter-trace-otlp-http": "^0.40.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.39.1",
     "@opentelemetry/instrumentation": "^0.40.0",
     "@opentelemetry/instrumentation-express": "^0.32.3",
     "@opentelemetry/instrumentation-http": "^0.40.0",
@@ -44,5 +78,8 @@
   "bugs": {
     "url": "https://github.com/oslabs-beta/NextView/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/NextView/tree/main#readme"
+  "homepage": "https://github.com/oslabs-beta/NextView/tree/main#readme",
+  "engines": {
+    "node": ">=16"
+  }
 }
