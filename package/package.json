@@ -1,11 +1,11 @@
 {
   "name": "nextview-tracing",
-  "version": "1.0.11",
+  "version": "1.0.17",
   "description": "OpenTelemetry Tracing Package for Next.js Applications",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "node preInstall.js"
+    "postinstall": "node -e 'fs.copyFileSync(path.join(__dirname, \"./src/instrumentation.js\"), path.join(path.resolve(__dirname, \"../..\"), \"instrumentation.js\"))'"
   },
   "files": [
     "src"

@@ -16,8 +16,6 @@ import { IncomingMessage } from 'http';
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
 // const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
 
-import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
-
 // Trying to convert the CommonJS "require" statements below to ES6 "import" statements:
 import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
 import { MongooseInstrumentation } from '@opentelemetry/instrumentation-mongoose';
@@ -60,17 +58,17 @@ export const nextView = (serviceName) => {
         requestHook: (span, reqInfo) => {
           span.setAttribute('request-headers', JSON.stringify(reqInfo));
         },
-        responseHook: (span, res) => {
-          // Get 'content-length' size:
-          let size = 0;
-          res.on('data', (chunk) => {
-            size += chunk.length;
-          });
+        // responseHook: (span, res) => {
+        //   // Get 'content-length' size:
+        //   let size = 0;
+        //   res.on('data', (chunk) => {
+        //     size += chunk.length;
+        //   });
 
-          res.on('end', () => {
-            span.setAttribute('contentLength', size);
-          });
-        },
+        //   res.on('end', () => {
+        //     span.setAttribute('contentLength', size);
+        //   });
+        // },
       }),
       new ExpressInstrumentation({
         // Custom Attribute: request headers on spans:
@@ -94,18 +92,32 @@ export const nextView = (serviceName) => {
           );
         },
       }),
-      // new PgInstrumentation({
-      //   responseHook: (span: Span, res: { data: { rows: any; }; }) => {
-      //     span.setAttribute("contentLength", Buffer.byteLength(JSON.stringify(res.data.rows)));
-      //     span.setAttribute("instrumentationLibrary", span.instrumentationLibrary.name);
-      //   },
-      // }),
-      // new MongoDBInstrumentation({
-      //   responseHook: (span: Span, res: { data: { rows: any; }; }) => {
-      //     span.setAttribute("contentLength", Buffer.byteLength(JSON.stringify(res.data.rows)));
-      //     span.setAttribute("instrumentationLibrary", span.instrumentationLibrary.name);
-      //   },
-      // }),
+      new PgInstrumentation({
+        // responseHook: (span: Span, res: { data: { rows: any; }; }) => {
+        responseHook: (span, res) => {
+          span.setAttribute(
+            'contentLength',
+            Buffer.byteLength(JSON.stringify(res.data.rows)),
+          );
+          span.setAttribute(
+            'instrumentationLibrary',
+            span.instrumentationLibrary.name,
+          );
+        },
+      }),
+      new MongoDBInstrumentation({
+        // responseHook: (span: Span, res: { data: { rows: any; }; }) => {
+        responseHook: (span, res) => {
+          span.setAttribute(
+            'contentLength',
+            Buffer.byteLength(JSON.stringify(res.data.rows)),
+          );
+          span.setAttribute(
+            'instrumentationLibrary',
+            span.instrumentationLibrary.name,
+          );
+        },
+      }),
     ],
   });
   sdk.start();
