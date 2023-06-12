@@ -13,27 +13,27 @@
   "exports": {
     ".": {
       "edge": {
-        "default": "./dist/index.edge.js"
+        "default": "./src/index.edge.js"
       },
       "edge-light": {
-        "default": "./dist/index.edge.js"
+        "default": "./src/index.edge.js"
       },
       "browser": {
-        "default": "./dist/index.edge.js"
+        "default": "./src/index.edge.js"
       },
       "worker": {
-        "default": "./dist/index.edge.js"
+        "default": "./src/index.edge.js"
       },
       "workerd": {
-        "default": "./dist/index.edge.js"
+        "default": "./src/index.edge.js"
       },
       "import": {
-        "default": "./dist/instrumentation.node.js"
+        "default": "./src/instrumentation.node.js"
       },
       "node": {
-        "default": "./dist/instrumentation.node.js"
+        "default": "./src/instrumentation.node.js"
       },
-      "default": "./dist/index.edge.js"
+      "default": "./src/index.edge.js"
     }
   },
   "devDependencies": {
