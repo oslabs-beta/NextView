@@ -8,7 +8,9 @@ appsRouter.use('/:appId/pages', pagesRouter);
 
 appsRouter.get(
   '/:appId/data',
+  appsController.initializeMetrics,
   appsController.setInterval,
+  appsController.setTimezone,
   appsController.retrievePages,
   appsController.retrieveOverallAvg,
   appsController.retrieveTotalTraces,
