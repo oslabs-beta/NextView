@@ -1,7 +1,10 @@
 // import React from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import { BarGraphContext, BarDataItem } from './Contexts';
+import {
+  BarGraphContext,
+  BarDataItem,
+} from '../../../contexts/dashboardContexts';
 
 // TODO: Add algo to display all pages of developer's app
 function MainNavBar() {

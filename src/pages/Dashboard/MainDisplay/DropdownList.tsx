@@ -2,7 +2,10 @@ import { Fragment, useState, useContext } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { BsCheck2, BsChevronDoubleDown } from 'react-icons/bs';
 import { v4 as uuidv4 } from 'uuid';
-import { PeriodContext, PeriodContextType } from './Contexts';
+import {
+  PeriodContext,
+  PeriodContextType,
+} from '../../../contexts/dashboardContexts';
 
 //TODO:styling
 const durationList = [

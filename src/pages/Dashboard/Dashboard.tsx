@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import MainDisplay from './MainDisplay';
-import Sidebar from './Sidebar';
+import MainDisplay from './MainDisplay/MainDisplay';
+import Sidebar from './Sidebar/Sidebar';
 import {
   PeriodContext,
   BarGraphContext,
@@ -11,7 +11,7 @@ import {
   LineDataItem,
   BarDataItem,
   PieDataItem,
-} from './Contexts';
+} from '../../contexts/dashboardContexts';
 
 const Dashboard = () => {
   const [period, setPeriod] = useState({ interval: 24, unit: 'h' });

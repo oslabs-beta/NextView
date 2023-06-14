@@ -3,7 +3,7 @@ export interface Props {
 }
 
 const Home = (props: Props) => {
-  return <div>Welcome</div>;
+  return <div>Home</div>;
 };
 
 export default Home;
