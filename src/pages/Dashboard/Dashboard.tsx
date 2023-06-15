@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MainDisplay from './MainDisplay/MainDisplay';
 import Sidebar from './Sidebar/Sidebar';
+import Loading from './Loading';
 import {
   PeriodContext,
   BarGraphContext,
@@ -54,30 +55,31 @@ const Dashboard = () => {
     console.log('pieData', pieData);
   });
 
-  if (!isLoading) {
-    return (
-      <TraceTextboxContext.Provider value={traceCount}>
-        <DurationTextboxContext.Provider value={overallAvgDuration}>
-          <PeriodContext.Provider value={{ period, setPeriod }}>
-            <BarGraphContext.Provider value={barData}>
-              <LineChartContext.Provider value={lineData}>
-                <PieChartContext.Provider value={pieData}>
-                  <div className='flex w-full bg-neutral-200'>
-                    <Sidebar />
-                    <MainDisplay />
-                  </div>
-                </PieChartContext.Provider>
-              </LineChartContext.Provider>
-            </BarGraphContext.Provider>
-          </PeriodContext.Provider>
-        </DurationTextboxContext.Provider>
-      </TraceTextboxContext.Provider>
-    );
-  }
   return (
-    <div>
-      <h1>Loading</h1>
-    </div>
+    <>
+      {!isLoading ? (
+        <TraceTextboxContext.Provider value={traceCount}>
+          <DurationTextboxContext.Provider value={overallAvgDuration}>
+            <PeriodContext.Provider value={{ period, setPeriod }}>
+              <BarGraphContext.Provider value={barData}>
+                <LineChartContext.Provider value={lineData}>
+                  <PieChartContext.Provider value={pieData}>
+                    <div className='flex w-full bg-neutral-200'>
+                      <Sidebar />
+                      <MainDisplay />
+                    </div>
+                  </PieChartContext.Provider>
+                </LineChartContext.Provider>
+              </BarGraphContext.Provider>
+            </PeriodContext.Provider>
+          </DurationTextboxContext.Provider>
+        </TraceTextboxContext.Provider>
+      ) : (
+        <div>
+          <Loading />
+        </div>
+      )}
+    </>
   );
 };
 

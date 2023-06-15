@@ -1,16 +1,16 @@
 import Topbar from './Topbar';
 import AppsListDisplay from './AppsListDisplay/AppsListDisplay';
-import SettingsDisplay from './SettingsDisplay/SettingsDisplay';
 import DataDisplay from './DataDisplay/DataDisplay';
+import { useState } from 'react';
 
-//TODO: add routing condition
 const MainDisplay = () => {
+  //TODO: replace with useContext
+  const [appsList, setAppsList] = useState(['app1']); // change to [] to display AppsListDisplay
+
   return (
     <div className='h-screen w-[calc(100%-216px)]'>
       <Topbar />
-      <AppsListDisplay />
-      <SettingsDisplay />
-      <DataDisplay />
+      {!appsList.length ? <AppsListDisplay /> : <DataDisplay />}
     </div>
   );
 };
