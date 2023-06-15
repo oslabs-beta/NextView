@@ -100,12 +100,11 @@ const appsController: AppsController = {
 
   retrieveAvgPageDurations: async (req, res, next) => {
     try {
-      const query = `SELECT http_target as page, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp AT TIME ZONE 'GMT' AT TIME ZONE $4 BETWEEN ($2 AT TIME ZONE $4) AND ($3 AT TIME ZONE $4) GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;`;
+      const query = `SELECT http_target as page, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;`;
       const values = [
         req.params.appId,
         res.locals.startDate,
         res.locals.endDate,
-        res.locals.timezone,
       ];
       const data = await db.query(query, values);
       res.locals.metrics.pageAvgDurations = data.rows;
@@ -121,12 +120,11 @@ const appsController: AppsController = {
 
   retrieveAvgKindDurations: async (req, res, next) => {
     try {
-      const query = `SELECT kind_id, kind, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE app_id = $1 AND timestamp AT TIME ZONE 'GMT' AT TIME ZONE $4 BETWEEN ($2 AT TIME ZONE $4) AND ($3 AT TIME ZONE $4) GROUP BY kind_id, kind;`;
+      const query = `SELECT kind_id, kind, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE app_id = $1 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz GROUP BY kind_id, kind;`;
       const values = [
         req.params.appId,
         res.locals.startDate,
         res.locals.endDate,
-        res.locals.timezone,
       ];
       const data = await db.query(query, values);
       res.locals.metrics.kindAvgDurations = data.rows;
