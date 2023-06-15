@@ -289,7 +289,7 @@ const appsController: AppsController = {
   },
 
   setTimezone: (req, res, next) => {
-    const { timezone } = req.body;
+    const timezone = req.header('User-Timezone');
 
     res.locals.timezone = timezone || 'GMT';
 
