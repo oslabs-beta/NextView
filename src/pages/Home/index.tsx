@@ -11,7 +11,7 @@ const Home = () => {
     //TODO: add routing logic to AppsList when loggedIn && !appsList.length
     <>
       {loggedIn && appsList.length ? (
-        <Navigate to='dashboard' />
+        <Navigate to='/dashboard' />
       ) : (
         <div>
           <h1>Home</h1>
