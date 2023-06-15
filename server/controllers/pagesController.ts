@@ -50,7 +50,7 @@ const pagesController: PagesController = {
 
   retrieveAvgPageDurations: async (req, res, next) => {
     const query = `SELECT to_char(TIMEZONE($2, periods.datetime), $4) as period,
-    CASE WHEN EXTRACT(epoch from avg(duration))>0 THEN EXTRACT(epoch from avg(duration)) * 1000 ELSE 0 END AS "Page Duration"
+    CASE WHEN EXTRACT(epoch from avg(duration))>0 THEN EXTRACT(epoch from avg(duration)) * 1000 ELSE 0 END AS "Avg. duration (ms)"
       FROM (
       SELECT generate_series(date_trunc($5, $6::timestamptz), $7, $3) datetime) as periods
       LEFT OUTER JOIN spans on spans.timestamp AT TIME ZONE 'GMT' <@ tstzrange(datetime, datetime + $3::interval) AND spans.app_id = $1 
