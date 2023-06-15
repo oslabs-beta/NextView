@@ -40,7 +40,7 @@ const Dashboard = () => {
         setBarData(data.pageAvgDurations);
         setPieData(data.kindAvgDurations);
         setLineData(data.kindAvgDurationsOverTime);
-        console.log(data);
+        // console.log(data);
         setIsLoading(false);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
@@ -49,11 +49,11 @@ const Dashboard = () => {
     fetchData();
   }, [period.interval, period.unit]);
 
-  useEffect(() => {
-    console.log('barData', barData);
-    console.log('lineData', lineData);
-    console.log('pieData', pieData);
-  });
+  // useEffect(() => {
+  //   console.log('barData', barData);
+  //   console.log('lineData', lineData);
+  //   console.log('pieData', pieData);
+  // });
 
   return (
     <>

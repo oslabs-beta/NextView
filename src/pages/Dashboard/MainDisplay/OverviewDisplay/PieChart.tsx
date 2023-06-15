@@ -85,7 +85,6 @@ export default function App() {
   );
 
   const pieChartData = useContext(PieChartContext);
-  console.log(pieChartData);
 
   return (
     <PieChart width={400} height={400}>
