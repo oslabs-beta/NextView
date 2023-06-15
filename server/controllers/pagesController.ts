@@ -153,9 +153,10 @@ const pagesController: PagesController = {
   retrieveAvgActionData: async (req, res, next) => {
     try {
       const query = `
-      SELECT name as "Action",  EXTRACT(epoch from avg(duration)) * 1000 AS "Avg. duration (ms)", count(id) as "Total no. of executions", count(distinct trace_id) as "Total no. of traces", kind as "Kind" 
-      FROM spans INNER JOIN pages on spans.http_target = pages.http_target and spans.app_id = spans.app_id
-      WHERE spans.app_id = $1 AND pages._id = $4 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz
+      SELECT name as "Action", EXTRACT(epoch from avg(duration)) * 1000 AS "Avg. duration (ms)", count(id) as "Total no. of executions", count(distinct trace_id) as "Total no. of traces", kind as "Kind" 
+      FROM spans 
+      WHERE spans.app_id = $1 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz 
+      AND trace_id IN (SELECT trace_id FROM spans INNER JOIN pages on spans.http_target = pages.http_target WHERE pages._id = $4)
       GROUP BY name, kind`;
       const values = [
         req.params.appId,
@@ -164,7 +165,7 @@ const pagesController: PagesController = {
         req.params.pageId,
       ];
       const data = await db.query(query, values);
-      res.locals.metrics.overallAvg = data.rows;
+      res.locals.metrics.overallPageData = data.rows;
       return next();
     } catch (err) {
       return next({
