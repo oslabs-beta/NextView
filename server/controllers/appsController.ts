@@ -174,7 +174,7 @@ const appsController: AppsController = {
   retrievePages: async (req, res, next) => {
     try {
       const query =
-        'SELECT http_target as page FROM spans WHERE parent_id is null AND app_id = $1 GROUP BY http_target ORDER BY avg(duration) desc;';
+        'SELECT pages._id, spans.http_target as page, pages.app_id as api_id, pages.created_on FROM spans inner join pages on spans.http_target = pages.http_target and spans.app_id = pages.app_id WHERE spans.parent_id is null AND spans.app_id = $1 GROUP BY pages._id, spans.http_target, pages.app_id, pages.created_on ORDER BY avg(duration) desc;';
       const values = [req.params.appId];
       const data = await db.query(query, values);
       res.locals.metrics.pages = data.rows;

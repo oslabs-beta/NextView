@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { BarGraphContext } from './Contexts';
+import { BarGraphContext } from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
