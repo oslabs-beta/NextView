@@ -217,7 +217,7 @@ const appsController: AppsController = {
       // 15 minutes
       format = 'FMHH12:MI:SS AM';
       intervalUnit = 'second';
-      intervalBy = '10 second';
+      intervalBy = '30 second';
     } else if (intervalSeconds <= 1800) {
       // 30 minutes
       format = 'FMHH12:MI AM';
