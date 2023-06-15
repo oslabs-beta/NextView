@@ -14,8 +14,8 @@ const Textbox = () => {
   const duration = useContext(DurationTextboxContext);
 
   const boxData = [
-    { title: 'Average Page Load Duration (milliseconds)', data: duration },
-    { title: 'Total No.of Traces (milliseconds)', data: traceCount },
+    { title: 'Average Page Load Duration (ms)', data: duration },
+    { title: 'Total No.of Traces', data: traceCount },
   ];
 
   return (
