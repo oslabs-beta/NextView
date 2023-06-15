@@ -11,6 +11,9 @@ pagesRouter.get(
   appsController.setTimezone,
   pagesController.retrieveOverallAvg,
   pagesController.retrieveTotalTraces,
+  pagesController.retrieveAvgPageDurations,
+  pagesController.retrieveAvgActionDurations,
+  pagesController.retrieveAvgActionData,
   (req, res, next) => {
     res.status(200).send(res.locals.metrics);
   },

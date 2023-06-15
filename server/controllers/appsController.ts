@@ -148,7 +148,8 @@ const appsController: AppsController = {
       FROM (
       select generate_series(date_trunc($5, $6::timestamptz), $7, $3) datetime) as periods
       left outer join spans on spans.timestamp AT TIME ZONE 'GMT' <@ tstzrange(datetime, datetime + $3::interval) and app_id = $1
-      GROUP BY periods.datetime`;
+      GROUP BY periods.datetime
+      ORDER BY periods.datetime`;
     try {
       const values = [
         req.params.appId,
