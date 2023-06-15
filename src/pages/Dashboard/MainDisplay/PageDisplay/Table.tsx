@@ -38,7 +38,7 @@ const Table = () => {
 
   return (
     <div>
-      <table className='border-1 w-full border border-slate-400' items-center>
+      <table className='border-1 w-full items-center border border-slate-400'>
         <thead className='bg-slate-200'>
           <tr>
             <th className='px-14 py-4'>Action</th>

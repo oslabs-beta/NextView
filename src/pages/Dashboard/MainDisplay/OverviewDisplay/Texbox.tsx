@@ -15,7 +15,7 @@ const Textbox = () => {
 
   const boxData = [
     { title: 'Average Page Load Duration (ms)', data: duration },
-    { title: 'Total No.of Traces', data: traceCount },
+    { title: 'Total No. of Traces', data: traceCount },
   ];
 
   return (
