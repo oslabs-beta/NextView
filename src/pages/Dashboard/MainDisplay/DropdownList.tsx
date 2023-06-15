@@ -7,7 +7,6 @@ import {
   PeriodContextType,
 } from '../../../contexts/dashboardContexts';
 
-//TODO:styling
 const durationList = [
   '1 hour',
   '3 hours',
