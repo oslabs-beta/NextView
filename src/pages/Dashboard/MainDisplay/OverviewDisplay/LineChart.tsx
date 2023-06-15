@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { LineChartContext } from './Contexts';
+import { LineChartContext } from '../../../../contexts/dashboardContexts';
 import {
   LineChart,
   Line,

@@ -1,9 +1,5 @@
-import { PeriodContext } from './Contexts';
-import DropdownList from './DropdownList';
-import logo from './logo2.png';
-
-//TODO:styling
-import { useContext } from 'react';
+import DropdownList from '../MainDisplay/DropdownList';
+import logo from '../../../assets/logo2.png';
 
 const Topbar = () => {
   return (

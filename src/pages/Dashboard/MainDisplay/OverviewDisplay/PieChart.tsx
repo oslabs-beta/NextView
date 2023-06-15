@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useContext } from 'react';
-import { PieChartContext } from './Contexts';
+import { PieChartContext } from '../../../../contexts/dashboardContexts';
 import { PieChart, Pie, Sector } from 'recharts';
 
 const renderActiveShape = (props: any) => {
