@@ -1,28 +1,27 @@
 // import React from 'react';
 import { Link } from 'react-router-dom';
-
-import {
-  IoHome,
-  IoPersonSharp,
-  IoInvertModeSharp,
-  IoLogOut,
-} from 'react-icons/io5';
+import { IoSettingsSharp, IoInvertModeSharp, IoLogOut } from 'react-icons/io5';
+import { SiCodereview } from 'react-icons/si';
+import { MdDashboardCustomize } from 'react-icons/md';
 
 // TODO: update links to icons
 function SideNavBar() {
   return (
     <div className='m-0 flex h-screen w-14 flex-col items-center bg-slate-800 p-5 text-white'>
-      <Link to='/home'>
-        <SideNavBarIcon icon={<IoHome size='28' />} />
+      <Link to='/overviewpage'>
+        <SideNavBarIcon icon={<SiCodereview size='28' />} />
       </Link>
-      <Link to='/userpage'>
-        <SideNavBarIcon icon={<IoPersonSharp size='28' />} />
+      <Link to='/appslist'>
+        <SideNavBarIcon icon={<MdDashboardCustomize size='28' />} />
       </Link>
-      <Link to='/darkmode'>
-        <SideNavBarIcon icon={<IoInvertModeSharp size='28' />} />
+      <Link to='/settings'>
+        <SideNavBarIcon icon={<IoSettingsSharp size='28' />} />
       </Link>
       <Link to='/logout'>
         <SideNavBarIcon icon={<IoLogOut size='28' />} />
+      </Link>
+      <Link to='/darkmode'>
+        <SideNavBarIcon icon={<IoInvertModeSharp size='28' />} />
       </Link>
     </div>
   );
