@@ -5,6 +5,7 @@ import Button from '../../components/Button';
 import logo from '../../assets/logo2.png';
 import githubLogo from '../../assets/github-mark.svg';
 import { Link } from 'react-router-dom';
+import AuthContainer from './Auth/AuthContainer';
 
 const Home = () => {
   // hard coded for dev, to delete
@@ -79,6 +80,7 @@ const Home = () => {
         <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
           <h1>Home</h1>
         </main>
+        <AuthContainer />
       </>
     )
   );
