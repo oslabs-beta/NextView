@@ -1,5 +1,5 @@
 import Textbox from './Texbox';
-import HorizontalBarGragh from './HorizontalBarGragh';
+import HorizontalBarGragh from './HorizontalBarGraph';
 import BarGraph from './BarGraph';
 import LineChart from './LineChart';
 
