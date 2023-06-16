@@ -1,5 +1,9 @@
 import React, { useCallback, useState, useContext } from 'react';
-import { PieChartContext } from '../../../../contexts/dashboardContexts';
+import {
+  PieChartContext,
+  PieChartContextType,
+  PieDataItem,
+} from '../../../../contexts/dashboardContexts';
 import { PieChart, Pie, Sector } from 'recharts';
 
 const renderActiveShape = (props: any) => {
@@ -84,14 +88,17 @@ export default function App() {
     [setActiveIndex],
   );
 
-  const pieChartData = useContext(PieChartContext);
+  const pieChartContext = useContext(
+    PieChartContext as React.Context<PieChartContextType>,
+  );
+  const { pieData } = pieChartContext as { pieData: PieDataItem[] };
 
   return (
     <PieChart width={400} height={400}>
       <Pie
         activeIndex={activeIndex}
         activeShape={renderActiveShape}
-        data={pieChartData}
+        data={pieData}
         cx={200}
         cy={200}
         innerRadius={50}
