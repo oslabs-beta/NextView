@@ -32,7 +32,7 @@ const Modal = ({ children, open, onClose }: Props) => {
 
   return (
     <dialog
-      className='max-w-sm overflow-hidden rounded shadow-lg'
+      className='mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md'
       ref={ref}
       onClick={(e) => {
         const dialogDimensions = e.currentTarget.getBoundingClientRect();

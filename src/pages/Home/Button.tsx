@@ -8,8 +8,8 @@ interface Props {
 const Button = ({ children, onClick }: Props) => {
   return (
     <button
+      className='mb-2 mr-2 inline-block rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700'
       onClick={onClick}
-      className='rounded bg-blue-500 p-2 text-white hover:bg-blue-600'
     >
       {children}
     </button>

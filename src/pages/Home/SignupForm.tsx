@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
-const Login = () => {
+const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const [errorMessage, setError] = useState([]);
 
   const navigate = useNavigate();
 
@@ -21,7 +19,16 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/user/login', {
+    // handle insecured input
+    if (username.length < 3) alert('Username length must be at least 3!');
+    if (password.length < 6) alert('Password length must be at least 6!');
+
+    const body = {
+      username,
+      password,
+    };
+
+    fetch('http://localhost:3000/user/Signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON',
@@ -32,31 +39,30 @@ const Login = () => {
       }),
     })
       .then((res) => {
-        console.log('res.status: ', res);
-        if (res.status === 200) {
-          // alert('Log in successful!');
-          navigate('/main');
+        if (res.status === 201) {
+          alert('Registration successful!');
+          navigate('/login');
         } else {
-          alert('Log in unsuccessful. Please check your login information');
+          alert('Registration unsuccessful. Please retry.');
         }
       })
-      .catch((err) => console.log('Log in: ERROR: ', err));
+      .catch((err) => console.log('Sign up ERROR: ', err));
   };
 
   return (
     <AuthForm
-      text={'Log In'}
-      message={'Do not have an account? Sign up here.'}
+      text={'Submit'}
+      message={'Already have an account? Log in here.'}
     />
-    // <div className='form-container'>
-    //   <form className='login-form' onSubmit={handleSubmit}>
-    //     <h2>LOG IN</h2>
-    //     <label className='auth-label' htmlFor='username'>
+    // <div classNameName='form-container'>
+    //   <form classNameName='signup-form' onSubmit={handleSubmit}>
+    //     <h2>Signup</h2>
+    //     <label classNameName='auth-label' htmlFor='username'>
     //       User Name
     //     </label>
     //     <input
     //       required
-    //       className='auth-input'
+    //       classNameName='auth-input'
     //       onChange={handleUsernameChange}
     //       id='username'
     //       type='text'
@@ -64,28 +70,27 @@ const Login = () => {
     //       value={username}
     //       placeholder='User Name'
     //     />
-    //     <label className='auth-label' htmlFor='password'>
+    //     <label classNameName='auth-label' htmlFor='password'>
     //       Password
     //     </label>
     //     <input
     //       required
-    //       className='auth-input'
+    //       classNameName='auth-input'
     //       onChange={handlePasswordChange}
     //       id='password'
     //       name='password'
     //       type='password'
     //       placeholder='********'
     //     />
-    //     <button className='login-btn' type='submit'>
-    //       Log In
+    //     <button classNameName='submit-btn' type='submit'>
+    //       Submit
     //     </button>
     //   </form>
-    //   {errorMessage}
-    //   <button className='link-btn' onClick={() => navigate('/register')}>
-    //     Do not have an account? Register here.
+    //   <button classNameName='link-btn' onClick={() => navigate('/login')}>
+    //     Already have an account? Log in here.
     //   </button>
     // </div>
   );
 };
 
-export default Login;
+export default Signup;
