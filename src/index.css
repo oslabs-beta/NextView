@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -18,13 +19,45 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  overflow: visible;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ededed;
+  background-clip: padding-box;
+  border: solid rgba(0, 0, 0, 0);
+  border-width: 3px;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a6a6a6;
+  border-radius: 100px;
+  background-clip: padding-box;
+  border: solid rgba(0, 0, 0, 0);
+  border-width: 3px;
+}
+
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+
+body {
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  padding: 0px;
+}
 
 h1 {
   font-size: 3.2em;
@@ -47,6 +80,39 @@ h1 {
 @layer components {
   .sideNavBar-icon {
     @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-800 shadow-sm transition-all duration-500 ease-linear hover:rounded-xl hover:bg-slate-500 hover:text-white;
+  }
+
+  .btn {
+    @apply m-2 rounded px-4 py-2 text-xs;
+  }
+  .sm {
+    @apply px-2;
+  }
+
+  .md {
+    @apply px-4;
+  }
+
+  .lg {
+    @apply px-8;
+  }
+
+  .xl {
+    @apply px-16;
+  }
+
+  .default {
+    @apply border border-gray-300 bg-gray-100 text-gray-800;
+  }
+  .default:hover {
+    @apply border-gray-500;
+  }
+
+  .primary {
+    @apply bg-blue-500 text-white;
+  }
+  .primary:hover {
+    @apply bg-blue-600 text-white;
   }
 }
 /* KW: to replace with tailwind CSS */
