@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Button from './Button';
-import Wrapper from './Wrapper';
 import Modal from './Modal';
 import Login from './LoginForm';
 import Signup from './SignupForm';
@@ -11,17 +10,19 @@ const AuthContainer = () => {
   const [loggedIn, setLoggedIn] = useState(true);
 
   return (
-    <>
-      <Wrapper>
-        <div>
+    <div>
+      <ul className='flex'>
+        <li className='mr-3'>
           {loggedIn ? (
             <Button onClick={() => setOpenLoginModal(true)}>Log In</Button>
           ) : (
             <Button>Log Out</Button>
           )}
+        </li>
+        <li className='mr-3'>
           <Button onClick={() => setOpenSignupModal(true)}>Sign Up</Button>
-        </div>
-      </Wrapper>
+        </li>
+      </ul>
       <Modal
         open={openLoginModal}
         onClose={() => {
@@ -31,7 +32,7 @@ const AuthContainer = () => {
       >
         <p>Log In</p>
         <Login />
-        <Button onClick={() => setOpenSignupModal(false)}>Close</Button>
+        {/* <Button onClick={() => setOpenSignupModal(false)}>Close</Button> */}
       </Modal>
       <Modal
         open={openSignupModal}
@@ -42,9 +43,9 @@ const AuthContainer = () => {
       >
         <p>Sign Up</p>
         <Signup />
-        <Button onClick={() => setOpenSignupModal(false)}>Close</Button>
+        {/* <Button onClick={() => setOpenSignupModal(false)}>Close</Button> */}
       </Modal>
-    </>
+    </div>
   );
 };
 
