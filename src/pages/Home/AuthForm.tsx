@@ -3,12 +3,21 @@ import React, { useState } from 'react';
 interface AuthFormProps {
   text: string;
   message: string;
+  handleSubmit: any;
+  handleUsernameChange?: any;
+  handlePasswordChange?: any;
 }
 
-const AuthForm = ({ text, message }: AuthFormProps) => {
+const AuthForm = ({
+  text,
+  message,
+  handleSubmit,
+  handleUsernameChange,
+  handlePasswordChange,
+}: AuthFormProps) => {
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='mb-4'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
@@ -21,6 +30,8 @@ const AuthForm = ({ text, message }: AuthFormProps) => {
             id='username'
             type='text'
             placeholder='Username'
+            required
+            onChange={handleUsernameChange}
           />
         </div>
         <div className='mb-6'>
@@ -31,14 +42,16 @@ const AuthForm = ({ text, message }: AuthFormProps) => {
             Password
           </label>
           <input
-            className='focus:shadow-outline mb-3 w-full appearance-none rounded border border-red-500 px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
+            className='focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
             id='password'
             type='password'
             placeholder='******************'
+            required
+            onChange={handlePasswordChange}
           />
-          <p className='text-xs italic text-red-500'>
+          {/* <p className='text-xs italic text-red-500'>
             Please choose a password.
-          </p>
+          </p> */}
         </div>
         <div className='flex items-center justify-between'>
           <button

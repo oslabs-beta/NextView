@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
@@ -6,16 +6,16 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const [errorMessage, setError] = useState([]);
-
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+    console.log(username);
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    console.log(password);
   };
 
   const handleSubmit = (e) => {
@@ -34,8 +34,7 @@ const Login = () => {
       .then((res) => {
         console.log('res.status: ', res);
         if (res.status === 200) {
-          // alert('Log in successful!');
-          navigate('/main');
+          navigate('/dashboard');
         } else {
           alert('Log in unsuccessful. Please check your login information');
         }
@@ -47,44 +46,10 @@ const Login = () => {
     <AuthForm
       text={'Log In'}
       message={'Do not have an account? Sign up here.'}
+      handleSubmit={handleSubmit}
+      handleUsernameChange={handleUsernameChange}
+      handlePasswordChange={handlePasswordChange}
     />
-    // <div className='form-container'>
-    //   <form className='login-form' onSubmit={handleSubmit}>
-    //     <h2>LOG IN</h2>
-    //     <label className='auth-label' htmlFor='username'>
-    //       User Name
-    //     </label>
-    //     <input
-    //       required
-    //       className='auth-input'
-    //       onChange={handleUsernameChange}
-    //       id='username'
-    //       type='text'
-    //       name='text'
-    //       value={username}
-    //       placeholder='User Name'
-    //     />
-    //     <label className='auth-label' htmlFor='password'>
-    //       Password
-    //     </label>
-    //     <input
-    //       required
-    //       className='auth-input'
-    //       onChange={handlePasswordChange}
-    //       id='password'
-    //       name='password'
-    //       type='password'
-    //       placeholder='********'
-    //     />
-    //     <button className='login-btn' type='submit'>
-    //       Log In
-    //     </button>
-    //   </form>
-    //   {errorMessage}
-    //   <button className='link-btn' onClick={() => navigate('/register')}>
-    //     Do not have an account? Register here.
-    //   </button>
-    // </div>
   );
 };
 
