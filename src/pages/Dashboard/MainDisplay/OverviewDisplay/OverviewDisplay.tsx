@@ -1,5 +1,5 @@
 import Textbox from './Texbox';
-import PieChart from './PieChart';
+import HorizontalBarGragh from './HorizontalBarGragh';
 import BarGraph from './BarGraph';
 import LineChart from './LineChart';
 
@@ -11,7 +11,7 @@ const OverviewDisplay = () => {
           <Textbox />
         </BoxWrapper>
         <BoxWrapper>
-          <PieChart />
+          <HorizontalBarGragh />
         </BoxWrapper>
         <BoxWrapper>
           <BarGraph />
