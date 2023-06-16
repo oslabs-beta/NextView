@@ -5,6 +5,7 @@ import Login from './LoginForm';
 import Signup from './SignupForm';
 
 const AuthContainer = () => {
+  //TODO: convert to context
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
@@ -32,7 +33,6 @@ const AuthContainer = () => {
       >
         <p>Log In</p>
         <Login />
-        {/* <Button onClick={() => setOpenSignupModal(false)}>Close</Button> */}
       </Modal>
       <Modal
         open={openSignupModal}
@@ -43,7 +43,6 @@ const AuthContainer = () => {
       >
         <p>Sign Up</p>
         <Signup />
-        {/* <Button onClick={() => setOpenSignupModal(false)}>Close</Button> */}
       </Modal>
     </div>
   );

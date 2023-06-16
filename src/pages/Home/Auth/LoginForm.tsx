@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
+//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -21,7 +22,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/user/login', {
+    fetch('/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON',
@@ -44,11 +45,12 @@ const Login = () => {
 
   return (
     <AuthForm
-      text={'Log In'}
-      message={'Do not have an account? Sign up here.'}
+      buttonText={'Log In'}
+      footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
       handlePasswordChange={handlePasswordChange}
+      footerNavigate={'/signup'}
     />
   );
 };

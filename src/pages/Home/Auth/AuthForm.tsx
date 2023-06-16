@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface AuthFormProps {
-  text: string;
-  message: string;
+  buttonText: string;
+  footerMessage: string;
   handleSubmit: any;
   handleUsernameChange?: any;
   handlePasswordChange?: any;
+  footerNavigate: string;
 }
 
 const AuthForm = ({
-  text,
-  message,
+  buttonText,
+  footerMessage,
   handleSubmit,
   handleUsernameChange,
   handlePasswordChange,
+  footerNavigate,
 }: AuthFormProps) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -58,14 +62,15 @@ const AuthForm = ({
             className='focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none'
             type='button'
           >
-            {text}
+            {buttonText}
           </button>
-          <a
+          <button
             className='inline-block align-baseline text-sm font-bold text-blue-500 hover:text-blue-800'
             href='#'
+            onClick={() => navigate(footerNavigate)}
           >
-            {message}
-          </a>
+            {footerMessage}
+          </button>
         </div>
       </form>
     </>

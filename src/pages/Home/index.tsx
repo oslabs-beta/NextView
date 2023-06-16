@@ -1,7 +1,7 @@
 //TODO: replace useState with useContext
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
-import AuthContainer from './AuthContainer';
+import AuthContainer from './Auth/AuthContainer';
 
 const Home = () => {
   // hard coded for dev, to delete
