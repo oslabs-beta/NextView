@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-// TODO: update type for event handlers:
-
+// TODO: change typing for event handlers
 interface AuthFormProps {
   text: string;
   footerMessage: string;
@@ -30,7 +29,7 @@ const AuthForm = ({
         <div className='mb-4'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
-            for='username'
+            htmlFor='username'
           >
             Username
           </label>
@@ -46,7 +45,7 @@ const AuthForm = ({
         <div className='mb-6'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
-            for='password'
+            htmlFor='password'
           >
             Password
           </label>

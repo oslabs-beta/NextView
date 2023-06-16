@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
@@ -9,17 +9,17 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
-  const handleUsernameChange = (e) => {
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
     console.log(username);
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     console.log(password);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(' handleSubmit for signup invoked!');
     // e.preventDefault();
 
@@ -60,7 +60,7 @@ const Signup = () => {
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
       handlePasswordChange={handlePasswordChange}
-      footerNavigate={'/login'}
+      footerNavigate={'/login'} // route to be set up
     />
   );
 };

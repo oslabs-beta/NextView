@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, ChangeEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
@@ -9,17 +9,17 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleUsernameChange = (e) => {
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
     console.log(username);
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
     console.log(password);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     fetch('/user/login', {
@@ -36,7 +36,7 @@ const Login = () => {
         console.log('res.status: ', res);
         if (res.status === 204) {
           // setLoggedIn(true);
-          navigate('/dashboard');
+          navigate('/dashboard'); // route to be set up
         } else {
           alert('Log in unsuccessful. Please check your login information');
         }
