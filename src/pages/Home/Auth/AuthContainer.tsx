@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Button from './Button';
 import Modal from './Modal';
-import Login from './LoginForm';
-import Signup from './SignupForm';
+import LoginForm from './LoginForm';
+import SignupForm from './SignupForm';
 
 const AuthContainer = () => {
   //TODO: convert to context
@@ -31,8 +31,7 @@ const AuthContainer = () => {
           setOpenLoginModal(false);
         }}
       >
-        <p>Log In</p>
-        <Login />
+        <LoginForm />
       </Modal>
       <Modal
         open={openSignupModal}
@@ -41,8 +40,7 @@ const AuthContainer = () => {
           setOpenSignupModal(false);
         }}
       >
-        <p>Sign Up</p>
-        <Signup />
+        <SignupForm />
       </Modal>
     </div>
   );

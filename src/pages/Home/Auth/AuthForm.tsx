@@ -1,16 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 
+// TODO: update type for event handlers:
+
 interface AuthFormProps {
-  buttonText: string;
+  text: string;
   footerMessage: string;
   handleSubmit: any;
-  handleUsernameChange?: any;
-  handlePasswordChange?: any;
+  handleUsernameChange: any;
+  handlePasswordChange: any;
   footerNavigate: string;
 }
 
 const AuthForm = ({
-  buttonText,
+  text,
   footerMessage,
   handleSubmit,
   handleUsernameChange,
@@ -21,7 +23,10 @@ const AuthForm = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <p className='mb-4 block text-center text-xl font-bold text-gray-700'>
+        {text}
+      </p>
+      <form>
         <div className='mb-4'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
@@ -53,20 +58,17 @@ const AuthForm = ({
             required
             onChange={handlePasswordChange}
           />
-          {/* <p className='text-xs italic text-red-500'>
-            Please choose a password.
-          </p> */}
         </div>
         <div className='flex items-center justify-between'>
           <button
             className='focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none'
             type='button'
+            onClick={handleSubmit}
           >
-            {buttonText}
+            {text}
           </button>
           <button
             className='inline-block align-baseline text-sm font-bold text-blue-500 hover:text-blue-800'
-            href='#'
             onClick={() => navigate(footerNavigate)}
           >
             {footerMessage}

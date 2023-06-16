@@ -22,7 +22,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('/users/login', {
+    fetch('/user/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON',
@@ -34,7 +34,8 @@ const Login = () => {
     })
       .then((res) => {
         console.log('res.status: ', res);
-        if (res.status === 200) {
+        if (res.status === 204) {
+          // setLoggedIn(true);
           navigate('/dashboard');
         } else {
           alert('Log in unsuccessful. Please check your login information');
@@ -45,7 +46,7 @@ const Login = () => {
 
   return (
     <AuthForm
-      buttonText={'Log In'}
+      text={'Log In'}
       footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}

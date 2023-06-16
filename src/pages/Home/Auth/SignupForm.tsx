@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
-//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate
+//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate + pass setLoggedIn as prop
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +20,8 @@ const Signup = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    console.log(' handleSubmit for signup invoked!');
+    // e.preventDefault();
 
     // handle insecured input
     if (username.length < 3) alert('Username length must be at least 3!');
@@ -31,7 +32,7 @@ const Signup = () => {
       password,
     };
 
-    fetch('/users/register', {
+    fetch('/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'Application/JSON',
@@ -43,7 +44,7 @@ const Signup = () => {
     })
       .then((res) => {
         if (res.status === 201) {
-          alert('Registration successful!');
+          // setLoggedIn(true);
           navigate('/dashboard');
         } else {
           alert('Registration unsuccessful. Please retry.');
@@ -54,7 +55,7 @@ const Signup = () => {
 
   return (
     <AuthForm
-      buttonText={'Submit'}
+      text={'Submit'}
       footerMessage={'Already have an account? Log in here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
