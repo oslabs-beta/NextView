@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <AuthForm
-      text={'Log In'}
+      text={'Sign In'}
       footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}

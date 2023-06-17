@@ -7,12 +7,12 @@ import DashboardPage from './pages/Dashboard';
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/dashboard' element={<DashboardPage />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

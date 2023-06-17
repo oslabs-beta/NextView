@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Button from './Button';
+import Button from '../../../components/Button';
 import Modal from './Modal';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
@@ -13,15 +13,17 @@ const AuthContainer = () => {
   return (
     <div>
       <ul className='flex'>
-        <li className='mr-3'>
+        <li>
           {loggedIn ? (
-            <Button onClick={() => setOpenLoginModal(true)}>Log In</Button>
+            <Button onClick={() => setOpenLoginModal(true)}>Sign In</Button>
           ) : (
-            <Button>Log Out</Button>
+            <Button onClick={() => null}>Log Out</Button>
           )}
         </li>
         <li className='mr-3'>
-          <Button onClick={() => setOpenSignupModal(true)}>Sign Up</Button>
+          <Button variant='secondary' onClick={() => setOpenSignupModal(true)}>
+            Sign Up
+          </Button>
         </li>
       </ul>
       <Modal
