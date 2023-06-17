@@ -1,5 +1,9 @@
 import { useContext } from 'react';
-import { BarGraphContext } from '../../../../contexts/dashboardContexts';
+import {
+  BarGraphContext,
+  BarGraphContextType,
+  BarDataItem,
+} from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
@@ -12,8 +16,14 @@ import {
 } from 'recharts';
 
 const BarGraph = () => {
-  const barGraphData = useContext(BarGraphContext);
-  const num = barGraphData?.length;
+  // const periodContext = useContext(PeriodContext as React.Context<PeriodContextType>);
+  // const { period, setPeriod } = periodContext;
+  const barGraphContext = useContext(
+    BarGraphContext as React.Context<BarGraphContextType>,
+  );
+  // Chart data prop has a type of any[] | undefined and would not accept BarDataItem[] | null
+  const { barData } = barGraphContext as { barData: BarDataItem[] };
+  const num = barData?.length;
 
   //TODO: figure out how to show long page names
 
@@ -24,7 +34,7 @@ const BarGraph = () => {
       <BarChart
         height={400}
         width={700}
-        data={barGraphData}
+        data={barData}
         margin={{
           top: 5,
           right: 30,
