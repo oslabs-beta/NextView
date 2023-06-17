@@ -13,7 +13,7 @@ const Navbar = () => {
         <Link to={'/'} className='min-w-max'>
           <img src={logo} alt='nextview-logo' className='h-12 w-full'></img>
         </Link>
-        <div className='m-2'>
+        <div className='m-2 hidden md:block'>
           <Link
             to={'/'}
             className='px-3 font-semibold text-gray-500 hover:text-gray-800'
@@ -21,7 +21,7 @@ const Navbar = () => {
             <span>Installation</span>
           </Link>
         </div>
-        <div className='m-2'>
+        <div className='m-2 hidden md:block'>
           <Link
             to={'/'}
             className='px-3 font-semibold text-gray-500 hover:text-gray-800'
@@ -29,7 +29,7 @@ const Navbar = () => {
             <span>About</span>
           </Link>
         </div>
-        <div className='m-2'>
+        <div className='m-2 hidden md:block'>
           <Link
             to={'/'}
             className='px-3 font-semibold text-gray-500 hover:text-gray-800'
@@ -37,7 +37,7 @@ const Navbar = () => {
             <span>Blog</span>
           </Link>
         </div>
-        <div className='m-2'>
+        <div className='m-2 hidden md:block'>
           <a
             href='https://github.com/oslabs-beta/NextView'
             target='_blank'

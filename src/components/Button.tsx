@@ -5,10 +5,12 @@ interface Props {
   variant?: string; // default, primary, info
   size?: string; // sm, md, lg
   disabled?: boolean;
+  className?: string;
 }
 
 // button component, consuming props
 const Button: React.FC<Props> = ({
+  className,
   children,
   onClick,
   variant = 'default',
@@ -21,7 +23,8 @@ const Button: React.FC<Props> = ({
       type='button'
       className={
         `btn ${variant} ${size} whitespace-nowrap` +
-        (disabled ? ' disabled' : '')
+        (disabled ? ' disabled' : '') +
+        (className ? ` ${className}` : '')
       }
       onClick={onClick}
       disabled={disabled}

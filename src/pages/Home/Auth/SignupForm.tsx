@@ -2,9 +2,13 @@ import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
+interface Props {
+  initialValue: string;
+}
+
 //TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate + pass setLoggedIn as prop
-const Signup = () => {
-  const [username, setUsername] = useState('');
+const Signup = ({ initialValue }: Props) => {
+  const [username, setUsername] = useState(initialValue);
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -61,6 +65,7 @@ const Signup = () => {
       handleUsernameChange={handleUsernameChange}
       handlePasswordChange={handlePasswordChange}
       footerNavigate={'/login'} // route to be set up
+      value={username}
     />
   );
 };

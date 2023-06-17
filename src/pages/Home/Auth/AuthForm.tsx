@@ -9,6 +9,7 @@ interface AuthFormProps {
   handleUsernameChange: any;
   handlePasswordChange: any;
   footerNavigate: string;
+  value: string;
 }
 
 const AuthForm = ({
@@ -18,6 +19,7 @@ const AuthForm = ({
   handleUsernameChange,
   handlePasswordChange,
   footerNavigate,
+  value,
 }: AuthFormProps) => {
   const navigate = useNavigate();
 
@@ -39,6 +41,7 @@ const AuthForm = ({
             id='username'
             type='text'
             placeholder='Username'
+            value={value}
             required
             onChange={handleUsernameChange}
           />
