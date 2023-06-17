@@ -1,10 +1,3 @@
-// import { useContext } from 'react';
-// import {
-//   OverviewDataContext,
-//   BarGraphContext,
-//   BarGraphContextType,
-//   BarDataItem,
-// } from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
@@ -16,21 +9,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-// setBarData(data.pageAvgDurations);
-
 const BarGraph = ({ data }) => {
-  // const barGraphContext = useContext(
-  //   BarGraphContext as React.Context<BarGraphContextType>,
-  // );
-  // Chart data prop has a type of any[] | undefined and would not accept BarDataItem[] | null
-  // const { barData } = barGraphContext as { barData: BarDataItem[] };
   const num = data.length;
-
-  // const propData = data;
-  // console.log({propData})
-
   //TODO: figure out how to show long page names
-
   return (
     <div className='bar-graph'>
       <p>Top {num} Slowest Pages</p>

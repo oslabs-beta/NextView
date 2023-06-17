@@ -4,7 +4,6 @@ import BarGraph from './BarGraph';
 import LineChart from './LineChart';
 
 const OverviewDisplay = ({ data }) => {
-  console.log({ data });
   return (
     <div className='flex h-[calc(100%-64px)] flex-col justify-evenly'>
       <div className='m-1 flex flex-row justify-evenly'>

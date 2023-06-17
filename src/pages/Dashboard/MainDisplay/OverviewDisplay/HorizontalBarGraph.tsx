@@ -1,9 +1,3 @@
-import { useContext } from 'react';
-// import {
-//   OverviewDataContext,
-//   // PieChartContext,
-//   // PieChartContextType,
-// } from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
@@ -18,12 +12,6 @@ import {
 const barColors = ['#e4f1fe', '#8dc6ff', '22313f', '34495e', '#ffc93c'];
 
 const HorizontalBarGragh = ({ data }) => {
-  // const { pieData } = useContext(
-  //   PieChartContext as React.Context<PieChartContextType>,
-  // );
-
-  // const { data } = useContext(OverviewDataContext);
-
   return (
     <div className='bar-graph'>
       <p>Average Span Load Duration</p>

@@ -88,27 +88,3 @@ export const StartContext = createContext<StartContextType | null>(null);
 export const EndContext = createContext<EndContextType | null>(null);
 
 export const OverviewDataContext = createContext(null);
-
-// const OverviewDataProvider = () => {
-//   return (
-//     <StartContext.Provider value={{ start, setStart }}>
-//     <EndContext.Provider value={{ end, setEnd }}>
-//       <TraceTextboxContext.Provider value={traceCount}>
-//         <DurationTextboxContext.Provider value={overallAvgDuration}>
-//           <BarGraphContext.Provider value={{ barData, setBarData }}>
-//             <OVLineChartContext.Provider
-//               value={{ lineData, setLineData }}
-//             >
-//               <PieChartContext.Provider value={{ pieData, setPieData }}>
-//                 <div className='flex w-full bg-neutral-200'>
-//                   {children}
-//                 </div>
-//               </PieChartContext.Provider>
-//             </OVLineChartContext.Provider>
-//           </BarGraphContext.Provider>
-//         </DurationTextboxContext.Provider>
-//       </TraceTextboxContext.Provider>
-//     </EndContext.Provider>
-//   </StartContext.Provider>
-//   )
-// }
