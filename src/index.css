@@ -71,6 +71,16 @@ h1 {
   line-height: 1.1;
 }
 
+img {
+  object-fit: cover;
+}
+
+@media (min-width: 1400px) {
+  .header {
+    max-width: 1320px;
+  }
+}
+
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

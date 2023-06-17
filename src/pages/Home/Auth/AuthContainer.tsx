@@ -15,7 +15,7 @@ const AuthContainer = () => {
       <ul className='flex'>
         <li>
           {loggedIn ? (
-            <Button onClick={() => setOpenLoginModal(true)}>Log In</Button>
+            <Button onClick={() => setOpenLoginModal(true)}>Sign In</Button>
           ) : (
             <Button onClick={() => null}>Log Out</Button>
           )}
