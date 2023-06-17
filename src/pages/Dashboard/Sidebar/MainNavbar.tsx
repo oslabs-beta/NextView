@@ -10,7 +10,7 @@ import PageTab from './PageTab';
 
 function MainNavBar() {
   //TODO: replace with useContext
-  const pagesList = ['/api/pruducts', '/ssr/1', '/ssr/2', '/ssr/3', '/'];
+  const pagesList = ['/api/products', '/ssr/1', '/ssr/2', '/ssr/3', '/'];
 
   return (
     <div className='flex h-screen w-44 flex-col items-center bg-slate-600 text-white'>

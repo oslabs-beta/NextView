@@ -8,18 +8,21 @@ const Table = () => {
         duration: 713,
         kind: 'server',
         traces: 32,
+        executions: 3,
       },
       {
         name: 'actionB',
         duration: 624,
         kind: 'internal',
         traces: 21,
+        executions: 2,
       },
       {
         name: 'actionC',
         duration: 442,
         kind: 'client',
         traces: 14,
+        executions: 2,
       },
     ],
   };
@@ -32,6 +35,7 @@ const Table = () => {
         <td className='py-3'>{mockData.operations[i].duration}</td>
         <td className='py-3'>{mockData.operations[i].kind}</td>
         <td className='py-3'>{mockData.operations[i].traces}</td>
+        <td className='py-3'>{mockData.operations[i].executions}</td>
       </tr>,
     );
   }
@@ -41,10 +45,11 @@ const Table = () => {
       <table className='border-1 w-full items-center border border-slate-400'>
         <thead className='bg-slate-200'>
           <tr>
-            <th className='px-14 py-4'>Action</th>
-            <th className='px-14 py-4'>Duration (ms)</th>
-            <th className='px-14 py-4'>Kind</th>
-            <th className='y-4 px-14'>No. of Traces</th>
+            <th className='px-10 py-4'>Action</th>
+            <th className='px-10 py-4'>Duration (ms)</th>
+            <th className='px-10 py-4'>Kind</th>
+            <th className='px-10 py-4'>No. of Traces</th>
+            <th className='px-6 py-4'>No. of Executions</th>
           </tr>
         </thead>
         <tbody className='text-center'>{tableData}</tbody>
