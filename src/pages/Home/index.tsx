@@ -19,7 +19,7 @@ const Home = () => {
       <Navigate to='/dashboard' />
     ) : (
       <>
-        <div className='header relative z-50 flex h-12 flex-row justify-between '>
+        <div className='header relative z-50 flex h-12 flex-row justify-between'>
           <div
             id='header-left'
             className='mx-3 flex flex-row items-center justify-evenly text-sm'
@@ -68,19 +68,19 @@ const Home = () => {
           </div>
           <div id='header-right' className='flex flex-row-reverse items-center'>
             <div className='mx-3'>
-              <Button onClick={() => null}>
+              <AuthContainer />
+              {/* <Button onClick={() => null}>
                 <span>Sign In</span>
               </Button>
               <Button variant='primary' onClick={() => null}>
                 <span>Sign Up</span>
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>
         <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
           <h1>Home</h1>
         </main>
-        <AuthContainer />
       </>
     )
   );

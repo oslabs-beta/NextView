@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../components/Button';
 
 // TODO: change typing for event handlers
 interface AuthFormProps {
@@ -59,15 +60,11 @@ const AuthForm = ({
           />
         </div>
         <div className='flex items-center justify-between'>
-          <button
-            className='focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none'
-            type='button'
-            onClick={handleSubmit}
-          >
+          <Button variant='secondary' size='lg' onClick={handleSubmit}>
             {text}
-          </button>
+          </Button>
           <button
-            className='inline-block align-baseline text-sm font-bold text-blue-500 hover:text-blue-800'
+            className='inline-block align-baseline text-sm font-bold text-secondary hover:text-blue-800'
             onClick={() => navigate(footerNavigate)}
           >
             {footerMessage}
