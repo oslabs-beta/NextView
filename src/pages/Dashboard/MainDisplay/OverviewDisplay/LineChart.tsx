@@ -1,9 +1,3 @@
-import React, { useContext, useState } from 'react';
-import {
-  OVLineChartContext,
-  OVLineChartContextType,
-  LineDataItem,
-} from '../../../../contexts/dashboardContexts';
 import {
   LineChart,
   Line,
@@ -16,16 +10,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const LineChartComponent = () => {
-  const lineChartContext = useContext(
-    OVLineChartContext as React.Context<OVLineChartContextType>,
-  );
-  const { lineData } = lineChartContext as { lineData: LineDataItem[] };
-
+const LineChartComponent = ({ data }) => {
   return (
     <ResponsiveContainer width='95%' height={400}>
       <LineChart
-        data={lineData}
+        data={data}
         margin={{
           top: 5,
           right: 30,
