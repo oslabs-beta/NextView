@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Button from '../../../components/Button';
 import Modal from './Modal';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
+// import {
+//   UserContext,
+//   AppsListContext,
+// } from '../../../contexts/userContexts';
 
 const AuthContainer = () => {
   //TODO: convert to context
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
+
+  // const {loggedIn, setLoggedIn} = useContext(UserContext);
 
   return (
     <div>
