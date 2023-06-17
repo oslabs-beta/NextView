@@ -5,6 +5,47 @@ import overview from '../../assets/overview_edited_rounded.png';
 import Modal from './Auth/Modal';
 import { ChangeEvent, useState } from 'react';
 import SignupForm from './Auth/SignupForm';
+import { TypeAnimation } from 'react-type-animation';
+import React from 'react';
+
+const sequence = [
+  'Build',
+  2000,
+  'Analyze',
+  2000,
+  'Debug',
+  2000,
+  'Develop',
+  2000,
+  'Trace',
+  2000,
+  'Create',
+  2000,
+  'Visualize',
+  2000,
+  'Test',
+  2000,
+  'Instrument',
+  2000,
+  'Optimize',
+  2000,
+  'Measure ',
+  () => showCursorAnimation(false),
+];
+const CURSOR_CLASS_NAME = 'type';
+const ref = React.createRef<HTMLSpanElement>();
+const showCursorAnimation = (show: boolean) => {
+  if (!ref.current) {
+    return;
+  }
+
+  const el = ref.current;
+  if (show) {
+    el.classList.add(CURSOR_CLASS_NAME);
+  } else {
+    el.classList.remove(CURSOR_CLASS_NAME);
+  }
+};
 
 const Overview = () => {
   const [initialUsername, setInitialUsername] = useState('');
@@ -23,7 +64,16 @@ const Overview = () => {
       <div className='relative col-[_span_10] flex flex-col md:col-[_span_4] md:ml-20'>
         <h1 className='font-bold'>NextView</h1>
         <span className='whitespace-nowrap'>
-          Measure your Next.js application
+          <TypeAnimation
+            ref={ref}
+            className={`${CURSOR_CLASS_NAME}`}
+            cursor={false}
+            sequence={sequence}
+            preRenderFirstString={true}
+          >
+            Measure
+          </TypeAnimation>
+          your Next.js application
         </span>
         <div className='mt-6 flex flex-row flex-wrap'>
           <input
