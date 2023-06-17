@@ -44,6 +44,7 @@ const AuthForm = ({
             value={value}
             required
             onChange={handleUsernameChange}
+            spellCheck='false'
           />
         </div>
         <div className='mb-6'>

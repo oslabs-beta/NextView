@@ -28,8 +28,14 @@ const Signup = ({ initialValue }: Props) => {
     // e.preventDefault();
 
     // handle insecured input
-    if (username.length < 3) alert('Username length must be at least 3!');
-    if (password.length < 6) alert('Password length must be at least 6!');
+    if (username.length < 3) {
+      alert('Username length must be at least 3!');
+      return;
+    }
+    if (password.length < 6) {
+      alert('Password length must be at least 6!');
+      return;
+    }
 
     const body = {
       username,
