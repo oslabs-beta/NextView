@@ -8,9 +8,14 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import PageTab from './PageTab';
 
-function MainNavBar() {
+function MainNavBar({ setPage }) {
   //TODO: replace with useContext
   const pagesList = ['/api/products', '/ssr/1', '/ssr/2', '/ssr/3', '/'];
+
+  const handleClick = () => {
+    setPage('tomato');
+    console.log('selected page');
+  };
 
   return (
     <div className='flex h-screen w-44 flex-col items-center bg-slate-600 text-white'>
@@ -20,6 +25,7 @@ function MainNavBar() {
       {pagesList.map((page) => (
         <PageTab key={uuidv4()} page={page} />
       ))}
+      <button onClick={handleClick}>select page</button>
     </div>
   );
 }
