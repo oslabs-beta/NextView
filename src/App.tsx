@@ -9,8 +9,11 @@ import {
   AppsListContext,
   AppListItem,
 } from './contexts/userContexts';
+import { APIContext } from './contexts/dashboardContexts';
 
 // TODO: typing for routes
+// export const apiContext = createContext("null");
+// initial value of apiKey to be set to null once setApiKey is implemented in AppsList page
 
 function App() {
   const [username, setUsername] = useState('');
@@ -23,22 +26,25 @@ function App() {
       created_on: new Date(),
     },
   ]);
+  const [apiKey, setApiKey] = useState('5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d');
 
   return (
     <>
-      <UserContext.Provider
-        value={{ username, setUsername, loggedIn, setLoggedIn }}
-      >
-        <AppsListContext.Provider
-          value={{ applicationlist, setapplicationlist }}
+      <APIContext.Provider value={{ apiKey, setApiKey }}>
+        <UserContext.Provider
+          value={{ username, setUsername, loggedIn, setLoggedIn }}
         >
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/dashboard' element={<DashboardPage />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </AppsListContext.Provider>
-      </UserContext.Provider>
+          <AppsListContext.Provider
+            value={{ applicationlist, setapplicationlist }}
+          >
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/dashboard' element={<DashboardPage />} />
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </AppsListContext.Provider>
+        </UserContext.Provider>
+      </APIContext.Provider>
     </>
   );
 }
