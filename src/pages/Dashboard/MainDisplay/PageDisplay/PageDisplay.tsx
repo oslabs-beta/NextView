@@ -1,5 +1,6 @@
 import Textbox from './Textbox';
 import Table from './Table';
+import LineChartComponents from './LineCharts';
 
 const PageDisplay = () => {
   return (
@@ -10,6 +11,9 @@ const PageDisplay = () => {
         </BoxWrapper>
         <BoxWrapper>
           <Table />
+        </BoxWrapper>
+        <BoxWrapper>
+          <LineChartComponents />
         </BoxWrapper>
       </div>
       <div>Line Chart Here</div>
