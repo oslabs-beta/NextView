@@ -8,6 +8,9 @@ export default {
         secondary: 'var(--secondary-color)',
         accent: 'var(--accent-color)',
       },
+      screens: {
+        '3xl': '2000px',
+      },
     },
   },
   plugins: [],

@@ -1,4 +1,3 @@
-import overview from '../../assets/overview_edited-min.png';
 import Button from '../../components/Button';
 import copy from '../../assets/copy.png';
 import check from '../../assets/checkmark.png';
@@ -16,7 +15,19 @@ const Overview = () => {
   };
 
   return (
-    <section className='flex flex-grow-0 flex-row items-center justify-center md:justify-between'>
+    <section
+      className={`flex w-full flex-grow-0 flex-row items-center justify-center 
+      bg-no-repeat 
+      pb-24 pt-60 md:justify-between md:bg-[url('/src/assets/overview_edited_rounded.png')] md:bg-[length:1000px] md:bg-[right_-520px_top_0px] lg:bg-[length:1100px] 
+      lg:bg-[right_-350px_top_0px] xl:bg-[length:1500px] 
+      xl:bg-[right_-400px_top_0px] 
+      xl:pb-96
+      2xl:bg-[length:1500px] 
+      2xl:bg-[right_-150px_top_0px]
+      3xl:bg-[length:1800px]
+      3xl:bg-[right_-50px_top_0px]
+      3xl:pb-[32rem]`}
+    >
       <div className='flex flex-col md:ml-44'>
         <h1>NextView</h1>
         <span className='whitespace-nowrap'>
@@ -69,11 +80,11 @@ const Overview = () => {
           </button>
         </div>
       </div>
-      <img
+      {/* <img
         src={overview}
         alt='nextview-logo'
         className='ms-auto hidden max-w-[80%] drop-shadow-xl md:block'
-      ></img>
+      ></img> */}
       <Modal
         open={openSignupModal}
         onClose={() => {
