@@ -2,7 +2,7 @@ import { ChangeEvent, ChangeEventHandler, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
-//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate
+//TODO: convert to context + refactor eventhandlers to ensure security
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
