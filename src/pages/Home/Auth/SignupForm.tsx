@@ -65,7 +65,7 @@ const Signup = ({ initialValue }: Props) => {
 
   return (
     <AuthForm
-      text={'Submit'}
+      text={'Sign Up'}
       footerMessage={'Already have an account? Log in here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
