@@ -1,5 +1,3 @@
-import React, { useContext, useState } from 'react';
-import { LineChartContext } from '../../../../contexts/dashboardContexts';
 import {
   LineChart,
   Line,
@@ -12,13 +10,11 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const LineChartComponent = () => {
-  const lineChartData = useContext(LineChartContext);
-
+const LineChartComponent = ({ data }) => {
   return (
     <ResponsiveContainer width='95%' height={400}>
       <LineChart
-        data={lineChartData}
+        data={data}
         margin={{
           top: 5,
           right: 30,

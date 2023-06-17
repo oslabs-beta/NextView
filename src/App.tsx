@@ -13,13 +13,13 @@ import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dashboard' element={<DashboardPage />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

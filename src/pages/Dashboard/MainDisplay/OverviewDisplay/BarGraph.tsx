@@ -1,5 +1,3 @@
-import { useContext } from 'react';
-import { BarGraphContext } from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
@@ -11,12 +9,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const BarGraph = () => {
-  const barGraphData = useContext(BarGraphContext);
-  const num = barGraphData?.length;
-
+const BarGraph = ({ data }) => {
+  const num = data.length;
   //TODO: figure out how to show long page names
-
   return (
     <div className='bar-graph'>
       <p>Top {num} Slowest Pages</p>
@@ -24,7 +19,7 @@ const BarGraph = () => {
       <BarChart
         height={400}
         width={700}
-        data={barGraphData}
+        data={data}
         margin={{
           top: 5,
           right: 30,

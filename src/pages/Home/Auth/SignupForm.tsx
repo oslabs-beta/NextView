@@ -2,9 +2,13 @@ import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
-//TODO: cconvert to context + refactor eventhandlers to ensure security
-const Signup = () => {
-  const [username, setUsername] = useState('');
+interface Props {
+  initialValue: string;
+}
+
+//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate + pass setLoggedIn as prop
+const Signup = ({ initialValue }: Props) => {
+  const [username, setUsername] = useState(initialValue);
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -23,7 +27,7 @@ const Signup = () => {
     console.log(' handleSubmit for signup invoked!');
     // e.preventDefault();
 
-    //  to refactor
+    // handle insecured input
     if (username.length < 3) {
       alert('Username length must be at least 3!');
       return;
@@ -67,6 +71,7 @@ const Signup = () => {
       handleUsernameChange={handleUsernameChange}
       handlePasswordChange={handlePasswordChange}
       footerNavigate={'/login'} // route to be set up
+      value={username}
     />
   );
 };
