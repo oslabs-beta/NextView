@@ -12,11 +12,16 @@
     "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.15",
+    "@mui/material": "^5.13.5",
+    "@mui/x-date-pickers": "^6.7.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^8.0.1",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
+    "dayjs": "^1.11.8",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
