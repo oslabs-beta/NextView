@@ -3,22 +3,23 @@ import HorizontalBarGragh from './HorizontalBarGraph';
 import BarGraph from './BarGraph';
 import LineChart from './LineChart';
 
-const OverviewDisplay = () => {
+const OverviewDisplay = ({ data }) => {
+  console.log({ data });
   return (
     <div className='flex h-[calc(100%-64px)] flex-col justify-evenly'>
       <div className='m-1 flex flex-row justify-evenly'>
         <BoxWrapper>
-          <Textbox />
+          <Textbox traceCount={data.traceCount} overallAvg={data.overallAvg} />
         </BoxWrapper>
         <BoxWrapper>
-          <HorizontalBarGragh />
+          <HorizontalBarGragh data={data.kindAvgDurations} />
         </BoxWrapper>
         <BoxWrapper>
-          <BarGraph />
+          <BarGraph data={data.pageAvgDurations} />
         </BoxWrapper>
       </div>
       <div>
-        <LineChart />
+        <LineChart data={data.kindAvgDurationsOverTime} />
       </div>
     </div>
   );

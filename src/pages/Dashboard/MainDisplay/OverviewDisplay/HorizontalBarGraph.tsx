@@ -1,8 +1,9 @@
 import { useContext } from 'react';
-import {
-  PieChartContext,
-  PieChartContextType,
-} from '../../../../contexts/dashboardContexts';
+// import {
+//   OverviewDataContext,
+//   // PieChartContext,
+//   // PieChartContextType,
+// } from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
@@ -16,10 +17,12 @@ import {
 
 const barColors = ['#e4f1fe', '#8dc6ff', '22313f', '34495e', '#ffc93c'];
 
-const HorizontalBarGragh = () => {
-  const { pieData } = useContext(
-    PieChartContext as React.Context<PieChartContextType>,
-  );
+const HorizontalBarGragh = ({ data }) => {
+  // const { pieData } = useContext(
+  //   PieChartContext as React.Context<PieChartContextType>,
+  // );
+
+  // const { data } = useContext(OverviewDataContext);
 
   return (
     <div className='bar-graph'>
@@ -29,7 +32,7 @@ const HorizontalBarGragh = () => {
         layout='vertical'
         height={400}
         width={700}
-        data={pieData}
+        data={data}
         margin={{
           top: 5,
           right: 30,
@@ -73,8 +76,8 @@ const HorizontalBarGragh = () => {
           barSize={50}
           animationBegin={5}
         >
-          {pieData &&
-            pieData.map((data, index) => (
+          {data &&
+            data.map((data, index) => (
               <Cell key={`cell-${index}`} fill={barColors[index % 20]} />
             ))}
         </Bar>

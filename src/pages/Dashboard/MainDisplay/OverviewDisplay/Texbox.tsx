@@ -2,6 +2,7 @@ import Box from './Box';
 import { v4 as uuidv4 } from 'uuid';
 import { useContext } from 'react';
 import {
+  OverviewDataContext,
   DurationTextboxContext,
   TraceTextboxContext,
 } from '../../../../contexts/dashboardContexts';
@@ -9,12 +10,18 @@ import {
 // if data1 == undefined ? '-' : data1
 // if data2 === undefined ? '-' : data2
 
-const Textbox = () => {
-  const traceCount = useContext(TraceTextboxContext);
-  const duration = useContext(DurationTextboxContext);
+const Textbox = ({ traceCount, overallAvg }) => {
+  // const traceCount = useContext(TraceTextboxContext);
+  // const duration = useContext(DurationTextboxContext);
+
+  // <Textbox traceCount={data.traceCount} duration={data.overallAvg}/>
+
+  // const { trace}
+
+  // console.log('textbox', overallAvg);
 
   const boxData = [
-    { title: 'Average Page Load Duration (ms)', data: duration },
+    { title: 'Average Page Load Duration (ms)', data: overallAvg },
     { title: 'Total No. of Traces', data: traceCount },
   ];
 

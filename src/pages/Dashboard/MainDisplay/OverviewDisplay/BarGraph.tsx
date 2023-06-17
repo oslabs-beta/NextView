@@ -1,9 +1,10 @@
-import { useContext } from 'react';
-import {
-  BarGraphContext,
-  BarGraphContextType,
-  BarDataItem,
-} from '../../../../contexts/dashboardContexts';
+// import { useContext } from 'react';
+// import {
+//   OverviewDataContext,
+//   BarGraphContext,
+//   BarGraphContextType,
+//   BarDataItem,
+// } from '../../../../contexts/dashboardContexts';
 import {
   BarChart,
   Bar,
@@ -15,15 +16,18 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const BarGraph = () => {
-  // const periodContext = useContext(PeriodContext as React.Context<PeriodContextType>);
-  // const { period, setPeriod } = periodContext;
-  const barGraphContext = useContext(
-    BarGraphContext as React.Context<BarGraphContextType>,
-  );
+// setBarData(data.pageAvgDurations);
+
+const BarGraph = ({ data }) => {
+  // const barGraphContext = useContext(
+  //   BarGraphContext as React.Context<BarGraphContextType>,
+  // );
   // Chart data prop has a type of any[] | undefined and would not accept BarDataItem[] | null
-  const { barData } = barGraphContext as { barData: BarDataItem[] };
-  const num = barData?.length;
+  // const { barData } = barGraphContext as { barData: BarDataItem[] };
+  const num = data.length;
+
+  // const propData = data;
+  // console.log({propData})
 
   //TODO: figure out how to show long page names
 
@@ -34,7 +38,7 @@ const BarGraph = () => {
       <BarChart
         height={400}
         width={700}
-        data={barData}
+        data={data}
         margin={{
           top: 5,
           right: 30,
