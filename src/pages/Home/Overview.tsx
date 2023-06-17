@@ -21,7 +21,7 @@ const Overview = () => {
       gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:justify-evenly`}
     >
       <div className='relative col-[_span_10] flex flex-col md:col-[_span_4] md:ml-20'>
-        <h1>NextView</h1>
+        <h1 className='font-bold'>NextView</h1>
         <span className='whitespace-nowrap'>
           Measure your Next.js application
         </span>
