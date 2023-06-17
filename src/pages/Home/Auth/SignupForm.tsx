@@ -2,7 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 
-//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate + pass setLoggedIn as prop
+//TODO: cconvert to context + refactor eventhandlers to ensure security
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -55,7 +55,7 @@ const Signup = () => {
 
   return (
     <AuthForm
-      text={'Submit'}
+      text={'Sign Up'}
       footerMessage={'Already have an account? Log in here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
