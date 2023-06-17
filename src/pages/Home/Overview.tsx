@@ -1,6 +1,7 @@
 import Button from '../../components/Button';
 import copy from '../../assets/copy.png';
 import check from '../../assets/checkmark.png';
+import overview from '../../assets/overview_edited_rounded.png';
 import Modal from './Auth/Modal';
 import { ChangeEvent, useState } from 'react';
 import SignupForm from './Auth/SignupForm';
@@ -16,26 +17,17 @@ const Overview = () => {
 
   return (
     <section
-      className={`flex w-full flex-grow-0 flex-row items-center justify-center 
-      bg-no-repeat 
-      pb-24 pt-60 md:justify-between md:bg-[url('/src/assets/overview_edited_rounded.png')] md:bg-[length:1000px] md:bg-[right_-520px_top_0px] lg:bg-[length:1100px] 
-      lg:bg-[right_-350px_top_0px] xl:bg-[length:1500px] 
-      xl:bg-[right_-400px_top_0px] 
-      xl:pb-96
-      2xl:bg-[length:1500px] 
-      2xl:bg-[right_-150px_top_0px]
-      3xl:bg-[length:1800px]
-      3xl:bg-[right_-50px_top_0px]
-      3xl:pb-[32rem]`}
+      className={`grid w-full grid-cols-12 flex-row items-center justify-center 
+      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:justify-evenly`}
     >
-      <div className='flex flex-col md:ml-44'>
+      <div className='relative col-[_span_10] flex flex-col md:col-[_span_4] md:ml-20'>
         <h1>NextView</h1>
         <span className='whitespace-nowrap'>
           Measure your Next.js application
         </span>
-        <div className='mt-6 flex flex-row'>
+        <div className='mt-6 flex flex-row flex-wrap'>
           <input
-            className='focus:shadow-outline w-auto appearance-none rounded rounded-r-none border px-3 py-2 leading-tight  text-gray-700 focus:outline-none'
+            className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
             id='username'
             type='text'
             placeholder='jsmith@example.com'
@@ -46,7 +38,7 @@ const Overview = () => {
           <Button
             variant='secondary'
             size='md'
-            className='m-0 rounded-l-none rounded-r shadow'
+            className='m-0 mt-4 w-full rounded shadow wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
             onClick={() => setOpenSignupModal(true)}
           >
             Sign Up
@@ -54,7 +46,7 @@ const Overview = () => {
         </div>
         <div className='mt-6'>
           <button
-            className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2  leading-tight text-gray-700 focus:outline-none'
+            className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
             id='npm'
             type='button'
             onClick={() => {
@@ -62,7 +54,9 @@ const Overview = () => {
               setCopyClicked(true);
             }}
           >
-            <code className='text-xs'>npm i nextview-tracing</code>
+            <code className='whitespace-nowrap text-xs'>
+              npm i nextview-tracing
+            </code>
             {!copyClicked && (
               <img
                 src={copy}
@@ -80,11 +74,13 @@ const Overview = () => {
           </button>
         </div>
       </div>
-      {/* <img
-        src={overview}
-        alt='nextview-logo'
-        className='ms-auto hidden max-w-[80%] drop-shadow-xl md:block'
-      ></img> */}
+      <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>
+        <img
+          src={overview}
+          alt='nextview-logo'
+          className='-z-10 drop-shadow-lg'
+        ></img>
+      </div>
       <Modal
         open={openSignupModal}
         onClose={() => {
