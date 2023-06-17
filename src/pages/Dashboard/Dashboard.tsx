@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import MainDisplay from './MainDisplay/MainDisplay';
 import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
 import {
   StartContext,
   EndContext,
-  OverviewDataContext,
+  APIContext,
 } from '../../contexts/dashboardContexts';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -17,9 +17,10 @@ const Dashboard = () => {
   const [pageData, setPageData] = useState(null);
   const [page, setPage] = useState('overview');
   const [pageList, setPageList] = useState(null);
-  const [apiKey, setApiKey] = useState('5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d');
+  const { apiKey } = useContext(APIContext);
 
   useEffect(() => {
+    console.log({ apiKey });
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -59,14 +60,8 @@ const Dashboard = () => {
           },
         );
         const data = await response.json();
-        console.log('fetched', data);
+        // console.log('fetched', data);
         setPageData(data);
-        // setData(data);
-        // setPageList(data.pages);
-        // setPage(data.pages[0])
-        // // console.log({pageList: pageList[0]['_id']})
-        // // setPage(pageList[0]);
-        // setIsLoading(false);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
@@ -86,12 +81,10 @@ const Dashboard = () => {
       {!isLoading ? (
         <StartContext.Provider value={{ start, setStart }}>
           <EndContext.Provider value={{ end, setEnd }}>
-            {/* <OverviewDataContext.Provider value={data}> */}
             <div className='flex w-full bg-neutral-200'>
               <Sidebar setPage={setPage} />
-              <MainDisplay data={data} />
+              <MainDisplay data={data} pageData={pageData} />
             </div>
-            {/* </OverviewDataContext.Provider> */}
           </EndContext.Provider>
         </StartContext.Provider>
       ) : (

@@ -88,3 +88,5 @@ export const StartContext = createContext<StartContextType | null>(null);
 export const EndContext = createContext<EndContextType | null>(null);
 
 export const OverviewDataContext = createContext(null);
+
+export const APIContext = createContext(null);
