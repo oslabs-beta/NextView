@@ -48,8 +48,8 @@ const Table = () => {
             <th className='px-10 py-4'>Action</th>
             <th className='px-10 py-4'>Duration (ms)</th>
             <th className='px-10 py-4'>Kind</th>
-            <th className='y-4 px-14'>No. of Traces</th>
-            <th className='y-4 px-14'>No. of Executions</th>
+            <th className='px-10 py-4'>No. of Traces</th>
+            <th className='px-6 py-4'>No. of Executions</th>
           </tr>
         </thead>
         <tbody className='text-center'>{tableData}</tbody>
