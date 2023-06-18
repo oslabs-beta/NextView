@@ -4,12 +4,13 @@ import Modal from './Modal';
 import LoginForm from './LoginForm';
 import SignupForm from './SignupForm';
 import { UserContext } from '../../../contexts/userContexts';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContainer = () => {
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const { loggedIn } = useContext(UserContext);
-
+  const navigate = useNavigate();
   return (
     <div>
       <ul className='flex'>
@@ -21,9 +22,22 @@ const AuthContainer = () => {
           )}
         </li>
         <li className='mr-3'>
-          <Button variant='secondary' onClick={() => setOpenSignupModal(true)}>
-            Sign Up
-          </Button>
+          {loggedIn ? (
+            <Button
+              variant='secondary'
+              onClick={() => setOpenSignupModal(true)}
+            >
+              Sign Up
+            </Button>
+          ) : (
+            <Button
+              variant='secondary'
+              className='bg-accent'
+              onClick={() => navigate('/dashboard')}
+            >
+              Dashboard
+            </Button>
+          )}
         </li>
       </ul>
       <Modal

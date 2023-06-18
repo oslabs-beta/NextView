@@ -3,9 +3,10 @@ import copy from '../../assets/copy.png';
 import check from '../../assets/checkmark.png';
 import overview from '../../assets/overview_edited_rounded.png';
 import Modal from './Auth/Modal';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useContext } from 'react';
 import SignupForm from './Auth/SignupForm';
 import { TypeAnimation } from 'react-type-animation';
+import { UserContext } from '../../contexts/userContexts';
 import React from 'react';
 
 const sequence = [
@@ -48,12 +49,12 @@ const showCursorAnimation = (show: boolean) => {
 };
 
 const Overview = () => {
-  const [initialUsername, setInitialUsername] = useState('');
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [copyClicked, setCopyClicked] = useState(false);
+  const { setUsername } = useContext(UserContext);
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInitialUsername(e.target.value);
+    setUsername(e.target.value);
   };
 
   return (
@@ -137,7 +138,7 @@ const Overview = () => {
           setOpenSignupModal(false);
         }}
       >
-        <SignupForm initialValue={initialUsername} key={initialUsername} />
+        <SignupForm />
       </Modal>
     </section>
   );
