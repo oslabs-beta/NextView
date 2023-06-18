@@ -9,7 +9,7 @@ const Feature: React.FC<Props> = ({ className, children, ...rest }) => {
   return (
     <div
       className={
-        `col-[_span_6] m-8 rounded-md border border-[rgb(237,237,237)] bg-white p-6 md:col-[_span_3]` +
+        `col-[_span_6] rounded-md border border-[rgb(237,237,237)] bg-white p-6 md:col-[_span_3]` +
         (className ? ` ${className}` : '')
       }
       {...rest}

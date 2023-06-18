@@ -29,9 +29,9 @@ const sequence = [
   2000,
   'Instrument',
   2000,
-  'Optimize',
+  'Measure',
   2000,
-  'Measure ',
+  'Optimize ',
   () => showCursorAnimation(false),
 ];
 const CURSOR_CLASS_NAME = 'type';

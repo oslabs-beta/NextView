@@ -1,14 +1,12 @@
 //TODO: replace useState with useContext
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useCallback, useContext, useEffect } from 'react';
 import Navbar from './Navbar';
 import Overview from './Overview';
-import Feature from '../../components/Feature';
 import { UserContext } from '../../contexts/userContexts';
+import Features from './Features';
 
 const Home = () => {
-  const { loggedIn, setLoggedIn, username, setUsername } =
-    useContext(UserContext);
+  const { setLoggedIn, setUsername } = useContext(UserContext);
 
   const checkLogin = useCallback(() => {
     fetch('/user/authenticate', {
@@ -36,22 +34,7 @@ const Home = () => {
       <Navbar />
       <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
         <Overview />
-        <section className='bg-primary'>
-          {/* <div className='grid grid-cols-12'>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-          </div> */}
-        </section>
+        <Features />
       </main>
     </>
   );
