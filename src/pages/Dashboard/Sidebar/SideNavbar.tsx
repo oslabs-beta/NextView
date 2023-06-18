@@ -6,7 +6,6 @@ import { SiCodereview } from 'react-icons/si';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContexts';
 
-// TODO: update links to icons
 function SideNavBar() {
   const { setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
@@ -22,6 +21,7 @@ function SideNavBar() {
         if (res.status === 204) {
           setLoggedIn(false);
           navigate('/');
+          window.location.reload();
         } else {
           alert('Logout unsuccessful. Please retry.');
         }
@@ -34,9 +34,9 @@ function SideNavBar() {
       <Link to='/dashboard'>
         <SideNavBarIcon icon={<SiCodereview size='28' />} />
       </Link>
-      <button onClick={handleLogOut}>
+      <a onClick={handleLogOut}>
         <SideNavBarIcon icon={<IoLogOut size='28' />} />
-      </button>
+      </a>
       {/* stretch features
       <Link to='/dashboard/appslist'>
         <SideNavBarIcon icon={<MdDashboardCustomize size='28' />} />

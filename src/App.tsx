@@ -19,8 +19,8 @@ import AppsListDisplay from './pages/Dashboard/MainDisplay/AppsListDisplay/AppsL
 import SettingsDisplay from './pages/Dashboard/MainDisplay/SettingsDisplay/SettingsDisplay';
 
 import Dashboard from './pages/Dashboard/Dashboard';
-import Mock1 from './pages/Mock1';
-import Mock2 from './pages/Mock2';
+// import Mock1 from './pages/Mock1';
+// import Mock2 from './pages/Mock2';
 
 // TODO: typing for routes
 // export const apiContext = createContext("null");
@@ -54,14 +54,12 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
 
               {/* <Route path='/dashboard' element={<DashboardLayout />}>
-                <Route index element={<Mock1 />} />
-                <Route path='pages/:pageId' element={<Mock2 />} /> */}
-              {/* <Route index element={<OverviewDisplay />} />
-                <Route path='pages/:pageId' element={<PageDisplay />} /> */}
-              {/* Stretch features
+              <Route index element={<OverviewDisplay />} />
+                <Route path='pages/:pageId' element={<PageDisplay />} />
+
                 <Route path='appslist' element={<AppsListDisplay />} />
-                <Route path='settings' element={<SettingsDisplay />} /> */}
-              {/* </Route> */}
+                <Route path='settings' element={<SettingsDisplay />} />
+              </Route> */}
 
               <Route path='*' element={<NotFound />} />
             </Routes>
