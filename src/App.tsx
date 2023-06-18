@@ -10,6 +10,10 @@ import {
   AppListItem,
 } from './contexts/userContexts';
 import { APIContext } from './contexts/dashboardContexts';
+// import DashboardLayout from './layouts/DashboardLayout';
+import OverviewDisplay from './pages/Dashboard/MainDisplay/OverviewDisplay/OverviewDisplay';
+import PageDisplay from './pages/Dashboard/MainDisplay/PageDisplay/PageDisplay';
+import AppsListDisplay from './pages/Dashboard/MainDisplay/AppsListDisplay/AppsListDisplay';
 
 // TODO: typing for routes
 // export const apiContext = createContext("null");
@@ -39,7 +43,11 @@ function App() {
           >
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path='/dashboard' element={<DashboardPage />} />
+              <Route path='/dashboard' element={<DashboardPage />}>
+                <Route index element={<OverviewDisplay />} />
+                <Route path='pages' element={<PageDisplay />} />
+                <Route path='appslist' element={<AppsListDisplay />} />
+              </Route>
               <Route path='*' element={<NotFound />} />
             </Routes>
           </AppsListContext.Provider>
