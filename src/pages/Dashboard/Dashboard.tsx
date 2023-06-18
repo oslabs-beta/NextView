@@ -71,6 +71,9 @@ const Dashboard = () => {
     console.log('fetched page data');
     const fetchPageData = async () => {
       try {
+        console.log(
+          `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
+        );
         const response = await fetch(
           `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
           {
