@@ -52,8 +52,8 @@ const Navbar = () => {
           </a>
         </div>
       </div>
-      <div id='header-right' className='flex flex-row-reverse items-center'>
-        <div className='mx-3'>
+      <div id='header-right' className='flex items-center'>
+        <div className=''>
           <AuthContainer />
         </div>
       </div>

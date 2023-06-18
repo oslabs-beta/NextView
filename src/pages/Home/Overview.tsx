@@ -72,15 +72,12 @@ const Overview = () => {
             cursor={false}
             sequence={sequence}
             preRenderFirstString={true}
-          >
-            Measure
-          </TypeAnimation>
+          />
           your Next.js application
         </span>
 
         <div className='mt-6 flex flex-row flex-wrap justify-items-start'>
           {loggedIn ? (
-            // <div className='flex flex-row w-full items-center'>
             <>
               <div className='mx-auto flex-grow-0 basis-0 self-center whitespace-nowrap wrap:mx-0'>
                 Welcome {username}!
@@ -94,7 +91,6 @@ const Overview = () => {
               </Button>
             </>
           ) : (
-            // </div>
             <>
               <input
                 className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
@@ -116,7 +112,7 @@ const Overview = () => {
             </>
           )}
         </div>
-        <div className='mb-10 mt-6'>
+        <div className='mb-10 mt-6 self-center md:self-auto'>
           <NPMCopyInput />
         </div>
       </div>

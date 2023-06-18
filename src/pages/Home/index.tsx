@@ -39,10 +39,13 @@ const Home = () => {
         <section className='px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)]'>
           <div className=''>
             <h3 className='mb-3 text-2xl font-bold'>Installation</h3>
-            <div className='grid grid-cols-12 pb-9'>
-              <ol type='1' className='col-span-8 text-sm leading-6'>
-                <li>
-                  <p>To get started, install our npm package:</p>
+            <div className='grid grid-cols-12 gap-6 pb-9 '>
+              <ol className='col-span-12 list-decimal text-sm leading-6 sm:col-span-8 '>
+                <li className=''>
+                  <p>
+                    To get started, install our npm package in your Next.js
+                    application:
+                  </p>
                   <div className='my-3'>
                     <NPMCopyInput />
                   </div>

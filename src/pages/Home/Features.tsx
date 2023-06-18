@@ -10,7 +10,6 @@ const Features = () => {
   const [starCount, setstarCount] = useState(0);
 
   const getStars = () => {
-    console.log('hello');
     fetch('https://api.github.com/repos/oslabs-beta/NextView', {
       method: 'GET',
     })
