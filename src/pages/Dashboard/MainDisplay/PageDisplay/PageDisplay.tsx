@@ -1,6 +1,7 @@
 import Textbox from './Textbox';
 import Table from './Table';
 import PageLineChart from './PageLineChart';
+import SpanLineChart from './SpanLineChart';
 
 const PageDisplay = ({ pageData }) => {
   console.log('pageData-pageDisplay', pageData);
@@ -20,8 +21,13 @@ const PageDisplay = ({ pageData }) => {
         <BoxWrapper></BoxWrapper>
       </div>
       <div>
-        <PageLineChart
+        {/* <PageLineChart
+          overallPageData={pageData.overallPageData}
           avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
+        /> */}
+        <SpanLineChart
+          overallPageData={pageData.overallPageData}
+          avgActionDurationsOverTime={pageData.avgActionDurationsOverTime}
         />
       </div>
     </div>

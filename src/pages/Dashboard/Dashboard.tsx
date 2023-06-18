@@ -79,9 +79,8 @@ const Dashboard = () => {
         // setPageList(data.pages);
 
         // TODO: REMOVE SETTER. PAGE TO BE SET IN MAINNAVBAR ONCLICK.
-        // selected last page because first one had no data
-        setPage(data.pages[0]);
-        // console.log('data.pages[6]', data.pages[6]);
+
+        setPage(data.pages[5]);
         // setIsLoading(false);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
