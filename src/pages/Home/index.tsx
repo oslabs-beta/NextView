@@ -36,16 +36,45 @@ const Home = () => {
       <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
         <Overview />
         <Features />
-        <section className='px-[max((100vw-1500px)/2,48px)] pb-16 pt-20'>
+        <section className='px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)]'>
           <div className=''>
             <h3 className='mb-3 text-2xl font-bold'>Installation</h3>
             <div className='grid grid-cols-12 pb-9'>
-              <ol className='col-span-6 text-sm'>
+              <ol type='1' className='col-span-8 text-sm leading-6'>
                 <li>
-                  <span>To get started, install our npm package:</span>
+                  <p>To get started, install our npm package:</p>
                   <div className='my-3'>
                     <NPMCopyInput />
                   </div>
+                </li>
+                <li>
+                  <p>
+                    In your next.config.js file, opt-in to the Next.js
+                    instrumentation by providing
+                    'experimental.instrumentationHook = true;'
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    In your ‘.env.local’ file in the root directory (create one
+                    if it doesn’t exist), create two environment variables, one
+                    for your API Key and one for your service’s name like so:
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Start the OpenTelemetry Collector via the Docker Command:
+                    docker-compose-up
+                  </p>
+                </li>
+                <li>
+                  <p>Log into your account at NextView.dev</p>
+                </li>
+                <li>
+                  <p>
+                    Congrats! Now you can see the telemetry data for your
+                    Next.js application!
+                  </p>
                 </li>
               </ol>
             </div>

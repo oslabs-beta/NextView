@@ -31,11 +31,13 @@ const Features = () => {
   useEffect(() => getStars(), []);
 
   return (
-    <section className='bg-primary px-[max((100vw-1500px)/2,48px)] pb-16 pt-20'>
+    <section className='bg-primary px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)]'>
       <div className=''>
-        <h3 className='mb-3 text-2xl font-bold'>What is NextView?</h3>
-        <div className='grid grid-cols-12 overflow-auto pb-9'>
-          <p className='col-span-12 text-sm md:col-span-6'>
+        <h3 className='mb-3 whitespace-nowrap text-2xl font-bold'>
+          What is NextView?
+        </h3>
+        <div className='grid grid-cols-12 gap-6 overflow-auto pb-9'>
+          <p className='col-span-12 h-max text-sm leading-6 md:col-span-6'>
             NextView is an observability platform for building and optimizing
             Next.js applications. NextView assists developers by providing an
             easy-to-use and lightweight toolkit for measuring performance of
