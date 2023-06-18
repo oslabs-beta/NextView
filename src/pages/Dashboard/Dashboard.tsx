@@ -9,7 +9,7 @@ const Dashboard = () => {
   // console.log('rendered');
 
   // set to false on succesful fetch of overview data
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   // values used in fetch requests, setters used in topbar
   // initialized to the last 24 hrs
@@ -80,9 +80,9 @@ const Dashboard = () => {
 
         // TODO: REMOVE SETTER. PAGE TO BE SET IN MAINNAVBAR ONCLICK.
         // selected last page because first one had no data
-        setPage(data.pages[6]);
-        console.log('data.pages[6]', data.pages[6]);
-        setIsLoading(false);
+        setPage(data.pages[0]);
+        // console.log('data.pages[6]', data.pages[6]);
+        // setIsLoading(false);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
@@ -98,9 +98,6 @@ const Dashboard = () => {
     // console.log('fetched page data');
     const fetchPageData = async () => {
       try {
-        console.log(
-          `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
-        );
         const response = await fetch(
           `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
           {
@@ -123,7 +120,7 @@ const Dashboard = () => {
 
   return (
     <>
-      {!isLoading ? (
+      {overviewData ? (
         <PageContext.Provider value={{ page, setPage, pageView, setPageView }}>
           <div className='flex w-full bg-neutral-200'>
             <Sidebar />
