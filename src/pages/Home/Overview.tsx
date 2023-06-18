@@ -8,6 +8,7 @@ import SignupForm from './Auth/SignupForm';
 import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const sequence = [
   'Build',
@@ -51,11 +52,12 @@ const showCursorAnimation = (show: boolean) => {
 const Overview = () => {
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [copyClicked, setCopyClicked] = useState(false);
-  const { setUsername } = useContext(UserContext);
+  const { setUsername, username, loggedIn } = useContext(UserContext);
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
+  const navigate = useNavigate();
 
   return (
     <section
@@ -76,24 +78,44 @@ const Overview = () => {
           </TypeAnimation>
           your Next.js application
         </span>
-        <div className='mt-6 flex flex-row flex-wrap'>
-          <input
-            className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
-            id='username'
-            type='text'
-            placeholder='jsmith@example.com'
-            onChange={handleUsernameChange}
-            required
-            spellCheck='false'
-          />
-          <Button
-            variant='secondary'
-            size='md'
-            className='m-0 mt-4 w-full rounded shadow wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
-            onClick={() => setOpenSignupModal(true)}
-          >
-            Sign Up
-          </Button>
+
+        <div className='mt-6 flex flex-row flex-wrap justify-items-start'>
+          {loggedIn ? (
+            // <div className='flex flex-row w-full items-center'>
+            <>
+              <div className='mx-auto flex-grow-0 basis-0 self-center whitespace-nowrap wrap:mx-0'>
+                Welcome {username}!
+              </div>
+              <Button
+                variant='secondary'
+                className='w-full bg-accent wrap:w-auto'
+                onClick={() => navigate('/dashboard')}
+              >
+                Go to Dashboard
+              </Button>
+            </>
+          ) : (
+            // </div>
+            <>
+              <input
+                className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
+                id='username'
+                type='text'
+                placeholder='jsmith@example.com'
+                onChange={handleUsernameChange}
+                required
+                spellCheck='false'
+              />
+              <Button
+                variant='secondary'
+                size='md'
+                className='m-0 mt-4 w-full rounded shadow wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
+                onClick={() => setOpenSignupModal(true)}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
         <div className='mt-6 '>
           <button

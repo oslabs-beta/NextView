@@ -11,7 +11,6 @@ const AuthContainer = () => {
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const { loggedIn, setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
-
   const handleLogOut = () => {
     console.log(' handleLogOut invoked!');
     // e.preventDefault();
@@ -25,7 +24,7 @@ const AuthContainer = () => {
       .then((res) => {
         if (res.status === 204) {
           setLoggedIn(false);
-          navigate('/');
+          window.location.reload();
         } else {
           alert('Logout unsuccessful. Please retry.');
         }
@@ -38,26 +37,26 @@ const AuthContainer = () => {
       <ul className='flex'>
         <li>
           {loggedIn ? (
-            <Button onClick={() => setOpenLoginModal(true)}>Sign In</Button>
-          ) : (
             <Button onClick={handleLogOut}>Log Out</Button>
+          ) : (
+            <Button onClick={() => setOpenLoginModal(true)}>Sign In</Button>
           )}
         </li>
         <li className='mr-3'>
           {loggedIn ? (
             <Button
               variant='secondary'
-              onClick={() => setOpenSignupModal(true)}
-            >
-              Sign Up
-            </Button>
-          ) : (
-            <Button
-              variant='secondary'
               className='bg-accent'
               onClick={() => navigate('/dashboard')}
             >
               Dashboard
+            </Button>
+          ) : (
+            <Button
+              variant='secondary'
+              onClick={() => setOpenSignupModal(true)}
+            >
+              Sign Up
             </Button>
           )}
         </li>

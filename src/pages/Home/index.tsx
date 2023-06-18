@@ -1,11 +1,35 @@
 //TODO: replace useState with useContext
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import Overview from './Overview';
 import Feature from '../../components/Feature';
+import { UserContext } from '../../contexts/userContexts';
 
 const Home = () => {
+  const { loggedIn, setLoggedIn, username, setUsername } =
+    useContext(UserContext);
+  const checkLogin = () => {
+    fetch('/user/authenticate', {
+      method: 'GET',
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('HTTP error ' + res.status);
+        }
+        return res.json();
+      })
+      .then((res) => {
+        if (res.username) {
+          setLoggedIn(true);
+          setUsername(res.username);
+        }
+      })
+      .catch((err) => console.log('Authenticate: ERROR: ', err));
+  };
+
+  useEffect(checkLogin);
+
   return (
     <>
       <Navbar />
