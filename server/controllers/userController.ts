@@ -76,8 +76,8 @@ const userController: UserController = {
     }
   },
 
-  // TODO implement logout
   logoutUser: async (req, res, next) => {
+    res.clearCookie('jwtToken');
     return next();
   },
 };

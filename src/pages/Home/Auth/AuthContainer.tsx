@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, ChangeEvent } from 'react';
 import Button from '../../../components/Button';
 import Modal from './Modal';
 import LoginForm from './LoginForm';
@@ -9,8 +9,30 @@ import { useNavigate } from 'react-router-dom';
 const AuthContainer = () => {
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const [openSignupModal, setOpenSignupModal] = useState(false);
-  const { loggedIn } = useContext(UserContext);
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    console.log(' handleLogOut invoked!');
+    // e.preventDefault();
+
+    fetch('/user/logout', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'Application/JSON',
+      },
+    })
+      .then((res) => {
+        if (res.status === 204) {
+          setLoggedIn(false);
+          navigate('/');
+        } else {
+          alert('Logout unsuccessful. Please retry.');
+        }
+      })
+      .catch((err) => console.log('Logout ERROR: ', err));
+  };
+
   return (
     <div>
       <ul className='flex'>
@@ -18,7 +40,7 @@ const AuthContainer = () => {
           {loggedIn ? (
             <Button onClick={() => setOpenLoginModal(true)}>Sign In</Button>
           ) : (
-            <Button onClick={() => null}>Log Out</Button>
+            <Button onClick={handleLogOut}>Log Out</Button>
           )}
         </li>
         <li className='mr-3'>
