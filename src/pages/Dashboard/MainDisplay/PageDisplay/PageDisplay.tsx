@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Textbox from './Textbox';
 import Table from './Table';
 import PageLineChart from './PageLineChart';

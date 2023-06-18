@@ -7,38 +7,60 @@ import dayjs, { Dayjs } from 'dayjs';
 
 const Dashboard = () => {
   // console.log('rendered');
+
+  // set to false on succesful fetch of overview data
+  const [isLoading, setIsLoading] = useState(true);
+
+  // values used in fetch requests, setters used in topbar
+  // initialized to the last 24 hrs
   const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
   const [end, setEnd] = useState(dayjs().toISOString());
-  const [isLoading, setIsLoading] = useState(true);
+
+  // values set in dashboard
   const [overviewData, setOverviewData] = useState(null);
   const [pageData, setPageData] = useState(null);
-  const [page, setPage] = useState('overview');
+
+  // for sidebar
   // const [pageList, setPageList] = useState(null);
+
+  // initialized to null in context, set to user key by fetchAppsList()
   const { apiKey, setApiKey } = useContext(APIContext);
+
+  // only for apps list page
   const [appList, setAppList] = useState(null);
+
+  // currently set by sidebar button, accessed by context
+  const [page, setPage] = useState('overview');
+
+  // only for development
   const [pageView, setPageView] = useState(false);
+
   // const [test, setTest] = useState('dashboard');
   // console.log(test, 'dashboard');
 
+  // wrapping fetch calls in useEffect reduces unnecessary re-renders. still room for optimization.
+
   // fetch apps list and api key
+  // will not run again after it sets api key
   useEffect(() => {
     const fetchAppsList = async () => {
       try {
-        if (!apiKey) {
-          const response = await fetch('/apps');
-          const data = await response.json();
-          setAppList(data);
-          // selected this page because it contains good data to visualize
-          setApiKey(data[2]['id']);
-        }
+        const response = await fetch('/apps');
+        const data = await response.json();
+        setAppList(data);
+        // selected this page because it contains good data to visualize
+
+        // TODO: SET TO LAST VIEWED APP
+        setApiKey(data[2]['id']);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
     };
-    fetchAppsList();
+    if (!apiKey) fetchAppsList();
   });
 
   // fetch overview data
+  // only if user api key is set
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
@@ -55,6 +77,8 @@ const Dashboard = () => {
         setOverviewData(data);
         // console.log(data.pages);
         // setPageList(data.pages);
+
+        // TODO: REMOVE SETTER. PAGE TO BE SET IN MAINNAVBAR ONCLICK.
         // selected last page because first one had no data
         setPage(data.pages[6]);
         console.log('data.pages[6]', data.pages[6]);
@@ -67,6 +91,7 @@ const Dashboard = () => {
   }, [start, end, apiKey]);
 
   // fetch page data
+  // only if user api key is set
   useEffect(() => {
     const pageId = page['_id'];
     // console.log('pageID', pageId);
