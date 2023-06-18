@@ -48,7 +48,7 @@ const Navbar = () => {
               src={githubLogo}
               alt='nextview-logo'
               className='h-6 min-w-max transition duration-200 hover:scale-125'
-            ></img>
+            />
           </a>
         </div>
       </div>

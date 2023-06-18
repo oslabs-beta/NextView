@@ -1,6 +1,6 @@
 // interface to declare all our prop types
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClick?: () => void;
   variant?: string; // default, primary, info
   size?: string; // sm, md, lg

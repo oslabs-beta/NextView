@@ -138,6 +138,10 @@ img {
   .secondary:hover {
     @apply brightness-90;
   }
+
+  .disable-blur {
+    image-rendering: crisp-edges;
+  }
 }
 
 .type::after {

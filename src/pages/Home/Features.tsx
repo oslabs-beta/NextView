@@ -1,7 +1,34 @@
 import Feature from '../../components/Feature';
 import Button from '../../components/Button';
+import github from '../../assets/GitHub_Logo_White.png';
+import githubIcon from '../../assets/github-mark-white.svg';
+import star from '../../assets/star.png';
+import { useEffect, useState } from 'react';
+import { AiOutlineStar } from 'react-icons/ai';
 
 const Features = () => {
+  const [starCount, setstarCount] = useState(0);
+
+  const getStars = () => {
+    fetch('https://api.github.com/repos/oslabs-beta/NextView', {
+      method: 'GET',
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('HTTP error ' + res.status);
+        }
+        return res.json();
+      })
+      .then((res) => {
+        if (res.stargazers_count) {
+          setstarCount(res.stargazers_count);
+        }
+      })
+      .catch((err) => console.log('Authenticate: ERROR: ', err));
+  };
+
+  useEffect(() => getStars(), []);
+
   return (
     <section className='bg-primary px-[max((100vw-1500px)/2,48px)] pb-16 pt-20'>
       <div className=''>
@@ -29,10 +56,26 @@ const Features = () => {
           <h2>Feature 4</h2>
         </Feature>
       </div>
-      <div className='mt-16 flex justify-center'>
+      <div className='mt-16 flex items-center justify-center'>
         {/* TODO: REPLACE WITH MEDIUM LINK */}
         <a href='' target='_blank' rel='noopener' aria-label='Medium Link'>
           <Button className='bg-primary'>Learn more</Button>
+        </a>
+
+        <a href='' target='_blank' rel='noopener' aria-label='Medium Link'>
+          <div className='flex flex-row hover:brightness-95'>
+            <Button
+              className='mr-0 flex h-8 w-24 flex-row items-center justify-evenly rounded-r-none hover:brightness-100'
+              variant='secondary'
+            >
+              <img className='h-5' src={githubIcon} />
+              <img className='disable-blur h-6' src={github} />
+            </Button>
+            <Button className='border-1 ml-0 flex h-8 items-center justify-evenly gap-1 rounded-l-none border-l-0 p-1 hover:border-gray-300'>
+              <AiOutlineStar />
+              {starCount}
+            </Button>
+          </div>
         </a>
       </div>
     </section>

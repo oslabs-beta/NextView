@@ -35,6 +35,7 @@ const Home = () => {
       <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
         <Overview />
         <Features />
+        <section className=''></section>
       </main>
     </>
   );
