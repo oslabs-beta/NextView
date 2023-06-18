@@ -1,28 +1,59 @@
 //TODO: replace useState with useContext
-import { useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
-
 import Overview from './Overview';
+import Feature from '../../components/Feature';
+import { UserContext } from '../../contexts/userContexts';
 
 const Home = () => {
-  // hard coded for dev, to delete
-  const [loggedIn, setLoggedIn] = useState(false); // change to true to redirect to dashboard
-  const [appsList, setAppsList] = useState(['app1']);
+  const { loggedIn, setLoggedIn, username, setUsername } =
+    useContext(UserContext);
+
+  const checkLogin = useCallback(() => {
+    fetch('/user/authenticate', {
+      method: 'GET',
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('HTTP error ' + res.status);
+        }
+        return res.json();
+      })
+      .then((res) => {
+        if (res.username) {
+          setLoggedIn(true);
+          setUsername(res.username);
+        }
+      })
+      .catch((err) => console.log('Authenticate: ERROR: ', err));
+  }, [setLoggedIn, setUsername]);
+
+  useEffect(() => checkLogin(), [checkLogin]);
 
   return (
-    //TODO: add routing logic to AppsList when loggedIn && !appsList.length
-
-    loggedIn && appsList.length ? (
-      <Navigate to='/dashboard' />
-    ) : (
-      <>
-        <Navbar />
-        <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
-          <Overview />
-        </main>
-      </>
-    )
+    <>
+      <Navbar />
+      <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
+        <Overview />
+        <section className='bg-primary'>
+          {/* <div className='grid grid-cols-12'>
+            <Feature>
+              <h2>Feature 1</h2>
+            </Feature>
+            <Feature>
+              <h2>Feature 1</h2>
+            </Feature>
+            <Feature>
+              <h2>Feature 1</h2>
+            </Feature>
+            <Feature>
+              <h2>Feature 1</h2>
+            </Feature>
+          </div> */}
+        </section>
+      </main>
+    </>
   );
 };
 

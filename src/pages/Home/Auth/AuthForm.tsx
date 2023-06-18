@@ -9,7 +9,7 @@ interface AuthFormProps {
   handleUsernameChange: any;
   handlePasswordChange: any;
   footerNavigate: string;
-  value: string;
+  value?: string;
 }
 
 const AuthForm = ({
@@ -28,7 +28,7 @@ const AuthForm = ({
       <p className='mb-4 block text-center text-xl font-bold text-gray-700'>
         {text}
       </p>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className='mb-4'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
@@ -64,10 +64,11 @@ const AuthForm = ({
           />
         </div>
         <div className='flex items-center justify-between'>
-          <Button variant='secondary' size='lg' onClick={handleSubmit}>
+          <Button type='submit' variant='secondary' size='lg'>
             {text}
           </Button>
           <button
+            type='button'
             className='inline-block align-baseline text-sm font-bold text-secondary hover:text-blue-800'
             onClick={() => navigate(footerNavigate)}
           >
