@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const LineChartComponents = () => {
+const PageLineChart = () => {
   return (
     <ResponsiveContainer width='95%' height={400}>
       <LineChart
@@ -45,4 +45,4 @@ const LineChartComponents = () => {
   );
 };
 
-export default LineChartComponents;
+export default PageLineChart;

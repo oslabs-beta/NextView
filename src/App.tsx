@@ -7,7 +7,7 @@ import DashboardPage from './pages/Dashboard';
 // import AppsListDisplay from './pages/Dashboard/MainDisplay/AppsListDisplay/AppsListDisplay';
 // import OverviewDisplay from './pages/Dashboard/MainDisplay/OverviewDisplay/OverviewDisplay';
 // import SettingsDisplay from './pages/Dashboard/MainDisplay/SettingsDisplay/SettingsDisplay';
-// import PageDisplay from './pages/Dashboard/MainDisplay/PageDisplay/PageDisplay';
+import PageDisplay from './pages/Dashboard/MainDisplay/PageDisplay/PageDisplay';
 import NotFound from './pages/NotFound/NotFound';
 import { APIContext } from './contexts/dashboardContexts';
 
@@ -17,7 +17,8 @@ import { APIContext } from './contexts/dashboardContexts';
 // initial value of apiKey to be set to null once setApiKey is implemented in AppsList page
 
 function App() {
-  const [apiKey, setApiKey] = useState('5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d');
+  const [apiKey, setApiKey] = useState(null);
+  // 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
   return (
     <>
       <APIContext.Provider value={{ apiKey, setApiKey }}>
@@ -25,6 +26,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/dashboard' element={<DashboardPage />} />
           <Route path='*' element={<NotFound />} />
+          <Route path='page' element={<PageDisplay />} />
         </Routes>
       </APIContext.Provider>
     </>

@@ -8,13 +8,14 @@ import {
 import { v4 as uuidv4 } from 'uuid';
 import PageTab from './PageTab';
 
-function MainNavBar({ setPage }) {
+function MainNavBar({ page, setPage }) {
   //TODO: replace with useContext
   const pagesList = ['/api/products', '/ssr/1', '/ssr/2', '/ssr/3', '/'];
 
   const handleClick = () => {
-    setPage('tomato');
+    // setPage('tomato');
     console.log('selected page');
+    console.log('page', page);
   };
 
   return (
