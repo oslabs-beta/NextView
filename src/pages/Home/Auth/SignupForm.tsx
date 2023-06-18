@@ -1,14 +1,14 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
+import { UserContext } from '../../../contexts/userContexts';
 
-interface Props {
-  initialValue: string;
-}
+//TODO: refactor eventhandlers to ensure security + add typing
+const Signup = () => {
+  const { loggedIn, setLoggedIn, username, setUsername } =
+    useContext(UserContext);
 
-//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate + pass setLoggedIn as prop
-const Signup = ({ initialValue }: Props) => {
-  const [username, setUsername] = useState(initialValue);
+  // const [username, setUsername] = useState(initialValue);
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -54,7 +54,8 @@ const Signup = ({ initialValue }: Props) => {
     })
       .then((res) => {
         if (res.status === 201) {
-          // setLoggedIn(true);
+          setLoggedIn(true);
+          // console.log('loggedIn state upon signup', loggedIn)
           navigate('/dashboard');
         } else {
           alert('Registration unsuccessful. Please retry.');

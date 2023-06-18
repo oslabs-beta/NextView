@@ -1,10 +1,13 @@
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { ChangeEvent, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
+import { UserContext } from '../../../contexts/userContexts';
 
-//TODO: convert to conbuttonText + check fetch request + refactor eventhandlers to ensure security + update footerNavigate
+//TODO: refactor eventhandlers to ensure security + add typing
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const { loggedIn, setLoggedIn, username, setUsername } =
+    useContext(UserContext);
+
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
@@ -35,7 +38,9 @@ const Login = () => {
       .then((res) => {
         console.log('res.status: ', res);
         if (res.status === 204) {
-          // setLoggedIn(true);
+          setLoggedIn(true);
+          // console.log('loggedIn state upon login', loggedIn)
+          // console.log('user name', username)
           navigate('/dashboard'); // route to be set up
         } else {
           alert('Log in unsuccessful. Please check your login information');
