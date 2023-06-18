@@ -108,6 +108,7 @@ const pagesController: PagesController = {
       ];
 
       const actionData = await db.query(queryGetActions, valuesGetActions);
+      if (actionData.rows.length === 0) actionData.rows[0] = {};
       const aggregatedQueryResults: Period[] = [];
       // for each action, get aggregation of data based on time period
       // uses map and promise.all to run queries in parallel
@@ -129,11 +130,17 @@ const pagesController: PagesController = {
           // combine data into our aggregated array
           data.rows.forEach((row, i) => {
             if (aggregatedQueryResults[i] === undefined) {
-              aggregatedQueryResults.push({
-                period: row.period,
-                // add key with name of action
-                [el.name]: row.action,
-              });
+              if (el.http_target) {
+                aggregatedQueryResults.push({
+                  period: row.period,
+                  // add key with name of action
+                  [el.name]: row.action,
+                });
+              } else {
+                aggregatedQueryResults.push({
+                  period: row.period,
+                });
+              }
             } else aggregatedQueryResults[i][el.name] = row.action;
           });
         }),
@@ -153,7 +160,7 @@ const pagesController: PagesController = {
   retrieveAvgActionData: async (req, res, next) => {
     try {
       const query = `
-      SELECT name as "Action", EXTRACT(epoch from avg(duration)) * 1000 AS "Avg. duration (ms)", count(id) as "Total no. of executions", count(distinct trace_id) as "Total no. of traces", kind as "Kind" 
+      SELECT name as "Name", EXTRACT(epoch from avg(duration)) * 1000 AS "Avg. duration (ms)", count(id) as "Total no. of executions", count(distinct trace_id) as "Total no. of traces", kind as "Kind" 
       FROM spans 
       WHERE spans.app_id = $1 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz 
       AND trace_id IN (SELECT trace_id FROM spans INNER JOIN pages on spans.http_target = pages.http_target WHERE pages._id = $4)
