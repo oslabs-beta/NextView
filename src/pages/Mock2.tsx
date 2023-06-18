@@ -1,7 +1,13 @@
+import { useParams } from 'react-router-dom';
+
 export default function Mock2() {
+  const { id } = useParams();
+
+  console.log('useParams', useParams);
+
   return (
-    <>
-      <h1>Mock 2</h1>
-    </>
+    <div>
+      <h1>ID: {id}</h1>
+    </div>
   );
 }
