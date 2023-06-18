@@ -6,6 +6,7 @@ import {
   StartContext,
   EndContext,
   APIContext,
+  PageContext,
 } from '../../contexts/dashboardContexts';
 import dayjs, { Dayjs } from 'dayjs';
 
@@ -38,7 +39,6 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    const key = '';
     const fetchOverviewData = async () => {
       try {
         const response = await fetch(
@@ -68,6 +68,7 @@ const Dashboard = () => {
   useEffect(() => {
     const pageId = page['_id'];
     // console.log('pageID', pageId);
+    console.log('fetched page data');
     const fetchPageData = async () => {
       try {
         const response = await fetch(
@@ -88,23 +89,27 @@ const Dashboard = () => {
     if (apiKey) fetchPageData();
   }, [page]);
 
-  useEffect(() => {
-    // console.log('barData', barData);
-    // console.log('lineData', lineData);
-    // console.log('pieData', pieData);
-    //   console.log('data', data)
-    console.log(page);
-  });
+  // useEffect(() => {
+  //   // console.log('barData', barData);
+  //   // console.log('lineData', lineData);
+  //   // console.log('pieData', pieData);
+  //   //   console.log('data', data)
+  //   console.log(page);
+  // });
+
+  console.log({ start, end, data, pageData, page, pageList, apiKey, appList });
 
   return (
     <>
       {!isLoading ? (
         <StartContext.Provider value={{ start, setStart }}>
           <EndContext.Provider value={{ end, setEnd }}>
-            <div className='flex w-full bg-neutral-200'>
-              <Sidebar setPage={{ page, setPage }} />
-              <MainDisplay data={data} pageData={pageData} />
-            </div>
+            <PageContext.Provider value={{ page, setPage }}>
+              <div className='flex w-full bg-neutral-200'>
+                <Sidebar />
+                <MainDisplay data={data} pageData={pageData} />
+              </div>
+            </PageContext.Provider>
           </EndContext.Provider>
         </StartContext.Provider>
       ) : (

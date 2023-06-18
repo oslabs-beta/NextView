@@ -1,19 +1,18 @@
 // import React from 'react';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import {
-  BarGraphContext,
-  BarDataItem,
-} from '../../../contexts/dashboardContexts';
+import { PageContext } from '../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
 import PageTab from './PageTab';
 
-function MainNavBar({ page, setPage }) {
+function MainNavBar() {
   //TODO: replace with useContext
   const pagesList = ['/api/products', '/ssr/1', '/ssr/2', '/ssr/3', '/'];
 
+  const { page, setPage } = useContext(PageContext);
+
   const handleClick = () => {
-    // setPage('tomato');
+    setPage('tomato');
     console.log('selected page');
     console.log('page', page);
   };

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import DashboardPage from './pages/Dashboard';
 import NotFound from './pages/NotFound/NotFound';
+import PageDisplay from './pages/Dashboard/MainDisplay/PageDisplay/PageDisplay';
 import {
   UserContext,
   AppsListContext,
@@ -42,6 +43,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/dashboard' element={<DashboardPage />} />
               <Route path='*' element={<NotFound />} />
+              <Route path='page' element={<PageDisplay />} />
             </Routes>
           </AppsListContext.Provider>
         </UserContext.Provider>
