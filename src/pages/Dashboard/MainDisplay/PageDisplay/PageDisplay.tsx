@@ -15,21 +15,18 @@ const PageDisplay = ({ pageData }) => {
             traceCount={pageData.traceCount}
           />
         </BoxWrapper>
-        <BoxWrapper>
-          <Table overallPageData={pageData.overallPageData} />
-        </BoxWrapper>
-        <BoxWrapper></BoxWrapper>
-      </div>
-      <div>
-        {/* <PageLineChart
+        <PageLineChart
           overallPageData={pageData.overallPageData}
           avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
-        /> */}
+        />
         <SpanLineChart
           overallPageData={pageData.overallPageData}
           avgActionDurationsOverTime={pageData.avgActionDurationsOverTime}
         />
       </div>
+      <BoxWrapper>
+        <Table overallPageData={pageData.overallPageData} />
+      </BoxWrapper>
     </div>
   );
 };

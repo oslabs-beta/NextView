@@ -11,21 +11,15 @@ import {
 } from 'recharts';
 
 const SpanLineChart = ({ avgActionDurationsOverTime, overallPageData }) => {
-  //replace Action with Name
-
-  const actions = overallPageData.map((el) => {
-    return el.Action;
-  });
-
   const colors = [
-    '#8884d8',
-    '#82ca9d',
-    '#ff7f50',
-    '#1f77b4',
-    '#ff0000',
-    '#00ff00',
-    '#0000ff',
-    '#ffff00',
+    // '#8884d8',
+    // '#82ca9d',
+    // '#ff7f50',
+    // '#1f77b4',
+    // '#ff0000',
+    // '#00ff00',
+    // '#0000ff',
+    // '#ffff00',
     '#ff00ff',
     '#00ffff',
     '#800000',
@@ -63,6 +57,10 @@ const SpanLineChart = ({ avgActionDurationsOverTime, overallPageData }) => {
 "#ff4500" - Orange Red
       */
 
+  const actions = Object.keys(avgActionDurationsOverTime[0]).filter(
+    (el) => el !== 'period',
+  );
+
   const lines = actions.map((action, i) => {
     return (
       <Line
@@ -76,7 +74,7 @@ const SpanLineChart = ({ avgActionDurationsOverTime, overallPageData }) => {
   });
 
   return (
-    <ResponsiveContainer width='50%' height={400}>
+    <ResponsiveContainer width='40%' height={400}>
       <LineChart
         width={500}
         height={300}

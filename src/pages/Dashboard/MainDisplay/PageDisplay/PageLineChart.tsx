@@ -12,7 +12,7 @@ import {
 
 const PageLineChart = ({ avgPageDurationsOverTime }) => {
   return (
-    <ResponsiveContainer width='95%' height={400}>
+    <ResponsiveContainer width='40%' height={400}>
       <LineChart
         width={500}
         height={300}
@@ -35,10 +35,9 @@ const PageLineChart = ({ avgPageDurationsOverTime }) => {
         <Line
           type='monotone'
           dataKey='Avg. duration (ms)'
-          stroke='#8884d8'
+          stroke='#00ff00'
           activeDot={{ r: 8 }}
         />
-        {/* <Line type='monotone' dataKey='uv' stroke='#82ca9d' /> */}
       </LineChart>
     </ResponsiveContainer>
   );
