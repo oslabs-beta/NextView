@@ -43,6 +43,7 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/dashboard' element={<DashboardPage />} />
               <Route path='*' element={<NotFound />} />
+              {/* added route to test display */}
               <Route path='page' element={<PageDisplay />} />
             </Routes>
           </AppsListContext.Provider>

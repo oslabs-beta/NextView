@@ -41,8 +41,10 @@ export interface EndContextType {
 }
 
 export interface PeriodContextType {
-  start: Period;
-  end: (value: Period) => void;
+  start: string;
+  setStart: (value: string) => void;
+  end: string;
+  setEnd: (value: string) => void;
 }
 
 export interface TraceTextboxContextType {

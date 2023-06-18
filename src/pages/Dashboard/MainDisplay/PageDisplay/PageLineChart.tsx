@@ -56,7 +56,6 @@ const data = [
 ];
 
 const PageLineChart = () => {
-  console.log('line chart');
   return (
     // <ResponsiveContainer width="100%" height="100%">
     <LineChart

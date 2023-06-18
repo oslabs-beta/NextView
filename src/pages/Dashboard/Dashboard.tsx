@@ -2,24 +2,23 @@ import { useEffect, useState, useContext } from 'react';
 import MainDisplay from './MainDisplay/MainDisplay';
 import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
-import {
-  StartContext,
-  EndContext,
-  APIContext,
-  PageContext,
-} from '../../contexts/dashboardContexts';
+import { APIContext, PageContext } from '../../contexts/dashboardContexts';
 import dayjs, { Dayjs } from 'dayjs';
 
 const Dashboard = () => {
+  // console.log('rendered');
   const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
   const [end, setEnd] = useState(dayjs().toISOString());
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
   const [pageData, setPageData] = useState(null);
   const [page, setPage] = useState('overview');
-  const [pageList, setPageList] = useState(null);
+  // const [pageList, setPageList] = useState(null);
   const { apiKey, setApiKey } = useContext(APIContext);
   const [appList, setAppList] = useState(null);
+  const [showPage, setShowPage] = useState(false);
+  const [test, setTest] = useState('dashboard');
+  console.log(test, 'dashboard');
 
   useEffect(() => {
     const fetchAppsList = async () => {
@@ -53,7 +52,7 @@ const Dashboard = () => {
         // console.log({'data.pages': data.pages, data: data});
         setData(data);
         // console.log(data.pages);
-        setPageList(data.pages);
+        // setPageList(data.pages);
         // selected last page because first one had no data
         setPage(data.pages[6]);
         console.log('data.pages[6]', data.pages[6]);
@@ -68,7 +67,7 @@ const Dashboard = () => {
   useEffect(() => {
     const pageId = page['_id'];
     // console.log('pageID', pageId);
-    console.log('fetched page data');
+    // console.log('fetched page data');
     const fetchPageData = async () => {
       try {
         console.log(
@@ -100,22 +99,25 @@ const Dashboard = () => {
   //   console.log(page);
   // });
 
-  console.log({ start, end, data, pageData, page, pageList, apiKey, appList });
+  // console.log({ start, end, data, pageData, page, apiKey, appList });
 
   return (
     <>
       {!isLoading ? (
-        <StartContext.Provider value={{ start, setStart }}>
-          <EndContext.Provider value={{ end, setEnd }}>
-            <PageContext.Provider value={{ page, setPage }}>
-              <div className='flex w-full bg-neutral-200'>
-                <Sidebar />
-                <MainDisplay data={data} pageData={pageData} />
-              </div>
-            </PageContext.Provider>
-          </EndContext.Provider>
-        </StartContext.Provider>
+        // <PeriodContext.Provider value={{start, setStart, end, setEnd}}>
+        <PageContext.Provider value={{ page, setPage, showPage, setShowPage }}>
+          <div className='flex w-full bg-neutral-200'>
+            <Sidebar />
+            <MainDisplay
+              data={data}
+              pageData={pageData}
+              setStart={setStart}
+              setEnd={setEnd}
+            />
+          </div>
+        </PageContext.Provider>
       ) : (
+        // </PeriodContext.Provider>
         <div>
           <Loading />
         </div>

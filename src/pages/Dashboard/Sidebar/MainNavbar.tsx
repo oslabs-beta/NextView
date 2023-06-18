@@ -12,7 +12,7 @@ function MainNavBar() {
   const { page, setPage } = useContext(PageContext);
 
   const handleClick = () => {
-    setPage('tomato');
+    // setPage('d');
     console.log('selected page');
     console.log('page', page);
   };
