@@ -94,7 +94,7 @@ const Overview = () => {
             Sign Up
           </Button>
         </div>
-        <div className='mt-6'>
+        <div className='mt-6 '>
           <button
             className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
             id='npm'
@@ -104,7 +104,7 @@ const Overview = () => {
               setCopyClicked(true);
             }}
           >
-            <code className='whitespace-nowrap text-xs'>
+            <code className='whitespace-nowrap pl-1 text-xs'>
               npm i nextview-tracing
             </code>
             {!copyClicked && (
