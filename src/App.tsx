@@ -36,7 +36,8 @@ function App() {
       created_on: new Date(),
     },
   ]);
-  const [apiKey, setApiKey] = useState('5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d');
+  const [apiKey, setApiKey] = useState(null);
+  // 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
 
   return (
     <>

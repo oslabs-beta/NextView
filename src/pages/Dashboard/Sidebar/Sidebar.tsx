@@ -1,11 +1,11 @@
 import MainNavbar from './MainNavbar';
 import SideNavbar from './SideNavbar';
 
-const Sidebar = ({ setPage }) => {
+const Sidebar = ({ page, setPage }) => {
   return (
     <div className='flex'>
       <SideNavbar />
-      <MainNavbar setPage={setPage} />
+      <MainNavbar page={page} setPage={setPage} />
     </div>
   );
 };

@@ -1,60 +1,125 @@
 import Button from '../../components/Button';
 import copy from '../../assets/copy.png';
 import check from '../../assets/checkmark.png';
+import overview from '../../assets/overview_edited_rounded.png';
 import Modal from './Auth/Modal';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState, useContext } from 'react';
 import SignupForm from './Auth/SignupForm';
+import { TypeAnimation } from 'react-type-animation';
+import { UserContext } from '../../contexts/userContexts';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const sequence = [
+  'Build',
+  2000,
+  'Analyze',
+  2000,
+  'Debug',
+  2000,
+  'Develop',
+  2000,
+  'Trace',
+  2000,
+  'Create',
+  2000,
+  'Visualize',
+  2000,
+  'Test',
+  2000,
+  'Instrument',
+  2000,
+  'Optimize',
+  2000,
+  'Measure ',
+  () => showCursorAnimation(false),
+];
+const CURSOR_CLASS_NAME = 'type';
+const ref = React.createRef<HTMLSpanElement>();
+const showCursorAnimation = (show: boolean) => {
+  if (!ref.current) {
+    return;
+  }
+
+  const el = ref.current;
+  if (show) {
+    el.classList.add(CURSOR_CLASS_NAME);
+  } else {
+    el.classList.remove(CURSOR_CLASS_NAME);
+  }
+};
 
 const Overview = () => {
-  const [initialUsername, setInitialUsername] = useState('');
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const [copyClicked, setCopyClicked] = useState(false);
+  const { setUsername, username, loggedIn } = useContext(UserContext);
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setInitialUsername(e.target.value);
+    setUsername(e.target.value);
   };
+  const navigate = useNavigate();
 
   return (
     <section
-      className={`flex w-full flex-grow-0 flex-row items-center justify-center 
-      bg-no-repeat 
-      pb-24 pt-60 md:justify-between md:bg-[url('/src/assets/overview_edited_rounded.png')] md:bg-[length:1000px] md:bg-[right_-520px_top_0px] lg:bg-[length:1100px] 
-      lg:bg-[right_-350px_top_0px] xl:bg-[length:1500px] 
-      xl:bg-[right_-400px_top_0px] 
-      xl:pb-96
-      2xl:bg-[length:1500px] 
-      2xl:bg-[right_-150px_top_0px]
-      3xl:bg-[length:1800px]
-      3xl:bg-[right_-50px_top_0px]
-      3xl:pb-[32rem]`}
+      className={`grid w-full grid-cols-12 flex-row items-center justify-center 
+      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:justify-evenly`}
     >
-      <div className='flex flex-col md:ml-44'>
-        <h1>NextView</h1>
+      <div className='relative col-[_span_10] flex flex-col md:col-[_span_4] md:ml-20'>
+        <h1 className='font-bold'>NextView</h1>
         <span className='whitespace-nowrap'>
-          Measure your Next.js application
-        </span>
-        <div className='mt-6 flex flex-row'>
-          <input
-            className='focus:shadow-outline w-auto appearance-none rounded rounded-r-none border px-3 py-2 leading-tight  text-gray-700 focus:outline-none'
-            id='username'
-            type='text'
-            placeholder='jsmith@example.com'
-            onChange={handleUsernameChange}
-            required
-            spellCheck='false'
-          />
-          <Button
-            variant='secondary'
-            size='md'
-            className='m-0 rounded-l-none rounded-r shadow'
-            onClick={() => setOpenSignupModal(true)}
+          <TypeAnimation
+            ref={ref}
+            className={`${CURSOR_CLASS_NAME}`}
+            cursor={false}
+            sequence={sequence}
+            preRenderFirstString={true}
           >
-            Sign Up
-          </Button>
+            Measure
+          </TypeAnimation>
+          your Next.js application
+        </span>
+
+        <div className='mt-6 flex flex-row flex-wrap justify-items-start'>
+          {loggedIn ? (
+            // <div className='flex flex-row w-full items-center'>
+            <>
+              <div className='mx-auto flex-grow-0 basis-0 self-center whitespace-nowrap wrap:mx-0'>
+                Welcome {username}!
+              </div>
+              <Button
+                variant='secondary'
+                className='w-full bg-accent wrap:w-auto'
+                onClick={() => navigate('/dashboard')}
+              >
+                Go to Dashboard
+              </Button>
+            </>
+          ) : (
+            // </div>
+            <>
+              <input
+                className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
+                id='username'
+                type='text'
+                placeholder='jsmith@example.com'
+                onChange={handleUsernameChange}
+                required
+                spellCheck='false'
+              />
+              <Button
+                variant='secondary'
+                size='md'
+                className='m-0 mt-4 w-full rounded shadow wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
+                onClick={() => setOpenSignupModal(true)}
+              >
+                Sign Up
+              </Button>
+            </>
+          )}
         </div>
-        <div className='mt-6'>
+        <div className='mt-6 '>
           <button
-            className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2  leading-tight text-gray-700 focus:outline-none'
+            className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
             id='npm'
             type='button'
             onClick={() => {
@@ -62,7 +127,9 @@ const Overview = () => {
               setCopyClicked(true);
             }}
           >
-            <code className='text-xs'>npm i nextview-tracing</code>
+            <code className='whitespace-nowrap pl-1 text-xs'>
+              npm i nextview-tracing
+            </code>
             {!copyClicked && (
               <img
                 src={copy}
@@ -80,18 +147,20 @@ const Overview = () => {
           </button>
         </div>
       </div>
-      {/* <img
-        src={overview}
-        alt='nextview-logo'
-        className='ms-auto hidden max-w-[80%] drop-shadow-xl md:block'
-      ></img> */}
+      <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>
+        <img
+          src={overview}
+          alt='nextview-logo'
+          className='-z-10 drop-shadow-lg'
+        ></img>
+      </div>
       <Modal
         open={openSignupModal}
         onClose={() => {
           setOpenSignupModal(false);
         }}
       >
-        <SignupForm initialValue={initialUsername} key={initialUsername} />
+        <SignupForm />
       </Modal>
     </section>
   );

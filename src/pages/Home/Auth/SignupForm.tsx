@@ -15,17 +15,15 @@ const Signup = () => {
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
-    console.log(username);
   };
 
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    console.log(password);
   };
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(' handleSubmit for signup invoked!');
-    // e.preventDefault();
+    e.preventDefault();
 
     // handle insecured input
     if (username.length < 3) {

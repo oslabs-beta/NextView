@@ -10,6 +10,7 @@ export default {
       },
       screens: {
         '3xl': '2000px',
+        wrap: '1461px',
       },
     },
   },
