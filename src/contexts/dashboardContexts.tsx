@@ -41,8 +41,10 @@ export interface EndContextType {
 }
 
 export interface PeriodContextType {
-  start: Period;
-  end: (value: Period) => void;
+  start: string;
+  setStart: (value: string) => void;
+  end: string;
+  setEnd: (value: string) => void;
 }
 
 export interface TraceTextboxContextType {
@@ -90,3 +92,5 @@ export const EndContext = createContext<EndContextType | null>(null);
 export const OverviewDataContext = createContext(null);
 
 export const APIContext = createContext(null);
+
+export const PageContext = createContext(null);

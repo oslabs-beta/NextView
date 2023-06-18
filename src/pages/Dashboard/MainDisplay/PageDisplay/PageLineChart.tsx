@@ -10,15 +10,17 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const PageLineChart = () => {
+const PageLineChart = ({ avgPageDurationsOverTime }) => {
   return (
-    <ResponsiveContainer width='95%' height={400}>
+    <ResponsiveContainer width='40%' height={400}>
       <LineChart
-        data={data}
+        width={500}
+        height={300}
+        data={avgPageDurationsOverTime}
         margin={{
           top: 5,
           right: 30,
-          left: 90,
+          left: 20,
           bottom: 5,
         }}
       >
@@ -32,14 +34,10 @@ const PageLineChart = () => {
         <Legend />
         <Line
           type='monotone'
-          dataKey='client'
-          stroke='#264653'
+          dataKey='Avg. duration (ms)'
+          stroke='#00ff00'
           activeDot={{ r: 8 }}
         />
-        <Line type='monotone' dataKey='server' stroke='#2a9d8f' />
-        <Line type='monotone' dataKey='internal' stroke='#e76f51' />
-        {/* <Line type='monotone' dataKey='consumer' stroke='#f4a261' />
-          <Line type='monotone' dataKey='producer' stroke='#e9c46a' /> */}
       </LineChart>
     </ResponsiveContainer>
   );

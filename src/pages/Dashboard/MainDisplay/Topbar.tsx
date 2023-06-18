@@ -1,22 +1,11 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import logo from '../../../assets/logo2.png';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 // import dayjs, { Dayjs } from 'dayjs';
-import {
-  StartContext,
-  EndContext,
-  StartContextType,
-  EndContextType,
-} from '../../../contexts/dashboardContexts';
 
-const Topbar = () => {
-  const { setStart } = useContext(
-    StartContext as React.Context<StartContextType>,
-  );
-  const { setEnd } = useContext(EndContext as React.Context<EndContextType>);
-
+const Topbar = ({ setStart, setEnd }) => {
   const [startVal, setStartVal] = useState('');
   const [endVal, setEndVal] = useState('');
 
