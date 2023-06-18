@@ -24,7 +24,6 @@ const LineChartComponent = ({ data }) => {
       >
         <CartesianGrid strokeDasharray='3 3' />
         <XAxis dataKey='period' />
-        <Label value='Duration' />
         <YAxis
           label={{ value: 'Duration (ms)', angle: -90, position: 'left' }}
         />
@@ -38,8 +37,6 @@ const LineChartComponent = ({ data }) => {
         />
         <Line type='monotone' dataKey='server' stroke='#2a9d8f' />
         <Line type='monotone' dataKey='internal' stroke='#e76f51' />
-        {/* <Line type='monotone' dataKey='consumer' stroke='#f4a261' />
-        <Line type='monotone' dataKey='producer' stroke='#e9c46a' /> */}
       </LineChart>
     </ResponsiveContainer>
   );

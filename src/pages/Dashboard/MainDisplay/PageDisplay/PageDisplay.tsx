@@ -20,7 +20,6 @@ const PageDisplay = ({ pageData }) => {
         <BoxWrapper></BoxWrapper>
       </div>
       <div>
-        Line Chart Here
         <PageLineChart
           avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
         />
