@@ -1,11 +1,12 @@
 // interface to declare all our prop types
 interface Props {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   variant?: string; // default, primary, info
   size?: string; // sm, md, lg
   disabled?: boolean;
   className?: string;
+  type?: 'button' | 'submit' | 'reset' | undefined;
 }
 
 // button component, consuming props
@@ -16,11 +17,12 @@ const Button: React.FC<Props> = ({
   variant = 'default',
   size = 'md',
   disabled,
+  type,
   ...rest
 }) => {
   return (
     <button
-      type='button'
+      type={type || 'button'}
       className={
         `btn ${variant} ${size} whitespace-nowrap` +
         (disabled ? ' disabled' : '') +

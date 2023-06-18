@@ -23,7 +23,7 @@ const Signup = () => {
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(' handleSubmit for signup invoked!');
-    // e.preventDefault();
+    e.preventDefault();
 
     // handle insecured input
     if (username.length < 3) {
