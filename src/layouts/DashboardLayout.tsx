@@ -1,14 +1,19 @@
 import { Outlet } from 'react-router-dom';
-import MainDisplay from '../pages/Dashboard/MainDisplay/MainDisplay';
 import Sidebar from '../pages/Dashboard/Sidebar/Sidebar';
+import MainDisplayLayout from './MainDisplayLayout';
 
 export default function DashboardLayout() {
   return (
     <>
-      <Sidebar />
-      <MainDisplay />
+      <>
+        {/* <Sidebar /> */}
+        <h1>Sidebar</h1>
+        <MainDisplayLayout />
+      </>
 
-      <Outlet />
+      {/* <>
+        <Outlet />
+      </> */}
     </>
   );
 }
