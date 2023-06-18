@@ -1,6 +1,4 @@
 import Button from '../../components/Button';
-import copy from '../../assets/copy.png';
-import check from '../../assets/checkmark.png';
 import overview from '../../assets/overview_edited_rounded.png';
 import Modal from './Auth/Modal';
 import { ChangeEvent, useState, useContext } from 'react';
@@ -9,6 +7,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NPMCopyInput } from '../../components/NPMCopyInput';
 
 const sequence = [
   'Build',
@@ -64,7 +63,7 @@ const Overview = () => {
       className={`grid w-full grid-cols-12 flex-row items-center justify-center 
       gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:justify-evenly`}
     >
-      <div className='relative col-[_span_10] flex flex-col md:col-[_span_4] md:ml-20'>
+      <div className='relative col-[_span_10] mt-20 flex flex-col md:col-[_span_4] md:ml-20'>
         <h1 className='font-bold'>NextView</h1>
         <span className='whitespace-nowrap'>
           <TypeAnimation
@@ -117,34 +116,8 @@ const Overview = () => {
             </>
           )}
         </div>
-        <div className='mt-6 '>
-          <button
-            className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
-            id='npm'
-            type='button'
-            onClick={() => {
-              navigator.clipboard.writeText('npm i nextview-tracing');
-              setCopyClicked(true);
-            }}
-          >
-            <code className='whitespace-nowrap pl-1 text-xs'>
-              npm i nextview-tracing
-            </code>
-            {!copyClicked && (
-              <img
-                src={copy}
-                alt='copy-logo'
-                className='h-5 w-5 cursor-pointer hover:scale-110'
-              />
-            )}
-            {copyClicked && (
-              <img
-                src={check}
-                alt='checkmark'
-                className='h-5 w-5 cursor-pointer hover:scale-110'
-              />
-            )}
-          </button>
+        <div className='mb-10 mt-6'>
+          <NPMCopyInput />
         </div>
       </div>
       <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>

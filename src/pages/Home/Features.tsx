@@ -4,12 +4,13 @@ import github from '../../assets/GitHub_Logo_White.png';
 import githubIcon from '../../assets/github-mark-white.svg';
 import star from '../../assets/star.png';
 import { useEffect, useState } from 'react';
-import { AiOutlineStar } from 'react-icons/ai';
+import { FaRegStar } from 'react-icons/fa';
 
 const Features = () => {
   const [starCount, setstarCount] = useState(0);
 
   const getStars = () => {
+    console.log('hello');
     fetch('https://api.github.com/repos/oslabs-beta/NextView', {
       method: 'GET',
     })
@@ -33,8 +34,8 @@ const Features = () => {
     <section className='bg-primary px-[max((100vw-1500px)/2,48px)] pb-16 pt-20'>
       <div className=''>
         <h3 className='mb-3 text-2xl font-bold'>What is NextView?</h3>
-        <div className='grid grid-cols-12 pb-9'>
-          <p className='col-span-6 text-sm'>
+        <div className='grid grid-cols-12 overflow-auto pb-9'>
+          <p className='col-span-12 text-sm md:col-span-6'>
             NextView is an observability platform for building and optimizing
             Next.js applications. NextView assists developers by providing an
             easy-to-use and lightweight toolkit for measuring performance of
@@ -62,17 +63,22 @@ const Features = () => {
           <Button className='bg-primary'>Learn more</Button>
         </a>
 
-        <a href='' target='_blank' rel='noopener' aria-label='Medium Link'>
+        <a
+          href='https://github.com/oslabs-beta/NextView'
+          target='_blank'
+          rel='noopener'
+          aria-label='Medium Link'
+        >
           <div className='flex flex-row hover:brightness-95'>
             <Button
-              className='mr-0 flex h-8 w-24 flex-row items-center justify-evenly rounded-r-none hover:brightness-100'
+              className='border-1 mr-0 flex h-8 w-24 flex-row items-center justify-evenly rounded-r-none hover:brightness-100'
               variant='secondary'
             >
               <img className='h-5' src={githubIcon} />
-              <img className='disable-blur h-6' src={github} />
+              <img className='h-6' src={github} />
             </Button>
             <Button className='border-1 ml-0 flex h-8 items-center justify-evenly gap-1 rounded-l-none border-l-0 p-1 hover:border-gray-300'>
-              <AiOutlineStar />
+              <FaRegStar size={'15'} className='relative bottom-[1px]' />
               {starCount}
             </Button>
           </div>
