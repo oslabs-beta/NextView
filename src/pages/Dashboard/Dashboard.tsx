@@ -10,16 +10,17 @@ const Dashboard = () => {
   const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
   const [end, setEnd] = useState(dayjs().toISOString());
   const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [overviewData, setOverviewData] = useState(null);
   const [pageData, setPageData] = useState(null);
   const [page, setPage] = useState('overview');
   // const [pageList, setPageList] = useState(null);
   const { apiKey, setApiKey } = useContext(APIContext);
   const [appList, setAppList] = useState(null);
-  const [showPage, setShowPage] = useState(false);
-  const [test, setTest] = useState('dashboard');
-  console.log(test, 'dashboard');
+  const [pageView, setPageView] = useState(false);
+  // const [test, setTest] = useState('dashboard');
+  // console.log(test, 'dashboard');
 
+  // fetch apps list and api key
   useEffect(() => {
     const fetchAppsList = async () => {
       try {
@@ -37,6 +38,7 @@ const Dashboard = () => {
     fetchAppsList();
   });
 
+  // fetch overview data
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
@@ -50,7 +52,7 @@ const Dashboard = () => {
         );
         const data = await response.json();
         // console.log({'data.pages': data.pages, data: data});
-        setData(data);
+        setOverviewData(data);
         // console.log(data.pages);
         // setPageList(data.pages);
         // selected last page because first one had no data
@@ -64,6 +66,7 @@ const Dashboard = () => {
     if (apiKey) fetchOverviewData();
   }, [start, end, apiKey]);
 
+  // fetch page data
   useEffect(() => {
     const pageId = page['_id'];
     // console.log('pageID', pageId);
@@ -91,25 +94,16 @@ const Dashboard = () => {
     if (apiKey) fetchPageData();
   }, [page]);
 
-  // useEffect(() => {
-  //   // console.log('barData', barData);
-  //   // console.log('lineData', lineData);
-  //   // console.log('pieData', pieData);
-  //   //   console.log('data', data)
-  //   console.log(page);
-  // });
-
-  // console.log({ start, end, data, pageData, page, apiKey, appList });
+  // console.log({ start, end, overviewData, pageData, page, apiKey, appList });
 
   return (
     <>
       {!isLoading ? (
-        // <PeriodContext.Provider value={{start, setStart, end, setEnd}}>
-        <PageContext.Provider value={{ page, setPage, showPage, setShowPage }}>
+        <PageContext.Provider value={{ page, setPage, pageView, setPageView }}>
           <div className='flex w-full bg-neutral-200'>
             <Sidebar />
             <MainDisplay
-              data={data}
+              overviewData={overviewData}
               pageData={pageData}
               setStart={setStart}
               setEnd={setEnd}
@@ -117,7 +111,6 @@ const Dashboard = () => {
           </div>
         </PageContext.Provider>
       ) : (
-        // </PeriodContext.Provider>
         <div>
           <Loading />
         </div>

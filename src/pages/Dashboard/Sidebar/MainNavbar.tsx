@@ -9,12 +9,17 @@ function MainNavBar() {
   //TODO: replace with useContext
   const pagesList = ['/api/products', '/ssr/1', '/ssr/2', '/ssr/3', '/'];
 
-  const { page, setPage } = useContext(PageContext);
+  const { pageView, setPageView } = useContext(PageContext);
 
+  // page display toggle for only for testing
   const handleClick = () => {
-    // setPage('d');
-    console.log('selected page');
-    console.log('page', page);
+    if (!pageView) {
+      setPageView(true);
+      console.log('show page');
+    } else {
+      setPageView(false);
+      console.log('hide page');
+    }
   };
 
   return (

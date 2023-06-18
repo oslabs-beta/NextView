@@ -8,16 +8,22 @@ import { PageContext } from '../../../contexts/dashboardContexts';
 import PageDisplay from './PageDisplay/PageDisplay';
 import SettingsDisplay from './SettingsDisplay/SettingsDisplay';
 
-const MainDisplay = ({ data, pageData, setStart, setEnd }) => {
+const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {
   //TODO: replace with useContext
   const [appsList, setAppsList] = useState(['app1']); // change to useState([]) to display AppsListDisplay
+  const { pageView } = useContext(PageContext);
   // console.log('pageData-MainDisplay', pageData);
+  console.log('pageView', pageView);
   return (
     <div className='h-screen w-[calc(100%-216px)]'>
       <Topbar setStart={setStart} setEnd={setEnd} />
-      {!appsList.length ? <AppsListDisplay /> : <OverviewDisplay data={data} />}
+      {/* {!appsList.length ? <AppsListDisplay /> : <OverviewDisplay data={data} />} */}
       {/* comment out above & uncomment either of below component to render PageDisplay or SettingsDisplay *temp solution */}
-      {/* <PageDisplay pageData={pageData}/> */}
+      {pageView ? (
+        <PageDisplay pageData={pageData} />
+      ) : (
+        <OverviewDisplay overviewData={overviewData} />
+      )}
       {/* <SettingsDisplay /> */}
     </div>
   );

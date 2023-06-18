@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import DashboardPage from './pages/Dashboard';
 import NotFound from './pages/NotFound/NotFound';
-import PageDisplay from './pages/Dashboard/MainDisplay/PageDisplay/PageDisplay';
 import {
   UserContext,
   AppsListContext,
@@ -13,8 +12,6 @@ import {
 import { APIContext } from './contexts/dashboardContexts';
 
 // TODO: typing for routes
-// export const apiContext = createContext("null");
-// initial value of apiKey to be set to null once setApiKey is implemented in AppsList page
 
 function App() {
   const [username, setUsername] = useState('');
@@ -28,7 +25,7 @@ function App() {
     },
   ]);
   const [apiKey, setApiKey] = useState(null);
-  // 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
+  // test apiKey: 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
 
   return (
     <>
@@ -43,8 +40,6 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/dashboard' element={<DashboardPage />} />
               <Route path='*' element={<NotFound />} />
-              {/* added route to test display */}
-              <Route path='page' element={<PageDisplay />} />
             </Routes>
           </AppsListContext.Provider>
         </UserContext.Provider>
