@@ -13,6 +13,21 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+  function addApp() {
+    fetch('/apps', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error();
+        }
+      })
+      .catch((err) => console.log('Add app ERROR: ', err));
+  }
+
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
@@ -53,6 +68,8 @@ const Signup = () => {
       .then((res) => {
         if (res.status === 201) {
           setLoggedIn(true);
+          addApp();
+
           // console.log('loggedIn state upon signup', loggedIn)
           navigate('/dashboard');
         } else {
