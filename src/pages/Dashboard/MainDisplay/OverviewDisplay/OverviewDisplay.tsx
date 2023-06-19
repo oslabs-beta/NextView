@@ -1,5 +1,5 @@
 import Textbox from './Texbox';
-import HorizontalBarGragh from './HorizontalBarGraph';
+import HorizontalBarGraph from './HorizontalBarGraph';
 import BarGraph from './BarGraph';
 import LineChart from './LineChart';
 
@@ -14,7 +14,7 @@ const OverviewDisplay = ({ overviewData }) => {
           />
         </BoxWrapper>
         <BoxWrapper>
-          <HorizontalBarGragh data={overviewData.kindAvgDurations} />
+          <HorizontalBarGraph data={overviewData.kindAvgDurations} />
         </BoxWrapper>
         <BoxWrapper>
           <BarGraph data={overviewData.pageAvgDurations} />
