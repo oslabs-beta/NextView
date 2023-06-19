@@ -33,7 +33,7 @@ const Features = () => {
   useEffect(() => getStars(), []);
 
   return (
-    <section className='relative bg-primary px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)] lg:pt-0'>
+    <section className='relative border-b border-t bg-primary px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)] lg:pt-0'>
       <div className='grid-cols-16 mb-6 grid'>
         <img
           src={telescope}
