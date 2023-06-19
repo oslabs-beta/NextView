@@ -30,10 +30,7 @@ const Dashboard = () => {
   const [appList, setAppList] = useState(null);
 
   // currently set by sidebar button, accessed by context
-  const [page, setPage] = useState('overview');
-
-  // only for development
-  const [pageView, setPageView] = useState(false);
+  const [page, setPage] = useState();
 
   // const [test, setTest] = useState('dashboard');
   // console.log(test, 'dashboard');
@@ -51,7 +48,7 @@ const Dashboard = () => {
         // selected this page because it contains good data to visualize
 
         // TODO: SET TO LAST VIEWED APP
-        setApiKey(data[2]['id']);
+        setApiKey(data[0]['id']);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
@@ -78,8 +75,7 @@ const Dashboard = () => {
         // console.log(data.pages);
         // setPageList(data.pages);
 
-        // TODO: REMOVE SETTER. PAGE TO BE SET IN MAINNAVBAR ONCLICK.
-
+        // initial setPage
         setPage(data.pages[5]);
         // setIsLoading(false);
       } catch (error: unknown) {
@@ -92,37 +88,42 @@ const Dashboard = () => {
   // fetch page data
   // only if user api key is set
   useEffect(() => {
-    const pageId = page['_id'];
-    // console.log('pageID', pageId);
-    // console.log('fetched page data');
-    const fetchPageData = async () => {
-      try {
-        const response = await fetch(
-          `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
-          {
-            headers: {
-              'User-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
+    if (page) {
+      const pageId = page['_id'];
+      // console.log('pageID', pageId);
+      // console.log('fetched page data');
+      const fetchPageData = async () => {
+        try {
+          const response = await fetch(
+            `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
+            {
+              headers: {
+                'User-Timezone':
+                  Intl.DateTimeFormat().resolvedOptions().timeZone,
+              },
             },
-          },
-        );
-        const data = await response.json();
-        setPageData(data);
-        // console.log('fetched page data', data);
-      } catch (error: unknown) {
-        console.log('Data fetching failed', error);
-      }
-    };
-    if (apiKey) fetchPageData();
-  }, [page]);
+          );
+          const data = await response.json();
+          setPageData(data);
+          // console.log('fetched page data', data);
+        } catch (error: unknown) {
+          console.log('Data fetching failed', error);
+        }
+      };
+      if (apiKey) fetchPageData();
+    }
+  }, [apiKey, end, page, start]);
 
   // console.log({ start, end, overviewData, pageData, page, apiKey, appList });
 
   return (
     <>
       {overviewData ? (
-        <PageContext.Provider value={{ page, setPage, pageView, setPageView }}>
+        <PageContext.Provider
+          value={{ page, setPage, start, end, apiKey, setPageData, pageData }}
+        >
           <div className='flex w-full bg-neutral-200'>
-            <Sidebar />
+            <Sidebar overviewData={overviewData} />
             <MainDisplay
               overviewData={overviewData}
               pageData={pageData}

@@ -1,11 +1,11 @@
 import MainNavbar from './MainNavbar';
 import SideNavbar from './SideNavbar';
 
-const Sidebar = () => {
+const Sidebar = ({ overviewData }) => {
   return (
     <div className='flex'>
       <SideNavbar />
-      <MainNavbar />
+      <MainNavbar overviewData={overviewData} />
     </div>
   );
 };

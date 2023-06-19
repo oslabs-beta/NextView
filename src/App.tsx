@@ -40,7 +40,7 @@ function App() {
           >
             <Routes location={state?.backgroundLocation || location}>
               <Route path='/' element={<Home />} />
-              <Route path='/dashboard' element={<DashboardPage />} />
+              <Route path='/dashboard/*' element={<DashboardPage />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
             {state?.backgroundLocation && (
