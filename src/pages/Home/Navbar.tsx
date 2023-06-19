@@ -18,9 +18,13 @@ const Navbar: React.FC<Props> = ({
         id='header-left'
         className='mx-3 flex flex-row items-center justify-evenly gap-4 text-sm'
       >
-        <Link to={'/'} className='min-w-max'>
-          <img src={logo} alt='nextview-logo' className='h-12 w-full'></img>
-        </Link>
+        <a href={'/'} className='min-w-max'>
+          <img
+            src={logo}
+            alt='nextview-logo'
+            className='h-12 w-full transition duration-200 hover:scale-105'
+          ></img>
+        </a>
         <div className='hidden md:block'>
           <div
             onClick={installationScroll}
@@ -32,16 +36,13 @@ const Navbar: React.FC<Props> = ({
         <div className=' hidden md:block'>
           <div
             onClick={contributorsScroll}
-            className='px-3 font-semibold text-gray-500 hover:text-gray-800'
+            className='cursor-pointer px-3 font-semibold text-gray-500 hover:text-gray-800'
           >
             <span>Contributors</span>
           </div>
         </div>
         <div className='hidden md:block'>
-          <a
-            to={'/'}
-            className='px-3 font-semibold text-gray-500 hover:text-gray-800'
-          >
+          <a className='cursor-pointer px-3 font-semibold text-gray-500 hover:text-gray-800'>
             <span>Blog</span>
           </a>
         </div>
@@ -55,7 +56,7 @@ const Navbar: React.FC<Props> = ({
             <img
               src={githubLogo}
               alt='github-logo'
-              className='h-6 min-w-max transition duration-200 hover:scale-110'
+              className='h-6 min-w-max transition duration-200 hover:scale-105'
             />
           </a>
         </div>
