@@ -23,8 +23,6 @@ import Dashboard from './pages/Dashboard/Dashboard';
 // import Mock2 from './pages/Mock2';
 
 // TODO: typing for routes
-// export const apiContext = createContext("null");
-// initial value of apiKey to be set to null once setApiKey is implemented in AppsList page
 
 function App() {
   const [username, setUsername] = useState('');
@@ -38,7 +36,7 @@ function App() {
     },
   ]);
   const [apiKey, setApiKey] = useState(null);
-  // 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
+  // test apiKey: 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
 
   return (
     <>

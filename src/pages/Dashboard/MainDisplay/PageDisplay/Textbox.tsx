@@ -1,17 +1,9 @@
 import Box from './Box';
 import { v4 as uuidv4 } from 'uuid';
-import { useContext } from 'react';
-import {
-  DurationTextboxContext,
-  TraceTextboxContext,
-} from '../../../../contexts/dashboardContexts';
 
-const Textbox = () => {
-  const traceCount = useContext(TraceTextboxContext);
-  const duration = useContext(DurationTextboxContext);
-
+const Textbox = ({ traceCount, overallAvg }) => {
   const boxData = [
-    { title: 'Average Page Load Duration (ms)', data: duration },
+    { title: 'Average Page Load Duration (ms)', data: overallAvg },
     { title: 'Total No. of Traces', data: traceCount },
   ];
 
