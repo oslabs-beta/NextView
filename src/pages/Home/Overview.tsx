@@ -1,6 +1,4 @@
 import Button from '../../components/Button';
-import copy from '../../assets/copy.png';
-import check from '../../assets/checkmark.png';
 import overview from '../../assets/overview_edited_rounded.png';
 import Modal from './Auth/Modal';
 import { ChangeEvent, useState, useContext } from 'react';
@@ -9,6 +7,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NPMCopyInput } from '../../components/NPMCopyInput';
 
 const sequence = [
   'Build',
@@ -29,9 +28,9 @@ const sequence = [
   2000,
   'Instrument',
   2000,
-  'Optimize',
+  'Measure',
   2000,
-  'Measure ',
+  'Optimize ',
   () => showCursorAnimation(false),
 ];
 const CURSOR_CLASS_NAME = 'type';
@@ -49,9 +48,11 @@ const showCursorAnimation = (show: boolean) => {
   }
 };
 
-const Overview = () => {
-  const [openSignupModal, setOpenSignupModal] = useState(false);
-  const [copyClicked, setCopyClicked] = useState(false);
+interface Props {
+  setOpenSignupModal(value: React.SetStateAction<boolean>): void;
+}
+
+const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
   const { setUsername, username, loggedIn } = useContext(UserContext);
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,9 +63,9 @@ const Overview = () => {
   return (
     <section
       className={`grid w-full grid-cols-12 flex-row items-center justify-center 
-      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:justify-evenly`}
+      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:mb-16 md:justify-evenly`}
     >
-      <div className='relative col-[_span_10] flex flex-col md:col-[_span_4] md:ml-20'>
+      <div className='relative col-[_span_10] mt-20 flex flex-col md:col-[_span_4] md:ml-20'>
         <h1 className='font-bold'>NextView</h1>
         <span className='whitespace-nowrap'>
           <TypeAnimation
@@ -73,29 +74,25 @@ const Overview = () => {
             cursor={false}
             sequence={sequence}
             preRenderFirstString={true}
-          >
-            Measure
-          </TypeAnimation>
+          />
           your Next.js application
         </span>
 
         <div className='mt-6 flex flex-row flex-wrap justify-items-start'>
           {loggedIn ? (
-            // <div className='flex flex-row w-full items-center'>
             <>
               <div className='mx-auto flex-grow-0 basis-0 self-center whitespace-nowrap wrap:mx-0'>
                 Welcome {username}!
               </div>
               <Button
                 variant='secondary'
-                className='w-full bg-accent wrap:w-auto'
+                className='w-full bg-accent drop-shadow-xl wrap:w-auto'
                 onClick={() => navigate('/dashboard')}
               >
                 Go to Dashboard
               </Button>
             </>
           ) : (
-            // </div>
             <>
               <input
                 className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
@@ -109,7 +106,7 @@ const Overview = () => {
               <Button
                 variant='secondary'
                 size='md'
-                className='m-0 mt-4 w-full rounded shadow wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
+                className='m-0 mt-4 w-full rounded shadow drop-shadow-xl wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
                 onClick={() => setOpenSignupModal(true)}
               >
                 Sign Up
@@ -117,34 +114,8 @@ const Overview = () => {
             </>
           )}
         </div>
-        <div className='mt-6 '>
-          <button
-            className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
-            id='npm'
-            type='button'
-            onClick={() => {
-              navigator.clipboard.writeText('npm i nextview-tracing');
-              setCopyClicked(true);
-            }}
-          >
-            <code className='whitespace-nowrap pl-1 text-xs'>
-              npm i nextview-tracing
-            </code>
-            {!copyClicked && (
-              <img
-                src={copy}
-                alt='copy-logo'
-                className='h-5 w-5 cursor-pointer hover:scale-110'
-              />
-            )}
-            {copyClicked && (
-              <img
-                src={check}
-                alt='checkmark'
-                className='h-5 w-5 cursor-pointer hover:scale-110'
-              />
-            )}
-          </button>
+        <div className='mb-10 mt-6 self-center md:self-auto'>
+          <NPMCopyInput />
         </div>
       </div>
       <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>
@@ -154,14 +125,6 @@ const Overview = () => {
           className='-z-10 drop-shadow-lg'
         ></img>
       </div>
-      <Modal
-        open={openSignupModal}
-        onClose={() => {
-          setOpenSignupModal(false);
-        }}
-      >
-        <SignupForm />
-      </Modal>
     </section>
   );
 };

@@ -75,10 +75,8 @@ img {
   object-fit: cover;
 }
 
-@media (min-width: 1400px) {
-  .header {
-    max-width: 1500px;
-  }
+li {
+  margin: 10px;
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -137,6 +135,10 @@ img {
   }
   .secondary:hover {
     @apply brightness-90;
+  }
+
+  .disable-blur {
+    image-rendering: crisp-edges;
   }
 }
 

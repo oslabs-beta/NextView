@@ -1,14 +1,25 @@
-//TODO: replace useState with useContext
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Navbar from './Navbar';
 import Overview from './Overview';
-import Feature from '../../components/Feature';
 import { UserContext } from '../../contexts/userContexts';
+import Features from './Features';
+import SignupForm from './Auth/SignupForm';
+import Modal from './Auth/Modal';
+import Installation from './Installation';
+import Contributors from './Contributors';
 
 const Home = () => {
-  const { loggedIn, setLoggedIn, username, setUsername } =
-    useContext(UserContext);
+  const { setLoggedIn, setUsername } = useContext(UserContext);
+  const [openSignupModal, setOpenSignupModal] = useState(false);
+
+  const installationRef = useRef<HTMLDivElement>(null);
+  const contributorsRef = useRef<HTMLDivElement>(null);
+  const executeScroll = (ref: React.RefObject<HTMLDivElement>) => {
+    return () => {
+      console.log(ref.current);
+      if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth' });
+    };
+  };
 
   const checkLogin = useCallback(() => {
     fetch('/user/authenticate', {
@@ -33,25 +44,27 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
-      <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
-        <Overview />
-        <section className='bg-primary'>
-          {/* <div className='grid grid-cols-12'>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-            <Feature>
-              <h2>Feature 1</h2>
-            </Feature>
-          </div> */}
-        </section>
+      <Navbar
+        installationScroll={executeScroll(installationRef)}
+        contributorsScroll={executeScroll(contributorsRef)}
+      />
+      <main className='absolute top-16 flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
+        <Overview setOpenSignupModal={setOpenSignupModal} />
+        <Features />
+        <div ref={installationRef}>
+          <Installation setOpenSignupModal={setOpenSignupModal} />
+        </div>
+        <div ref={contributorsRef}>
+          <Contributors />
+        </div>
+        <Modal
+          open={openSignupModal}
+          onClose={() => {
+            setOpenSignupModal(false);
+          }}
+        >
+          <SignupForm />
+        </Modal>
       </main>
     </>
   );

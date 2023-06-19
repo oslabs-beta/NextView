@@ -37,16 +37,23 @@ const AuthContainer = () => {
       <ul className='flex'>
         <li>
           {loggedIn ? (
-            <Button onClick={handleLogOut}>Log Out</Button>
+            <Button className='mx-0 drop-shadow-sm' onClick={handleLogOut}>
+              Log Out
+            </Button>
           ) : (
-            <Button onClick={() => setOpenLoginModal(true)}>Sign In</Button>
+            <Button
+              className='mx-0 drop-shadow-sm'
+              onClick={() => setOpenLoginModal(true)}
+            >
+              Sign In
+            </Button>
           )}
         </li>
         <li className='mr-3'>
           {loggedIn ? (
             <Button
               variant='secondary'
-              className='bg-accent'
+              className='mx-0 bg-accent drop-shadow-sm'
               onClick={() => navigate('/dashboard')}
             >
               Dashboard
@@ -54,6 +61,7 @@ const AuthContainer = () => {
           ) : (
             <Button
               variant='secondary'
+              className='mx-0 bg-secondary drop-shadow-sm'
               onClick={() => setOpenSignupModal(true)}
             >
               Sign Up
