@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import Home from './pages/Home';
 import DashboardPage from './pages/Dashboard';
@@ -10,6 +10,7 @@ import {
   AppListItem,
 } from './contexts/userContexts';
 import { APIContext } from './contexts/dashboardContexts';
+import Modal from './pages/Home/Auth/Modal';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -24,6 +25,9 @@ function App() {
   ]);
   const [apiKey, setApiKey] = useState(null);
   // test apiKey: 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
+  //TODO: add paths to modals
+  const location = useLocation();
+  const { state } = location;
 
   return (
     <>
@@ -34,11 +38,17 @@ function App() {
           <AppsListContext.Provider
             value={{ applicationlist, setapplicationlist }}
           >
-            <Routes>
+            <Routes location={state?.backgroundLocation || location}>
               <Route path='/' element={<Home />} />
               <Route path='/dashboard' element={<DashboardPage />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
+            {state?.backgroundLocation && (
+              <Routes>
+                <Route path='/login' element={<Modal />} />
+                <Route path='/signup' element={<Modal />} />
+              </Routes>
+            )}
           </AppsListContext.Provider>
         </UserContext.Provider>
       </APIContext.Provider>

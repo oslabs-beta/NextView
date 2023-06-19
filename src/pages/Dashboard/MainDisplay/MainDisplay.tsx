@@ -11,7 +11,7 @@ const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {
   const { pageView } = useContext(PageContext);
   // console.log('pageData-MainDisplay', pageData);
   console.log('pageView', pageView);
-  // TODO: set path='/page/:id' for PageDisplay *see PageTab note
+  // TODO: dynamically display pages *TRY: set path='/page/:id' for PageDisplay *see PageTab TODO
   return (
     <div className='h-screen w-[calc(100%-216px)]'>
       <Topbar setStart={setStart} setEnd={setEnd} />
