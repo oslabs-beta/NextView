@@ -62,8 +62,8 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
 
   return (
     <section
-      className={`grid w-full grid-cols-12 flex-row items-center justify-center 
-      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:mb-16 md:justify-evenly`}
+      className={`mb-20 grid w-full grid-cols-12 flex-row items-center 
+      justify-center gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:mb-16 md:justify-evenly`}
     >
       <div className='relative col-[_span_10] mt-20 flex flex-col md:col-[_span_4] md:ml-20'>
         <h1 className='font-bold'>NextView</h1>

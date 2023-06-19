@@ -80,7 +80,7 @@ const Contributors = () => {
         <div className='col-span-10 flex flex-col items-center gap-3 sm:col-span-5 lg:col-span-2'>
           <img src={kinski} className='max-h-64' />
           <div className='flex flex-col whitespace-nowrap'>
-            <span className='text-xl font-bold '>Jiaxin (Kinski) Wu</span>
+            <span className='text-xl font-bold '>Kinski (Jiaxin) Wu</span>
             <span className='text-l'>Software Engineer</span>
           </div>
           <div className='flex gap-4'>

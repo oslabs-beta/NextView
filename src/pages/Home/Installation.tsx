@@ -6,6 +6,7 @@ import { NPMCopyInput } from '../../components/NPMCopyInput';
 import { useNavigate } from 'react-router-dom';
 import partyPopper from '../../assets/Party_Popper_Emojipedia.png';
 import team from '../../assets/team.png';
+import npm from '../../assets/npm.png';
 
 interface Props {
   setOpenSignupModal(value: React.SetStateAction<boolean>): void;
@@ -29,7 +30,22 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
                 To get started, install our npm package in your Next.js
                 application:
               </p>
-              <div className='my-3'>
+
+              <div className='my-3 flex items-center'>
+                <div className='block px-3'>
+                  <a
+                    href='https://www.npmjs.com/package/nextview-tracing'
+                    target='_blank'
+                    rel='noopener'
+                    aria-label='npm'
+                  >
+                    <img
+                      src={npm}
+                      alt='npm-logo'
+                      className='relative top-[1px] h-3 transition duration-200 hover:scale-105'
+                    />
+                  </a>
+                </div>
                 <NPMCopyInput />
               </div>
             </li>
@@ -39,6 +55,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
                 instrumentation by setting the experimental instrumentationHook
                 to true:
               </p>
+
               <div className='my-3'>
                 <CopyInput text='experimental.instrumentationHook = true;'>
                   experimental.instrumentationHook = true;
@@ -72,7 +89,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
             <li>
               <p>
                 Navigate to the NextView Dashboard and copy your generated API
-                key
+                key.
               </p>
               {loggedIn ? (
                 <Button
@@ -114,13 +131,28 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
               </div>
             </li>
           </ol>
-          <div className='col-span-full flex items-center justify-start gap-3 text-center'>
-            <img src={partyPopper} className='h-7' />
-            <p>
-              You're all set up! Now you can monitor the server operations in
-              your Next.js application on the NextView Dashboard!
-            </p>
-            <img src={partyPopper} className='h-7' />
+          <div className='col-span-12 flex flex-col items-center gap-6 lg:col-span-8'>
+            <div className='flex items-center justify-start gap-3 text-center'>
+              <img src={partyPopper} className='h-7' />
+              <p>
+                You're all set up! You can monitor the server operations in your
+                Next.js application on the NextView Dashboard!
+              </p>
+              <img src={partyPopper} className='h-7' />
+            </div>
+            {loggedIn ? (
+              <>
+                <Button
+                  variant='secondary'
+                  className='col-span-8 h-12 w-1/2 rounded-lg bg-accent drop-shadow-lg'
+                  onClick={() => navigate('/dashboard')}
+                >
+                  Go to Dashboard!
+                </Button>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
           <img
             src={team}
