@@ -1,10 +1,9 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import logo from '../../../assets/NEXTVIEW_logo_tele.png';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-// import { PageContext } from '../../../contexts/dashboardContexts';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 
 const Topbar = ({ setStart, setEnd }) => {
   const [startVal, setStartVal] = useState('');
@@ -13,6 +12,7 @@ const Topbar = ({ setStart, setEnd }) => {
   const startPlaceholder = dayjs()
     .subtract(1, 'day')
     .format('DD/MM/YYYY HH:mm A');
+
   const endPlaceholder = dayjs().format('DD/MM/YYYY HH:mm A');
 
   const handleClick = () => {

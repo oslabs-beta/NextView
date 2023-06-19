@@ -1,12 +1,8 @@
-// import React from 'react';
 import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { PageContext } from '../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
 import PageTab from './PageTab';
 
 function MainNavBar({ overviewData }) {
-  //TODO: replace with useContext
   const pagesList = overviewData.pages;
 
   return (
