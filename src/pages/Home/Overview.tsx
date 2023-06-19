@@ -48,9 +48,11 @@ const showCursorAnimation = (show: boolean) => {
   }
 };
 
-const Overview = () => {
-  const [openSignupModal, setOpenSignupModal] = useState(false);
-  const [copyClicked, setCopyClicked] = useState(false);
+interface Props {
+  setOpenSignupModal(value: React.SetStateAction<boolean>): void;
+}
+
+const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
   const { setUsername, username, loggedIn } = useContext(UserContext);
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -123,14 +125,6 @@ const Overview = () => {
           className='-z-10 drop-shadow-lg'
         ></img>
       </div>
-      <Modal
-        open={openSignupModal}
-        onClose={() => {
-          setOpenSignupModal(false);
-        }}
-      >
-        <SignupForm />
-      </Modal>
     </section>
   );
 };

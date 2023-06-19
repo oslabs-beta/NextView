@@ -58,7 +58,7 @@ const AuthContainer = () => {
           ) : (
             <Button
               variant='secondary'
-              className='mx-0 bg-accent'
+              className='mx-0 bg-secondary'
               onClick={() => setOpenSignupModal(true)}
             >
               Sign Up
