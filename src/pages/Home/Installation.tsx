@@ -20,7 +20,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
 
   const navigate = useNavigate();
   return (
-    <section className='px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)]'>
+    <section className='px-4 pb-10 pt-20 sm:px-[max((100vw-1500px)/2,48px)]'>
       <div className='relative'>
         <h3 className='mb-3 text-2xl font-bold'>Get Started</h3>
         <div className='grid grid-cols-12 gap-6 pb-9 '>
