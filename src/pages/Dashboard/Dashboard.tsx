@@ -51,7 +51,7 @@ const Dashboard = () => {
         // selected this page because it contains good data to visualize
 
         // TODO: SET TO LAST VIEWED APP
-        setApiKey(data[2]['id']);
+        setApiKey(data[0]['id']);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
