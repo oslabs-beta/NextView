@@ -63,7 +63,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
   return (
     <section
       className={`grid w-full grid-cols-12 flex-row items-center justify-center 
-      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:justify-evenly`}
+      gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:mb-16 md:justify-evenly`}
     >
       <div className='relative col-[_span_10] mt-20 flex flex-col md:col-[_span_4] md:ml-20'>
         <h1 className='font-bold'>NextView</h1>
@@ -86,7 +86,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
               </div>
               <Button
                 variant='secondary'
-                className='w-full bg-accent wrap:w-auto'
+                className='w-full bg-accent drop-shadow-xl wrap:w-auto'
                 onClick={() => navigate('/dashboard')}
               >
                 Go to Dashboard
@@ -106,7 +106,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
               <Button
                 variant='secondary'
                 size='md'
-                className='m-0 mt-4 w-full rounded shadow wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
+                className='m-0 mt-4 w-full rounded shadow drop-shadow-xl wrap:mt-0 wrap:w-auto wrap:rounded-l-none'
                 onClick={() => setOpenSignupModal(true)}
               >
                 Sign Up

@@ -75,12 +75,6 @@ img {
   object-fit: cover;
 }
 
-@media (min-width: 1400px) {
-  .header {
-    max-width: 1500px;
-  }
-}
-
 li {
   margin: 10px;
 }

@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import Navbar from './Navbar';
 import Overview from './Overview';
 import { UserContext } from '../../contexts/userContexts';
@@ -6,10 +6,20 @@ import Features from './Features';
 import SignupForm from './Auth/SignupForm';
 import Modal from './Auth/Modal';
 import Installation from './Installation';
+import Contributors from './Contributors';
 
 const Home = () => {
   const { setLoggedIn, setUsername } = useContext(UserContext);
   const [openSignupModal, setOpenSignupModal] = useState(false);
+
+  const installationRef = useRef<HTMLDivElement>(null);
+  const contributorsRef = useRef<HTMLDivElement>(null);
+  const executeScroll = (ref: React.RefObject<HTMLDivElement>) => {
+    return () => {
+      console.log(ref.current);
+      if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth' });
+    };
+  };
 
   const checkLogin = useCallback(() => {
     fetch('/user/authenticate', {
@@ -34,12 +44,19 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
-      <main className='flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
+      <Navbar
+        installationScroll={executeScroll(installationRef)}
+        contributorsScroll={executeScroll(contributorsRef)}
+      />
+      <main className='absolute top-16 flex h-screen flex-col overflow-x-hidden overflow-y-scroll'>
         <Overview setOpenSignupModal={setOpenSignupModal} />
         <Features />
-        <Installation setOpenSignupModal={setOpenSignupModal} />
-        <footer className='pb-16'>Footer</footer>
+        <div ref={installationRef}>
+          <Installation setOpenSignupModal={setOpenSignupModal} />
+        </div>
+        <div ref={contributorsRef}>
+          <Contributors />
+        </div>
         <Modal
           open={openSignupModal}
           onClose={() => {

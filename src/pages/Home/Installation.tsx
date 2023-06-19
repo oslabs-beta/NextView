@@ -4,8 +4,9 @@ import { CopyInput } from '../../components/CopyInput';
 import { UserContext } from '../../contexts/userContexts';
 import { NPMCopyInput } from '../../components/NPMCopyInput';
 import { useNavigate } from 'react-router-dom';
-import { LuPartyPopper } from 'react-icons/lu';
 import partyPopper from '../../assets/Party_Popper_Emojipedia.png';
+import team from '../../assets/team.png';
+
 interface Props {
   setOpenSignupModal(value: React.SetStateAction<boolean>): void;
 }
@@ -19,10 +20,10 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
   const navigate = useNavigate();
   return (
     <section className='px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)]'>
-      <div className=''>
-        <h3 className='mb-3 text-2xl font-bold'>Installation</h3>
+      <div className='relative'>
+        <h3 className='mb-3 text-2xl font-bold'>Get Started</h3>
         <div className='grid grid-cols-12 gap-6 pb-9 '>
-          <ol className='col-span-12 list-decimal text-sm leading-6 lg:col-span-8 '>
+          <ol className='col-span-12 list-decimal text-sm leading-6 lg:col-span-6 '>
             <li className=''>
               <p>
                 To get started, install our npm package in your Next.js
@@ -37,12 +38,12 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
                 In your next.config.js file, opt-in to the Next.js
                 instrumentation by setting the experimental instrumentationHook
                 to true:
-                <div className='my-3'>
-                  <CopyInput text='experimental.instrumentationHook = true;'>
-                    experimental.instrumentationHook = true;
-                  </CopyInput>
-                </div>
               </p>
+              <div className='my-3'>
+                <CopyInput text='experimental.instrumentationHook = true;'>
+                  experimental.instrumentationHook = true;
+                </CopyInput>
+              </div>
             </li>
             {loggedIn ? (
               <></>
@@ -61,7 +62,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
                 <Button
                   variant='secondary'
                   size='md'
-                  className='m-0 mt-4 w-full rounded shadow sm:mt-0 sm:w-auto sm:rounded-l-none'
+                  className='m-0 mt-4 w-full rounded shadow drop-shadow-sm sm:mt-0 sm:w-auto sm:rounded-l-none'
                   onClick={() => setOpenSignupModal(true)}
                 >
                   Sign Up
@@ -76,7 +77,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
               {loggedIn ? (
                 <Button
                   variant='secondary'
-                  className='my-3 bg-accent'
+                  className='my-3 bg-accent drop-shadow-sm'
                   onClick={() => navigate('/dashboard')}
                 >
                   Dashboard
@@ -91,26 +92,26 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
                 file in the root directory of your application (create one if it
                 doesn’t exist), create two environment variables, one for your
                 API Key and one for your service’s name.
-                <div className='my-3'>
-                  <CopyInput
-                    text={`API_KEY=<Your-NextView-API-Key>\nService_Name=<Name-Of-Your-Service>`}
-                  >
-                    {'API_KEY=<Your-NextView-API-Key>'} <br />
-                    {'Service_Name=<Name-Of-Your-Service>'}
-                  </CopyInput>
-                </div>
               </p>
+              <div className='my-3'>
+                <CopyInput
+                  text={`API_KEY=<Your-NextView-API-Key>\nService_Name=<Name-Of-Your-Service>`}
+                >
+                  {'API_KEY=<Your-NextView-API-Key>'} <br />
+                  {'Service_Name=<Name-Of-Your-Service>'}
+                </CopyInput>
+              </div>
             </li>
             <li>
               <p>
                 Start the OpenTelemetry Collector in your terminal via the
                 Docker Command:
-                <div className='my-3'>
-                  <CopyInput text='docker-compose-up'>
-                    docker-compose-up
-                  </CopyInput>
-                </div>
               </p>
+              <div className='my-3'>
+                <CopyInput text='docker-compose-up'>
+                  docker-compose-up
+                </CopyInput>
+              </div>
             </li>
           </ol>
           <div className='col-span-full flex items-center justify-start gap-3 text-center'>
@@ -121,6 +122,10 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
             </p>
             <img src={partyPopper} className='h-7' />
           </div>
+          <img
+            src={team}
+            className='col-span-5 col-start-8 row-start-1 hidden max-h-96 lg:block'
+          />
         </div>
       </div>
     </section>
