@@ -40,7 +40,7 @@ const Features = () => {
           className='relative col-span-3 row-start-1 hidden max-h-72 drop-shadow-xl lg:block'
         />
         <h3 className='col-span-4 row-start-2 mb-3 whitespace-nowrap text-2xl font-bold'>
-          What is NextView?
+          What is NextView? ⭐🔭
         </h3>
         <div className='col-span-8 row-start-3 grid grid-cols-12 gap-6 overflow-auto pb-9  md:col-span-3'>
           <p className='col-span-12 text-sm leading-6 md:col-span-10 lg:col-span-6'>
