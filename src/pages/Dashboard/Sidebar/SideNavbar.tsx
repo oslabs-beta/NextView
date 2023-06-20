@@ -5,6 +5,9 @@ import { SiCodereview } from 'react-icons/si';
 // import { MdDashboardCustomize } from 'react-icons/md';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContexts';
+// import logo from '../../../assets/NextView-logo-pink-transparent.png';
+import logo from '../../../assets/NV-logo-white.png';
+// import logo from '../../../assets/NV-logo-transparent.png';
 
 function SideNavBar() {
   const { setLoggedIn } = useContext(UserContext);
@@ -30,14 +33,21 @@ function SideNavBar() {
   };
 
   return (
-    <div className='m-0 flex h-screen w-14 flex-col items-center bg-slate-800 p-5 text-white'>
-      <Link to='/dashboard'>
-        <SideNavBarIcon icon={<SiCodereview size='28' />} />
-      </Link>
-      <a onClick={handleLogOut}>
-        <SideNavBarIcon icon={<IoLogOut size='28' />} />
-      </a>
-      {/* stretch features
+    <>
+      <div className='m-0 flex h-screen w-16 flex-col items-center bg-slate-800 p-5 text-white'>
+        <div className='flex flex-col'>
+          <a href='/' className='transition duration-200 hover:scale-105'>
+            <img src={logo} alt='nextview-logo' className='mb-3'></img>
+          </a>
+          <Link to='/dashboard'>
+            <SideNavBarIcon icon={<SiCodereview size='28' />} />
+          </Link>
+          <a onClick={handleLogOut} className='absolute bottom-0'>
+            <SideNavBarIcon icon={<IoLogOut size='28' />} />
+          </a>
+        </div>
+
+        {/* stretch features
       <Link to='/dashboard/appslist'>
         <SideNavBarIcon icon={<MdDashboardCustomize size='28' />} />
       </Link>
@@ -47,7 +57,8 @@ function SideNavBar() {
       <Link to='/darkmode'>
         <SideNavBarIcon icon={<IoInvertModeSharp size='28' />} />
       </Link> */}
-    </div>
+      </div>
+    </>
   );
 }
 

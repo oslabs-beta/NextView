@@ -1,4 +1,4 @@
-import logo from '../../assets/NEXTVIEW_logo_tele.png';
+import logo from '../../assets/NextView-logo-pink-transparent.png';
 import githubLogo from '../../assets/github-mark.svg';
 import npm from '../../assets/npm-black.png';
 import AuthContainer from './Auth/AuthContainer';
