@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const SpanLineChart = ({ avgActionDurationsOverTime, overallPageData }) => {
+const SpanLineChart = ({ avgActionDurationsOverTime }) => {
   const colors = [
     // '#8884d8',
     // '#82ca9d',
