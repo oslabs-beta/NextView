@@ -1,4 +1,4 @@
-import Box from './Box';
+import Box from '../../../../components/Box';
 import { v4 as uuidv4 } from 'uuid';
 
 // if data1 == undefined ? '-' : data1

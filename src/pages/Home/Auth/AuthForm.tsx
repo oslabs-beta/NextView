@@ -1,27 +1,23 @@
-import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
+import { UserContext } from '../../../contexts/userContexts';
+import { useContext } from 'react';
 
-// TODO: change typing for event handlers
 interface AuthFormProps {
+  usernameInputId: string;
+  passwordInputId: string;
   text: string;
-  // footerMessage: string;
   handleSubmit: any;
-  handleUsernameChange: any;
-  handlePasswordChange: any;
-  // footerNavigate: string;
   value?: string;
 }
 
 const AuthForm = ({
+  usernameInputId,
+  passwordInputId,
   text,
-  // footerMessage,
   handleSubmit,
-  handleUsernameChange,
-  handlePasswordChange,
-  // footerNavigate,
   value,
 }: AuthFormProps) => {
-  const navigate = useNavigate();
+  const { setPassword, setUsername } = useContext(UserContext);
 
   return (
     <>
@@ -32,48 +28,41 @@ const AuthForm = ({
         <div className='mb-4'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
-            htmlFor='username'
+            htmlFor={usernameInputId}
           >
             Username
           </label>
           <input
             className='focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
-            id='username'
+            id={usernameInputId}
             type='text'
             placeholder='Username'
             value={value}
             required
-            onChange={handleUsernameChange}
+            onChange={(e) => setUsername(e.target.value)}
             spellCheck='false'
           />
         </div>
         <div className='mb-6'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
-            htmlFor='password'
+            htmlFor={passwordInputId}
           >
             Password
           </label>
           <input
             className='focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
-            id='password'
+            id={passwordInputId}
             type='password'
             placeholder='******************'
             required
-            onChange={handlePasswordChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className='flex items-center justify-between'>
           <Button type='submit' variant='secondary' size='lg'>
             {text}
           </Button>
-          {/* <button
-            type='button'
-            className='inline-block align-baseline text-sm font-bold text-secondary hover:text-blue-800'
-            onClick={() => navigate(footerNavigate)}
-          >
-            {footerMessage}
-          </button> */}
         </div>
       </form>
     </>
