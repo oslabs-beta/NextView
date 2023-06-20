@@ -9,7 +9,7 @@ function PageTab({ page }) {
     <Link
       onClick={() => setPage(page)}
       to={`/dashboard/page/${page._id}`}
-      className='rounded-lg px-6 py-2 font-sans text-base font-semibold visited:text-white hover:bg-slate-500 hover:text-white hover:no-underline'
+      className='ml-3 mr-3 w-11/12 rounded border-b px-6 py-2 text-left font-medium hover:bg-gray-300'
     >
       {page.page}
     </Link>

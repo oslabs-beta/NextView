@@ -6,7 +6,7 @@ import { SiCodereview } from 'react-icons/si';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContexts';
 // import logo from '../../../assets/NextView-logo-pink-transparent.png';
-import logo from '../../../assets/NextView-logo-white-48x48.png';
+import logo from '../../../assets/NextView-logo-pink-transparent.png';
 // import logo from '../../../assets/NV-logo-transparent.png';
 
 function SideNavBar() {
@@ -34,7 +34,7 @@ function SideNavBar() {
 
   return (
     <>
-      <div className='m-0 flex h-screen w-16 flex-col items-center bg-slate-800 p-5 text-white'>
+      <div className='m-0 flex h-screen w-16 flex-col items-center bg-white p-5 text-white'>
         <div className='flex flex-col'>
           <a href='/' className='transition duration-200 hover:scale-105'>
             <img src={logo} alt='nextview-logo' className='mb-3'></img>
