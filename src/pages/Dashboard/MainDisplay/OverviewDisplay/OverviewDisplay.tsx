@@ -5,7 +5,7 @@ import LineChart from './LineChart';
 
 const OverviewDisplay = ({ overviewData }) => {
   return (
-    <div className='flex h-[calc(100%-64px)] flex-col justify-evenly'>
+    <div className='col-span-full flex flex-1 flex-col justify-evenly overflow-x-auto'>
       <div className='m-1 flex flex-row justify-evenly'>
         <BoxWrapper>
           <Textbox

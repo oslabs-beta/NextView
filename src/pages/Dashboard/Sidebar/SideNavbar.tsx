@@ -30,7 +30,7 @@ function SideNavBar() {
   };
 
   return (
-    <div className='m-0 flex h-screen w-14 flex-col items-center bg-slate-800 p-5 text-white'>
+    <div className='m-0 flex h-screen flex-col items-center bg-slate-800 p-5 text-white'>
       <Link to='/dashboard'>
         <SideNavBarIcon icon={<SiCodereview size='28' />} />
       </Link>

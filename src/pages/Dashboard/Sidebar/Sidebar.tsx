@@ -3,7 +3,7 @@ import SideNavbar from './SideNavbar';
 
 const Sidebar = ({ overviewData }) => {
   return (
-    <div className='flex'>
+    <div className='col-span-2 col-start-1 flex'>
       <SideNavbar />
       <MainNavbar overviewData={overviewData} />
     </div>

@@ -13,7 +13,7 @@ const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {
 
   // TODO: dynamically display pages
   return (
-    <div className='h-screen w-[calc(100%-216px)]'>
+    <div className='col-span-10 col-start-3 flex h-screen flex-col'>
       <Topbar setStart={setStart} setEnd={setEnd} />
       <Routes>
         <Route
