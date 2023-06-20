@@ -1,8 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button';
 import { UserContext } from '../../../contexts/userContexts';
 import { useContext } from 'react';
-// TODO: change typing for event handlers
+
 interface AuthFormProps {
   usernameInputId: string;
   passwordInputId: string;
