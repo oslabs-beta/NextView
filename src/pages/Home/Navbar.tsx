@@ -1,6 +1,6 @@
 import logo from '../../assets/NEXTVIEW_logo_tele.png';
 import githubLogo from '../../assets/github-mark.svg';
-import { Link } from 'react-router-dom';
+import npm from '../../assets/npm-black.png';
 import AuthContainer from './Auth/AuthContainer';
 
 interface Props {
@@ -16,13 +16,13 @@ const Navbar: React.FC<Props> = ({
     <div className='header fixed left-0 right-0 z-50 mx-auto flex h-16 w-full flex-row justify-between border-b bg-white sm:px-[max((100vw-1500px)/2,0px)]'>
       <div
         id='header-left'
-        className='mx-3 flex flex-row items-center justify-evenly gap-4 text-sm'
+        className='mx-3 flex flex-row items-center justify-between gap-4 text-sm'
       >
         <a href={'/'} className='min-w-max'>
           <img
             src={logo}
             alt='nextview-logo'
-            className='h-12 w-full transition duration-200 hover:scale-105'
+            className='h-11 w-full transition duration-200 hover:scale-105'
           ></img>
         </a>
         <div className='hidden md:block'>
@@ -46,7 +46,7 @@ const Navbar: React.FC<Props> = ({
             <span>Blog</span>
           </a>
         </div>
-        <div className='hidden md:block'>
+        <div className='hidden px-3 md:block'>
           <a
             href='https://github.com/oslabs-beta/NextView'
             target='_blank'
@@ -57,6 +57,20 @@ const Navbar: React.FC<Props> = ({
               src={githubLogo}
               alt='github-logo'
               className='h-6 min-w-max transition duration-200 hover:scale-105'
+            />
+          </a>
+        </div>
+        <div className='hidden px-3 md:block'>
+          <a
+            href='https://www.npmjs.com/package/nextview-tracing'
+            target='_blank'
+            rel='noopener'
+            aria-label='npm'
+          >
+            <img
+              src={npm}
+              alt='npm-logo'
+              className='relative top-[1px] h-3 transition duration-200 hover:scale-105'
             />
           </a>
         </div>

@@ -1,8 +1,8 @@
 import kinski from '../../assets/kinski.png';
 import eduardo from '../../assets/eduardo.png';
-import evram from '../../assets/eduardo.png';
+import evram from '../../assets/evram.png';
 import scott from '../../assets/scott.png';
-import sooji from '../../assets/eduardo.png';
+import sooji from '../../assets/sooji.png';
 import linkedin from '../../assets/linked-in.png';
 import github from '../../assets/github-mark.svg';
 import hands from '../../assets/hands.png';
@@ -15,7 +15,8 @@ const Contributors = () => {
         <img src={hands} className='h-12' />
       </div>
       <div className='mt-12 grid grid-cols-10 gap-6 text-center'>
-        <div className='col-span-10 flex flex-col items-center gap-3 sm:col-span-5 lg:col-span-2'>
+        {/* TODO: Modularize these profiles into component */}
+        <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
           <img src={eduardo} className='max-h-64 drop-shadow-xl' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>Eduardo Zayas</span>
@@ -46,8 +47,8 @@ const Contributors = () => {
             </a>
           </div>
         </div>
-        <div className='col-span-10 flex flex-col items-center gap-3 sm:col-span-5 lg:col-span-2'>
-          <img src={evram} className='max-h-64' />
+        <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
+          <img src={evram} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>Evram Dawd</span>
             <span className='text-l'>Software Engineer</span>
@@ -77,10 +78,10 @@ const Contributors = () => {
             </a>
           </div>
         </div>
-        <div className='col-span-10 flex flex-col items-center gap-3 sm:col-span-5 lg:col-span-2'>
-          <img src={kinski} className='max-h-64' />
+        <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
+          <img src={kinski} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
-            <span className='text-xl font-bold '>Jiaxin (Kinski) Wu</span>
+            <span className='text-xl font-bold '>Kinski (Jiaxin) Wu</span>
             <span className='text-l'>Software Engineer</span>
           </div>
           <div className='flex gap-4'>
@@ -108,8 +109,8 @@ const Contributors = () => {
             </a>
           </div>
         </div>
-        <div className='col-span-10 flex flex-col items-center gap-3 sm:col-span-5 lg:col-span-2'>
-          <img src={scott} className='max-h-64' />
+        <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
+          <img src={scott} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>Scott Brasko</span>
             <span className='text-l'>Software Engineer</span>
@@ -139,8 +140,8 @@ const Contributors = () => {
             </a>
           </div>
         </div>
-        <div className='col-span-10 flex flex-col items-center gap-3 sm:col-span-10 lg:col-span-2'>
-          <img src={sooji} className='max-h-64' />
+        <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-10 lg:col-span-2'>
+          <img src={sooji} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>SooJi Kim</span>
             <span className='text-l'>Software Engineer</span>
