@@ -1,41 +1,15 @@
-import { useContext } from 'react';
-
-const Table = () => {
-  const mockData = {
-    operations: [
-      {
-        name: 'actionA',
-        duration: 713,
-        kind: 'server',
-        traces: 32,
-        executions: 3,
-      },
-      {
-        name: 'actionB',
-        duration: 624,
-        kind: 'internal',
-        traces: 21,
-        executions: 2,
-      },
-      {
-        name: 'actionC',
-        duration: 442,
-        kind: 'client',
-        traces: 14,
-        executions: 2,
-      },
-    ],
-  };
-
+const Table = ({ overallPageData }) => {
   const tableData = [];
-  for (let i = 0; i < mockData.operations.length; i++) {
+  for (let i = 0; i < overallPageData.length; i++) {
     tableData.push(
       <tr>
-        <td className='py-3'>{mockData.operations[i].name}</td>
-        <td className='py-3'>{mockData.operations[i].duration}</td>
-        <td className='py-3'>{mockData.operations[i].kind}</td>
-        <td className='py-3'>{mockData.operations[i].traces}</td>
-        <td className='py-3'>{mockData.operations[i].executions}</td>
+        <td className='py-3'>{overallPageData[i].Name}</td>
+        <td className='py-3'>{overallPageData[i]['Avg. duration (ms)']}</td>
+        <td className='py-3'>{overallPageData[i].Kind}</td>
+        <td className='py-3'>{overallPageData[i]['Total no. of traces']}</td>
+        <td className='py-3'>
+          {overallPageData[i]['Total no. of executions']}
+        </td>
       </tr>,
     );
   }

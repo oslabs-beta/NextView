@@ -28,7 +28,6 @@ const PageDisplay = () => {
           const data = await response.json();
           setPageData(data);
           setLoading(false);
-          // console.log('fetched page data', data);
         } catch (error: unknown) {
           console.log('Data fetching failed', error);
         }
@@ -50,12 +49,10 @@ const PageDisplay = () => {
           />
         </BoxWrapper>
         <PageLineChart
-          overallPageData={pageData.overallPageData}
           avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
           key={2}
         />
         <SpanLineChart
-          overallPageData={pageData.overallPageData}
           avgActionDurationsOverTime={pageData.avgActionDurationsOverTime}
           key={3}
         />
