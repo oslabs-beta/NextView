@@ -1,6 +1,6 @@
 import kinski from '../../assets/kinski.png';
 import eduardo from '../../assets/eduardo.png';
-import evram from '../../assets/eduardo.png';
+import evram from '../../assets/evram.png';
 import scott from '../../assets/scott.png';
 import sooji from '../../assets/sooji.png';
 import linkedin from '../../assets/linked-in.png';
@@ -48,7 +48,7 @@ const Contributors = () => {
           </div>
         </div>
         <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
-          <img src={evram} className='max-h-64' />
+          <img src={evram} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>Evram Dawd</span>
             <span className='text-l'>Software Engineer</span>
@@ -79,7 +79,7 @@ const Contributors = () => {
           </div>
         </div>
         <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
-          <img src={kinski} className='max-h-64' />
+          <img src={kinski} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>Kinski (Jiaxin) Wu</span>
             <span className='text-l'>Software Engineer</span>
@@ -110,7 +110,7 @@ const Contributors = () => {
           </div>
         </div>
         <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-5 lg:col-span-2'>
-          <img src={scott} className='max-h-64' />
+          <img src={scott} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>Scott Brasko</span>
             <span className='text-l'>Software Engineer</span>
@@ -141,7 +141,7 @@ const Contributors = () => {
           </div>
         </div>
         <div className='col-span-10 flex flex-col items-center gap-3 drop-shadow-md sm:col-span-10 lg:col-span-2'>
-          <img src={sooji} className='max-h-64' />
+          <img src={sooji} className='max-h-64 drop-shadow-md' />
           <div className='flex flex-col whitespace-nowrap'>
             <span className='text-xl font-bold '>SooJi Kim</span>
             <span className='text-l'>Software Engineer</span>
