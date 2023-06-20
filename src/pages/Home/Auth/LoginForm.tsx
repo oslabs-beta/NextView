@@ -1,28 +1,16 @@
-import { ChangeEvent, useState, useContext } from 'react';
+import { FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
 import { v4 as uuidv4 } from 'uuid';
 
-//TODO: refactor eventhandlers to ensure security + add typing
 const Login = () => {
-  const { setLoggedIn, username, setUsername } = useContext(UserContext);
-
-  const [password, setPassword] = useState('');
+  const { setLoggedIn, username, password } = useContext(UserContext);
 
   const navigate = useNavigate();
-
   const uniqueId = uuidv4();
 
-  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     fetch('/user/login', {
@@ -52,11 +40,7 @@ const Login = () => {
       usernameInputId={`un${uniqueId}`}
       passwordInputId={`pwd${uniqueId}`}
       text={'Sign In'}
-      // footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}
-      handleUsernameChange={handleUsernameChange}
-      handlePasswordChange={handlePasswordChange}
-      // footerNavigate={'/signup'}
     />
   );
 };
