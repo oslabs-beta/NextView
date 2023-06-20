@@ -6,7 +6,7 @@ import NotFound from '../../NotFound/NotFound';
 
 const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {
   return (
-    <div className='h-screen w-[calc(100%-216px)]'>
+    <div className='flex w-full flex-col'>
       <Topbar setStart={setStart} setEnd={setEnd} />
       <Routes>
         <Route
