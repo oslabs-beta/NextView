@@ -50,11 +50,11 @@ const Login = () => {
   return (
     <AuthForm
       text={'Sign In'}
-      footerMessage={'Do not have an account? Sign up here.'}
+      // footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
       handlePasswordChange={handlePasswordChange}
-      footerNavigate={'/signup'}
+      // footerNavigate={'/signup'}
     />
   );
 };
