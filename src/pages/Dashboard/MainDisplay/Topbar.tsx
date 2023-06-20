@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import logo from '../../../assets/NEXTVIEW_logo_tele.png';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
@@ -42,9 +41,6 @@ const Topbar = ({ setStart, setEnd }) => {
               }}
             />
             <button onClick={handleClick}>submit</button>
-          </div>
-          <div className='flex justify-end'>
-            <img src={logo} alt='nextview-logo' className=''></img>
           </div>
         </div>
       </div>
