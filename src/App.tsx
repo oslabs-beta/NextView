@@ -9,6 +9,7 @@ import { APIContext } from './contexts/dashboardContexts';
 
 function App() {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [apiKey, setApiKey] = useState(null);
   // test apiKey: 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
@@ -17,7 +18,14 @@ function App() {
     <>
       <APIContext.Provider value={{ apiKey, setApiKey }}>
         <UserContext.Provider
-          value={{ username, setUsername, loggedIn, setLoggedIn }}
+          value={{
+            username,
+            setUsername,
+            password,
+            setPassword,
+            loggedIn,
+            setLoggedIn,
+          }}
         >
           <Routes>
             <Route path='/' element={<Home />} />

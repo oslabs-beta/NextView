@@ -1,17 +1,14 @@
-import { useState, ChangeEvent, useContext } from 'react';
+import { FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
+import { v4 as uuidv4 } from 'uuid';
 
-//TODO: refactor eventhandlers to ensure security + add typing
 const Signup = () => {
-  const { loggedIn, setLoggedIn, username, setUsername } =
-    useContext(UserContext);
-
-  // const [username, setUsername] = useState(initialValue);
-  const [password, setPassword] = useState('');
+  const { setLoggedIn, username, password } = useContext(UserContext);
 
   const navigate = useNavigate();
+  const uniqueId = uuidv4();
 
   function addApp() {
     fetch('/apps', {
@@ -28,19 +25,9 @@ const Signup = () => {
       .catch((err) => console.log('Add app ERROR: ', err));
   }
 
-  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(' handleSubmit for signup invoked!');
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // handle insecured input
     if (username.length < 3) {
       alert('Username length must be at least 3!');
       return;
@@ -69,8 +56,6 @@ const Signup = () => {
         if (res.status === 201) {
           setLoggedIn(true);
           addApp();
-
-          // console.log('loggedIn state upon signup', loggedIn)
           navigate('/dashboard');
         } else {
           alert('Registration unsuccessful. Please retry.');
@@ -81,12 +66,10 @@ const Signup = () => {
 
   return (
     <AuthForm
+      usernameInputId={`un${uniqueId}`}
+      passwordInputId={`pwd${uniqueId}`}
       text={'Sign Up'}
-      // footerMessage={'Already have an account? Log in here.'}
       handleSubmit={handleSubmit}
-      handleUsernameChange={handleUsernameChange}
-      handlePasswordChange={handlePasswordChange}
-      // footerNavigate={'/login'}
       value={username}
     />
   );
