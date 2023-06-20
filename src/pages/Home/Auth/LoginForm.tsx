@@ -2,15 +2,17 @@ import { ChangeEvent, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
+import { v4 as uuidv4 } from 'uuid';
 
 //TODO: refactor eventhandlers to ensure security + add typing
 const Login = () => {
-  const { loggedIn, setLoggedIn, username, setUsername } =
-    useContext(UserContext);
+  const { setLoggedIn, username, setUsername } = useContext(UserContext);
 
   const [password, setPassword] = useState('');
 
   const navigate = useNavigate();
+
+  const uniqueId = uuidv4();
 
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -29,7 +31,7 @@ const Login = () => {
         'Content-Type': 'Application/JSON',
       },
       body: JSON.stringify({
-        username, // username & password input set as required in input tags
+        username,
         password,
       }),
     })
@@ -37,9 +39,7 @@ const Login = () => {
         console.log('res.status: ', res);
         if (res.status === 204) {
           setLoggedIn(true);
-          // console.log('loggedIn state upon login', loggedIn)
-          // console.log('user name', username)
-          navigate('/dashboard'); // route to be set up
+          navigate('/dashboard');
         } else {
           alert('Log in unsuccessful. Please check your login information');
         }
@@ -49,6 +49,8 @@ const Login = () => {
 
   return (
     <AuthForm
+      usernameInputId={`un + ${uniqueId}`}
+      passwordInputId={`pwd + ${uniqueId}`}
       text={'Sign In'}
       // footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}

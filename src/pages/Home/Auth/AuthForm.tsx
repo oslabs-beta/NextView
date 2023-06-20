@@ -3,6 +3,8 @@ import Button from '../../../components/Button';
 
 // TODO: change typing for event handlers
 interface AuthFormProps {
+  usernameInputId: string;
+  passwordInputId: string;
   text: string;
   // footerMessage: string;
   handleSubmit: any;
@@ -13,6 +15,8 @@ interface AuthFormProps {
 }
 
 const AuthForm = ({
+  usernameInputId,
+  passwordInputId,
   text,
   // footerMessage,
   handleSubmit,
@@ -32,13 +36,13 @@ const AuthForm = ({
         <div className='mb-4'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
-            htmlFor='username'
+            htmlFor={usernameInputId}
           >
             Username
           </label>
           <input
             className='focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
-            id='username'
+            id={usernameInputId}
             type='text'
             placeholder='Username'
             value={value}
@@ -50,13 +54,13 @@ const AuthForm = ({
         <div className='mb-6'>
           <label
             className='mb-2 block text-sm font-bold text-gray-700'
-            htmlFor='password'
+            htmlFor={passwordInputId}
           >
             Password
           </label>
           <input
             className='focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
-            id='password'
+            id={passwordInputId}
             type='password'
             placeholder='******************'
             required
