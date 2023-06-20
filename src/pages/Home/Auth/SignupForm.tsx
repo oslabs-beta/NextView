@@ -82,11 +82,11 @@ const Signup = () => {
   return (
     <AuthForm
       text={'Sign Up'}
-      footerMessage={'Already have an account? Log in here.'}
+      // footerMessage={'Already have an account? Log in here.'}
       handleSubmit={handleSubmit}
       handleUsernameChange={handleUsernameChange}
       handlePasswordChange={handlePasswordChange}
-      footerNavigate={'/login'} // route to be set up
+      // footerNavigate={'/login'}
       value={username}
     />
   );

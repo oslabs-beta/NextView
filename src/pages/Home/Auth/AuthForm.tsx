@@ -4,21 +4,21 @@ import Button from '../../../components/Button';
 // TODO: change typing for event handlers
 interface AuthFormProps {
   text: string;
-  footerMessage: string;
+  // footerMessage: string;
   handleSubmit: any;
   handleUsernameChange: any;
   handlePasswordChange: any;
-  footerNavigate: string;
+  // footerNavigate: string;
   value?: string;
 }
 
 const AuthForm = ({
   text,
-  footerMessage,
+  // footerMessage,
   handleSubmit,
   handleUsernameChange,
   handlePasswordChange,
-  footerNavigate,
+  // footerNavigate,
   value,
 }: AuthFormProps) => {
   const navigate = useNavigate();
@@ -67,13 +67,13 @@ const AuthForm = ({
           <Button type='submit' variant='secondary' size='lg'>
             {text}
           </Button>
-          <button
+          {/* <button
             type='button'
             className='inline-block align-baseline text-sm font-bold text-secondary hover:text-blue-800'
             onClick={() => navigate(footerNavigate)}
           >
             {footerMessage}
-          </button>
+          </button> */}
         </div>
       </form>
     </>
