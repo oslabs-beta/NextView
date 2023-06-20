@@ -12,7 +12,7 @@ import {
 
 const LineChartComponent = ({ data }) => {
   return (
-    <ResponsiveContainer width='100%' height={450}>
+    <ResponsiveContainer width='98%' height={450}>
       <LineChart
         data={data}
         margin={{
