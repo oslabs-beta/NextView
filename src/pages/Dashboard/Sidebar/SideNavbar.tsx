@@ -6,7 +6,7 @@ import { SiCodereview } from 'react-icons/si';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContexts';
 // import logo from '../../../assets/NextView-logo-pink-transparent.png';
-import logo from '../../../assets/NV-logo-white.png';
+import logo from '../../../assets/NextView-logo-white-48x48.png';
 // import logo from '../../../assets/NV-logo-transparent.png';
 
 function SideNavBar() {

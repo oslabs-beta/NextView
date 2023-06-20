@@ -5,23 +5,25 @@ import LineChart from './LineChart';
 
 const OverviewDisplay = ({ overviewData }) => {
   return (
-    <div className='col-span-full flex flex-1 flex-col overflow-y-auto p-5'>
-      <div className='m-1 grid grid-cols-12 justify-center'>
-        {/* <BoxWrapper> */}
-        <Textbox
-          traceCount={overviewData.traceCount}
-          overallAvg={overviewData.overallAvg}
-        />
-        {/* </BoxWrapper> */}
-        {/* <BoxWrapper> */}
-        <HorizontalBarGraph data={overviewData.kindAvgDurations} />
-        {/* </BoxWrapper> */}
-        {/* <BoxWrapper> */}
-        <BarGraph data={overviewData.pageAvgDurations} />
-        {/* </BoxWrapper> */}
-      </div>
-      <div className='w-fit'>
-        <LineChart data={overviewData.kindAvgDurationsOverTime} />
+    <div className='relative min-h-full overflow-y-auto p-5'>
+      <div className='absolute flex w-full flex-col items-center'>
+        <div className='grid grid-cols-12 gap-10'>
+          {/* <BoxWrapper> */}
+          <Textbox
+            traceCount={overviewData.traceCount}
+            overallAvg={overviewData.overallAvg}
+          />
+          {/* </BoxWrapper> */}
+          {/* <BoxWrapper> */}
+          <HorizontalBarGraph data={overviewData.kindAvgDurations} />
+          {/* </BoxWrapper> */}
+          {/* <BoxWrapper> */}
+          <BarGraph data={overviewData.pageAvgDurations} />
+          {/* </BoxWrapper> */}
+        </div>
+        <div className='w-full p-5'>
+          <LineChart data={overviewData.kindAvgDurationsOverTime} />
+        </div>
       </div>
     </div>
   );
