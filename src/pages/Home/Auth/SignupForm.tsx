@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, useContext } from 'react';
+import { useState, ChangeEvent, FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
@@ -36,7 +36,7 @@ const Signup = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     // handle insecured input
