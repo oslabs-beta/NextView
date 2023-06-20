@@ -74,36 +74,38 @@ const SpanLineChart = ({ avgActionDurationsOverTime }) => {
   });
 
   return (
-    <ResponsiveContainer width='40%' height={400}>
-      <LineChart
-        width={500}
-        height={300}
-        data={avgActionDurationsOverTime}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis dataKey='period' />
-        <Label value='Duration' />
-        <YAxis
-          label={{ value: 'Duration (ms)', angle: -90, position: 'left' }}
-        />
-        <Tooltip />
-        <Legend />
-        {/* <Line
+    <div className='col-span-12 flex w-full flex-col items-center lg:col-span-6'>
+      <ResponsiveContainer width='95%' height={400}>
+        <LineChart
+          // width={500}
+          // height={300}
+          data={avgActionDurationsOverTime}
+          margin={{
+            top: 5,
+            right: 50,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='period' />
+          <Label value='Duration' />
+          <YAxis
+            label={{ value: 'Duration (ms)', angle: -90, position: 'left' }}
+          />
+          <Tooltip />
+          <Legend />
+          {/* <Line
             type='monotone'
             dataKey='Avg. duration (ms)'
             stroke='#8884d8'
             activeDot={{ r: 8 }}
           /> */}
-        {/* <Line activeDot={{ r: 8 }} key={1} type='monotone' dataKey={actions[0]} stroke='#82ca9d'></Line> */}
-        {lines}
-      </LineChart>
-    </ResponsiveContainer>
+          {/* <Line activeDot={{ r: 8 }} key={1} type='monotone' dataKey={actions[0]} stroke='#82ca9d'></Line> */}
+          {lines}
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
