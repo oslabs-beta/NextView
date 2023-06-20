@@ -25,23 +25,21 @@ const Topbar = ({ setStart, setEnd }) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div>
-        <div className='flex h-16 justify-end gap-x-10 bg-neutral-300 px-4'>
-          <div className='flex items-center gap-x-3'>
-            <DateTimePicker
-              label={startPlaceholder}
-              onChange={(value) => {
-                handleDateChange(value, setStartVal);
-              }}
-            />
-            <DateTimePicker
-              label={endPlaceholder}
-              onChange={(value) => {
-                handleDateChange(value, setEndVal);
-              }}
-            />
-            <button onClick={handleClick}>submit</button>
-          </div>
+      <div className='flex h-16 justify-end gap-x-10 bg-neutral-300 px-4'>
+        <div className='flex items-center gap-x-3'>
+          <DateTimePicker
+            label={startPlaceholder}
+            onChange={(value) => {
+              handleDateChange(value, setStartVal);
+            }}
+          />
+          <DateTimePicker
+            label={endPlaceholder}
+            onChange={(value) => {
+              handleDateChange(value, setEndVal);
+            }}
+          />
+          <button onClick={handleClick}>submit</button>
         </div>
       </div>
     </LocalizationProvider>

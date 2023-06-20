@@ -8,7 +8,7 @@ const Textbox = ({ traceCount, overallAvg }) => {
   ];
 
   return (
-    <div className='textbox-container flex h-full w-64 flex-col justify-evenly text-center font-semibold'>
+    <div className='col-span-12 ml-auto mr-auto flex w-full flex-row justify-center gap-8 text-center font-semibold xl:col-span-4'>
       {boxData.map(({ title, data }) => (
         <Box key={uuidv4()} title={title} data={data} />
       ))}

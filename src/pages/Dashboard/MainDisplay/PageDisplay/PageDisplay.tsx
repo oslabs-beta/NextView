@@ -39,35 +39,29 @@ const PageDisplay = () => {
   return loading ? (
     <></>
   ) : (
-    <div className='flex h-[calc(100%-64px)] flex-col justify-evenly'>
-      <div className='m-1 flex flex-row justify-evenly'>
-        <BoxWrapper key={1}>
+    <div className='relative min-h-full overflow-y-auto p-5'>
+      <div className='absolute flex min-h-full w-full flex-col justify-evenly'>
+        <div className='col-span-12 mx-5 grid grid-cols-12 items-center gap-5'>
           <Textbox
             overallAvg={pageData.overallAvg}
             traceCount={pageData.traceCount}
             key={1}
           />
-        </BoxWrapper>
-        <PageLineChart
-          avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
-          key={2}
-        />
-        <SpanLineChart
-          avgActionDurationsOverTime={pageData.avgActionDurationsOverTime}
-          key={3}
-        />
+          <Table overallPageData={pageData.overallPageData} key={1} />
+        </div>
+        <div className='col-span-12 grid grid-cols-12 gap-10'>
+          <PageLineChart
+            avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
+            key={2}
+          />
+          <SpanLineChart
+            avgActionDurationsOverTime={pageData.avgActionDurationsOverTime}
+            key={3}
+          />
+        </div>
       </div>
-      <BoxWrapper key={4}>
-        <Table overallPageData={pageData.overallPageData} key={1} />
-      </BoxWrapper>
     </div>
   );
 };
-
-// multiple line chart:
-
-function BoxWrapper({ children }: any) {
-  return <div className='flex flex-col justify-evenly'>{children}</div>;
-}
 
 export default PageDisplay;
