@@ -49,8 +49,8 @@ const Login = () => {
 
   return (
     <AuthForm
-      usernameInputId={`un + ${uniqueId}`}
-      passwordInputId={`pwd + ${uniqueId}`}
+      usernameInputId={`un${uniqueId}`}
+      passwordInputId={`pwd${uniqueId}`}
       text={'Sign In'}
       // footerMessage={'Do not have an account? Sign up here.'}
       handleSubmit={handleSubmit}

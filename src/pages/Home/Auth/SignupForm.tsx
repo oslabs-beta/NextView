@@ -37,7 +37,6 @@ const Signup = () => {
   };
 
   const handleSubmit = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(' handleSubmit for signup invoked!');
     e.preventDefault();
 
     // handle insecured input
@@ -79,8 +78,8 @@ const Signup = () => {
 
   return (
     <AuthForm
-      usernameInputId={`un + ${uniqueId}`}
-      passwordInputId={`pwd + ${uniqueId}`}
+      usernameInputId={`un${uniqueId}`}
+      passwordInputId={`pwd${uniqueId}`}
       text={'Sign Up'}
       // footerMessage={'Already have an account? Log in here.'}
       handleSubmit={handleSubmit}
