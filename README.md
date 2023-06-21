@@ -1,4 +1,6 @@
-![NextView-banner-1000x300](https://github.com/oslabs-beta/NextView/assets/101832001/582b97b2-dc8a-458c-abfb-c358e37f2bca)
+![NextView-banner-final-900x300](https://github.com/oslabs-beta/NextView/assets/101832001/fd3242b4-3af5-42ea-96ff-81b288ef8c66)
+
+<div align='center'>
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -12,14 +14,16 @@
 ![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-3d348b?style=for-the-badge&logo=opentelemetry&logoColor=white)
 ![NextJS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
 
-# NextView
+</div>
 
-<a href="https://www.nextview.dev">![Website](https://img.shields.io/badge/Website-dee2e6)</a>
-<a href="https://www.linkedin.com/company/nextview-os/">![LinkedIn](https://img.shields.io/badge/LinkedIn-dee2e6)</a>
-<a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-dee2e6)</a>
-<a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-dee2e6)</a>
+#
 
-NextView is a lightweight, user-friendly application designed to assist developers in optimizing server performance of their Next.js applications. Our observability platform employs OpenTelemetry to trace and monitor important server metrics, and stores the data in real time. The NextView Dashboard visualizes the time-series data in clear graphical presentations that facilitate data analysis, enabling developers to swiftly identify areas where server performance optimization is needed.
+<a href="https://www.nextview.dev">![Website](https://img.shields.io/badge/Website-e2f0f9)</a>
+<a href="https://www.linkedin.com/company/nextview-os/">![LinkedIn](https://img.shields.io/badge/LinkedIn-e2f0f9)</a>
+<a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-e2f0f9)</a>
+<a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-e2f0f9)</a>
+
+NextView is a lightweight and user-friendly application designed to assist developers in optimizing the server performance of their Next.js applications. Our observability platform utilizes OpenTelemetry to trace and monitor crucial server metrics, stores the data in real time, and visualizes the time-series data in clear graphical representations on the NextView Dashboard. With easier data analysis, developers can swiftly identify bottlenecks and pinpoint areas that require server performance optimization, and subsequently improve the efficiency of their applications.
 
 ## Getting Started
 
@@ -80,12 +84,15 @@ For more details on OpenTelemetry, please read the documentation [here](https://
 
 <p>
 [Add more info on hooking up app to dashboard]
-[Add images]
 </p>
 
 ### Overview Page
 
-The NextView dashboard defaults to the Overview page, where you can see performance metrics for your entire Next.js application. You can see specific values of a graph when you hover over it.
+<p>[Add image of Overview Page]</p>
+
+The NextView Dashboard automatically lands the Overview page that provides an overview of performance metrics for your entire Next.js application. Specific values can be seen by hovering over the graph.
+
+Metrics displayed on the page include:
 
 - Average page load duration (in milliseconds)
 - Total number of traces
@@ -93,11 +100,15 @@ The NextView dashboard defaults to the Overview page, where you can see performa
 - Top 5 slowest pages
 - Average duration of operations by span kind (in milliseconds) over time
 
-The default time period for the overview data is the last 24 hours, and this can be modified in the date and time selector on the top right corner of the dashboard.
+By default, the overview data covers the last 24 hours. You can modify the time period using the date and time selector located in the top right corner of the dashboard.
 
 ### User's App Page(s)
 
-All of the pages in your application will be listed on the left hand sidebar. When you select a page, you can see server performance metrics for the individual page.
+<p>[Add image of App Page]</p>
+
+On the left-hand sidebar, you will find a list of all the pages in your application. When selecting a specific page, you can view server performance metrics for that individual page.
+
+Metrics displayed for each page include:
 
 - Average page load duration (in milliseconds)
 - Total number of traces
