@@ -18,24 +18,20 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
   const [endVal, setEndVal] = useState('');
   const [dropdown, setDropdown] = useState(false);
 
-  const startPlaceholder = dayjs()
-    .subtract(1, 'day')
-    .format('DD/MM/YYYY HH:mm A');
-
-  const endPlaceholder = dayjs().format('DD/MM/YYYY HH:mm A');
-
   const { apiKey } = useContext(APIContext);
 
+  // Set local variables (startVal, endVal)
+  const handleDateChange = (date, setDate) => {
+    setDate(date.toISOString());
+  };
+
+  // Set Dashboard state variables (start, end)
   const handleClick = () => {
     setStart(startVal);
     setEnd(endVal);
   };
 
   const pagesList = overviewData.pages;
-
-  const handleDateChange = (newDate, setStartOrEnd) => {
-    setStartOrEnd(newDate.toISOString());
-  };
 
   const { setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
@@ -134,6 +130,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
         </div>
         <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
           <DateTimePicker
+            defaultValue={dayjs().subtract(1, 'day')}
             slotProps={{ textField: { size: 'small' } }}
             sx={{ backgroundColor: 'white', input: { fontSize: '.9rem' } }}
             onChange={(value) => {
@@ -141,6 +138,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
             }}
           />
           <DateTimePicker
+            defaultValue={dayjs()}
             slotProps={{ textField: { size: 'small' } }}
             sx={{ backgroundColor: 'white', input: { fontSize: '.9rem' } }}
             onChange={(value) => {
