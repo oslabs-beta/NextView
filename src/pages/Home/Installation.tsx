@@ -70,7 +70,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
               <li>
                 <p>Register a NextView account here:</p>
                 <input
-                  className='focus:shadow-outline my-3 w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  sm:w-auto sm:rounded-r-none'
+                  className='focus:shadow-outline my-3 w-full flex-1 appearance-none rounded border bg-white px-3 py-2 leading-tight text-gray-700  focus:outline-none sm:w-auto sm:rounded-r-none'
                   // id='username'
                   type='text'
                   placeholder='jsmith@example.com'

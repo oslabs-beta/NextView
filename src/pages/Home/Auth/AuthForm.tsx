@@ -33,7 +33,7 @@ const AuthForm = ({
             Username
           </label>
           <input
-            className='focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
+            className='focus:shadow-outline w-full appearance-none rounded border bg-white px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
             id={usernameInputId}
             type='text'
             placeholder='Username'
@@ -51,7 +51,7 @@ const AuthForm = ({
             Password
           </label>
           <input
-            className='focus:shadow-outline mb-3 w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
+            className='focus:shadow-outline mb-3 w-full appearance-none rounded border bg-white px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none'
             id={passwordInputId}
             type='password'
             placeholder='******************'
