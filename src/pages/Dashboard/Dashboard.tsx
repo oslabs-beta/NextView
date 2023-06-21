@@ -96,7 +96,7 @@ const Dashboard = () => {
         <PageContext.Provider
           value={{ page, setPage, start, end, apiKey, setPageData, pageData }}
         >
-          <div className='flex bg-neutral-200'>
+          <div className='relative flex w-full bg-[#f6f8fa]'>
             <Sidebar overviewData={overviewData} />
             <MainDisplay
               overviewData={overviewData}

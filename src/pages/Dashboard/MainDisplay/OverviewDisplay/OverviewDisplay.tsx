@@ -5,17 +5,21 @@ import LineChart from './LineChart';
 
 const OverviewDisplay = ({ overviewData }) => {
   return (
-    <div className='relative min-h-full overflow-y-auto p-5'>
-      <div className='absolute flex w-full flex-col items-center'>
-        <div className='grid grid-cols-12 gap-10'>
+    <div className='relative min-h-screen overflow-y-auto '>
+      <div className='absolute flex w-full flex-col items-center gap-5 pt-3 sm:pl-8 sm:pr-8'>
+        <div className='grid w-full grid-cols-12 gap-2 sm:gap-10'>
           <Textbox
             traceCount={overviewData.traceCount}
             overallAvg={overviewData.overallAvg}
           />
-          <HorizontalBarGraph data={overviewData.kindAvgDurations} />
-          <BarGraph data={overviewData.pageAvgDurations} />
+          <div className='col-span-12 flex flex-col items-center rounded-2xl bg-white p-5 drop-shadow lg:col-span-6 3xl:col-span-5'>
+            <HorizontalBarGraph data={overviewData.kindAvgDurations} />
+          </div>
+          <div className='col-span-12 flex flex-col items-center rounded-2xl bg-white p-5 drop-shadow lg:col-span-6 3xl:col-span-5'>
+            <BarGraph data={overviewData.pageAvgDurations} />
+          </div>
         </div>
-        <div className='w-full p-5'>
+        <div className='mb-32 w-full rounded-2xl bg-white p-5 drop-shadow'>
           <LineChart data={overviewData.kindAvgDurationsOverTime} />
         </div>
       </div>

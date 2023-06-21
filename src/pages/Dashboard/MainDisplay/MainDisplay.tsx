@@ -6,8 +6,8 @@ import NotFound from '../../NotFound/NotFound';
 
 const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {
   return (
-    <div className='flex w-full flex-col'>
-      <Topbar setStart={setStart} setEnd={setEnd} />
+    <div className='relative flex w-full flex-col'>
+      <Topbar setStart={setStart} setEnd={setEnd} overviewData={overviewData} />
       <Routes>
         <Route
           path='/'

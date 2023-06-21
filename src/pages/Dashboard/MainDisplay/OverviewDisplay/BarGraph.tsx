@@ -13,16 +13,16 @@ const BarGraph = ({ data }) => {
   const num = data.length;
   //TODO: figure out how to show long page names
   return (
-    <div className='bar-graph col-span-12 flex flex-col items-center lg:col-span-6 2xl:col-span-5'>
-      <p>Top {num} Slowest Pages</p>
+    <>
+      <p className='absolute left-5 font-bold'>Top {num} Slowest Pages</p>
       <ResponsiveContainer height={400}>
         <BarChart
           // height={400}
           // width={700}
           data={data}
           margin={{
-            top: 5,
-            right: 50,
+            top: 50,
+            right: 0,
             left: 20,
             bottom: 40,
           }}
@@ -31,9 +31,8 @@ const BarGraph = ({ data }) => {
           <XAxis
             dataKey='page'
             label={{
-              value: 'Pages',
-              position: 'insideBottom',
-              offset: -10,
+              value: 'Page',
+              position: 'bottom',
             }}
             // interval={0}
           />
@@ -41,18 +40,18 @@ const BarGraph = ({ data }) => {
             padding={{ top: 20 }}
             tickSize={6}
             label={{
-              value: 'Duration(milliseconds)',
+              value: 'Duration (ms)',
               angle: -90,
               position: 'insideLeft',
             }}
           />
           <Tooltip
-            offset={0}
-            // content={(props) => <CustomTooltip {...props} />}
-            wrapperStyle={{ width: 150, backgroundColor: '#ccc' }}
+            offset={10}
+            wrapperStyle={{ width: 200, backgroundColor: '#ccc' }}
+            formatter={(val) => val + 'ms'}
           />
-          <Legend width={100} verticalAlign='top' align='right' />
           <Bar
+            name='Duration'
             radius={[8, 8, 8, 8]}
             dataKey='ms_avg'
             barSize={50}
@@ -61,7 +60,7 @@ const BarGraph = ({ data }) => {
           />
         </BarChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 };
 
