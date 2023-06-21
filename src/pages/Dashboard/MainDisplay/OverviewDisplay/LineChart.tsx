@@ -16,7 +16,7 @@ const LineChartComponent = ({ data }) => {
       <p className='absolute left-5 font-bold'>
         Average Span Load Duration Over Time
       </p>
-      <ResponsiveContainer width='98%' height={350}>
+      <ResponsiveContainer width='98%' height={400}>
         <LineChart
           data={data}
           margin={{

@@ -55,7 +55,7 @@ const BarGraph = ({ data }) => {
             radius={[8, 8, 0, 0]}
             dataKey='ms_avg'
             barSize={50}
-            fill='#1879d5'
+            fill='#5886a5'
             animationBegin={5}
           />
         </BarChart>
