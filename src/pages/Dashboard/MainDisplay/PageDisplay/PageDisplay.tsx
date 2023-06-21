@@ -40,7 +40,7 @@ const PageDisplay = () => {
   return loading ? (
     <></>
   ) : (
-    <div className='relative min-h-full overflow-y-auto p-5'>
+    <div className='relative min-h-screen overflow-y-auto p-5'>
       <div className='absolute flex min-h-full w-full flex-col justify-evenly'>
         <div className='col-span-12 mx-5 grid grid-cols-12 items-center gap-5'>
           <Textbox
