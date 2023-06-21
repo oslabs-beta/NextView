@@ -51,7 +51,7 @@ const userController: UserController = {
       const token = jwt.sign(
         { userId: user.rows[0]._id },
         process.env.JWT_SECRET as jwt.Secret,
-        { expiresIn: '1h' },
+        { expiresIn: '30d' },
       );
 
       // Set the JWT token as an HTTP-only cookie

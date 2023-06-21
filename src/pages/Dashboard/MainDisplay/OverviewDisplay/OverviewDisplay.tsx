@@ -19,7 +19,7 @@ const OverviewDisplay = ({ overviewData }) => {
             <BarGraph data={overviewData.pageAvgDurations} />
           </div>
         </div>
-        <div className='mb-32 w-full rounded-2xl bg-white p-5 drop-shadow'>
+        <div className='mb-24 w-full rounded-2xl bg-white p-5 drop-shadow'>
           <LineChart data={overviewData.kindAvgDurationsOverTime} />
         </div>
       </div>

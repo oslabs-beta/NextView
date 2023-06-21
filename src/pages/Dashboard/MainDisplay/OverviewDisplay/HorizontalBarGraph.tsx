@@ -5,22 +5,19 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   Cell,
   ResponsiveContainer,
 } from 'recharts';
 
-const barColors = ['#e4f1fe', '#8dc6ff', '22313f', '34495e', '#ffc93c'];
+const barColors = ['#003f5c', '#bc5090', '#6996e4'];
 
 const HorizontalBarGragh = ({ data }) => {
   return (
     <>
-      <p className='absolute left-5 font-bold'>Average Span Load Duration</p>
+      <p className='absolute left-5 font-bold'>Average Span Duration</p>
       <ResponsiveContainer height={400}>
         <BarChart
           layout='vertical'
-          // height={400}
-          // width={700}
           data={data}
           margin={{
             top: 50,
@@ -36,7 +33,7 @@ const HorizontalBarGragh = ({ data }) => {
             type='number'
             padding={{ right: 30 }}
             label={{
-              value: 'Duration (ms)',
+              value: 'Duration',
               position: 'bottom',
             }}
             tickLine={true}
@@ -61,7 +58,7 @@ const HorizontalBarGragh = ({ data }) => {
           />
           <Bar
             name='Duration'
-            radius={[8, 8, 8, 8]}
+            radius={[0, 8, 8, 0]}
             dataKey='ms_avg'
             barSize={50}
             animationBegin={5}

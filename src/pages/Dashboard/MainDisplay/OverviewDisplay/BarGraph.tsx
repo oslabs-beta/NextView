@@ -52,10 +52,10 @@ const BarGraph = ({ data }) => {
           />
           <Bar
             name='Duration'
-            radius={[8, 8, 8, 8]}
+            radius={[8, 8, 0, 0]}
             dataKey='ms_avg'
             barSize={50}
-            fill='#2a9d8f'
+            fill='#5886a5'
             animationBegin={5}
           />
         </BarChart>

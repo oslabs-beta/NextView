@@ -7,13 +7,13 @@ function MainNavBar({ overviewData }) {
   const pagesList = overviewData.pages;
 
   return (
-    <div className='flex h-screen flex-col items-center border-l border-r bg-white'>
+    <div className='flex h-screen min-w-[200px] flex-col items-center border-l border-r bg-white'>
       <Button
         variant='secondary'
         className='mt-5 h-10 w-[90%] bg-secondary text-base drop-shadow-sm'
       >
         <Link to='/dashboard' className=''>
-          Dashboard
+          Overview
         </Link>
       </Button>
 
