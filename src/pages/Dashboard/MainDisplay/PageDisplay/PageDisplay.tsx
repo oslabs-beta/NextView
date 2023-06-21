@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { PageContext } from '../../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
+import Spinner from '../../../../components/Spinner';
 
 const PageDisplay = () => {
   const { id } = useParams();
@@ -38,7 +39,9 @@ const PageDisplay = () => {
   }, [apiKey, end, id, loading, setPageData, start]);
 
   return loading ? (
-    <></>
+    <>
+      <Spinner />
+    </>
   ) : (
     <div className='relative min-h-screen overflow-y-auto p-5'>
       <div className='absolute flex min-h-full w-full flex-col justify-evenly'>
