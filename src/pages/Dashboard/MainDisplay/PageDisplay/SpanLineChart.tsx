@@ -69,19 +69,24 @@ const SpanLineChart = ({ avgActionDurationsOverTime }) => {
         type='monotone'
         dataKey={action}
         stroke={colors[i]}
+        strokeWidth={3}
+        dot={false}
       ></Line>
     );
   });
 
   return (
-    <div className='col-span-12 flex w-full flex-col items-center lg:col-span-6'>
-      <ResponsiveContainer width='95%' height={400}>
+    <>
+      <p className='absolute left-5 top-0 pt-5 font-bold'>
+        Average Request Duration Over Time
+      </p>
+      <ResponsiveContainer width='95%' height={350}>
         <LineChart
           // width={500}
           // height={300}
           data={avgActionDurationsOverTime}
           margin={{
-            top: 5,
+            top: 50,
             right: 50,
             left: 20,
             bottom: 5,
@@ -105,7 +110,7 @@ const SpanLineChart = ({ avgActionDurationsOverTime }) => {
           {lines}
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 };
 

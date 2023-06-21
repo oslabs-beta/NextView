@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import partyPopper from '../../assets/Party_Popper_Emojipedia.png';
 import team from '../../assets/team.png';
 import npm from '../../assets/npm.png';
+import { APIContext } from '../../contexts/dashboardContexts';
 
 interface Props {
   setOpenSignupModal(value: React.SetStateAction<boolean>): void;
@@ -14,6 +15,7 @@ interface Props {
 
 const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
   const { loggedIn, setUsername } = useContext(UserContext);
+  const { apiKey } = useContext(APIContext);
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };

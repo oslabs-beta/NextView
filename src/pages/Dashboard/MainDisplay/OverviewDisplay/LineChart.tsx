@@ -28,17 +28,15 @@ const LineChartComponent = ({ data }) => {
         >
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='period' />
-          <YAxis
-            label={{ value: 'Duration (ms)', angle: -90, position: 'left' }}
-          />
-          <Tooltip />
+          <YAxis label={{ value: 'Duration', angle: -90, position: 'left' }} />
+          <Tooltip formatter={(val) => val + 'ms'} />
           <Legend />
           <Line
             dot={false}
             name='Client'
             type='monotone'
             dataKey='client'
-            stroke='#264653'
+            stroke='#bc5090'
             activeDot={{ r: 8 }}
             strokeWidth={3}
           />
@@ -47,7 +45,7 @@ const LineChartComponent = ({ data }) => {
             name='Server'
             type='monotone'
             dataKey='server'
-            stroke='#2a9d8f'
+            stroke='#ffa600'
             strokeWidth={3}
           />
           <Line
@@ -55,7 +53,7 @@ const LineChartComponent = ({ data }) => {
             name='Internal'
             type='monotone'
             dataKey='internal'
-            stroke='#e76f51'
+            stroke='#003f5c'
             strokeWidth={3}
           />
         </LineChart>

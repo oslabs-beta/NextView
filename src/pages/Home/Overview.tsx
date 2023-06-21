@@ -1,8 +1,6 @@
 import Button from '../../components/Button';
 import overview from '../../assets/overview_edited_rounded.png';
-import Modal from './Auth/Modal';
-import { ChangeEvent, useState, useContext } from 'react';
-import SignupForm from './Auth/SignupForm';
+import { ChangeEvent, useContext } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';
 import React from 'react';

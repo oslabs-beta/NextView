@@ -13,7 +13,7 @@ function MainNavBar({ overviewData }) {
         className='mt-5 h-10 w-[90%] bg-secondary text-base drop-shadow-sm'
       >
         <Link to='/dashboard' className=''>
-          Dashboard
+          Overview
         </Link>
       </Button>
 
