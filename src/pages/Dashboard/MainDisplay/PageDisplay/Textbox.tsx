@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Textbox = ({ traceCount, overallAvg }) => {
   const boxData = [
-    { title: 'Average Page Load Duration (ms)', data: overallAvg },
+    { title: 'Average Page Load Duration', data: overallAvg },
     { title: 'Total No. of Traces', data: traceCount },
   ];
 

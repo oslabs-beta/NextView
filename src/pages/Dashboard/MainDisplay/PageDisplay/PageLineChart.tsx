@@ -39,7 +39,7 @@ const PageLineChart = ({ avgPageDurationsOverTime }) => {
           <Line
             type='monotone'
             dataKey='Avg. duration (ms)'
-            stroke='#00ff00'
+            stroke='#286fb4'
             activeDot={{ r: 8 }}
             strokeWidth={3}
             dot={false}

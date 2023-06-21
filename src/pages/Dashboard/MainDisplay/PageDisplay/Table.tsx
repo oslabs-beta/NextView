@@ -4,8 +4,11 @@ const Table = ({ overallPageData }) => {
   const tableData = [];
   for (let i = 0; i < overallPageData.length; i++) {
     tableData.push(
-      <tr key={overallPageData[i].Name} className='text-left'>
-        <td className='border-b border-r p-3' key={uuidv4()}>
+      <tr key={overallPageData[i].Name} className='text-left text-sm'>
+        <td
+          className='w-1/4 max-w-0 overflow-x-auto border-b border-r p-3'
+          key={uuidv4()}
+        >
           {overallPageData[i].Name}
         </td>
         <td className='border-b border-r p-3' key={uuidv4()}>
@@ -25,9 +28,9 @@ const Table = ({ overallPageData }) => {
   }
 
   return (
-    <table className='w-full overflow-hidden rounded-2xl bg-white text-left drop-shadow'>
-      <thead className='border-b bg-primary'>
-        <tr key={'header'} className=''>
+    <table className='w-full overflow-hidden rounded-xl bg-white text-left drop-shadow-sm'>
+      <thead className='border-b bg-secondary'>
+        <tr key={'header'} className='text-sm text-white'>
           <th className='px-4 py-4 '>Name</th>
           <th className='px-4 py-4'>Avg. Duration</th>
           <th className='px-4 py-4'>Kind</th>

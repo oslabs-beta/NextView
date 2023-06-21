@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const barColors = ['#003f5c', '#bc5090', '#ffa600'];
+const barColors = ['#003f5c', '#bc5090', '#6996e4'];
 
 const HorizontalBarGragh = ({ data }) => {
   return (

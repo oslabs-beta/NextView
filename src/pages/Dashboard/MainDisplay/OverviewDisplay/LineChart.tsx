@@ -45,7 +45,7 @@ const LineChartComponent = ({ data }) => {
             name='Server'
             type='monotone'
             dataKey='server'
-            stroke='#ffa600'
+            stroke='#6996e4'
             strokeWidth={3}
           />
           <Line
