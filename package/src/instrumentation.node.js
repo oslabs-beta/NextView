@@ -1,4 +1,4 @@
-// import { trace, context } from '@opentelemetry/api';
+import { trace, context } from '@opentelemetry/api';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { Resource } from '@opentelemetry/resources';
@@ -22,33 +22,24 @@ import { MongooseInstrumentation } from '@opentelemetry/instrumentation-mongoose
 import { PgInstrumentation } from '@opentelemetry/instrumentation-pg';
 import { MongoDBInstrumentation } from '@opentelemetry/instrumentation-mongodb';
 
-// CommonJS Require Statements causing issues when trying to implement Vercel style wrapping.
-// const {
-//   ExpressInstrumentation,
-// } = require('@opentelemetry/instrumentation-express');
-// const {
-//   MongooseInstrumentation,
-// } = require('@opentelemetry/instrumentation-mongoose');
-// //pg instrumentation
-// const { PgInstrumentation } = require('@opentelemetry/instrumentation-pg');
-// const {
-//   MongoDBInstrumentation,
-// } = require('@opentelemetry/instrumentation-mongodb');
-
 export const nextView = (serviceName) => {
+  const collectorOptions = {
+    url: 'http://www.nextview.dev/api',
+    headers: {
+      API_KEY: `${process.env.API_KEY}`,
+      NextView: 'Next.js Tracing Information',
+      // an optional object containing custom headers to be sent with each request will only work with http
+    },
+    // concurrencyLimit: 10, // an optional limit on pending requests
+  };
+
   const sdk = new NodeSDK({
     resource: new Resource({
-      [SemanticResourceAttributes.SERVICE_NAME]: 'next-app',
+      [SemanticResourceAttributes.SERVICE_NAME]: `${process.env.Service_Name}`,
     }),
     // spanProcessor: new SimpleSpanProcessor(new ConsoleSpanExporter()),
     spanProcessor: new SimpleSpanProcessor(
-      new OTLPTraceExporter({
-        url: 'http://localhost:4318/v1/trace',
-        // same port as shown in collector-gateway.yml
-        headers: {
-          foo: 'bar',
-        }, // an optional object containing custom headers to be sent with each request will only work with http
-      }),
+      new OTLPTraceExporter(collectorOptions),
     ),
     sampler: new ParentBasedSampler({
       root: new TraceIdRatioBasedSampler(1),

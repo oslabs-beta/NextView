@@ -1,6 +1,6 @@
 {
   "name": "nextview-tracing",
-  "version": "1.0.17",
+  "version": "1.1.0",
   "description": "OpenTelemetry Tracing Package for Next.js Applications",
   "type": "module",
   "scripts": {
