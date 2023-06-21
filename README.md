@@ -28,17 +28,17 @@
 <a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-B9D9EB)</a>
 <a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-B9D9EB)</a>
 
-NextView is a lightweight and user-friendly application designed to assist developers in optimizing the server performance of their Next.js applications. Our observability platform utilizes OpenTelemetry to trace and monitor crucial server metrics, stores the data in real time, and visualizes the time-series data in clear graphical representations on the NextView Dashboard. With easier data analysis, developers can swiftly identify bottlenecks and pinpoint areas that require server performance optimization, and subsequently improve the efficiency of their applications.
+NextView is a lightweight and user-friendly application designed to assist developers in optimizing the server performance of their Next.js applications. Our observability platform utilizes OpenTelemetry to trace and monitor crucial server metrics, stores the data in real time, and visualizes the time-series data in clear graphical representations on the NextView Dashboard. With easier data analysis, developers can swiftly identify bottlenecks and pinpoint areas that require server performance optimization, and thereby improve the efficiency of their applications.
 
 ## Getting Started
 
-1. To get started, install our npm package in your Next.js application:
+1. To get started, install our npm package in your Next.js application
 
 ```bash
 npm i nextview-tracing
 ```
 
-2. In your next.config.js file, opt-in to the Next.js instrumentation by setting the experimental instrumentationHook to true:
+2. In your next.config.js file, opt-in to the Next.js instrumentation by setting the experimental instrumentationHook to true
 
 ```bash
 experimental.instrumentationHook = true;
@@ -53,7 +53,7 @@ API_KEY=<Your-NextView-API-Key>
 Service_Name=<Name-Of-Your-Service>
 ```
 
-5. Start the OpenTelemetry Collector in your terminal via the Docker Command:
+5. Start the OpenTelemetry Collector in your terminal via the Docker Command
 
 ```bash
 docker-compose-up
@@ -72,7 +72,7 @@ The entire "path" of events that occurs when a request is made to an application
 **Span**
 
 <p>
-A trace consists of spans, each of which represents an individual operation. A span contains information on the operation, such as request methods (get/post), start and end timestamps, status codes, and URL endpoints. Our app focuses on 3 main span kinds.
+A trace consists of spans, each of which represents an individual operation. A span contains information on the operation, such as request methods (get/post), start and end timestamps, status codes, and URL endpoints. NextView focuses on three main spans.
 </p>
 
 - Client: The span is a request to some remote service, and does not complete until a response is received. It is usually the parent of a remote server span.
@@ -88,10 +88,6 @@ The term "action" in the NextView application refers to one or more operations (
 For more details on OpenTelemetry, please read the documentation [here](https://opentelemetry.io/docs/concepts/signals/).
 
 ## User Guidelines
-
-<p>
-[Add more info on hooking up app to dashboard]
-</p>
 
 ### Overview Page
 
@@ -145,11 +141,11 @@ We welcome your contributions to the NextView product!
 
 ## Contributors
 
-- Eduardo Zayas [GitHub](https://github.com/eza16) | [LinkedIn](https://www.linkedin.com/in/eduardo-zayas-avila/)
-- Evram Dawd [GitHub](https://github.com/evramdawd) | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
-- Kinski (Jiaxin) Wu [GitHub](https://github.com/kinskiwu) | [LinkedIn](https://www.linkedin.com/in/kinskiwu/)
-- Scott Brasko [GitHub](https://github.com/Scott-Brasko) | [LinkedIn](https://www.linkedin.com/in/scott-brasko/)
-- SooJi Kim [GitHub](https://github.com/sjk06) | [LinkedIn](https://www.linkedin.com/in/sooji-suzy-kim/)
+- Eduardo Zayas: [GitHub](https://github.com/eza16) | [LinkedIn](https://www.linkedin.com/in/eduardo-zayas-avila/)
+- Evram Dawd: [GitHub](https://github.com/evramdawd) | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
+- Kinski (Jiaxin) Wu: [GitHub](https://github.com/kinskiwu) | [LinkedIn](https://www.linkedin.com/in/kinskiwu/)
+- Scott Brasko: [GitHub](https://github.com/Scott-Brasko) | [LinkedIn](https://www.linkedin.com/in/scott-brasko/)
+- SooJi Kim: [GitHub](https://github.com/sjk06) | [LinkedIn](https://www.linkedin.com/in/sooji-suzy-kim/)
 
 ## License
 
