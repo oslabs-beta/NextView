@@ -1,7 +1,7 @@
-[Add banner image here]
+![NextView-banner-1000x300](https://github.com/oslabs-beta/NextView/assets/101832001/582b97b2-dc8a-458c-abfb-c358e37f2bca)
 
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Recharts](https://img.shields.io/badge/<Recharts/>-1CA9C9?style=for-the-badge)
@@ -19,7 +19,7 @@
 <a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-dee2e6)</a>
 <a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-dee2e6)</a>
 
-NextView is a user-friendly, lightweight application designed to assist developers in optimizing server performance of their Next.js applications. Our observability platform employs OpenTelemetry to trace and monitor important server metrics, and stores the data in real time. The NextView Dashboard visualizes the time-series data in clear graphical presentations that facilitate data analysis, enabling developers to swiftly identify areas where server performance optimization is needed.
+NextView is a lightweight, user-friendly application designed to assist developers in optimizing server performance of their Next.js applications. Our observability platform employs OpenTelemetry to trace and monitor important server metrics, and stores the data in real time. The NextView Dashboard visualizes the time-series data in clear graphical presentations that facilitate data analysis, enabling developers to swiftly identify areas where server performance optimization is needed.
 
 ## Getting Started
 
@@ -71,48 +71,67 @@ A trace consists of spans, each of which represents an individual operation. A s
 **Action**
 
 <p>
-The term "action" used in the NextView application refers to an individual operation (span) within a trace.
+The term "action" in the NextView application refers to one or more operations (spans) within a trace with the same request method and URL endpoint.
 </p>
+
+For more details on OpenTelemetry, please read the documentation [here](https://opentelemetry.io/docs/concepts/signals/).
 
 ## User Guidelines
 
 <p>
 [Add more info on hooking up app to dashboard]
+[Add images]
 </p>
 
 ### Overview Page
 
-The NextView dashboard defaults to the Overview page, where you can see performance metrics for your entire Next.js application.
+The NextView dashboard defaults to the Overview page, where you can see performance metrics for your entire Next.js application. You can see specific values of a graph when you hover over it.
 
 - Average page load duration (in milliseconds)
 - Total number of traces
 - Average span load duration
 - Top 5 slowest pages
-- Duration of operations by span kind (in milliseconds) over time
+- Average duration of operations by span kind (in milliseconds) over time
 
 The default time period for the overview data is the last 24 hours, and this can be modified in the date and time selector on the top right corner of the dashboard.
 
-### User Application Pages
+### User's App Page(s)
 
 All of the pages in your application will be listed on the left hand sidebar. When you select a page, you can see server performance metrics for the individual page.
 
 - Average page load duration (in milliseconds)
 - Total number of traces
-
-#### Select Time Frame
-
-When you open the app, the time period If you
-
-Average Page Load Duration (milliseconds)
+- Details on each action (duration in milliseconds, number of traces, number of executions)
+- Average duration of operations by span kind (in milliseconds) over time
 
 ## Contribution Guidelines
 
-### File Directory Map
+### Contribution Method
 
-### List of Desired Features
+We welcome your contributions to the NextView product!
 
-## Publications
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/newFeature`) and create your new feature
+3. Commit your changes (`git commit -m 'Added [new-feature-description]'`)
+4. Push to the branch (`git push origin feature/newFeature`)
+5. Make a Pull Request
+6. The NextView Team will review the feature and approve!
 
-## The Team
+### Planned Features
 
-[Open Source Licensing Info]
+- Add multi-app per user functionality
+- Display logs and metrics from OpenTelemetry
+- Enable user to select time zone
+- Enhanced security through change password functionality
+
+## Contributors
+
+- Eduardo Zayas [GitHub](https://github.com/eza16) | [LinkedIn](https://www.linkedin.com/in/eduardo-zayas-avila/)
+- Evram Dawd [GitHub]('https://github.com/evramdawd) | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
+- Kinski (Jiaxin) Wu [GitHub](https://github.com/kinskiwu) | [LinkedIn](https://www.linkedin.com/in/kinskiwu/)
+- Scott Brasko [GitHub](https://github.com/Scott-Brasko) | [LinkedIn](https://www.linkedin.com/in/scott-brasko/)
+- SooJi Kim [GitHub](https://github.com/sjk06) | [LinkedIn](https://www.linkedin.com/in/sooji-suzy-kim/)
+
+## License
+
+Distributed under the MIT License. See LICENSE for more information.
