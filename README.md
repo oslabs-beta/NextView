@@ -8,7 +8,7 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Recharts](https://img.shields.io/badge/<Recharts/>-1CA9C9?style=for-the-badge)
 ![Node](https://img.shields.io/badge/-node-339933?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Express](https://img.shields.io/badge/express-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-3d348b?style=for-the-badge&logo=opentelemetry&logoColor=white)
@@ -138,7 +138,7 @@ We welcome your contributions to the NextView product!
 ## Contributors
 
 - Eduardo Zayas [GitHub](https://github.com/eza16) | [LinkedIn](https://www.linkedin.com/in/eduardo-zayas-avila/)
-- Evram Dawd [GitHub]('https://github.com/evramdawd) | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
+- Evram Dawd [GitHub]('https://github.com/evramdawd') | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
 - Kinski (Jiaxin) Wu [GitHub](https://github.com/kinskiwu) | [LinkedIn](https://www.linkedin.com/in/kinskiwu/)
 - Scott Brasko [GitHub](https://github.com/Scott-Brasko) | [LinkedIn](https://www.linkedin.com/in/scott-brasko/)
 - SooJi Kim [GitHub](https://github.com/sjk06) | [LinkedIn](https://www.linkedin.com/in/sooji-suzy-kim/)
