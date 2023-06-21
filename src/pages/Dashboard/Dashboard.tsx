@@ -24,7 +24,7 @@ const Dashboard = () => {
   const [page, setPage] = useState();
 
   // fetch apps list and api key
-  // will not run again after it sets api key
+  // will not run after api key is set
   useEffect(() => {
     const fetchAppsList = async () => {
       try {
@@ -53,8 +53,6 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setOverviewData(data);
-        // initial setPage
-        setPage(data.pages[5]);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
