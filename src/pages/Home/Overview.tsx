@@ -93,7 +93,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
           ) : (
             <>
               <input
-                className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
+                className='focus:shadow-outline w-full flex-1 appearance-none rounded border bg-white px-3 py-2 leading-tight text-gray-700  focus:outline-none wrap:w-auto wrap:rounded-r-none'
                 // id='username'
                 type='text'
                 placeholder='jsmith@example.com'
