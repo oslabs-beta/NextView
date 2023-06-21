@@ -6,22 +6,27 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![MUI](https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
 ![Recharts](https://img.shields.io/badge/<Recharts/>-1CA9C9?style=for-the-badge)
 ![Node](https://img.shields.io/badge/-node-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/express-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
 ![OpenTelemetry](https://img.shields.io/badge/OpenTelemetry-3d348b?style=for-the-badge&logo=opentelemetry&logoColor=white)
 ![NextJS](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![GitHubActions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Husky](https://img.shields.io/badge/🐶husky-3EB489?style=for-the-badge)
+![Jest](https://img.shields.io/badge/-jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
 </div>
 
 #
 
-<a href="https://www.nextview.dev">![Website](https://img.shields.io/badge/Website-e2f0f9)</a>
-<a href="https://www.linkedin.com/company/nextview-os/">![LinkedIn](https://img.shields.io/badge/LinkedIn-e2f0f9)</a>
-<a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-e2f0f9)</a>
-<a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-e2f0f9)</a>
+<a href="https://www.nextview.dev">![Website](https://img.shields.io/badge/Website-B9D9EB)</a>
+<a href="https://www.linkedin.com/company/nextview-os/">![LinkedIn](https://img.shields.io/badge/LinkedIn-B9D9EB)</a>
+<a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-B9D9EB)</a>
+<a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-B9D9EB)</a>
 
 NextView is a lightweight and user-friendly application designed to assist developers in optimizing the server performance of their Next.js applications. Our observability platform utilizes OpenTelemetry to trace and monitor crucial server metrics, stores the data in real time, and visualizes the time-series data in clear graphical representations on the NextView Dashboard. With easier data analysis, developers can swiftly identify bottlenecks and pinpoint areas that require server performance optimization, and subsequently improve the efficiency of their applications.
 
@@ -53,6 +58,8 @@ Service_Name=<Name-Of-Your-Service>
 ```bash
 docker-compose-up
 ```
+
+6. Return to your NextView account and enter the Dashboard to see the metrics displayed!
 
 ## Key Concepts in OpenTelemetry
 
@@ -88,7 +95,7 @@ For more details on OpenTelemetry, please read the documentation [here](https://
 
 ### Overview Page
 
-<p>[Add image of Overview Page]</p>
+<kbd>![dashboard-overview](https://github.com/oslabs-beta/NextView/assets/101832001/9f22cba0-3a6d-476d-8649-b9661c9688c4)</kbd>
 
 The NextView Dashboard automatically lands the Overview page that provides an overview of performance metrics for your entire Next.js application. Specific values can be seen by hovering over the graph.
 
@@ -104,7 +111,7 @@ By default, the overview data covers the last 24 hours. You can modify the time 
 
 ### User's App Page(s)
 
-<p>[Add image of App Page]</p>
+<kbd>![Screenshot 2023-06-21 at 1 26 38 PM](https://github.com/oslabs-beta/NextView/assets/101832001/d475373e-cc1d-4055-bdd5-069fb74b1b04)</kbd>
 
 On the left-hand sidebar, you will find a list of all the pages in your application. When selecting a specific page, you can view server performance metrics for that individual page.
 
@@ -131,14 +138,15 @@ We welcome your contributions to the NextView product!
 ### Planned Features
 
 - Add multi-app per user functionality
-- Display logs and metrics from OpenTelemetry
+- Support additional OpenTelemetry instrumentation (Metrics, Logs)
 - Enable user to select time zone
-- Enhanced security through change password functionality
+- Enhance security through change password functionality
+- Add comprehensive testing suite
 
 ## Contributors
 
 - Eduardo Zayas [GitHub](https://github.com/eza16) | [LinkedIn](https://www.linkedin.com/in/eduardo-zayas-avila/)
-- Evram Dawd [GitHub]('https://github.com/evramdawd') | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
+- Evram Dawd [GitHub](https://github.com/evramdawd) | [LinkedIn](https://www.linkedin.com/in/evram-d-905a3a2b/)
 - Kinski (Jiaxin) Wu [GitHub](https://github.com/kinskiwu) | [LinkedIn](https://www.linkedin.com/in/kinskiwu/)
 - Scott Brasko [GitHub](https://github.com/Scott-Brasko) | [LinkedIn](https://www.linkedin.com/in/scott-brasko/)
 - SooJi Kim [GitHub](https://github.com/sjk06) | [LinkedIn](https://www.linkedin.com/in/sooji-suzy-kim/)
