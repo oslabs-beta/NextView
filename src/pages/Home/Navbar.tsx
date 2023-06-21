@@ -22,7 +22,7 @@ const Navbar: React.FC<Props> = ({
           <img
             src={logo}
             alt='nextview-logo'
-            className='h-11 w-full transition duration-200 hover:scale-105'
+            className='h-11 w-11 transition duration-200 hover:scale-105'
           ></img>
         </a>
         <div className='hidden md:block'>
@@ -56,7 +56,7 @@ const Navbar: React.FC<Props> = ({
             <img
               src={githubLogo}
               alt='github-logo'
-              className='h-6 min-w-max transition duration-200 hover:scale-105'
+              className='h-6 transition duration-200 hover:scale-105'
             />
           </a>
         </div>
