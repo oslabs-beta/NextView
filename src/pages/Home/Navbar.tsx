@@ -56,7 +56,7 @@ const Navbar: React.FC<Props> = ({
             <img
               src={githubLogo}
               alt='github-logo'
-              className='h-6 min-w-max transition duration-200 hover:scale-105'
+              className='h-6 transition duration-200 hover:scale-105'
             />
           </a>
         </div>
