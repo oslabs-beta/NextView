@@ -62,41 +62,13 @@ const Dashboard = () => {
     if (apiKey) fetchOverviewData();
   }, [start, end, apiKey]);
 
-  // fetch page data
-  // only if user api key is set
-  useEffect(() => {
-    if (page) {
-      const pageId = page['_id'];
-      const fetchPageData = async () => {
-        try {
-          const response = await fetch(
-            `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
-            {
-              headers: {
-                'User-Timezone':
-                  Intl.DateTimeFormat().resolvedOptions().timeZone,
-              },
-            },
-          );
-          const data = await response.json();
-          setPageData(data);
-        } catch (error: unknown) {
-          console.log('Data fetching failed', error);
-        }
-      };
-      if (apiKey) fetchPageData();
-    }
-  }, [apiKey, end, page, start]);
-
-  // console.log({ start, end, overviewData, pageData, page, apiKey, appList });
-
   return (
     <>
       {overviewData ? (
         <PageContext.Provider
           value={{ page, setPage, start, end, apiKey, setPageData, pageData }}
         >
-          <div className='flex bg-neutral-200'>
+          <div className='relative flex w-full bg-[#f6f8fa]'>
             <Sidebar overviewData={overviewData} />
             <MainDisplay
               overviewData={overviewData}

@@ -1,4 +1,4 @@
-import Box from './Box';
+import Box from '../../../../components/Box';
 import { v4 as uuidv4 } from 'uuid';
 
 // if data1 == undefined ? '-' : data1
@@ -6,11 +6,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Textbox = ({ traceCount, overallAvg }) => {
   const boxData = [
-    { title: 'Average Page Load Duration (ms)', data: overallAvg },
+    { title: 'Average Page Load Duration', data: overallAvg },
     { title: 'Total No. of Traces', data: traceCount },
   ];
   return (
-    <div className='col-span-12 ml-auto mr-auto flex flex-row justify-center gap-8 text-center font-semibold 2xl:col-span-2 2xl:flex-col'>
+    <div className='col-span-12 flex flex-row justify-center gap-8 text-center font-semibold 3xl:col-span-2 3xl:flex-col'>
       {boxData.map(({ title, data }) => (
         <Box key={uuidv4()} title={title} data={data} />
       ))}

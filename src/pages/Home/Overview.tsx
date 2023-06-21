@@ -1,8 +1,6 @@
 import Button from '../../components/Button';
-import overview from '../../assets/overview_edited_rounded.png';
-import Modal from './Auth/Modal';
-import { ChangeEvent, useState, useContext } from 'react';
-import SignupForm from './Auth/SignupForm';
+import overview from '../../assets/overview.png';
+import { ChangeEvent, useContext } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';
 import React from 'react';
@@ -62,7 +60,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
 
   return (
     <section
-      className={`mb-20 grid w-full grid-cols-12 flex-row items-center 
+      className={`mb-20 grid w-full grid-cols-12 flex-row items-center
       justify-center gap-6 pl-[max((100vw-1500px)/2,48px)] pr-[(100vw-1500px)/2] md:mb-16 md:justify-evenly`}
     >
       <div className='relative col-[_span_10] mt-20 flex flex-col md:col-[_span_4] md:ml-20'>
@@ -96,7 +94,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
             <>
               <input
                 className='focus:shadow-outline w-full flex-1 appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none  wrap:w-auto wrap:rounded-r-none'
-                id='username'
+                // id='username'
                 type='text'
                 placeholder='jsmith@example.com'
                 onChange={handleUsernameChange}

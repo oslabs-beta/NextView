@@ -12,14 +12,17 @@ import {
 
 const PageLineChart = ({ avgPageDurationsOverTime }) => {
   return (
-    <div className='col-span-12 flex flex-col items-center lg:col-span-6'>
-      <ResponsiveContainer width={'95%'}>
+    <>
+      <p className='absolute left-5 top-0 pt-5 font-bold'>
+        Average Page Load Duration Over Time
+      </p>
+      <ResponsiveContainer height={350}>
         <LineChart
           // width={500}
           // height={300}
           data={avgPageDurationsOverTime}
           margin={{
-            top: 5,
+            top: 50,
             right: 30,
             left: 20,
             bottom: 5,
@@ -36,12 +39,14 @@ const PageLineChart = ({ avgPageDurationsOverTime }) => {
           <Line
             type='monotone'
             dataKey='Avg. duration (ms)'
-            stroke='#00ff00'
+            stroke='#286fb4'
             activeDot={{ r: 8 }}
+            strokeWidth={3}
+            dot={false}
           />
         </LineChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 };
 

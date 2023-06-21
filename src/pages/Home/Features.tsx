@@ -56,7 +56,7 @@ const Features = () => {
         <Feature>
           <IoTelescopeOutline size={30} />
           <h2 className='mb-2 font-bold'>Next.js Instrumentation</h2>
-          <p className='text-xs leading-5 text-gray-600'>
+          <p className='text-sm leading-5 text-gray-600'>
             With our hassle-free npm package integration, effortlessly track and
             analyze trace data in your Next.js application, empowering you to
             gain valuable insights and optimize performance in no time.
@@ -65,7 +65,7 @@ const Features = () => {
         <Feature>
           <HiOutlineChartBar size={30} />
           <h2 className='mb-2 font-bold'>Traffic Analysis</h2>
-          <p className='text-xs leading-5 text-gray-600'>
+          <p className='text-sm leading-5 text-gray-600'>
             Gain insights into your application's usage patterns, identify
             trends, and make informed decisions for optimizing your server-side
             rendering infrastructure.
@@ -74,7 +74,7 @@ const Features = () => {
         <Feature>
           <HiOutlineWrenchScrewdriver size={30} />
           <h2 className='mb-2 font-bold'>Performance Monitoring</h2>
-          <p className='text-xs leading-5 text-gray-600'>
+          <p className='text-sm leading-5 text-gray-600'>
             By providing detailed performance data over customizable
             time-ranges, you can identify performance bottlenecks and optimize
             your applications for better user experience.
@@ -83,7 +83,7 @@ const Features = () => {
         <Feature>
           <AiOutlineSecurityScan size={30} />
           <h2 className='mb-2 font-bold'>Secure Authentication</h2>
-          <p className='text-xs leading-5 text-gray-600'>
+          <p className='text-sm leading-5 text-gray-600'>
             Safeguard your data with our robust encryption using bcrypt. Rest
             easy knowing that sensitive user information is securely stored,
             providing peace of mind and protection against unauthorized access.

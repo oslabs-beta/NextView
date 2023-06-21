@@ -5,25 +5,22 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   Cell,
   ResponsiveContainer,
 } from 'recharts';
 
-const barColors = ['#e4f1fe', '#8dc6ff', '22313f', '34495e', '#ffc93c'];
+const barColors = ['#003f5c', '#bc5090', '#6996e4'];
 
 const HorizontalBarGragh = ({ data }) => {
   return (
-    <div className='bar-graph col-span-full flex flex-col items-center pl-5 lg:col-span-6 2xl:col-span-5'>
-      <p>Average Span Load Duration</p>
+    <>
+      <p className='absolute left-5 font-bold'>Average Span Duration</p>
       <ResponsiveContainer height={400}>
         <BarChart
           layout='vertical'
-          // height={400}
-          // width={700}
           data={data}
           margin={{
-            top: 5,
+            top: 50,
             right: 0,
             left: 20,
             bottom: 40,
@@ -36,7 +33,7 @@ const HorizontalBarGragh = ({ data }) => {
             type='number'
             padding={{ right: 30 }}
             label={{
-              value: 'Duration(milliseconds)',
+              value: 'Duration',
               position: 'bottom',
             }}
             tickLine={true}
@@ -48,7 +45,7 @@ const HorizontalBarGragh = ({ data }) => {
             axisLine={true}
             tickLine={true}
             label={{
-              value: 'Kinds',
+              value: 'Kind',
               angle: -90,
               position: 'insideLeft',
               offset: -10,
@@ -56,11 +53,12 @@ const HorizontalBarGragh = ({ data }) => {
           />
           <Tooltip
             offset={0}
-            wrapperStyle={{ width: 150, backgroundColor: '#ccc' }}
+            wrapperStyle={{ width: 180, backgroundColor: '#ccc' }}
+            formatter={(val) => val + 'ms'}
           />
-          <Legend width={100} verticalAlign='top' align='right' />
           <Bar
-            radius={[8, 8, 8, 8]}
+            name='Duration'
+            radius={[0, 8, 8, 0]}
             dataKey='ms_avg'
             barSize={50}
             animationBegin={5}
@@ -72,7 +70,7 @@ const HorizontalBarGragh = ({ data }) => {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 };
 
