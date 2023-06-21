@@ -50,20 +50,54 @@ Service_Name=<Name-Of-Your-Service>
 docker-compose-up
 ```
 
-## Understanding the Concepts
+## Key Concepts in OpenTelemetry
 
-- Trace
-- Span
-- Action
+**Trace**
+
+<p>
+The entire "path" of events that occurs when a request is made to an application. A trace is a collection of spans.
+</p>
+
+**Span**
+
+<p>
+A trace consists of spans, each of which represents an individual operation. A span contains information on the operation, such as request methods (get/post), start and end timestamps, status codes, and URL endpoints. Our app focuses on 3 main span kinds.
+</p>
+
+- Client: The span is a request to some remote service, and does not complete until a response is received. It is usually the parent of a remote server span.
+- Server: The child of a remote client span that covers server-side handling of a remote request.
+- Internal: The span is an internal operation within an application that does not have remote parents or children.
+
+**Action**
+
+<p>
+The term "action" used in the NextView application refers to an individual operation (span) within a trace.
+</p>
 
 ## User Guidelines
 
 <p>
 [Add more info on hooking up app to dashboard]
 </p>
-The NextView dashboard defaults to the Overview page, where you can see performance metrics for your entire Next.js app. You can see the average load duration time in all of your pages
 
-All of the pages in your app will be listed on the left hand sidebar.
+### Overview Page
+
+The NextView dashboard defaults to the Overview page, where you can see performance metrics for your entire Next.js application.
+
+- Average page load duration (in milliseconds)
+- Total number of traces
+- Average span load duration
+- Top 5 slowest pages
+- Duration of operations by span kind (in milliseconds) over time
+
+The default time period for the overview data is the last 24 hours, and this can be modified in the date and time selector on the top right corner of the dashboard.
+
+### User Application Pages
+
+All of the pages in your application will be listed on the left hand sidebar. When you select a page, you can see server performance metrics for the individual page.
+
+- Average page load duration (in milliseconds)
+- Total number of traces
 
 #### Select Time Frame
 
