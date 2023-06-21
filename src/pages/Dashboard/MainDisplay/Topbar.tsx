@@ -18,24 +18,20 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
   const [endVal, setEndVal] = useState('');
   const [dropdown, setDropdown] = useState(false);
 
-  const startPlaceholder = dayjs()
-    .subtract(1, 'day')
-    .format('DD/MM/YYYY HH:mm A');
-
-  const endPlaceholder = dayjs().format('DD/MM/YYYY HH:mm A');
-
   const { apiKey } = useContext(APIContext);
 
+  // Set local variables (startVal, endVal)
+  const handleDateChange = (date, setDate) => {
+    setDate(date.toISOString());
+  };
+
+  // Set Dashboard state variables (start, end)
   const handleClick = () => {
     setStart(startVal);
     setEnd(endVal);
   };
 
   const pagesList = overviewData.pages;
-
-  const handleDateChange = (newDate, setStartOrEnd) => {
-    setStartOrEnd(newDate.toISOString());
-  };
 
   const { setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
@@ -83,17 +79,20 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div className='flex h-16 flex-row items-center justify-between border-b bg-[#f6f8fa]'>
-        <div className='ml-4 flex items-center gap-2'>
-          <span className='hidden whitespace-nowrap font-semibold md:block'>
+      <div className='flex h-16 w-full flex-row items-center justify-between border-b bg-[#f6f8fa]'>
+        <div className='ml-4 flex min-w-0 items-center gap-2'>
+          <span className='hidden whitespace-nowrap text-sm font-semibold xl:flex'>
             API Key:
           </span>
-          <CopyInput text={apiKey} className='hidden bg-white md:flex'>
+          <CopyInput
+            text={apiKey}
+            className='hidden w-32 bg-white md:flex lg:w-auto'
+          >
             {apiKey}
           </CopyInput>
           <a
             href='/'
-            className='w-10 transition duration-200 hover:scale-105 md:hidden'
+            className='min-w-[2.5rem] max-w-[2.5rem] transition duration-200 hover:scale-105 md:hidden'
           >
             <img src={logo} alt='nextview-logo' className=''></img>
           </a>
@@ -129,8 +128,9 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
             <SideNavBarIcon icon={<IoLogOut size='28' color='black' />} />
           </a>
         </div>
-        <div className='flex items-center justify-end gap-x-3 px-4'>
+        <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
           <DateTimePicker
+            defaultValue={dayjs().subtract(1, 'day')}
             slotProps={{ textField: { size: 'small' } }}
             sx={{ backgroundColor: 'white', input: { fontSize: '.9rem' } }}
             onChange={(value) => {
@@ -138,6 +138,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
             }}
           />
           <DateTimePicker
+            defaultValue={dayjs()}
             slotProps={{ textField: { size: 'small' } }}
             sx={{ backgroundColor: 'white', input: { fontSize: '.9rem' } }}
             onChange={(value) => {

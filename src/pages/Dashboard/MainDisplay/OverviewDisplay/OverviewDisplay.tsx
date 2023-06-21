@@ -5,7 +5,7 @@ import LineChart from './LineChart';
 
 const OverviewDisplay = ({ overviewData }) => {
   return (
-    <div className='relative min-h-screen overflow-y-auto '>
+    <div className='relative min-h-screen w-full overflow-auto overflow-y-auto'>
       <div className='absolute flex w-full flex-col items-center gap-5 pt-3 sm:pl-8 sm:pr-8'>
         <div className='grid w-full grid-cols-12 gap-2 sm:gap-10'>
           <Textbox

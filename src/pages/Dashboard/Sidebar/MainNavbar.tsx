@@ -19,9 +19,12 @@ function MainNavBar({ overviewData }) {
 
       <span className='mt-5 w-11/12 border-b p-2 font-bold'>Pages</span>
 
-      {pagesList.toReversed().map((page) => (
-        <PageTab key={uuidv4()} page={page} />
-      ))}
+      {pagesList
+        .slice()
+        .reverse()
+        .map((page) => (
+          <PageTab key={uuidv4()} page={page} />
+        ))}
     </div>
   );
 }
