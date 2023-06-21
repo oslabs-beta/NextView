@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import PageTab from './PageTab';
+import Button from '../../../components/Button';
 
 function MainNavBar({ overviewData }) {
   const pagesList = overviewData.pages;
 
   return (
-    <div className='flex h-screen flex-1 flex-col items-center border-l border-r bg-white'>
-      <Link
-        to='/dashboard'
-        className='mx-1 mb-5 mt-5 rounded border px-8 py-2 font-sans text-lg font-semibold hover:bg-gray-300'
+    <div className='flex h-screen flex-col items-center border-l border-r bg-white'>
+      <Button
+        variant='secondary'
+        className='mt-5 h-10 w-[90%] bg-secondary text-base drop-shadow-sm'
       >
-        Dashboard
-      </Link>
+        <Link to='/dashboard' className=''>
+          Dashboard
+        </Link>
+      </Button>
 
-      <span className='w-11/12 border-b p-2 font-bold'>Pages</span>
+      <span className='mt-5 w-11/12 border-b p-2 font-bold'>Pages</span>
 
       {pagesList.toReversed().map((page) => (
         <PageTab key={uuidv4()} page={page} />

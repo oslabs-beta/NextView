@@ -5,14 +5,17 @@ import check from '../assets/checkmark.png';
 interface Props {
   text: string;
   children?: React.ReactNode;
+  className?: string;
 }
 
-export const CopyInput: React.FC<Props> = ({ text, children }) => {
+export const CopyInput: React.FC<Props> = ({ text, children, className }) => {
   const [copyClicked, setCopyClicked] = useState(false);
   return (
     <button
-      className='focus:shadow-outline flex w-auto cursor-default appearance-none flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none'
-      id='npm'
+      className={
+        `flex w-auto cursor-default flex-row items-center justify-evenly gap-5 rounded border px-3 py-2 leading-tight text-gray-700` +
+        (className ? ` ${className}` : '')
+      }
       type='button'
       onClick={() => {
         navigator.clipboard.writeText(text);

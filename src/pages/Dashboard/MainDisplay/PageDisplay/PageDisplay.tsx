@@ -5,6 +5,7 @@ import SpanLineChart from './SpanLineChart';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { PageContext } from '../../../../contexts/dashboardContexts';
+import { v4 as uuidv4 } from 'uuid';
 
 const PageDisplay = () => {
   const { id } = useParams();
@@ -45,18 +46,18 @@ const PageDisplay = () => {
           <Textbox
             overallAvg={pageData.overallAvg}
             traceCount={pageData.traceCount}
-            key={1}
+            key={uuidv4()}
           />
           <Table overallPageData={pageData.overallPageData} key={1} />
         </div>
         <div className='col-span-12 grid grid-cols-12 gap-10'>
           <PageLineChart
             avgPageDurationsOverTime={pageData.avgPageDurationsOverTime}
-            key={2}
+            key={uuidv4()}
           />
           <SpanLineChart
             avgActionDurationsOverTime={pageData.avgActionDurationsOverTime}
-            key={3}
+            key={uuidv4()}
           />
         </div>
       </div>
