@@ -1,13 +1,31 @@
 import express from 'express';
+import appsController from '../controllers/appsController';
+import pagesController from '../controllers/pagesController';
+// have to use mergeParams to get appId from parent router
+const pagesRouter = express.Router({ mergeParams: true });
 
-const pagesRouter = express.Router();
+pagesRouter.get(
+  '/:pageId/data',
+  appsController.initializeMetrics,
+  appsController.setInterval,
+  appsController.setTimezone,
+  pagesController.retrieveOverallAvg,
+  pagesController.retrieveTotalTraces,
+  pagesController.retrieveAvgPageDurations,
+  pagesController.retrieveAvgActionDurations,
+  pagesController.retrieveAvgActionData,
+  (req, res, next) => {
+    res.status(200).send(res.locals.metrics);
+  },
+);
 
-pagesRouter.get('/:pageId/data', (req, res, next) => {
-  res.status(200).send('page data retrieval controller not yet implemented');
-});
-
-pagesRouter.get('/', (req, res, next) => {
-  res.status(200).send('page list retrieval controller not yet implemented');
-});
+pagesRouter.get(
+  '/',
+  appsController.initializeMetrics,
+  appsController.retrievePages,
+  (req, res, next) => {
+    res.status(200).send(res.locals.metrics.pages);
+  },
+);
 
 export default pagesRouter;

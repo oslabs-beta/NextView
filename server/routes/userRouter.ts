@@ -17,12 +17,21 @@ userRouter.post('/login', userController.loginUser, (req, res, next) => {
   res.status(204).send('/login controller not yet implemented');
 });
 
-// TODO finish logout controller
+userRouter.get(
+  '/authenticate',
+  authenticateController.authenticate,
+  userController.userInfo,
+  (req, res, next) => {
+    res.status(200).send(res.locals.user);
+  },
+);
+
 userRouter.delete(
   '/logout',
   authenticateController.authenticate,
+  userController.logoutUser,
   (req, res, next) => {
-    res.status(204).send('/logout controller not yet implemented');
+    res.sendStatus(204);
   },
 );
 

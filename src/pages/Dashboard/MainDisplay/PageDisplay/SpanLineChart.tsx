@@ -1,0 +1,74 @@
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Label,
+  ResponsiveContainer,
+} from 'recharts';
+
+const SpanLineChart = ({ avgActionDurationsOverTime }) => {
+  const colors = [
+    '#ffa600',
+    '#d45087',
+    '#003f5c',
+
+    '#ff7c43',
+    '#665191',
+    '#f95d6a',
+    '#2f4b7c',
+    '#a05195',
+  ];
+
+  const actions = Object.keys(avgActionDurationsOverTime[0]).filter(
+    (el) => el !== 'period',
+  );
+
+  const lines = actions.map((action, i) => {
+    return (
+      <Line
+        activeDot={{ r: 8 }}
+        key={i}
+        type='monotone'
+        dataKey={action}
+        stroke={colors[i]}
+        strokeWidth={3}
+        dot={false}
+      ></Line>
+    );
+  });
+
+  return (
+    <>
+      <p className='absolute left-5 top-0 pt-5 font-bold'>
+        Average Request Duration Over Time
+      </p>
+      <ResponsiveContainer width='95%' height={350}>
+        <LineChart
+          // width={500}
+          // height={300}
+          data={avgActionDurationsOverTime}
+          margin={{
+            top: 50,
+            right: 50,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis dataKey='period' />
+          <Label value='Duration' />
+          <YAxis label={{ value: 'Duration', angle: -90, position: 'left' }} />
+          <Tooltip />
+          <Legend />
+          {lines}
+        </LineChart>
+      </ResponsiveContainer>
+    </>
+  );
+};
+
+export default SpanLineChart;
