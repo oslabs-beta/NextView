@@ -2,8 +2,13 @@ import Textbox from './Texbox';
 import HorizontalBarGraph from './HorizontalBarGraph';
 import BarGraph from './BarGraph';
 import LineChart from './LineChart';
+import { useContext, useEffect } from 'react';
+import { PageContext } from '../../../../contexts/dashboardContexts';
 
 const OverviewDisplay = ({ overviewData }) => {
+  const { setPage } = useContext(PageContext);
+  useEffect(() => setPage(), [setPage]);
+
   return (
     <div className='relative min-h-screen w-full overflow-auto overflow-y-auto'>
       <div className='absolute flex w-full flex-col items-center gap-5 pt-3 sm:pl-8 sm:pr-8'>

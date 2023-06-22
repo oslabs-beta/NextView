@@ -8,31 +8,34 @@ receivers:
 
 exporters: # EXPORTERS
   prometheus: # For Metrics
-    endpoint: "0.0.0.0:8889"
+    endpoint: '0.0.0.0:8889'
     send_timestamps: true
     namespace: promexample
     const_labels:
       label1: value1
 
   logging: # Logging to console
-    loglevel: DEBUG
+    # loglevel: DEBUG
+    verbosity: detailed
+    sampling_initial: 5
+    sampling_thereafter: 200
 
   # zipkin:
   #   endpoint: "http://zipkin-all-in-one:9411/api/v2/spans"
   #   format: proto
 
-  jaeger:
-    endpoint: jaeger-all-in-one:14250
-    tls:
-      insecure: true
+  # jaeger:
+  #   endpoint: jaeger-all-in-one:14250
+  #   tls:
+  #     insecure: true
 
 processors: # PROCESSORS
   batch:
     timeout: 5s # in production, this will be > 5s for sure
   resource: # alters the data that will be sent! Adds attribute of test key & value
     attributes:
-      - key: test.key
-        value: "gateway"
+      - key: NextView
+        value: 'Tracing/Metrics'
         action: insert # insert, upsert, delete - see documentation
 
 extensions: # EXTENSIONS
@@ -48,7 +51,7 @@ service: # SERVICES
     traces:
       receivers: [otlp]
       processors: [batch, resource]
-      exporters: [logging, jaeger]
+      exporters: [logging]
     metrics:
       receivers: [otlp]
       processors: [batch]

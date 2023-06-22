@@ -3,14 +3,21 @@ import Button from '../../components/Button';
 import github from '../../assets/GitHub_Logo_White.png';
 import githubIcon from '../../assets/github-mark-white.svg';
 import { useEffect, useState } from 'react';
-import { FaRegStar } from 'react-icons/fa';
+import { FaStar, FaRegStar } from 'react-icons/fa';
 import { HiOutlineWrenchScrewdriver, HiOutlineChartBar } from 'react-icons/hi2';
-import { IoTelescopeOutline } from 'react-icons/io5';
+import { IoColorFill, IoTelescopeOutline } from 'react-icons/io5';
 import { AiOutlineSecurityScan } from 'react-icons/ai';
 import telescope from '../../assets/telescope.png';
 
 const Features = () => {
   const [starCount, setstarCount] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   const getStars = () => {
     fetch('https://api.github.com/repos/oslabs-beta/NextView', {
@@ -92,7 +99,12 @@ const Features = () => {
       </div>
       <div className='mt-16 flex items-center justify-center'>
         {/* TODO: REPLACE WITH MEDIUM LINK */}
-        <a href='' target='_blank' rel='noopener' aria-label='Medium Link'>
+        <a
+          href='https://medium.com/@evramdawd/introducing-nextview-a-next-js-observability-platform-2a010fcc39'
+          target='_blank'
+          rel='noopener'
+          aria-label='Medium Link'
+        >
           <Button className='bg-white drop-shadow-sm'>Learn more</Button>
         </a>
 
@@ -100,9 +112,13 @@ const Features = () => {
           href='https://github.com/oslabs-beta/NextView'
           target='_blank'
           rel='noopener'
-          aria-label='Medium Link'
+          aria-label='Github Link'
         >
-          <div className='flex flex-row drop-shadow-sm hover:brightness-95'>
+          <div
+            className='flex flex-row drop-shadow-sm hover:brightness-95'
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+          >
             <Button
               className='border-1 mr-0 flex h-8 w-24 flex-row items-center justify-evenly rounded-r-none hover:brightness-100'
               variant='secondary'
@@ -111,7 +127,17 @@ const Features = () => {
               <img className='h-6' src={github} />
             </Button>
             <Button className='border-1 ml-0 flex h-8 items-center justify-evenly gap-1 rounded-l-none border-l-0 p-1 hover:border-gray-300'>
-              <FaRegStar size={'15'} className='relative bottom-[1px]' />
+              {isHovering ? (
+                <FaStar
+                  size={'15'}
+                  className='relative bottom-[1px] text-yellow-400'
+                />
+              ) : (
+                <FaRegStar
+                  size={'15'}
+                  className='relative bottom-[1px] text-black hover:text-yellow-400'
+                />
+              )}
               {starCount}
             </Button>
           </div>

@@ -117,7 +117,7 @@ li {
   }
 
   .default {
-    @apply border border-gray-300 bg-gray-100 text-gray-800;
+    @apply border border-gray-300 bg-gray-100 text-gray-900;
   }
   .default:hover {
     @apply border-gray-500;

@@ -53,6 +53,7 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setOverviewData(data);
+        setPage();
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }

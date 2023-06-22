@@ -1,36 +1,50 @@
-import { trace, context } from '@opentelemetry/api';
+// import { trace, context } from '@opentelemetry/api';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http';
 import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
-import { SimpleSpanProcessor, ConsoleSpanExporter, ParentBasedSampler, TraceIdRatioBasedSampler, Span } from '@opentelemetry/sdk-trace-node';
+import {
+  SimpleSpanProcessor,
+  ConsoleSpanExporter,
+  ParentBasedSampler,
+  TraceIdRatioBasedSampler,
+  Span,
+} from '@opentelemetry/sdk-trace-node';
 import { IncomingMessage } from 'http';
- 
+
 // ADDITIONAL INSTRUMENTATION:
 import { HttpInstrumentation } from '@opentelemetry/instrumentation-http';
 // const { HttpInstrumentation } = require('@opentelemetry/instrumentation-http');
 
 // import { ExpressInstrumentation } from '@opentelemetry/instrumentation-express';
-const { ExpressInstrumentation } = require('@opentelemetry/instrumentation-express');
-const { MongooseInstrumentation } = require('@opentelemetry/instrumentation-mongoose');
+const {
+  ExpressInstrumentation,
+} = require('@opentelemetry/instrumentation-express');
+const {
+  MongooseInstrumentation,
+} = require('@opentelemetry/instrumentation-mongoose');
 //pg instrumentation
 const { PgInstrumentation } = require('@opentelemetry/instrumentation-pg');
-const { MongoDBInstrumentation } = require('@opentelemetry/instrumentation-mongodb')
+const {
+  MongoDBInstrumentation,
+} = require('@opentelemetry/instrumentation-mongodb');
 
 const sdk = new NodeSDK({
   resource: new Resource({
     [SemanticResourceAttributes.SERVICE_NAME]: 'next-app',
   }),
   // spanProcessor: new SimpleSpanProcessor(new ConsoleSpanExporter()),
-  spanProcessor: new SimpleSpanProcessor(new OTLPTraceExporter({
-    url: 'http://localhost:4318/v1/trace',
-    // same port as shown in collector-gateway.yml
-    headers: {
-      foo: 'bar'
-    }, // an optional object containing custom headers to be sent with each request will only work with http
-  })),
+  spanProcessor: new SimpleSpanProcessor(
+    new OTLPTraceExporter({
+      url: 'http://localhost:4318/v1/trace',
+      // same port as shown in collector-gateway.yml
+      headers: {
+        foo: 'bar',
+      }, // an optional object containing custom headers to be sent with each request will only work with http
+    }),
+  ),
   sampler: new ParentBasedSampler({
-    root: new TraceIdRatioBasedSampler(1)
+    root: new TraceIdRatioBasedSampler(1),
   }),
   instrumentations: [
     new HttpInstrumentation({
@@ -52,13 +66,22 @@ const sdk = new NodeSDK({
     new ExpressInstrumentation({
       // Custom Attribute: request headers on spans:
       requestHook: (span: Span, reqInfo: any) => {
-        span.setAttribute('request-headers', JSON.stringify(reqInfo.request.headers)); // Can't get the right type for reqInfo here. Something to do with not being able to import instrumentation-express
-      }
+        span.setAttribute(
+          'request-headers',
+          JSON.stringify(reqInfo.request.headers),
+        ); // Can't get the right type for reqInfo here. Something to do with not being able to import instrumentation-express
+      },
     }),
     new MongooseInstrumentation({
-      responseHook: (span: Span, res: { response: any; }) => {
-        span.setAttribute('contentLength', Buffer.byteLength(JSON.stringify(res.response)));
-        span.setAttribute('instrumentationLibrary', span.instrumentationLibrary.name);
+      responseHook: (span: Span, res: { response: any }) => {
+        span.setAttribute(
+          'contentLength',
+          Buffer.byteLength(JSON.stringify(res.response)),
+        );
+        span.setAttribute(
+          'instrumentationLibrary',
+          span.instrumentationLibrary.name,
+        );
       },
     }),
     // new PgInstrumentation({
@@ -73,6 +96,6 @@ const sdk = new NodeSDK({
     //     span.setAttribute("instrumentationLibrary", span.instrumentationLibrary.name);
     //   },
     // }),
-  ]
+  ],
 });
 sdk.start();
