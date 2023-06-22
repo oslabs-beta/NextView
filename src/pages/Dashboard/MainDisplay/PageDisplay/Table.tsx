@@ -33,7 +33,7 @@ const Table = ({ overallPageData }) => {
     <table className='w-full overflow-hidden rounded-xl bg-white text-left drop-shadow-sm'>
       <thead className='border-b bg-secondary'>
         <tr key={'header'} className='text-sm text-white'>
-          <th className='px-1 py-4 '>Name</th>
+          <th className='py-4 pl-3 '>Name</th>
           <th className='px-1 py-4'>Avg. Duration</th>
           <th className='px-1 py-4'>Kind</th>
           <th className='px-1 py-4'>No. of Traces</th>

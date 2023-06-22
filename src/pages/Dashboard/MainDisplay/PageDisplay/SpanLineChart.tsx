@@ -12,9 +12,9 @@ import {
 
 const SpanLineChart = ({ avgActionDurationsOverTime }) => {
   const colors = [
-    '#ffa600',
+    '#f95d6a',
+    '#665191',
     '#d45087',
-    '#003f5c',
 
     '#ff7c43',
     '#665191',
