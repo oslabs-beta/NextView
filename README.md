@@ -1,4 +1,8 @@
-![NextView-banner-final-900x300](https://github.com/oslabs-beta/NextView/assets/101832001/fd3242b4-3af5-42ea-96ff-81b288ef8c66)
+<div align='center'>
+
+![NextView-banner-final-900x300](https://github.com/oslabs-beta/NextView/assets/120596825/87836435-91c4-4081-9bdd-60e14af9dee5)
+
+</div>
 
 <div align='center'>
 
@@ -128,14 +132,14 @@ We welcome your contributions to the NextView product!
 
 Here’s a list of features being considered by our team:
 
-- Enabling multiple applications to be added to a single user account
-- Incorporating additional OpenTelemetry instrumentation (Metrics and Logs) to visualize on the dashboard
-  - NextView is currently collecting Observability Metrics and allows for default visualization via Prometheus. To access metrics, users can spin up the NextView custom collector via Docker: `docker-compose up` which will automatically route all metrics data to Prometheus at the default endpoint of localhost:9090
-  - We aim to incorporate metrics visualization in our own dashboard moving forward
+- Enable multiple applications to be added to a single user account
+- Incorporate additional OpenTelemetry instrumentation (Metrics and Logs) to visualize on the dashboard
+  - NextView is currently collecting observability metrics and allows for default visualization via Prometheus. To access metrics, users can spin up the NextView custom collector via Docker: `docker-compose up` which will automatically route all metrics data to Prometheus at the default endpoint of localhost:9090
+  - Incorporate metrics visualization in our own dashboard moving forward
 - Enable user to select time zone
 - Enhance security through change password functionality
 - Add comprehensive testing suite
-- Adding a dark mode feature
+- Add a dark mode feature
 
 ## Contributors
 
