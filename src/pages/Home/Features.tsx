@@ -99,7 +99,12 @@ const Features = () => {
       </div>
       <div className='mt-16 flex items-center justify-center'>
         {/* TODO: REPLACE WITH MEDIUM LINK */}
-        <a href='' target='_blank' rel='noopener' aria-label='Medium Link'>
+        <a
+          href='https://medium.com/@evramdawd/introducing-nextview-a-next-js-observability-platform-2a010fcc39'
+          target='_blank'
+          rel='noopener'
+          aria-label='Medium Link'
+        >
           <Button className='bg-white drop-shadow-sm'>Learn more</Button>
         </a>
 
@@ -107,7 +112,7 @@ const Features = () => {
           href='https://github.com/oslabs-beta/NextView'
           target='_blank'
           rel='noopener'
-          aria-label='Medium Link'
+          aria-label='Github Link'
         >
           <div
             className='flex flex-row drop-shadow-sm hover:brightness-95'

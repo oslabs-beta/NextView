@@ -26,7 +26,7 @@
 <a href="https://www.nextview.dev">![Website](https://img.shields.io/badge/Website-B9D9EB)</a>
 <a href="https://www.linkedin.com/company/nextview-os/">![LinkedIn](https://img.shields.io/badge/LinkedIn-B9D9EB)</a>
 <a href="https://www.npmjs.com/package/nextview-tracing">![npm](https://img.shields.io/badge/npm-B9D9EB)</a>
-<a href="https://medium.com">![Medium](https://img.shields.io/badge/Medium-B9D9EB)</a>
+<a href="https://medium.com/@evramdawd/introducing-nextview-a-next-js-observability-platform-2a010fcc39">![Medium](https://img.shields.io/badge/Medium-B9D9EB)</a>
 
 NextView is a lightweight and user-friendly application designed to assist developers in optimizing the server performance of their Next.js applications. Our observability platform utilizes OpenTelemetry to trace and monitor crucial server metrics, stores the data in real time, and visualizes the time-series data in clear graphical representations on the NextView Dashboard. With easier data analysis, developers can swiftly identify bottlenecks and pinpoint areas that require server performance optimization, and thereby improve the efficiency of their applications.
 
