@@ -124,13 +124,18 @@ We welcome your contributions to the NextView product!
 5. Make a Pull Request
 6. The NextView Team will review the feature and approve!
 
-### Planned Features
+### Looking Ahead
 
-- Add multi-app per user functionality
-- Support additional OpenTelemetry instrumentation (Metrics, Logs)
+Here’s a list of features being considered by our team:
+
+- Enabling multiple applications to be added to a single user account
+- Incorporating additional OpenTelemetry instrumentation (Metrics and Logs) to visualize on the dashboard
+  - NextView is currently collecting Observability Metrics and allows for default visualization via Prometheus. To access metrics, users can spin up the NextView custom collector via Docker: `docker-compose up` which will automatically route all metrics data to Prometheus at the default endpoint of localhost:9090
+  - We aim to incorporate metrics visualization in our own dashboard moving forward
 - Enable user to select time zone
 - Enhance security through change password functionality
 - Add comprehensive testing suite
+- Adding a dark mode feature
 
 ## Contributors
 
