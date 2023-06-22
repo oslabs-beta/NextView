@@ -46,20 +46,13 @@ experimental.instrumentationHook = true;
 
 3. Navigate to the NextView Dashboard and copy your generated API key
 
-4. In the .env.local file in the root directory of your application (create one if it doesn’t exist), create two environment variables, one for your API Key and one for your service’s name
+4. In the .env.local file in the root directory of your application (create one if it doesn’t exist), create an environment variable for your API Key
 
 ```bash
 API_KEY=<Your-NextView-API-Key>
-Service_Name=<Name-Of-Your-Service>
 ```
 
-5. Start the OpenTelemetry Collector in your terminal via the Docker Command
-
-```bash
-docker-compose-up
-```
-
-6. Return to your NextView account and enter the Dashboard to see the metrics displayed!
+5. Return to your NextView account and enter the Dashboard to see the metrics displayed!
 
 ## Key Concepts in OpenTelemetry
 
@@ -82,7 +75,7 @@ A trace consists of spans, each of which represents an individual operation. A s
 **Action**
 
 <p>
-The term "action" in the NextView application refers to one or more operations (spans) within a trace with the same request method and URL endpoint.
+The term "action" in the NextView application refers to a child span within a trace. A single trace typically contains a parent span and one or more child spans. While the parent span represents the request to a particular page, the child spans represent the various actions that need to be completed before that request can be fulfilled.
 </p>
 
 For more details on OpenTelemetry, please read the documentation [here](https://opentelemetry.io/docs/concepts/signals/).
@@ -115,8 +108,8 @@ Metrics displayed for each page include:
 
 - Average page load duration (in milliseconds)
 - Total number of traces
-- Details on each action (duration in milliseconds, number of traces, number of executions)
-- Average duration of operations by span kind (in milliseconds) over time
+- Details on each request (duration in milliseconds, number of traces, number of executions)
+- Average duration of actions (in milliseconds) over time
 
 ## Contribution Guidelines
 
