@@ -42,7 +42,13 @@ const Navbar: React.FC<Props> = ({
           </div>
         </div>
         <div className='hidden md:block'>
-          <a className='cursor-pointer px-3 font-semibold text-gray-500 hover:text-gray-800'>
+          <a
+            href='https://medium.com/@evramdawd/introducing-nextview-a-next-js-observability-platform-2a010fcc39'
+            target='_blank'
+            rel='noopener'
+            aria-label='Blog Link'
+            className='cursor-pointer px-3 font-semibold text-gray-500 hover:text-gray-800'
+          >
             <span>Blog</span>
           </a>
         </div>

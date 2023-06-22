@@ -12,9 +12,9 @@ import {
 
 const SpanLineChart = ({ avgActionDurationsOverTime }) => {
   const colors = [
-    '#ffa600',
+    '#006CD1',
+    '#f95d6a',
     '#d45087',
-    '#003f5c',
 
     '#ff7c43',
     '#665191',
@@ -44,7 +44,7 @@ const SpanLineChart = ({ avgActionDurationsOverTime }) => {
   return (
     <>
       <p className='absolute left-5 top-0 pt-5 font-bold'>
-        Average Request Duration Over Time
+        Average Action Duration Over Time
       </p>
       <ResponsiveContainer width='95%' height={350}>
         <LineChart

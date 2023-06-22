@@ -13,7 +13,10 @@ const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {
           path='/'
           element={<OverviewDisplay overviewData={overviewData} />}
         />
-        <Route path='page/:id' element={<PageDisplay pageData={pageData} />} />
+        <Route
+          path='page/:id'
+          element={<PageDisplay overviewData={overviewData} />}
+        />
         <Route path='/page/:id/*' element={<NotFound />} />
       </Routes>
     </div>

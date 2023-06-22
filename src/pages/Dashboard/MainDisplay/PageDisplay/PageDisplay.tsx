@@ -8,9 +8,9 @@ import { PageContext } from '../../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../../../../components/Spinner';
 
-const PageDisplay = () => {
+const PageDisplay = ({ overviewData }) => {
   const { id } = useParams();
-  const { pageData, setPageData, apiKey, start, end, page } =
+  const { pageData, setPageData, apiKey, start, end, page, setPage } =
     useContext(PageContext);
 
   const [loading, setLoading] = useState(true);
@@ -18,6 +18,14 @@ const PageDisplay = () => {
     setLoading(true);
 
     const pageId = id;
+
+    for (let i = 0; i < overviewData.pages.length; i++) {
+      if (overviewData.pages[i]._id == pageId) {
+        setPage(overviewData.pages[i]);
+        break;
+      }
+    }
+
     const fetchPageData = async () => {
       try {
         const response = await fetch(
