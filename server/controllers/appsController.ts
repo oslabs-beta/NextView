@@ -58,9 +58,13 @@ const appsController: AppsController = {
 
   retrieveOverallAvg: async (req, res, next) => {
     try {
-      const query =
-        'SELECT EXTRACT(epoch from avg(duration)) * 1000 AS duration_avg_ms  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW();';
-      const values = [req.params.appId, res.locals.interval];
+      const query = `SELECT EXTRACT(epoch from avg(duration)) * 1000 AS duration_avg_ms  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp AT TIME ZONE 'GMT' AT TIME ZONE $4 BETWEEN ($2 AT TIME ZONE $4) AND ($3 AT TIME ZONE $4);`;
+      const values = [
+        req.params.appId,
+        res.locals.startDate,
+        res.locals.endDate,
+        res.locals.timezone,
+      ];
       const data = await db.query(query, values);
       res.locals.metrics.overallAvg = data.rows[0].duration_avg_ms;
       return next();
@@ -75,9 +79,13 @@ const appsController: AppsController = {
 
   retrieveTotalTraces: async (req, res, next) => {
     try {
-      const query =
-        'SELECT CAST (COUNT(DISTINCT trace_id) AS INTEGER) AS trace_count FROM spans WHERE app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW();';
-      const values = [req.params.appId, res.locals.interval];
+      const query = `SELECT CAST (COUNT(DISTINCT trace_id) AS INTEGER) AS trace_count FROM spans WHERE app_id = $1 AND timestamp AT TIME ZONE 'GMT' AT TIME ZONE $4 BETWEEN ($2 AT TIME ZONE $4) AND ($3 AT TIME ZONE $4);`;
+      const values = [
+        req.params.appId,
+        res.locals.startDate,
+        res.locals.endDate,
+        res.locals.timezone,
+      ];
       const data = await db.query(query, values);
       res.locals.metrics.traceCount = data.rows[0].trace_count;
       return next();
@@ -92,9 +100,12 @@ const appsController: AppsController = {
 
   retrieveAvgPageDurations: async (req, res, next) => {
     try {
-      const query =
-        'SELECT http_target as page, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;';
-      const values = [req.params.appId, res.locals.interval];
+      const query = `SELECT http_target as page, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE parent_id is null AND app_id = $1 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz GROUP BY http_target ORDER BY avg(duration) desc LIMIT 5;`;
+      const values = [
+        req.params.appId,
+        res.locals.startDate,
+        res.locals.endDate,
+      ];
       const data = await db.query(query, values);
       res.locals.metrics.pageAvgDurations = data.rows;
       return next();
@@ -109,9 +120,12 @@ const appsController: AppsController = {
 
   retrieveAvgKindDurations: async (req, res, next) => {
     try {
-      const query =
-        'SELECT kind_id, kind, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY kind_id, kind;';
-      const values = [req.params.appId, res.locals.interval];
+      const query = `SELECT kind_id, kind, EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg  FROM spans WHERE app_id = $1 AND spans.timestamp >= $2::timestamptz AND spans.timestamp <= $3::timestamptz GROUP BY kind_id, kind;`;
+      const values = [
+        req.params.appId,
+        res.locals.startDate,
+        res.locals.endDate,
+      ];
       const data = await db.query(query, values);
       res.locals.metrics.kindAvgDurations = data.rows;
       return next();
@@ -125,29 +139,26 @@ const appsController: AppsController = {
   },
 
   retrieveAvgKindDurationsOverTime: async (req, res, next) => {
-    // TODO modify this query so it works for different time intervals
-    // TODO modify this query so it doesnt set timezone
-    const query = `SELECT periods.period, CASE WHEN Internal>0 THEN Internal ELSE 0 END AS internal, 
-      CASE WHEN server>0 THEN server ELSE 0 END AS server,
-      CASE WHEN client>0 THEN client ELSE 0 END AS client
+    const query = `SELECT to_char(TIMEZONE($2, periods.datetime), $4) as period,
+    CASE WHEN EXTRACT(epoch from avg(duration) filter (where kind_id = 0))>0 THEN EXTRACT(epoch from avg(duration) filter (where kind_id = 0)) * 1000 ELSE 0 END AS internal,
+    CASE WHEN EXTRACT(epoch from avg(duration) filter (where kind_id = 1))>0 THEN EXTRACT(epoch from avg(duration) filter (where kind_id = 1)) * 1000 ELSE 0 END AS server,
+    CASE WHEN EXTRACT(epoch from avg(duration) filter (where kind_id = 2))>0 THEN EXTRACT(epoch from avg(duration) filter (where kind_id = 2)) * 1000 ELSE 0 END AS client
       FROM (
-      select to_char(date_trunc('hour', datetime), 'FMHH12:MI AM') AS period, datetime
-      from generate_series(date_trunc('hour', TIMEZONE('America/New_York', NOW())) - interval '23' hour, date_trunc('hour', TIMEZONE('America/New_York', NOW())) , interval '1' hour) datetime) as periods
-      left outer join (
-      SELECT
-          to_char(date_trunc('hour', TIMEZONE('America/New_York', timestamp)), 'FMHH12:MI AM') AS period,
-          COUNT(*), EXTRACT(epoch from avg(duration)) * 1000 AS ms_avg, date_trunc('hour', TIMEZONE('America/New_York', timestamp)) as datetime,
-          EXTRACT(epoch from avg(duration) filter (where kind_id = 0)) * 1000 as internal,
-          EXTRACT(epoch from avg(duration) filter (where kind_id = 1)) * 1000 as server,
-          EXTRACT(epoch from avg(duration) filter (where kind_id = 2)) * 1000 as client,
-          EXTRACT(epoch from avg(duration) filter (where kind_id = 3)) * 1000 as producer,
-          EXTRACT(epoch from avg(duration) filter (where kind_id = 4)) * 1000 as consumer
-      FROM 
-          spans
-      WHERE app_id = $1
-      GROUP BY date_trunc('hour', TIMEZONE('America/New_York', timestamp))) as avgs on periods.datetime = avgs.datetime`;
+      select generate_series(date_trunc($5, $6::timestamptz), $7, $3) datetime) as periods
+      left outer join spans on spans.timestamp AT TIME ZONE 'GMT' <@ tstzrange(datetime, datetime + $3::interval) and app_id = $1
+      GROUP BY periods.datetime
+      ORDER BY periods.datetime`;
     try {
-      const data = await db.query(query, [req.params.appId]);
+      const values = [
+        req.params.appId,
+        res.locals.timezone,
+        res.locals.intervalBy,
+        res.locals.format,
+        res.locals.intervalUnit,
+        res.locals.startDate,
+        res.locals.endDate,
+      ];
+      const data = await db.query(query, values);
       res.locals.metrics.kindAvgDurationsOverTime = data.rows;
       return next();
     } catch (err) {
@@ -162,8 +173,8 @@ const appsController: AppsController = {
   retrievePages: async (req, res, next) => {
     try {
       const query =
-        'SELECT http_target as page FROM spans WHERE parent_id is null AND app_id = $1 AND timestamp BETWEEN NOW() - $2::interval AND NOW() GROUP BY http_target ORDER BY avg(duration) desc;';
-      const values = [req.params.appId, res.locals.interval];
+        'SELECT pages._id, spans.http_target as page, pages.app_id as api_id, pages.created_on FROM spans inner join pages on spans.http_target = pages.http_target and spans.app_id = pages.app_id WHERE spans.parent_id is null AND spans.app_id = $1 GROUP BY pages._id, spans.http_target, pages.app_id, pages.created_on ORDER BY avg(duration) desc;';
+      const values = [req.params.appId];
       const data = await db.query(query, values);
       res.locals.metrics.pages = data.rows;
       return next();
@@ -177,42 +188,117 @@ const appsController: AppsController = {
   },
 
   setInterval: (req, res, next) => {
-    const { interval, unit } = req.query;
+    const { start, end } = req.query;
 
-    if (interval === undefined || unit === undefined)
+    const startDate = start
+      ? new Date(start as string)
+      : new Date(Date.now() - 86400000); // if start is empty, set to yesterday
+    const endDate = end ? new Date(end as string) : new Date(); // if end is empty, set to now
+    const intervalSeconds = (endDate.getTime() - startDate.getTime()) / 1000; // get seconds of difference between start and end
+    if (intervalSeconds < 0)
       return next({
-        log: `Error in setInterval controller method: Date interval not provided`,
+        log: `Error in setInterval controller method: End date is before start date`,
         status: 400,
-        message: 'Date interval not provided',
+        message: 'End date is before start date',
       });
 
-    switch (unit) {
-      case 'h':
-        res.locals.interval = `${interval} HOURS`;
-        break;
-      case 'd':
-        res.locals.interval = `${interval} DAYS`;
-        break;
-      case 'w':
-        res.locals.interval = `${interval} WEEKS`;
-        break;
-      case 'y':
-        res.locals.interval = `${interval} YEARS`;
-        break;
-      case 'm':
-        res.locals.interval = `${interval} MONTHS`;
-        break;
-      case 'min':
-        res.locals.interval = `${interval} MINUTES`;
-        break;
-      default:
-        return next({
-          log: `Error in setInterval controller method: Incorrect date format`,
-          status: 400,
-          message: 'Incorrect date filter provided',
-        });
+    let format = 'FMHH12:MI AM'; // default
+    let intervalUnit = 'hour'; // default
+    let intervalBy = '1 hour'; // default
+
+    // TODO: change this to a calculation :(
+    if (intervalSeconds <= 300) {
+      // 5 minutes
+      format = 'FMHH12:MI:SS AM';
+      intervalUnit = 'second';
+      intervalBy = '10 second';
+    } else if (intervalSeconds <= 900) {
+      // 15 minutes
+      format = 'FMHH12:MI:SS AM';
+      intervalUnit = 'second';
+      intervalBy = '30 second';
+    } else if (intervalSeconds <= 1800) {
+      // 30 minutes
+      format = 'FMHH12:MI AM';
+      intervalUnit = 'minute';
+      intervalBy = '1 minute';
+    } else if (intervalSeconds <= 3600) {
+      // 1 hour
+      format = 'FMHH12:MI AM';
+      intervalUnit = 'minute';
+      intervalBy = '2 minute';
+    } else if (intervalSeconds <= 21600) {
+      // 6 hours
+      format = 'FMHH12:MI AM';
+      intervalUnit = 'minute';
+      intervalBy = '15 minute';
+    } else if (intervalSeconds <= 43200) {
+      // 12 hours
+      format = 'FMHH12:MI AM';
+      intervalUnit = 'minute';
+      intervalBy = '30 minute';
+    } else if (intervalSeconds <= 172800) {
+      // 2 days
+      format = 'FMMM/FMDD FMHH12:MI AM';
+      intervalUnit = 'hour';
+      intervalBy = '1 hour';
+    } else if (intervalSeconds <= 518400) {
+      // 6 days
+      format = 'FMMM/FMDD FMHH12:MI:SS AM';
+      intervalUnit = 'hour';
+      intervalBy = '4 hour';
+    } else if (intervalSeconds <= 2592000) {
+      // 30 days
+      format = 'FMMM/FMDD';
+      intervalUnit = 'day';
+      intervalBy = '1 day';
+    } else if (intervalSeconds <= 5184000) {
+      // 60 days
+      format = 'FMMM/FMDD';
+      intervalUnit = 'day';
+      intervalBy = '2 day';
+    } else if (intervalSeconds <= 7776000) {
+      // 90 days
+      format = 'FMMM/FMDD';
+      intervalUnit = 'day';
+      intervalBy = '3 day';
+    } else if (intervalSeconds <= 10368000) {
+      // 120 days
+      format = 'FMMM/FMDD/YYYY';
+      intervalUnit = 'week';
+      intervalBy = '1 week';
+    } else if (intervalSeconds <= 77760000) {
+      // 900 days
+      format = 'FMMM/FMDD/YYYY';
+      intervalUnit = 'month';
+      intervalBy = '1 month';
+    } else if (intervalSeconds > 77760000) {
+      // > 900 days
+      format = 'FMMM/FMDD/YYYY';
+      intervalUnit = 'year';
+      intervalBy = '1 year';
     }
+
+    res.locals.format = format; // format of resulting period
+    res.locals.intervalUnit = intervalUnit; // what to round times to
+    res.locals.intervalBy = intervalBy; // what separates each period
+    res.locals.startDate = startDate;
+    res.locals.endDate = endDate;
+
+    return next();
+  },
+
+  setTimezone: (req, res, next) => {
+    const timezone = req.header('User-Timezone');
+
+    res.locals.timezone = timezone || 'GMT';
+
+    return next();
+  },
+
+  initializeMetrics: (req, res, next) => {
     res.locals.metrics = {};
+
     return next();
   },
 };
@@ -228,6 +314,8 @@ type AppsController = {
   retrieveAvgKindDurationsOverTime: RequestHandler;
   retrievePages: RequestHandler;
   setInterval: RequestHandler;
+  setTimezone: RequestHandler;
+  initializeMetrics: RequestHandler;
 };
 
 export default appsController;

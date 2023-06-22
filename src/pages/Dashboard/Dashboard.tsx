@@ -1,83 +1,87 @@
-import { useEffect, useState } from 'react';
-import MainDisplay from './MainDisplay';
-import Sidebar from './Sidebar';
-import {
-  PeriodContext,
-  BarGraphContext,
-  LineChartContext,
-  PieChartContext,
-  TraceTextboxContext,
-  DurationTextboxContext,
-  LineDataItem,
-  BarDataItem,
-  PieDataItem,
-} from './Contexts';
+import { useEffect, useState, useContext } from 'react';
+import MainDisplay from './MainDisplay/MainDisplay';
+import Sidebar from './Sidebar/Sidebar';
+import Loading from './Loading';
+import { APIContext, PageContext } from '../../contexts/dashboardContexts';
+import dayjs from 'dayjs';
 
 const Dashboard = () => {
-  const [period, setPeriod] = useState({ interval: 24, unit: 'h' });
-  const [traceCount, setTraceCount] = useState(0);
-  const [overallAvgDuration, setOverallAvgDuration] = useState(0);
-  const [barData, setBarData] = useState<BarDataItem[] | undefined>(undefined);
-  const [lineData, setLineData] = useState<LineDataItem[] | undefined>(
-    undefined,
-  );
-  const [pieData, setPieData] = useState<PieDataItem[] | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState(true);
+  // values used in fetch requests, setters used in topbar
+  // initialized to the last 24 hrs
+  const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
+  const [end, setEnd] = useState(dayjs().toISOString());
 
+  // set in dashboard
+  const [overviewData, setOverviewData] = useState(null);
+
+  // set in pageDisplay
+  const [pageData, setPageData] = useState(null);
+
+  // initialized to null in context, set to user key by fetchAppsList()
+  const { apiKey, setApiKey } = useContext(APIContext);
+
+  // currently set by sidebar button, accessed by context
+  const [page, setPage] = useState();
+
+  // fetch apps list and api key
+  // will not run after api key is set
   useEffect(() => {
-    const fetchData = async () => {
-      //add switch statement
+    const fetchAppsList = async () => {
       try {
-        const response = await fetch(
-          `/apps/5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d/data?interval=${period.interval}&unit=${period.unit}`,
-        );
+        const response = await fetch('/apps');
         const data = await response.json();
-        // console.log(data);
-        // setTextboxData({overallAvg: data.overallAvg, traceCount: data.traceCount});
-        setTraceCount(data.traceCount);
-        setOverallAvgDuration(data.overallAvg);
-        setBarData(data.pageAvgDurations);
-        setPieData(data.kindAvgDurations);
-        setLineData(data.kindAvgDurationsOverTime);
-        console.log(data);
-        setIsLoading(false);
+        setApiKey(data[0]['id']);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
     };
-    fetchData();
-  }, [period.interval, period.unit]);
-
-  useEffect(() => {
-    console.log('barData', barData);
-    console.log('lineData', lineData);
-    console.log('pieData', pieData);
+    if (!apiKey) fetchAppsList();
   });
 
-  if (!isLoading) {
-    return (
-      <TraceTextboxContext.Provider value={traceCount}>
-        <DurationTextboxContext.Provider value={overallAvgDuration}>
-          <PeriodContext.Provider value={{ period, setPeriod }}>
-            <BarGraphContext.Provider value={barData}>
-              <LineChartContext.Provider value={lineData}>
-                <PieChartContext.Provider value={pieData}>
-                  <div className='flex w-full bg-neutral-200'>
-                    <Sidebar />
-                    <MainDisplay />
-                  </div>
-                </PieChartContext.Provider>
-              </LineChartContext.Provider>
-            </BarGraphContext.Provider>
-          </PeriodContext.Provider>
-        </DurationTextboxContext.Provider>
-      </TraceTextboxContext.Provider>
-    );
-  }
+  // fetch overview data
+  // only if user api key is set
+  useEffect(() => {
+    const fetchOverviewData = async () => {
+      try {
+        const response = await fetch(
+          `/apps/${apiKey}/data?start=${start}&end=${end}`,
+          {
+            headers: {
+              'User-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
+            },
+          },
+        );
+        const data = await response.json();
+        setOverviewData(data);
+      } catch (error: unknown) {
+        console.log('Data fetching failed', error);
+      }
+    };
+    if (apiKey) fetchOverviewData();
+  }, [start, end, apiKey]);
+
   return (
-    <div>
-      <h1>Loading</h1>
-    </div>
+    <>
+      {overviewData ? (
+        <PageContext.Provider
+          value={{ page, setPage, start, end, apiKey, setPageData, pageData }}
+        >
+          <div className='relative flex w-full bg-[#f6f8fa]'>
+            <Sidebar overviewData={overviewData} />
+            <MainDisplay
+              overviewData={overviewData}
+              pageData={pageData}
+              setStart={setStart}
+              setEnd={setEnd}
+            />
+          </div>
+        </PageContext.Provider>
+      ) : (
+        <div>
+          <Loading />
+        </div>
+      )}
+    </>
   );
 };
 

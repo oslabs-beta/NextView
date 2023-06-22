@@ -51,7 +51,7 @@ const userController: UserController = {
       const token = jwt.sign(
         { userId: user.rows[0]._id },
         process.env.JWT_SECRET as jwt.Secret,
-        { expiresIn: '1h' },
+        { expiresIn: '30d' },
       );
 
       // Set the JWT token as an HTTP-only cookie
@@ -76,9 +76,26 @@ const userController: UserController = {
     }
   },
 
-  // TODO implement logout
   logoutUser: async (req, res, next) => {
+    res.clearCookie('jwtToken');
     return next();
+  },
+
+  userInfo: async (req, res, next) => {
+    try {
+      const query =
+        'SELECT users._id, users.username, created_on FROM users WHERE _id = $1';
+      const values = [req.user.userId];
+      const data = await db.query(query, values);
+      res.locals.user = data.rows[0];
+      return next();
+    } catch (err) {
+      return next({
+        log: `Error in retrieveTotalTraces controller method: ${err}`,
+        status: 500,
+        message: 'Error while retrieving data',
+      });
+    }
   },
 };
 
@@ -86,6 +103,7 @@ type UserController = {
   registerUser: RequestHandler;
   loginUser: RequestHandler;
   logoutUser: RequestHandler;
+  userInfo: RequestHandler;
 };
 
 export default userController;

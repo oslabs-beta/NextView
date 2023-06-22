@@ -1,7 +1,7 @@
 {
-  "name": "ecri-40-osp-6",
+  "name": "nextview",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "cross-env NODE_ENV=development concurrently -n BROWSER,SERVER -c bgBlue.bold,bgCyan.bold \"sleep 1 && vite --open\" \"nodemon server/server.ts\"",
     "build": "cross-env NODE_ENV=production vite build",
@@ -12,11 +12,15 @@
     "test": "cross-env NODE_ENV=test jest"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.15",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.5",
+    "@mui/x-date-pickers": "^6.7.0",
     "bcryptjs": "^2.4.3",
     "concurrently": "^8.0.1",
     "cookie-parser": "^1.4.6",
     "cross-env": "^7.0.3",
+    "dayjs": "^1.11.8",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
@@ -25,6 +29,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
     "react-router-dom": "^6.11.2",
+    "react-type-animation": "^3.1.0",
     "recharts": "^2.6.2",
     "tsx": "^3.12.7",
     "uuid": "^9.0.0"

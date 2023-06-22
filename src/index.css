@@ -1,15 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --primary-color: #e2f0f9;
+  --secondary-color: #286fb4;
+  --accent-color: #df4c73;
+
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
+
+  color: #213547;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -18,20 +26,60 @@
   -webkit-text-size-adjust: 100%;
 }
 
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  overflow: visible;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ededed;
+  background-clip: padding-box;
+  border: solid rgba(0, 0, 0, 0);
+  border-width: 3px;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #a6a6a6;
+  border-radius: 100px;
+  background-clip: padding-box;
+  border: solid rgba(0, 0, 0, 0);
+  border-width: 3px;
+}
+
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+
+body {
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: absolute;
+  padding: 0px;
+}
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
-@media (prefers-color-scheme: light) {
+img {
+  object-fit: cover;
+}
+
+li {
+  margin: 10px;
+}
+
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -42,11 +90,66 @@ h1 {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
 
 @layer components {
   .sideNavBar-icon {
-    @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 items-center justify-center rounded-3xl bg-slate-800 shadow-sm transition-all duration-500 ease-linear hover:rounded-xl hover:bg-slate-500 hover:text-white;
+    @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 cursor-pointer items-center justify-center rounded-md bg-transparent transition duration-75 ease-linear hover:scale-105;
+  }
+
+  .btn {
+    @apply m-2 rounded px-4 py-2 text-xs;
+  }
+  .sm {
+    @apply px-2;
+  }
+
+  .md {
+    @apply px-4;
+  }
+
+  .lg {
+    @apply px-8 text-base;
+  }
+
+  .xl {
+    @apply px-16;
+  }
+
+  .default {
+    @apply border border-gray-300 bg-gray-100 text-gray-900;
+  }
+  .default:hover {
+    @apply border-gray-500;
+  }
+
+  .primary {
+    @apply bg-primary text-gray-800;
+  }
+  .primary:hover {
+    @apply brightness-95;
+  }
+
+  .secondary {
+    @apply bg-secondary font-semibold text-white;
+  }
+  .secondary:hover {
+    @apply brightness-90;
+  }
+
+  .disable-blur {
+    image-rendering: crisp-edges;
+  }
+}
+
+.type::after {
+  content: '_ ';
+  animation: cursor 1.1s infinite step-start;
+}
+
+@keyframes cursor {
+  50% {
+    opacity: 0;
   }
 }
 /* KW: to replace with tailwind CSS */
@@ -66,4 +169,28 @@ h1 {
   display: block;
   color: rgba(0, 0, 0, 0.56);
 }
-/* KW: to replace with tailwind CSS */
+
+/* loader */
+.loader {
+  border-top-color: #3498db;
+  -webkit-animation: spinner 1.5s linear infinite;
+  animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
