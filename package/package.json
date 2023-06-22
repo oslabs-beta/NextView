@@ -1,32 +1,61 @@
 {
   "name": "nextview-tracing",
-  "version": "1.0.5",
+  "version": "1.1.1",
   "description": "OpenTelemetry Tracing Package for Next.js Applications",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "node preInstall.js"
+    "postinstall": "node -e 'fs.copyFileSync(path.join(__dirname, \"./src/instrumentation.js\"), path.join(path.resolve(__dirname, \"../..\"), \"instrumentation.js\"))'"
+  },
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "edge": {
+        "default": "./src/index.edge.js"
+      },
+      "edge-light": {
+        "default": "./src/index.edge.js"
+      },
+      "browser": {
+        "default": "./src/index.edge.js"
+      },
+      "worker": {
+        "default": "./src/index.edge.js"
+      },
+      "workerd": {
+        "default": "./src/index.edge.js"
+      },
+      "import": {
+        "default": "./src/instrumentation.node.js"
+      },
+      "node": {
+        "default": "./src/instrumentation.node.js"
+      },
+      "default": "./src/index.edge.js"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "18.16.1",
+    "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@opentelemetry/auto-instrumentations-node": "^0.37.0",
-    "@opentelemetry/exporter-collector": "^0.25.0",
-    "@opentelemetry/exporter-metrics-otlp-http": "^0.40.0",
     "@opentelemetry/exporter-trace-otlp-http": "^0.40.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.39.1",
     "@opentelemetry/instrumentation": "^0.40.0",
     "@opentelemetry/instrumentation-express": "^0.32.3",
     "@opentelemetry/instrumentation-http": "^0.40.0",
     "@opentelemetry/instrumentation-mongoose": "^0.32.3",
     "@opentelemetry/instrumentation-pg": "^0.35.2",
     "@opentelemetry/resources": "^1.14.0",
-    "@opentelemetry/sdk-metrics-base": "^0.31.0",
     "@opentelemetry/sdk-node": "^0.40.0",
-    "@opentelemetry/sdk-trace-base": "^1.14.0",
+    "@opentelemetry/instrumentation-mongodb": "^0.34.2",
     "@opentelemetry/sdk-trace-node": "^1.14.0",
     "@opentelemetry/semantic-conventions": "^1.14.0",
     "@types/node": "20.2.5",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.4",
-    "opentelemetry-resource-detector-service": "^0.28.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "5.1.3"
@@ -49,5 +78,8 @@
   "bugs": {
     "url": "https://github.com/oslabs-beta/NextView/issues"
   },
-  "homepage": "https://github.com/oslabs-beta/NextView/tree/main#readme"
+  "homepage": "https://github.com/oslabs-beta/NextView/tree/main#readme",
+  "engines": {
+    "node": ">=16"
+  }
 }
