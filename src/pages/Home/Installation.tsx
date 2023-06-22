@@ -109,26 +109,11 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
               <p>
                 In the <code className='rounded border p-1'>.env.local</code>{' '}
                 file in the root directory of your application (create one if it
-                doesn’t exist), create two environment variables, one for your
-                API Key and one for your service’s name.
+                doesn’t exist), create an environment variable for your API Key.
               </p>
               <div className='my-3'>
-                <CopyInput
-                  text={`API_KEY=<Your-NextView-API-Key>\nService_Name=<Name-Of-Your-Service>`}
-                >
-                  {'API_KEY=<Your-NextView-API-Key>'} <br />
-                  {'Service_Name=<Name-Of-Your-Service>'}
-                </CopyInput>
-              </div>
-            </li>
-            <li>
-              <p>
-                Start the OpenTelemetry Collector in your terminal via the
-                Docker Command:
-              </p>
-              <div className='my-3'>
-                <CopyInput text='docker-compose-up'>
-                  docker-compose-up
+                <CopyInput text={`API_KEY=<Your-NextView-API-Key>`}>
+                  {'API_KEY=<Your-NextView-API-Key>'}
                 </CopyInput>
               </div>
             </li>
