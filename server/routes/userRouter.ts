@@ -14,7 +14,7 @@ userRouter.post(
 );
 
 userRouter.post('/login', userController.loginUser, (req, res, next) => {
-  res.status(204).send('/login controller not yet implemented');
+  res.sendStatus(204);
 });
 
 userRouter.get(
