@@ -11,7 +11,6 @@ function App() {
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const [apiKey, setApiKey] = useState(null);
-  // test apiKey: 5cc036aa-e9fb-43a0-9ed7-8cafb2feb93d
 
   return (
     <>

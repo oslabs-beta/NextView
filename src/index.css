@@ -13,8 +13,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  /* color: rgba(255, 255, 255, 0.87);
-  background-color: #242424; */
 
   color: #213547;
   background-color: #ffffff;
@@ -79,19 +77,6 @@ li {
   margin: 10px;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
-
 @layer components {
   .sideNavBar-icon {
     @apply relative mx-auto mb-2 mt-2 flex h-12 w-12 cursor-pointer items-center justify-center rounded-md bg-transparent transition duration-75 ease-linear hover:scale-105;
@@ -152,17 +137,6 @@ li {
     opacity: 0;
   }
 }
-/* KW: to replace with tailwind CSS */
-
-/* .textbox {
-  flex: 1;
-  margin: 0px 20px;
-  padding: 30px;
-  border-radius: 10px;
-  cursor: pointer;
-  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-} */
 
 .textData {
   margin-top: 5px;
@@ -170,7 +144,6 @@ li {
   color: rgba(0, 0, 0, 0.56);
 }
 
-/* loader */
 .loader {
   border-top-color: #3498db;
   -webkit-animation: spinner 1.5s linear infinite;

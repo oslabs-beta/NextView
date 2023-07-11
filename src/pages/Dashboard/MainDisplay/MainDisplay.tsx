@@ -1,7 +1,7 @@
 import Topbar from './Topbar';
 import OverviewDisplay from './OverviewDisplay/OverviewDisplay';
 import PageDisplay from './PageDisplay/PageDisplay';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NotFound from '../../NotFound/NotFound';
 
 const MainDisplay = ({ overviewData, pageData, setStart, setEnd }) => {

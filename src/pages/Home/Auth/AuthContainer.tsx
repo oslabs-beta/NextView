@@ -11,10 +11,8 @@ const AuthContainer = () => {
   const [openSignupModal, setOpenSignupModal] = useState(false);
   const { loggedIn, setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
-  const handleLogOut = () => {
-    console.log(' handleLogOut invoked!');
-    // e.preventDefault();
 
+  const handleLogOut = () => {
     fetch('/user/logout', {
       method: 'DELETE',
       headers: {
@@ -72,7 +70,6 @@ const AuthContainer = () => {
       <Modal
         open={openLoginModal}
         onClose={() => {
-          console.log('%c It closes', 'color: red');
           setOpenLoginModal(false);
         }}
       >
@@ -81,7 +78,6 @@ const AuthContainer = () => {
       <Modal
         open={openSignupModal}
         onClose={() => {
-          console.log('%c It closes', 'color: red');
           setOpenSignupModal(false);
         }}
       >

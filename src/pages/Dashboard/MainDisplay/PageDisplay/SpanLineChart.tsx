@@ -48,8 +48,6 @@ const SpanLineChart = ({ avgActionDurationsOverTime }) => {
       </p>
       <ResponsiveContainer width='95%' height={350}>
         <LineChart
-          // width={500}
-          // height={300}
           data={avgActionDurationsOverTime}
           margin={{
             top: 50,

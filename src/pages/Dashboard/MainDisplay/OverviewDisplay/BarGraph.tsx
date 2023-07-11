@@ -11,14 +11,12 @@ import {
 
 const BarGraph = ({ data }) => {
   const num = data.length;
-  //TODO: figure out how to show long page names
+
   return (
     <>
       <p className='absolute left-5 font-bold'>Top {num} Slowest Pages</p>
       <ResponsiveContainer height={400}>
         <BarChart
-          // height={400}
-          // width={700}
           data={data}
           margin={{
             top: 50,
@@ -34,7 +32,6 @@ const BarGraph = ({ data }) => {
               value: 'Page',
               position: 'bottom',
             }}
-            // interval={0}
           />
           <YAxis
             padding={{ top: 20 }}
