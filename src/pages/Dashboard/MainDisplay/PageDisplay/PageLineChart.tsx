@@ -18,8 +18,6 @@ const PageLineChart = ({ avgPageDurationsOverTime }) => {
       </p>
       <ResponsiveContainer height={350}>
         <LineChart
-          // width={500}
-          // height={300}
           data={avgPageDurationsOverTime}
           margin={{
             top: 50,
@@ -40,7 +38,6 @@ const PageLineChart = ({ avgPageDurationsOverTime }) => {
             type='monotone'
             dataKey='Avg. duration (ms)'
             stroke='#ffa600'
-            // stroke='#286fb4'
             activeDot={{ r: 8 }}
             strokeWidth={3}
             dot={false}

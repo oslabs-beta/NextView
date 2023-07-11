@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-// TODO: debug navigate(-1)
-
 const NotFound = () => {
   const navigate = useNavigate();
 
