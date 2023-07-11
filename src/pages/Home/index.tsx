@@ -16,7 +16,6 @@ const Home = () => {
   const contributorsRef = useRef<HTMLDivElement>(null);
   const executeScroll = (ref: React.RefObject<HTMLDivElement>) => {
     return () => {
-      console.log(ref.current);
       if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth' });
     };
   };
