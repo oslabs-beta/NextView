@@ -18,10 +18,10 @@ const userController: UserController = {
       }
 
       const hashedPassword = await bcrypt.hash(password, 10);
-      const text =
+      const query =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
       const values = [username, hashedPassword];
-      const newUser = await db.query(text, values);
+      const newUser = await db.query(query, values);
       res.locals.user = newUser.rows[0];
 
       return next();
