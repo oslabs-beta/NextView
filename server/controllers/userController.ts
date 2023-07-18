@@ -2,14 +2,25 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from 'express';
 import db from '../models/dataModels';
+import getUsername from '../../helpers/validateUniqueUser';
 
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      // Validate unique username
+      const { username, password } = req.body;
+
+      const user = await getUsername(username);
+
+      // If user is found in DB (username taken), throw an error
+      if (user.rows.length) {
+        throw new Error('Username is unavailable');
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
       const text =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
-      const values = [req.body.username, hashedPassword];
+      const values = [username, hashedPassword];
       const newUser = await db.query(text, values);
       res.locals.user = newUser.rows[0];
 
@@ -27,9 +38,16 @@ const userController: UserController = {
   loginUser: async (req, res, next) => {
     try {
       // Get user with the given username
-      const text = 'SELECT * FROM users WHERE username = $1';
-      const values = [req.body.username];
-      const user = await db.query(text, values);
+      // const text = 'SELECT * FROM users WHERE username = $1';
+      // const values = [req.body.username];
+      // const user = await db.query(text, values);
+
+      // If no user is found with this username, throw an error
+      // if (!user.rows.length) {
+      //   throw new Error('Incorrect password or username');
+      // }
+
+      const user = getUsername(req.body.username);
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
