@@ -7,9 +7,9 @@ import getUsername from '../../helpers/validateUniqueUser';
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
-      // Validate unique username
       const { username, password } = req.body;
 
+      // Validate unique username
       const user = await getUsername(username);
 
       // If user is found in DB (username taken), throw an error
@@ -37,17 +37,10 @@ const userController: UserController = {
 
   loginUser: async (req, res, next) => {
     try {
+      const { username, password } = req.body;
+
       // Get user with the given username
-      // const text = 'SELECT * FROM users WHERE username = $1';
-      // const values = [req.body.username];
-      // const user = await db.query(text, values);
-
-      // If no user is found with this username, throw an error
-      // if (!user.rows.length) {
-      //   throw new Error('Incorrect password or username');
-      // }
-
-      const user = getUsername(req.body.username);
+      const user = await getUsername(username);
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
@@ -55,10 +48,7 @@ const userController: UserController = {
       }
 
       // Check if the password is correct. bcrypt.compare will hash the provided password and compare it to the stored hash.
-      const match = await bcrypt.compare(
-        req.body.password,
-        user.rows[0].password,
-      );
+      const match = await bcrypt.compare(password, user.rows[0].password);
 
       // If the passwords do not match, throw an error
       if (!match) {
