@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from 'express';
 import db from '../models/dataModels';
-import getUsername from '../../helpers/validateUniqueUser';
+import getUsername from '../../helpers/getUser';
 
 const userController: UserController = {
   registerUser: async (req, res, next) => {
