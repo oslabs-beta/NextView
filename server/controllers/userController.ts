@@ -33,7 +33,7 @@ const userController: UserController = {
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
-        throw new Error('No user found with this username');
+        throw new Error('Incorrect password or username');
       }
 
       // Check if the password is correct. bcrypt.compare will hash the provided password and compare it to the stored hash.
@@ -44,7 +44,7 @@ const userController: UserController = {
 
       // If the passwords do not match, throw an error
       if (!match) {
-        throw new Error('Incorrect password');
+        throw new Error('Incorrect password or username');
       }
 
       // Create a JWT. The payload is the user's id, the secret key is stored in env, and it will expire in 1 hour
