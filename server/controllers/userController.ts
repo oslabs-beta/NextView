@@ -2,15 +2,26 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from 'express';
 import db from '../models/dataModels';
+import getUsername from '../../helpers/getUser';
 
 const userController: UserController = {
   registerUser: async (req, res, next) => {
     try {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
-      const text =
+      const { username, password } = req.body;
+
+      // Validate unique username
+      const user = await getUsername(username);
+
+      // If user is found in DB (username taken), throw an error
+      if (user.rows.length) {
+        throw new Error('Username is unavailable');
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const query =
         'INSERT INTO users(username, password) VALUES($1, $2) RETURNING *';
-      const values = [req.body.username, hashedPassword];
-      const newUser = await db.query(text, values);
+      const values = [username, hashedPassword];
+      const newUser = await db.query(query, values);
       res.locals.user = newUser.rows[0];
 
       return next();
@@ -26,25 +37,22 @@ const userController: UserController = {
 
   loginUser: async (req, res, next) => {
     try {
+      const { username, password } = req.body;
+
       // Get user with the given username
-      const text = 'SELECT * FROM users WHERE username = $1';
-      const values = [req.body.username];
-      const user = await db.query(text, values);
+      const user = await getUsername(username);
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
-        throw new Error('No user found with this username');
+        throw new Error('Incorrect password or username');
       }
 
       // Check if the password is correct. bcrypt.compare will hash the provided password and compare it to the stored hash.
-      const match = await bcrypt.compare(
-        req.body.password,
-        user.rows[0].password,
-      );
+      const match = await bcrypt.compare(password, user.rows[0].password);
 
       // If the passwords do not match, throw an error
       if (!match) {
-        throw new Error('Incorrect password');
+        throw new Error('Incorrect password or username');
       }
 
       // Create a JWT. The payload is the user's id, the secret key is stored in env, and it will expire in 1 hour
