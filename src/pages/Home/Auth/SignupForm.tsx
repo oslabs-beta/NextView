@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
 import { v4 as uuidv4 } from 'uuid';
+import validateStrongPassword from '../../../../helpers/validateStrongPassword';
 
 const Signup = () => {
   const { setLoggedIn, username, password } = useContext(UserContext);
@@ -32,8 +33,13 @@ const Signup = () => {
       alert('Username length must be at least 3!');
       return;
     }
-    if (password.length < 6) {
-      alert('Password length must be at least 6!');
+    // validate strong password
+    const strongPassword = validateStrongPassword(password);
+
+    if (!strongPassword) {
+      alert(
+        'The password length must be greater than or equal to 8, contains at least one uppercase character, one lowercase character, one numeric value, and one special characters of !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+      );
       return;
     }
 
