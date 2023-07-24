@@ -25,6 +25,7 @@ const Login = () => {
     })
       .then((res) => {
         if (res.status === 204) {
+          localStorage.setItem('loggedIn', 'true');
           setLoggedIn(true);
           navigate('/dashboard');
         } else {

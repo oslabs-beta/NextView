@@ -60,6 +60,7 @@ const Signup = () => {
     })
       .then((res) => {
         if (res.status === 201) {
+          localStorage.setItem('loggedIn', 'true');
           setLoggedIn(true);
           addApp();
           navigate('/dashboard');

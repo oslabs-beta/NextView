@@ -32,6 +32,7 @@ const Home = () => {
       })
       .then((res) => {
         if (res.username) {
+          localStorage.setItem('loggedIn', 'true');
           setLoggedIn(true);
           setUsername(res.username);
         }
