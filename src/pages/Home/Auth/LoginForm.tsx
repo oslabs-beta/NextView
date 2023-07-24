@@ -24,7 +24,6 @@ const Login = () => {
       }),
     })
       .then((res) => {
-        console.log('res.status: ', res);
         if (res.status === 204) {
           setLoggedIn(true);
           navigate('/dashboard');

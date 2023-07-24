@@ -32,8 +32,6 @@ const validateStrongPassword = (password) => {
     scores.length += 1;
   }
 
-  console.log(scores);
-
   return scores.length < 8 ||
     scores.upperChar < 1 ||
     scores.lowerChar < 1 ||
