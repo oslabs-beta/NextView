@@ -24,13 +24,12 @@ const Login = () => {
       }),
     })
       .then((res) => {
-        if (res.status === 204) {
-          localStorage.setItem('loggedIn', 'true');
-          setLoggedIn(true);
-          navigate('/dashboard');
-        } else {
+        if (!res.ok) {
           alert('Log in unsuccessful. Please check your login information');
         }
+        localStorage.setItem('loggedIn', 'true');
+        setLoggedIn(true);
+        navigate('/dashboard');
       })
       .catch((err) => console.log('Log in: ERROR: ', err));
   };

@@ -59,14 +59,13 @@ const Signup = () => {
       }),
     })
       .then((res) => {
-        if (res.status === 201) {
-          localStorage.setItem('loggedIn', 'true');
-          setLoggedIn(true);
-          addApp();
-          navigate('/dashboard');
-        } else {
+        if (!res.ok) {
           alert('Registration unsuccessful. Please retry.');
         }
+        localStorage.setItem('loggedIn', 'true');
+        setLoggedIn(true);
+        addApp();
+        navigate('/dashboard');
       })
       .catch((err) => console.log('Sign up ERROR: ', err));
   };
