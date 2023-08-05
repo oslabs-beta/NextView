@@ -25,11 +25,16 @@ const Login = () => {
     })
       .then((res) => {
         if (!res.ok) {
-          alert('Log in unsuccessful. Please check your login information');
+          throw new Error('Log in unsuccessful. Please retry.' + res.status);
         }
-        localStorage.setItem('loggedIn', 'true');
-        setLoggedIn(true);
-        navigate('/dashboard');
+        return res.json();
+      })
+      .then((res) => {
+        if (res.username) {
+          localStorage.setItem('user', JSON.stringify(res.username));
+          setLoggedIn(true);
+          navigate('/dashboard');
+        }
       })
       .catch((err) => console.log('Log in: ERROR: ', err));
   };

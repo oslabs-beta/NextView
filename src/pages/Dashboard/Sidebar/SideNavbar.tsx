@@ -22,7 +22,7 @@ function SideNavBar() {
     })
       .then((res) => {
         if (res.status === 204) {
-          localStorage.setItem('loggedIn', '');
+          localStorage.removeItem('user');
           setLoggedIn(false);
           navigate('/');
           window.location.reload();

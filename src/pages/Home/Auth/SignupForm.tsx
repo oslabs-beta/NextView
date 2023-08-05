@@ -60,12 +60,19 @@ const Signup = () => {
     })
       .then((res) => {
         if (!res.ok) {
-          alert('Registration unsuccessful. Please retry.');
+          throw new Error(
+            'Registration unsuccessful. Please retry.' + res.status,
+          );
         }
-        localStorage.setItem('loggedIn', 'true');
-        setLoggedIn(true);
-        addApp();
-        navigate('/dashboard');
+        return res.json();
+      })
+      .then((res) => {
+        if (res.username) {
+          localStorage.setItem('user', JSON.stringify(res.username));
+          setLoggedIn(true);
+          addApp();
+          navigate('/dashboard');
+        }
       })
       .catch((err) => console.log('Sign up ERROR: ', err));
   };

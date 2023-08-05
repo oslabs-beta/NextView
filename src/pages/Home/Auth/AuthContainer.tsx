@@ -21,7 +21,7 @@ const AuthContainer = () => {
     })
       .then((res) => {
         if (res.status === 204) {
-          localStorage.setItem('loggedIn', 'true');
+          localStorage.removeItem('user');
           setLoggedIn(false);
           window.location.reload();
         } else {

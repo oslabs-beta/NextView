@@ -32,7 +32,7 @@ const Home = () => {
       })
       .then((res) => {
         if (res.username) {
-          localStorage.setItem('loggedIn', 'true');
+          localStorage.setItem('user', JSON.stringify(res.username));
           setLoggedIn(true);
           setUsername(res.username);
         }
