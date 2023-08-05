@@ -9,12 +9,12 @@ userRouter.post(
   userController.registerUser,
   userController.loginUser,
   (req, res, next) => {
-    res.sendStatus(201);
+    res.status(201).json(res.locals.user);
   },
 );
 
 userRouter.post('/login', userController.loginUser, (req, res, next) => {
-  res.sendStatus(204);
+  res.status(200).json(res.locals.user);
 });
 
 userRouter.get(
