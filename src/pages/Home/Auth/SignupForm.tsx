@@ -67,8 +67,8 @@ const Signup = () => {
         return res.json();
       })
       .then((res) => {
-        if (res.username) {
-          localStorage.setItem('user', JSON.stringify(res.username));
+        if (res.user) {
+          localStorage.setItem('user', JSON.stringify(res.user));
           setLoggedIn(true);
           addApp();
           navigate('/dashboard');

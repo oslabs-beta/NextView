@@ -30,8 +30,9 @@ const Login = () => {
         return res.json();
       })
       .then((res) => {
-        if (res.username) {
-          localStorage.setItem('user', JSON.stringify(res.username));
+        console.log('res after .json()', res);
+        if (res.user) {
+          localStorage.setItem('user', JSON.stringify(res.user));
           setLoggedIn(true);
           navigate('/dashboard');
         }

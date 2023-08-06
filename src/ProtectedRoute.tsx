@@ -4,7 +4,7 @@ import { UserContext } from './contexts/userContexts';
 
 const ProtectedRoute = ({ children }) => {
   const { username } = useContext(UserContext);
-  const isLoggedIn = localStorage.getItem('user') === JSON.stringify(username);
+  const isLoggedIn = JSON.parse(localStorage.getItem('user')) === username;
 
   return isLoggedIn ? children : <Navigate to='/' replace />;
 };
