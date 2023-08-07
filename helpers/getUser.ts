@@ -2,10 +2,12 @@ import db from '../server/models/dataModels';
 import { QueryResult } from 'pg';
 
 interface User {
-  id: number;
+  _id: number;
   username: string;
+  password: string;
+  created_on: Date;
 }
-const getUsername = async (username: string): Promise<QueryResult<User>> => {
+const getUser = async (username: string): Promise<QueryResult<User>> => {
   // Get user with the given username
   const query = 'SELECT * FROM users WHERE username = $1';
   const values = [username];
@@ -13,4 +15,4 @@ const getUsername = async (username: string): Promise<QueryResult<User>> => {
   return user;
 };
 
-export default getUsername;
+export default getUser;

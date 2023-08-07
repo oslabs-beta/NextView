@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { RequestHandler } from 'express';
 import db from '../models/dataModels';
-import getUsername from '../../helpers/getUser';
+import getUser from '../../helpers/getUser';
 
 const userController: UserController = {
   registerUser: async (req, res, next) => {
@@ -10,7 +10,7 @@ const userController: UserController = {
       const { username, password } = req.body;
 
       // Validate unique username
-      const user = await getUsername(username);
+      const user = await getUser(username);
 
       // If user is found in DB (username taken), throw an error
       if (user.rows.length) {
@@ -40,7 +40,7 @@ const userController: UserController = {
       const { username, password } = req.body;
 
       // Get user with the given username
-      const user = await getUsername(username);
+      const user = await getUser(username);
 
       // If no user is found with this username, throw an error
       if (!user.rows.length) {
