@@ -5,7 +5,7 @@ import DashboardPage from './pages/Dashboard';
 import NotFound from './pages/NotFound/NotFound';
 import { UserContext } from './contexts/userContexts';
 import { APIContext } from './contexts/dashboardContexts';
-import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [username, setUsername] = useState('');
