@@ -45,6 +45,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
     })
       .then((res) => {
         if (res.status === 204) {
+          localStorage.removeItem('user');
           setLoggedIn(false);
           navigate('/');
           window.location.reload();

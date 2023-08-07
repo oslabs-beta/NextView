@@ -5,6 +5,7 @@ import DashboardPage from './pages/Dashboard';
 import NotFound from './pages/NotFound/NotFound';
 import { UserContext } from './contexts/userContexts';
 import { APIContext } from './contexts/dashboardContexts';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   const [username, setUsername] = useState('');
@@ -27,7 +28,14 @@ function App() {
         >
           <Routes>
             <Route path='/' element={<Home />} />
-            <Route path='/dashboard/*' element={<DashboardPage />} />
+            <Route
+              path='/dashboard/*'
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path='*' element={<NotFound />} />
           </Routes>
         </UserContext.Provider>
