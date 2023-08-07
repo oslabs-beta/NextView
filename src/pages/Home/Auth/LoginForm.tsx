@@ -1,4 +1,4 @@
-import { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
@@ -10,30 +10,37 @@ const Login = () => {
   const navigate = useNavigate();
   const uniqueId = uuidv4();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = React.useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    fetch('/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    })
-      .then((res) => {
-        console.log('res.status: ', res);
-        if (res.status === 204) {
-          setLoggedIn(true);
-          navigate('/dashboard');
-        } else {
-          alert('Log in unsuccessful. Please check your login information');
-        }
+      fetch('/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'Application/JSON',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
       })
-      .catch((err) => console.log('Log in: ERROR: ', err));
-  };
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Log in unsuccessful. Please retry.' + res.status);
+          }
+          return res.json();
+        })
+        .then((res) => {
+          if (res.user) {
+            localStorage.setItem('user', JSON.stringify(res.user));
+            setLoggedIn(true);
+            navigate('/dashboard');
+          }
+        })
+        .catch((err) => console.log('Log in: ERROR: ', err));
+    },
+    [navigate, password, setLoggedIn, username],
+  );
 
   return (
     <AuthForm

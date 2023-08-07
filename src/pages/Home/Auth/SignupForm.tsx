@@ -1,4 +1,4 @@
-import { FormEvent, useContext } from 'react';
+import React, { FormEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from './AuthForm';
 import { UserContext } from '../../../contexts/userContexts';
@@ -26,49 +26,59 @@ const Signup = () => {
       .catch((err) => console.log('Add app ERROR: ', err));
   }
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = React.useCallback(
+    (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
 
-    if (username.length < 3) {
-      alert('Username length must be at least 3!');
-      return;
-    }
-    // validate strong password
-    const strongPassword = validateStrongPassword(password);
+      if (username.length < 3) {
+        alert('Username length must be at least 3!');
+        return;
+      }
+      // validate strong password
+      const strongPassword = validateStrongPassword(password);
 
-    if (!strongPassword) {
-      alert(
-        'The password length must be greater than or equal to 8, contains at least one uppercase character, one lowercase character, one numeric value, and one special characters of !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
-      );
-      return;
-    }
+      if (!strongPassword) {
+        alert(
+          'The password length must be greater than or equal to 8, contains at least one uppercase character, one lowercase character, one numeric value, and one special characters of !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~',
+        );
+        return;
+      }
 
-    const body = {
-      username,
-      password,
-    };
-
-    fetch('/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-      body: JSON.stringify({
+      const body = {
         username,
         password,
-      }),
-    })
-      .then((res) => {
-        if (res.status === 201) {
-          setLoggedIn(true);
-          addApp();
-          navigate('/dashboard');
-        } else {
-          alert('Registration unsuccessful. Please retry.');
-        }
+      };
+
+      fetch('/user/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'Application/JSON',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
       })
-      .catch((err) => console.log('Sign up ERROR: ', err));
-  };
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              'Registration unsuccessful. Please retry.' + res.status,
+            );
+          }
+          return res.json();
+        })
+        .then((res) => {
+          if (res.user) {
+            localStorage.setItem('user', JSON.stringify(res.user));
+            setLoggedIn(true);
+            addApp();
+            navigate('/dashboard');
+          }
+        })
+        .catch((err) => console.log('Sign up ERROR: ', err));
+    },
+    [navigate, password, setLoggedIn, username],
+  );
 
   return (
     <AuthForm

@@ -1,4 +1,4 @@
-import { useState, useContext, ChangeEvent } from 'react';
+import { useState, useContext } from 'react';
 import Button from '../../../components/Button';
 import Modal from './Modal';
 import LoginForm from './LoginForm';
@@ -21,6 +21,7 @@ const AuthContainer = () => {
     })
       .then((res) => {
         if (res.status === 204) {
+          localStorage.removeItem('user');
           setLoggedIn(false);
           window.location.reload();
         } else {
