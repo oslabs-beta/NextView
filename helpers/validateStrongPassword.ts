@@ -1,4 +1,4 @@
-const validateStrongPassword = (password) => {
+const validateStrongPassword = (password: string): boolean => {
   const scores = {
     length: 0,
     upperChar: 0,
@@ -7,9 +7,9 @@ const validateStrongPassword = (password) => {
     specialChar: 0,
   };
 
-  for (const index in password) {
+  for (const char of password) {
     // convert char into ASCII
-    const charASCII = password.charCodeAt(index);
+    const charASCII = char.charCodeAt(0);
 
     // A-Z: 65 - 90
     if (charASCII > 64 && charASCII < 91) {
