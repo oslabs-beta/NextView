@@ -36,26 +36,6 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
   const { setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
-  const handleLogOut = () => {
-    fetch('/user/logout', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-    })
-      .then((res) => {
-        if (res.status === 204) {
-          localStorage.removeItem('user');
-          setLoggedIn(false);
-          navigate('/');
-          window.location.reload();
-        } else {
-          alert('Logout unsuccessful. Please retry.');
-        }
-      })
-      .catch((err) => console.log('Logout ERROR: ', err));
-  };
-
   function useOutsideAlerter(ref) {
     useEffect(() => {
       /**
@@ -125,9 +105,6 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
               <></>
             )}
           </div>
-          <a onClick={handleLogOut} className='md:hidden'>
-            <SideNavBarIcon icon={<IoLogOut size='28' color='black' />} />
-          </a>
         </div>
         <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
           <DateTimePicker
@@ -158,9 +135,5 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
     </LocalizationProvider>
   );
 };
-
-const SideNavBarIcon = ({ icon }: { icon: React.ReactElement }) => (
-  <div className='sideNavBar-icon'>{icon}</div>
-);
 
 export default Topbar;
