@@ -6,12 +6,12 @@ import dayjs from 'dayjs';
 import Button from '../../../components/Button';
 import { CopyInput } from '../../../components/CopyInput';
 import { APIContext } from '../../../contexts/dashboardContexts';
-import { IoLogOut, IoMenu } from 'react-icons/io5';
-import { UserContext } from '../../../contexts/userContexts';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../assets/NextView-logo-pink-transparent.png';
-import PageTab from '../Sidebar/PageTab';
-import { v4 as uuidv4 } from 'uuid';
+// import { IoLogOut, IoMenu } from 'react-icons/io5';
+// import { UserContext } from '../../../contexts/userContexts';
+// import { Link, useNavigate } from 'react-router-dom';
+// import logo from '../../../assets/NextView-logo-pink-transparent.png';
+// import PageTab from '../Sidebar/PageTab';
+// import { v4 as uuidv4 } from 'uuid';
 
 const Topbar = ({ setStart, setEnd, overviewData }) => {
   const [startVal, setStartVal] = useState('');
@@ -31,10 +31,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
     setEnd(endVal);
   };
 
-  const pagesList = overviewData.pages;
-
-  const { setLoggedIn } = useContext(UserContext);
-  const navigate = useNavigate();
+  // const pagesList = overviewData.pages;
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -71,7 +68,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
           >
             {apiKey}
           </CopyInput>
-          <a
+          {/* <a
             href='/'
             className='min-w-[2.5rem] max-w-[2.5rem] transition duration-200 hover:scale-105 md:hidden'
           >
@@ -104,7 +101,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
             ) : (
               <></>
             )}
-          </div>
+          </div> */}
         </div>
         <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
           <DateTimePicker
