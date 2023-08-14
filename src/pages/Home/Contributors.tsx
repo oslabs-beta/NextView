@@ -1,9 +1,9 @@
-import kinski from '../../assets/kinski.png';
-import eduardo from '../../assets/eduardo.png';
-import evram from '../../assets/evram.png';
-import scott from '../../assets/scott.png';
-import sooji from '../../assets/sooji.png';
-import hands from '../../assets/hands.png';
+import kinski from '../../assets/kinski.webp';
+import eduardo from '../../assets/eduardo.webp';
+import evram from '../../assets/evram.webp';
+import scott from '../../assets/scott.webp';
+import sooji from '../../assets/sooji.webp';
+import hands from '../../assets/hands.webp';
 import Contributor from './Contributor';
 import { v4 as uuid } from 'uuid';
 

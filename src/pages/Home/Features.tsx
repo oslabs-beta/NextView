@@ -1,13 +1,13 @@
 import Feature from '../../components/Feature';
 import Button from '../../components/Button';
-import github from '../../assets/GitHub_Logo_White.png';
-import githubIcon from '../../assets/github-mark-white.svg';
+import github from '../../assets/GitHub_Logo_White.webp';
+import githubIcon from '../../assets/github-mark-white.webp';
 import { useEffect, useState } from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { HiOutlineWrenchScrewdriver, HiOutlineChartBar } from 'react-icons/hi2';
 import { IoColorFill, IoTelescopeOutline } from 'react-icons/io5';
 import { AiOutlineSecurityScan } from 'react-icons/ai';
-import telescope from '../../assets/telescope.png';
+import telescope from '../../assets/telescope.webp';
 
 const Features = () => {
   const [starCount, setstarCount] = useState(0);

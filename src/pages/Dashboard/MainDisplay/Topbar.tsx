@@ -9,7 +9,7 @@ import { APIContext } from '../../../contexts/dashboardContexts';
 // import { IoLogOut, IoMenu } from 'react-icons/io5';
 // import { UserContext } from '../../../contexts/userContexts';
 // import { Link, useNavigate } from 'react-router-dom';
-// import logo from '../../../assets/NextView-logo-pink-transparent.png';
+// import logo from '../../../assets/NextView-logo-pink-transparent.webp';
 // import PageTab from '../Sidebar/PageTab';
 // import { v4 as uuidv4 } from 'uuid';
 

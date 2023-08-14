@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import copy from '../assets/copy.png';
+import copy from '../assets/copy.webp';
 import check from '../assets/checkmark.png';
 
 export const NPMCopyInput = () => {

@@ -1,5 +1,5 @@
 import Button from '../../components/Button';
-import overview from '../../assets/overview.png';
+import overview from '../../assets/overview.webp';
 import { ChangeEvent, useContext } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';

@@ -4,9 +4,9 @@ import { CopyInput } from '../../components/CopyInput';
 import { UserContext } from '../../contexts/userContexts';
 import { NPMCopyInput } from '../../components/NPMCopyInput';
 import { useNavigate } from 'react-router-dom';
-import partyPopper from '../../assets/Party_Popper_Emojipedia.png';
-import team from '../../assets/team.png';
-import npm from '../../assets/npm.png';
+import partyPopper from '../../assets/Party_Popper_Emojipedia.webp';
+import team from '../../assets/team.webp';
+import npm from '../../assets/npm.webp';
 import { APIContext } from '../../contexts/dashboardContexts';
 
 interface Props {

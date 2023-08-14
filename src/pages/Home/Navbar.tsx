@@ -1,5 +1,5 @@
-import logo from '../../assets/NextView-logo-pink-transparent.png';
-import githubLogo from '../../assets/github-mark.svg';
+import logo from '../../assets/NextView-logo-pink-transparent.webp';
+import githubLogo from '../../assets/github-mark.webp';
 import npm from '../../assets/npm-black.png';
 import AuthContainer from './Auth/AuthContainer';
 
