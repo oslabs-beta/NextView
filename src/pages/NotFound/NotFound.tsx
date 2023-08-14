@@ -48,6 +48,7 @@ const NotFound = () => {
 
         <div className='relative mt-12 w-full lg:mt-0 lg:w-1/2'>
           <img
+            loading='lazy'
             className='w-full max-w-lg lg:mx-auto'
             src='https://merakiui.com/images/components/illustration.svg'
             alt=''

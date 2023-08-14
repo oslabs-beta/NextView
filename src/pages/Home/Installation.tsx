@@ -142,6 +142,7 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
             )}
           </div>
           <img
+            loading='lazy'
             src={team}
             className='col-span-5 col-start-8 row-start-1 hidden max-h-96 lg:block'
           />

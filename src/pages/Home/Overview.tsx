@@ -118,6 +118,7 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
       </div>
       <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>
         <img
+          loading='lazy'
           src={overview}
           alt='nextview-logo'
           className='-z-10 drop-shadow-lg'

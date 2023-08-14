@@ -43,6 +43,7 @@ const Features = () => {
     <section className='relative border-b border-t bg-primary px-4 pb-16 pt-20 sm:px-[max((100vw-1500px)/2,48px)] lg:pt-0'>
       <div className='grid-cols-16 mb-6 grid'>
         <img
+          loading='lazy'
           src={telescope}
           className='relative col-span-3 row-start-1 hidden max-h-72 drop-shadow-xl lg:block'
         />
@@ -98,7 +99,6 @@ const Features = () => {
         </Feature>
       </div>
       <div className='mt-16 flex items-center justify-center'>
-        {/* TODO: REPLACE WITH MEDIUM LINK */}
         <a
           href='https://medium.com/@evramdawd/introducing-nextview-a-next-js-observability-platform-2a010fcc39'
           target='_blank'

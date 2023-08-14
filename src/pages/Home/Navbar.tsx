@@ -60,6 +60,7 @@ const Navbar: React.FC<Props> = ({
             aria-label='Github'
           >
             <img
+              loading='lazy'
               src={githubLogo}
               alt='github-logo'
               className='h-6 transition duration-200 hover:scale-105'
