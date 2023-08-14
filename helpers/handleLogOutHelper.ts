@@ -1,9 +1,3 @@
-import { useContext } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { UserContext } from '../src/contexts/userContexts';
-
-// const { loggedIn, setLoggedIn } = useContext(UserContext);
-
 const handleLogOutHelper = (setLoggedIn, navigate) => {
   fetch('/user/logout', {
     method: 'DELETE',

@@ -13,25 +13,6 @@ const AuthContainer = () => {
   const { loggedIn, setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // const handleLogOut = () => {
-  //   fetch('/user/logout', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'Application/JSON',
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.status === 204) {
-  //         localStorage.removeItem('user');
-  //         setLoggedIn(false);
-  //         window.location.reload();
-  //       } else {
-  //         alert('Logout unsuccessful. Please retry.');
-  //       }
-  //     })
-  //     .catch((err) => console.log('Logout ERROR: ', err));
-  // };
-
   const handleLogOut = () => handleLogOutHelper(setLoggedIn, navigate);
 
   return (
