@@ -1,6 +1,6 @@
-import logo from '../../assets/NextView-logo-pink-transparent.webp';
-import githubLogo from '../../assets/github-mark.webp';
-import npm from '../../assets/npm-black.png';
+// import logo from '../../assets/NextView-logo-pink-transparent.webp';
+// import githubLogo from '../../assets/github-mark.webp';
+// import npm from '../../assets/npm-black.png';
 import AuthContainer from './Auth/AuthContainer';
 
 interface Props {
@@ -20,7 +20,9 @@ const Navbar: React.FC<Props> = ({
       >
         <a href={'/'} className='min-w-max'>
           <img
-            src={logo}
+            src={
+              'https://ik.imagekit.io/4ys419c44/NextView-logo-pink-transparent.webp?updatedAt=1692136903989'
+            }
             alt='nextview-logo'
             className='h-11 w-11 transition duration-200 hover:scale-105'
           ></img>
@@ -61,7 +63,9 @@ const Navbar: React.FC<Props> = ({
           >
             <img
               loading='lazy'
-              src={githubLogo}
+              src={
+                'https://ik.imagekit.io/4ys419c44/github-mark.webp?updatedAt=1692136904657'
+              }
               alt='github-logo'
               className='h-6 transition duration-200 hover:scale-105'
             />
@@ -75,7 +79,9 @@ const Navbar: React.FC<Props> = ({
             aria-label='npm'
           >
             <img
-              src={npm}
+              src={
+                'https://ik.imagekit.io/4ys419c44/npm-black.png?updatedAt=1692136904416'
+              }
               alt='npm-logo'
               className='relative top-[1px] h-3 transition duration-200 hover:scale-105'
             />

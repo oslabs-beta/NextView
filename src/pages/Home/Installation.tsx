@@ -4,9 +4,9 @@ import { CopyInput } from '../../components/CopyInput';
 import { UserContext } from '../../contexts/userContexts';
 import { NPMCopyInput } from '../../components/NPMCopyInput';
 import { useNavigate } from 'react-router-dom';
-import partyPopper from '../../assets/Party_Popper_Emojipedia.webp';
-import team from '../../assets/team.webp';
-import npm from '../../assets/npm.webp';
+// import partyPopper from '../../assets/Party_Popper_Emojipedia.webp';
+// import team from '../../assets/team.webp';
+// import npm from '../../assets/npm.webp';
 import { APIContext } from '../../contexts/dashboardContexts';
 
 interface Props {
@@ -42,7 +42,9 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
                     aria-label='npm'
                   >
                     <img
-                      src={npm}
+                      src={
+                        'https://ik.imagekit.io/4ys419c44/npm.webp?updatedAt=1692136904240'
+                      }
                       alt='npm-logo'
                       className='relative top-[1px] h-3 transition duration-200 hover:scale-105'
                     />
@@ -120,12 +122,22 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
           </ol>
           <div className='col-span-12 flex flex-col items-center gap-6 lg:col-span-8'>
             <div className='flex items-center justify-start gap-3 text-center'>
-              <img src={partyPopper} className='h-7' />
+              <img
+                src={
+                  'https://ik.imagekit.io/4ys419c44/Party_Popper_Emojipedia.webp?updatedAt=1692136904207'
+                }
+                className='h-7'
+              />
               <p>
                 You're all set up! You can monitor the server operations in your
                 Next.js application on the NextView Dashboard!
               </p>
-              <img src={partyPopper} className='h-7' />
+              <img
+                src={
+                  'https://ik.imagekit.io/4ys419c44/Party_Popper_Emojipedia.webp?updatedAt=1692136904207'
+                }
+                className='h-7'
+              />
             </div>
             {loggedIn ? (
               <>
@@ -143,7 +155,9 @@ const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
           </div>
           <img
             loading='lazy'
-            src={team}
+            src={
+              'https://ik.imagekit.io/4ys419c44/team.webp?updatedAt=1692136903357'
+            }
             className='col-span-5 col-start-8 row-start-1 hidden max-h-96 lg:block'
           />
         </div>

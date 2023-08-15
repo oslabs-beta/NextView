@@ -1,13 +1,13 @@
 import Feature from '../../components/Feature';
 import Button from '../../components/Button';
-import github from '../../assets/GitHub_Logo_White.webp';
-import githubIcon from '../../assets/github-mark-white.webp';
+// import github from '../../assets/GitHub_Logo_White.webp';
+// import githubIcon from '../../assets/github-mark-white.webp';
 import { useEffect, useState } from 'react';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import { HiOutlineWrenchScrewdriver, HiOutlineChartBar } from 'react-icons/hi2';
 import { IoColorFill, IoTelescopeOutline } from 'react-icons/io5';
 import { AiOutlineSecurityScan } from 'react-icons/ai';
-import telescope from '../../assets/telescope.webp';
+// import telescope from '../../assets/telescope.webp';
 
 const Features = () => {
   const [starCount, setstarCount] = useState(0);
@@ -44,7 +44,9 @@ const Features = () => {
       <div className='grid-cols-16 mb-6 grid'>
         <img
           loading='lazy'
-          src={telescope}
+          src={
+            'https://ik.imagekit.io/4ys419c44/telescope.webp?updatedAt=1692136904257'
+          }
           className='relative col-span-3 row-start-1 hidden max-h-72 drop-shadow-xl lg:block'
         />
         <h3 className='col-span-4 row-start-2 mb-3 whitespace-nowrap text-2xl font-bold'>
@@ -123,8 +125,18 @@ const Features = () => {
               className='border-1 mr-0 flex h-8 w-24 flex-row items-center justify-evenly rounded-r-none hover:brightness-100'
               variant='secondary'
             >
-              <img className='h-5' src={githubIcon} />
-              <img className='h-6' src={github} />
+              <img
+                className='h-5'
+                src={
+                  'https://ik.imagekit.io/4ys419c44/github-mark-white.webp?updatedAt=1692136904908'
+                }
+              />
+              <img
+                className='h-6'
+                src={
+                  'https://ik.imagekit.io/4ys419c44/GitHub_Logo_White.webp?updatedAt=1692136904064'
+                }
+              />
             </Button>
             <Button className='border-1 ml-0 flex h-8 items-center justify-evenly gap-1 rounded-l-none border-l-0 p-1 hover:border-gray-300'>
               {isHovering ? (

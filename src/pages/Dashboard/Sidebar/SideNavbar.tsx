@@ -5,7 +5,7 @@ import { IoLogOut } from 'react-icons/io5';
 // import { MdDashboardCustomize } from 'react-icons/md';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContexts';
-import logo from '../../../assets/NextView-logo-pink-transparent.webp';
+// import logo from '../../../assets/NextView-logo-pink-transparent.webp';
 import handleLogOutHelper from '../../../../helpers/handleLogOutHelper';
 
 function SideNavBar() {
@@ -20,7 +20,9 @@ function SideNavBar() {
         <a href='/' className='transition duration-200 hover:scale-105'>
           <img
             loading='lazy'
-            src={logo}
+            src={
+              'https://ik.imagekit.io/4ys419c44/NextView-logo-pink-transparent.webp?updatedAt=1692136903989'
+            }
             alt='nextview-logo'
             className='mb-3'
           ></img>

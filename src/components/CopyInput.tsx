@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import copy from '../assets/copy.webp';
-import check from '../assets/checkmark.png';
+// import copy from '../assets/copy.webp';
+// import check from '../assets/checkmark.png';
 
 interface Props {
   text: string;
@@ -27,14 +27,18 @@ export const CopyInput: React.FC<Props> = ({ text, children, className }) => {
       </code>
       {!copyClicked && (
         <img
-          src={copy}
+          src={
+            'https://ik.imagekit.io/4ys419c44/copy.webp?updatedAt=1692136904249'
+          }
           alt='copy-logo'
           className='h-5 w-5 cursor-pointer self-start pr-1 hover:scale-110'
         />
       )}
       {copyClicked && (
         <img
-          src={check}
+          src={
+            'https://ik.imagekit.io/4ys419c44/checkmark.png?updatedAt=1692136904048'
+          }
           alt='checkmark'
           className='h-5 w-5 cursor-pointer self-start pr-1 hover:scale-110'
         />

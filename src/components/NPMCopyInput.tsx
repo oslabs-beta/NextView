@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import copy from '../assets/copy.webp';
-import check from '../assets/checkmark.png';
+// import copy from '../assets/copy.webp';
+// import check from '../assets/checkmark.png';
 
 export const NPMCopyInput = () => {
   const [copyClicked, setCopyClicked] = useState(false);
@@ -19,14 +19,18 @@ export const NPMCopyInput = () => {
       </code>
       {!copyClicked && (
         <img
-          src={copy}
+          src={
+            'https://ik.imagekit.io/4ys419c44/copy.webp?updatedAt=1692136904249'
+          }
           alt='copy-logo'
           className='h-5 w-5 cursor-pointer hover:scale-110'
         />
       )}
       {copyClicked && (
         <img
-          src={check}
+          src={
+            'https://ik.imagekit.io/4ys419c44/checkmark.png?updatedAt=1692136904048'
+          }
           alt='checkmark'
           className='h-5 w-5 cursor-pointer hover:scale-110'
         />

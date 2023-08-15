@@ -1,5 +1,5 @@
 import Button from '../../components/Button';
-import overview from '../../assets/overview.webp';
+// import overview from '../../assets/overview.webp';
 import { ChangeEvent, useContext } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { UserContext } from '../../contexts/userContexts';
@@ -119,7 +119,9 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
       <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>
         <img
           loading='lazy'
-          src={overview}
+          src={
+            'https://ik.imagekit.io/4ys419c44/overview.webp?updatedAt=1692136903518'
+          }
           alt='nextview-logo'
           className='-z-10 drop-shadow-lg'
         ></img>

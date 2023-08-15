@@ -1,5 +1,5 @@
-import linkedin from '../../assets/linked-in.png';
-import github from '../../assets/github-mark.webp';
+// import linkedin from '../../assets/linked-in.png';
+// import github from '../../assets/github-mark.webp';
 
 interface ContributorProps {
   name: string;
@@ -29,14 +29,18 @@ const Contributor: React.FC<ContributorProps> = ({
           aria-label='linkedin'
         >
           <img
-            src={linkedin}
+            src={
+              'https://ik.imagekit.io/4ys419c44/linked-in.png?updatedAt=1692136904263'
+            }
             className='h-7 transition duration-200 hover:scale-105'
           />
         </a>
         <a href={githubLink} target='_blank' rel='noopener' aria-label='Github'>
           <img
             loading='lazy'
-            src={github}
+            src={
+              'https://ik.imagekit.io/4ys419c44/github-mark.webp?updatedAt=1692136904657'
+            }
             className='h-7 transition duration-200 hover:scale-105'
           />
         </a>
