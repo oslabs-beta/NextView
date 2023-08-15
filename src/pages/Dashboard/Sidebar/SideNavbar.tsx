@@ -5,7 +5,6 @@ import { IoLogOut } from 'react-icons/io5';
 // import { MdDashboardCustomize } from 'react-icons/md';
 import { useContext } from 'react';
 import { UserContext } from '../../../contexts/userContexts';
-// import logo from '../../../assets/NextView-logo-pink-transparent.webp';
 import handleLogOutHelper from '../../../../helpers/handleLogOutHelper';
 
 function SideNavBar() {

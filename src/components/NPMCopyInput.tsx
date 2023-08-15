@@ -1,6 +1,4 @@
 import { useState } from 'react';
-// import copy from '../assets/copy.webp';
-// import check from '../assets/checkmark.png';
 
 export const NPMCopyInput = () => {
   const [copyClicked, setCopyClicked] = useState(false);

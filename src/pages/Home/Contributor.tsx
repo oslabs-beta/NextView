@@ -1,6 +1,3 @@
-// import linkedin from '../../assets/linked-in.png';
-// import github from '../../assets/github-mark.webp';
-
 interface ContributorProps {
   name: string;
   image: string;

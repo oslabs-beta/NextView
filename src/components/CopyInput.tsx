@@ -1,7 +1,4 @@
 import { useState } from 'react';
-// import copy from '../assets/copy.webp';
-// import check from '../assets/checkmark.png';
-
 interface Props {
   text: string;
   children?: React.ReactNode;

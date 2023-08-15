@@ -1,16 +1,9 @@
-// import kinski from '../../assets/kinski.webp';
-// import eduardo from '../../assets/eduardo.webp';
-// import evram from '../../assets/evram.webp';
-// import scott from '../../assets/scott.webp';
-// import sooji from '../../assets/sooji.webp';
-// import hands from '../../assets/hands.webp';
 import Contributor from './Contributor';
 import { v4 as uuid } from 'uuid';
 
 const contributorsData = [
   {
     name: 'Eduardo Zayas',
-    // image: eduardo,
     image:
       'https://ik.imagekit.io/4ys419c44/eduardo.webp?updatedAt=1692136903252',
     linkedinLink: 'https://www.linkedin.com/in/eduardo-zayas-avila/',
@@ -18,7 +11,6 @@ const contributorsData = [
   },
   {
     name: 'Evram Dawd',
-    // image: evram,
     image:
       'https://ik.imagekit.io/4ys419c44/evram.webp?updatedAt=1692136903569',
     linkedinLink: 'https://www.linkedin.com/in/evram-d-905a3a2b/',
@@ -26,7 +18,6 @@ const contributorsData = [
   },
   {
     name: 'Kinski (Jiaxin) Wu',
-    // image: kinski,
     image:
       'https://ik.imagekit.io/4ys419c44/kinski.webp?updatedAt=1692136903472',
     linkedinLink: 'https://www.linkedin.com/in/kinskiwu/',
@@ -34,7 +25,6 @@ const contributorsData = [
   },
   {
     name: 'Scott Brasko',
-    // image: scott,
     image:
       'https://ik.imagekit.io/4ys419c44/scott.webp?updatedAt=1692136903515',
     linkedinLink: 'https://www.linkedin.com/in/scott-brasko/',
@@ -42,7 +32,6 @@ const contributorsData = [
   },
   {
     name: 'SooJi Kim',
-    // image: sooji,
     image:
       'https://ik.imagekit.io/4ys419c44/sooji.webp?updatedAt=1692136903364',
     linkedinLink: 'https://www.linkedin.com/in/sooji-suzy-kim/',
