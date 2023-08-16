@@ -1,6 +1,6 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react';
-
+import gzipPlugin from 'rollup-plugin-gzip';
 /*
  * Use this if we want to HMR the server, but lose global error handling/global 404
  * The Express app plugin. Specify the URL base path
@@ -30,6 +30,7 @@ export default defineConfig({
   plugins: [
     react(),
     splitVendorChunkPlugin(),
+    gzipPlugin(),
     // expressServerPlugin('/', server)
   ],
 });
