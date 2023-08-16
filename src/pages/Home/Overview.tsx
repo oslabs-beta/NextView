@@ -117,7 +117,6 @@ const Overview: React.FC<Props> = ({ setOpenSignupModal }) => {
       </div>
       <div className='relative col-[_span_8] hidden w-[1000px] md:flex '>
         <img
-          loading='lazy'
           src={
             'https://ik.imagekit.io/4ys419c44/overview.webp?updatedAt=1692136903518'
           }
