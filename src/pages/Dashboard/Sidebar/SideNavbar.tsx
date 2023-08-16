@@ -18,7 +18,6 @@ function SideNavBar() {
       <div className='flex w-12 flex-col'>
         <a href='/' className='transition duration-200 hover:scale-105'>
           <img
-            loading='lazy'
             src={
               'https://ik.imagekit.io/4ys419c44/NextView-logo-pink-transparent.webp?updatedAt=1692136903989'
             }
