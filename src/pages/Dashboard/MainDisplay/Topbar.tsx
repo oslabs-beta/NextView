@@ -6,12 +6,12 @@ import dayjs from 'dayjs';
 import Button from '../../../components/Button';
 import { CopyInput } from '../../../components/CopyInput';
 import { APIContext } from '../../../contexts/dashboardContexts';
-import { IoLogOut, IoMenu } from 'react-icons/io5';
-import { UserContext } from '../../../contexts/userContexts';
-import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../assets/NextView-logo-pink-transparent.png';
-import PageTab from '../Sidebar/PageTab';
-import { v4 as uuidv4 } from 'uuid';
+// import { IoLogOut, IoMenu } from 'react-icons/io5';
+// import { UserContext } from '../../../contexts/userContexts';
+// import { Link, useNavigate } from 'react-router-dom';
+// import logo from '../../../assets/NextView-logo-pink-transparent.webp';
+// import PageTab from '../Sidebar/PageTab';
+// import { v4 as uuidv4 } from 'uuid';
 
 const Topbar = ({ setStart, setEnd, overviewData }) => {
   const [startVal, setStartVal] = useState('');
@@ -31,30 +31,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
     setEnd(endVal);
   };
 
-  const pagesList = overviewData.pages;
-
-  const { setLoggedIn } = useContext(UserContext);
-  const navigate = useNavigate();
-
-  const handleLogOut = () => {
-    fetch('/user/logout', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'Application/JSON',
-      },
-    })
-      .then((res) => {
-        if (res.status === 204) {
-          localStorage.removeItem('user');
-          setLoggedIn(false);
-          navigate('/');
-          window.location.reload();
-        } else {
-          alert('Logout unsuccessful. Please retry.');
-        }
-      })
-      .catch((err) => console.log('Logout ERROR: ', err));
-  };
+  // const pagesList = overviewData.pages;
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -91,7 +68,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
           >
             {apiKey}
           </CopyInput>
-          <a
+          {/* <a
             href='/'
             className='min-w-[2.5rem] max-w-[2.5rem] transition duration-200 hover:scale-105 md:hidden'
           >
@@ -124,10 +101,7 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
             ) : (
               <></>
             )}
-          </div>
-          <a onClick={handleLogOut} className='md:hidden'>
-            <SideNavBarIcon icon={<IoLogOut size='28' color='black' />} />
-          </a>
+          </div> */}
         </div>
         <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
           <DateTimePicker
@@ -158,9 +132,5 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
     </LocalizationProvider>
   );
 };
-
-const SideNavBarIcon = ({ icon }: { icon: React.ReactElement }) => (
-  <div className='sideNavBar-icon'>{icon}</div>
-);
 
 export default Topbar;

@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-
+import gzipPlugin from 'rollup-plugin-gzip';
 /*
  * Use this if we want to HMR the server, but lose global error handling/global 404
  * The Express app plugin. Specify the URL base path
@@ -29,6 +29,24 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    gzipPlugin(),
     // expressServerPlugin('/', server)
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          // group all react-realted modules into a 'react' chunk
+          if (id.includes('node_modules/react')) {
+            return 'react';
+          }
+
+          // group all recharts-realted modules into a 'recharts' chunk
+          if (id.includes('node_modules/recharts')) {
+            return 'recharts';
+          }
+        },
+      },
+    },
+  },
 });
