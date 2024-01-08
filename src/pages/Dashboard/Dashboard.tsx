@@ -18,7 +18,12 @@ const Dashboard = () => {
   const [pageData, setPageData] = useState(null);
 
   // fallback to an empty object to avoid runtime errors if  context is null
-  const { apiKey, setApiKey } = useContext(APIContext) || {};
+  const { apiKey, setApiKey } = useContext(APIContext) || {
+    apiKey: null,
+    setApiKey: () => {
+      // No operation function, used as a placeholder
+    },
+  };
 
   // currently set by sidebar button, accessed by context
   const [page, setPage] = useState();
@@ -30,14 +35,16 @@ const Dashboard = () => {
       try {
         const response = await fetch('/apps');
         const data = await response.json();
-        setApiKey(data[0]['id']);
+        if (setApiKey) {
+          setApiKey(data[0]['id']);
+        }
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
     };
-    // Fetch the apps list only if apiKey is not yet set (null or undefined)
-    if (apiKey === null || apiKey === undefined) fetchAppsList();
-  });
+    // Fetch the apps list only if apiKey is not yet set (null)
+    if (!apiKey) fetchAppsList();
+  }, [apiKey, setApiKey]);
 
   // fetch overview data
   // only if user api key is set
