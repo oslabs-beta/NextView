@@ -12,7 +12,7 @@ interface Props {
 
 const Installation: React.FC<Props> = ({ setOpenSignupModal }) => {
   const { loggedIn, setUsername } = useContext(UserContext);
-  const { apiKey } = useContext(APIContext);
+  const { apiKey } = useContext(APIContext) || { apiKey: null };
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
