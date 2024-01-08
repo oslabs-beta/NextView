@@ -10,6 +10,8 @@ const Dashboard = () => {
   // initialized to the last 24 hrs
   const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
   const [end, setEnd] = useState(dayjs().toISOString());
+  // currently set by sidebar button, accessed by context
+  const [page, setPage] = useState<string | undefined>(undefined);
 
   // set in dashboard
   const [overviewData, setOverviewData] = useState(null);
@@ -24,9 +26,6 @@ const Dashboard = () => {
       // No operation function, used as a placeholder
     },
   };
-
-  // currently set by sidebar button, accessed by context
-  const [page, setPage] = useState();
 
   // fetch apps list and api key
   // will not run after api key is set
@@ -61,7 +60,7 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setOverviewData(data);
-        setPage();
+        setPage(undefined);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
@@ -73,7 +72,7 @@ const Dashboard = () => {
     <>
       {overviewData ? (
         <PageContext.Provider
-          value={{ page, setPage, start, end, apiKey, setPageData, pageData }}
+          value={{ page, setPage, start, setStart, end, setEnd }}
         >
           <div className='relative flex w-full bg-[#f6f8fa]'>
             <Sidebar overviewData={overviewData} />

@@ -7,7 +7,7 @@ import { PageContext } from '../../../../contexts/dashboardContexts';
 
 const OverviewDisplay = ({ overviewData }) => {
   const { setPage } = useContext(PageContext);
-  useEffect(() => setPage(), [setPage]);
+  useEffect(() => setPage(undefined), [setPage]);
 
   return (
     <div className='relative min-h-screen w-full overflow-auto overflow-y-auto'>

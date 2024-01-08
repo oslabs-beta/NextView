@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { APIContextType } from '../types/ContextTypes';
+import { APIContextType, PageContextType } from '../types/ContextTypes';
 
 interface Period {
   interval: number;
@@ -94,4 +94,4 @@ export const OverviewDataContext = createContext(null);
 
 export const APIContext = createContext<APIContextType | null>(null);
 
-export const PageContext = createContext(null);
+export const PageContext = createContext<PageContextType | null>(null);

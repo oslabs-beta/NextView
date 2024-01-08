@@ -15,7 +15,7 @@ function MainNavBar({ overviewData }) {
         <Button
           variant='secondary'
           className='mt-5 h-10 w-full bg-secondary text-base drop-shadow-sm'
-          onClick={() => setPage()}
+          onClick={() => setPage(undefined)}
         >
           Overview
         </Button>
