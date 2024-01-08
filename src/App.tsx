@@ -11,7 +11,7 @@ function App() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-  const [apiKey, setApiKey] = useState(null);
+  const [apiKey, setApiKey] = useState<string | null>(null);
 
   return (
     <>
