@@ -17,8 +17,8 @@ const Dashboard = () => {
   // set in pageDisplay
   const [pageData, setPageData] = useState(null);
 
-  // initialized to null in context, set to user key by fetchAppsList()
-  const { apiKey, setApiKey } = useContext(APIContext);
+  // fallback to an empty object to avoid runtime errors if  context is null
+  const { apiKey, setApiKey } = useContext(APIContext) || {};
 
   // currently set by sidebar button, accessed by context
   const [page, setPage] = useState();
@@ -35,7 +35,8 @@ const Dashboard = () => {
         console.log('Data fetching failed', error);
       }
     };
-    if (!apiKey) fetchAppsList();
+    // Fetch the apps list only if apiKey is not yet set (null or undefined)
+    if (apiKey === null || apiKey === undefined) fetchAppsList();
   });
 
   // fetch overview data
