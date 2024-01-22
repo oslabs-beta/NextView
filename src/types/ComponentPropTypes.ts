@@ -2,7 +2,7 @@ interface Page {
   api_id: string;
   created_on: string;
   page: string;
-  _id: number;
+  _id: string;
 }
 
 interface PageAvgDuration {
