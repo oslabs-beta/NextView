@@ -10,8 +10,13 @@ import {
 } from '../../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../../../../components/Spinner';
+import { OverviewDataType } from '../../../../types/ComponentPropTypes';
 
-const PageDisplay = ({ overviewData }) => {
+interface PageDisplayProps {
+  overviewData: OverviewDataType;
+}
+
+const PageDisplay: React.FC<PageDisplayProps> = ({ overviewData }) => {
   const { id } = useParams();
   const { pageData, setPageData, start, end, page, setPage } =
     useContext(PageContext);
