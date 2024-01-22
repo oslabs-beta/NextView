@@ -11,6 +11,7 @@ import {
 interface MainDisplayProps {
   overviewData: OverviewDataType;
   pageData: PageDataType;
+  setPageData: (value: PageDataType) => void;
   setStart: (value: string) => void;
   setEnd: (value: string) => void;
 }
@@ -18,6 +19,7 @@ interface MainDisplayProps {
 const MainDisplay: React.FC<MainDisplayProps> = ({
   overviewData,
   pageData,
+  setPageData,
   setStart,
   setEnd,
 }) => {
@@ -31,7 +33,13 @@ const MainDisplay: React.FC<MainDisplayProps> = ({
         />
         <Route
           path='page/:id'
-          element={<PageDisplay overviewData={overviewData} />}
+          element={
+            <PageDisplay
+              overviewData={overviewData}
+              pageData={pageData}
+              setPageData={setPageData}
+            />
+          }
         />
         <Route path='/page/:id/*' element={<NotFound />} />
       </Routes>
