@@ -4,8 +4,13 @@ import BarGraph from './BarGraph';
 import LineChart from './LineChart';
 import { useContext, useEffect } from 'react';
 import { PageContext } from '../../../../contexts/dashboardContexts';
+import { OverviewDataType } from '../../../../types/ComponentPropTypes';
 
-const OverviewDisplay = ({ overviewData }) => {
+interface OverviewDisplayProps {
+  overviewData: OverviewDataType;
+}
+
+const OverviewDisplay: React.FC<OverviewDisplayProps> = ({ overviewData }) => {
   const { setPage } = useContext(PageContext) || {
     setPage: () => {
       // No operation function, used as a placeholder
