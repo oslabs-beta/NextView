@@ -31,3 +31,24 @@ export interface OverviewDataType {
   kindAvgDurations: KindAvgDuration[];
   kindAvgDurationsOverTime: KindAvgDurationsOverTime[];
 }
+
+interface TimeSeriesData {
+  period: string;
+  'Avg. duration (ms)'?: number;
+}
+
+interface OverallPageDataItem {
+  'Avg. duration (ms)': number;
+  Kind: string;
+  Name: string;
+  'Total no. of executions': string;
+  'Total no. of traces': string;
+}
+
+export interface PageDataType {
+  overallAvg: number;
+  traceCount: number;
+  avgPageDurationsOverTime: TimeSeriesData[];
+  avgActionDurationsOverTime: TimeSeriesData[];
+  overallPageData: OverallPageDataItem[];
+}
