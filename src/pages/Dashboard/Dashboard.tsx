@@ -4,6 +4,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
 import { APIContext, PageContext } from '../../contexts/dashboardContexts';
 import dayjs from 'dayjs';
+import { OverviewDataType, PageDataType } from '../../types/ComponentPropTypes';
 
 const Dashboard = () => {
   // values used in fetch requests, setters used in topbar
@@ -14,10 +15,23 @@ const Dashboard = () => {
   const [page, setPage] = useState<string | undefined>(undefined);
 
   // set in dashboard
-  const [overviewData, setOverviewData] = useState(null);
+  const [overviewData, setOverviewData] = useState<OverviewDataType>({
+    pages: [],
+    overallAvg: 0,
+    traceCount: 0,
+    pageAvgDurations: [],
+    kindAvgDurations: [],
+    kindAvgDurationsOverTime: [],
+  });
 
   // set in pageDisplay
-  const [pageData, setPageData] = useState(null);
+  const [pageData, setPageData] = useState<PageDataType>({
+    overallAvg: 0,
+    traceCount: 0,
+    avgPageDurationsOverTime: [],
+    avgActionDurationsOverTime: [],
+    overallPageData: [],
+  });
 
   // fallback to an empty object to avoid runtime errors if  context is null
   const { apiKey, setApiKey } = useContext(APIContext) || {
@@ -79,6 +93,7 @@ const Dashboard = () => {
             <MainDisplay
               overviewData={overviewData}
               pageData={pageData}
+              setPageData={setPageData}
               setStart={setStart}
               setEnd={setEnd}
             />
