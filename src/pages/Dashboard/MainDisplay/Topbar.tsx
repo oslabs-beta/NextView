@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import Button from '../../../components/Button';
 import { CopyInput } from '../../../components/CopyInput';
 import { APIContext } from '../../../contexts/dashboardContexts';
+import { OverviewDataType } from '../../../types/ComponentPropTypes';
 // import { IoLogOut, IoMenu } from 'react-icons/io5';
 // import { UserContext } from '../../../contexts/userContexts';
 // import { Link, useNavigate } from 'react-router-dom';
@@ -13,7 +14,13 @@ import { APIContext } from '../../../contexts/dashboardContexts';
 // import PageTab from '../Sidebar/PageTab';
 // import { v4 as uuidv4 } from 'uuid';
 
-const Topbar = ({ setStart, setEnd, overviewData }) => {
+interface TopbarProps {
+  setStart: (value: string) => void;
+  setEnd: (value: string) => void;
+  overviewData: OverviewDataType;
+}
+
+const Topbar: React.FC<TopbarProps> = ({ setStart, setEnd, overviewData }) => {
   const [startVal, setStartVal] = useState('');
   const [endVal, setEndVal] = useState('');
   const [dropdown, setDropdown] = useState(false);
