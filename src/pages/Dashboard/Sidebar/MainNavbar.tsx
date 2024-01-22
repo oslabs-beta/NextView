@@ -4,8 +4,12 @@ import PageTab from './PageTab';
 import Button from '../../../components/Button';
 import { useContext } from 'react';
 import { PageContext } from '../../../contexts/dashboardContexts';
+import { OverviewDataType } from '../../../types/ComponentPropTypes';
+interface MainNavBarProps {
+  overviewData: OverviewDataType;
+}
 
-function MainNavBar({ overviewData }) {
+const MainNavBar: React.FC<MainNavBarProps> = ({ overviewData }) => {
   const pagesList = overviewData.pages;
   const { setPage } = useContext(PageContext) || {
     setPage: () => {
@@ -35,6 +39,6 @@ function MainNavBar({ overviewData }) {
         ))}
     </div>
   );
-}
+};
 
 export default MainNavBar;
