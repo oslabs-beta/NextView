@@ -1,6 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
+import { OverallPageDataItem } from '../../../../types/ComponentPropTypes';
 
-const Table = ({ overallPageData }) => {
+interface TableProps {
+  overallPageData: OverallPageDataItem[];
+}
+
+const Table: React.FC<TableProps> = ({ overallPageData }) => {
   const tableData = [];
   for (let i = 0; i < overallPageData.length; i++) {
     tableData.push(

@@ -37,7 +37,7 @@ export interface TimeSeriesData {
   'Avg. duration (ms)'?: number;
 }
 
-interface OverallPageDataItem {
+export interface OverallPageDataItem {
   'Avg. duration (ms)': number;
   Kind: string;
   Name: string;
