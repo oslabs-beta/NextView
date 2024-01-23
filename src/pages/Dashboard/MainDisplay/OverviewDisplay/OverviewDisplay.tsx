@@ -11,11 +11,7 @@ interface OverviewDisplayProps {
 }
 
 const OverviewDisplay: React.FC<OverviewDisplayProps> = ({ overviewData }) => {
-  const { setPage } = useContext(PageContext) || {
-    setPage: () => {
-      // No operation function, used as a placeholder
-    },
-  };
+  const { setPage } = useContext(PageContext);
 
   useEffect(() => {
     if (setPage) {
