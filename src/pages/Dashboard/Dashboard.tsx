@@ -4,7 +4,11 @@ import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
 import { APIContext, PageContext } from '../../contexts/dashboardContexts';
 import dayjs from 'dayjs';
-import { OverviewDataType, PageDataType } from '../../types/ComponentPropTypes';
+import {
+  OverviewDataType,
+  Page,
+  PageDataType,
+} from '../../types/ComponentPropTypes';
 
 const Dashboard = () => {
   // values used in fetch requests, setters used in topbar
@@ -12,7 +16,7 @@ const Dashboard = () => {
   const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
   const [end, setEnd] = useState(dayjs().toISOString());
   // currently set by sidebar button, accessed by context
-  const [page, setPage] = useState<string | undefined>(undefined);
+  const [page, setPage] = useState<Page | undefined>(undefined);
 
   // set in dashboard
   const [overviewData, setOverviewData] = useState<OverviewDataType>({
