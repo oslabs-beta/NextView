@@ -1,6 +1,6 @@
 import Button from '../../../components/Button';
 import { UserContext } from '../../../contexts/userContexts';
-import React, { useContext, ChangeEvent, useCallback } from 'react';
+import React, { useContext, ChangeEvent, FormEvent, useCallback } from 'react';
 
 interface AuthFormProps {
   usernameInputId: string;
