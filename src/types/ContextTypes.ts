@@ -3,9 +3,16 @@ export interface APIContextType {
   setApiKey: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
+interface Page {
+  api_id: string;
+  created_on: string;
+  page: string;
+  _id: string;
+}
+
 export interface PageContextType {
-  page: string | undefined;
-  setPage: React.Dispatch<React.SetStateAction<string | undefined>>;
+  page: Page | undefined;
+  setPage: React.Dispatch<React.SetStateAction<Page | undefined>>;
   start: string;
   setStart: React.Dispatch<React.SetStateAction<string>>;
   end: string;
