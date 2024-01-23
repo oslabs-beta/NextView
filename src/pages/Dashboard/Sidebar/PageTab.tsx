@@ -1,9 +1,14 @@
 import { NavLink } from 'react-router-dom';
 import { PageContext } from '../../../contexts/dashboardContexts';
 import { useContext } from 'react';
+import { Page } from '../../../types/ComponentPropTypes';
 
-function PageTab({ pageSelection }) {
-  const { page, setPage } = useContext(PageContext);
+interface PageTabProps {
+  pageSelection: Page;
+}
+
+const PageTab: React.FC<PageTabProps> = ({ pageSelection }) => {
+  const { setPage } = useContext(PageContext);
 
   return (
     <NavLink
@@ -18,6 +23,6 @@ function PageTab({ pageSelection }) {
       {pageSelection.page}
     </NavLink>
   );
-}
+};
 
 export default PageTab;

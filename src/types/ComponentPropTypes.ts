@@ -1,4 +1,4 @@
-interface Page {
+export interface Page {
   api_id: string;
   created_on: string;
   page: string;
