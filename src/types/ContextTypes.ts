@@ -3,7 +3,7 @@ export interface APIContextType {
   setApiKey: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-interface Page {
+export interface Page {
   api_id: string;
   created_on: string;
   page: string;
