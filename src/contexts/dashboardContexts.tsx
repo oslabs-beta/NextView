@@ -94,4 +94,21 @@ export const OverviewDataContext = createContext(null);
 
 export const APIContext = createContext<APIContextType | null>(null);
 
-export const PageContext = createContext<PageContextType | null>(null);
+const defaultPageContextValue: PageContextType = {
+  page: undefined,
+  setPage: () => {
+    // No operation function, used as a placeholder
+  },
+  start: '',
+  setStart: () => {
+    // No operation function, used as a placeholder
+  },
+  end: '',
+  setEnd: () => {
+    // No operation function, used as a placeholder
+  },
+};
+
+export const PageContext = createContext<PageContextType>(
+  defaultPageContextValue,
+);
