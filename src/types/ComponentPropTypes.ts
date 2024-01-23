@@ -32,7 +32,7 @@ export interface OverviewDataType {
   kindAvgDurationsOverTime: KindAvgDurationsOverTime[];
 }
 
-interface TimeSeriesData {
+export interface TimeSeriesData {
   period: string;
   'Avg. duration (ms)'?: number;
 }
