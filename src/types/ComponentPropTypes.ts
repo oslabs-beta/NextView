@@ -16,7 +16,7 @@ export interface KindAvgDuration {
   ms_avg: number;
 }
 
-interface KindAvgDurationsOverTime {
+export interface KindAvgDurationsOverTime {
   period: string;
   client: number;
   internal: number;
