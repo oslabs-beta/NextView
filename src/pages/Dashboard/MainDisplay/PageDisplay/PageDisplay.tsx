@@ -30,7 +30,7 @@ const PageDisplay: React.FC<PageDisplayProps> = ({
 
   const { start, end, page, setPage } = useContext(PageContext);
 
-  const { apiKey } = useContext(APIContext) || { apiKey: null };
+  const { apiKey } = useContext(APIContext);
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {

@@ -25,7 +25,7 @@ const Topbar: React.FC<TopbarProps> = ({ setStart, setEnd, overviewData }) => {
   const [endVal, setEndVal] = useState('');
   const [dropdown, setDropdown] = useState(false);
 
-  const { apiKey } = useContext(APIContext) || { apiKey: null };
+  const { apiKey } = useContext(APIContext);
 
   // Set local variables (startVal, endVal)
   const handleDateChange = (date, setDate) => {

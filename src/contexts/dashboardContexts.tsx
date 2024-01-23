@@ -92,7 +92,14 @@ export const EndContext = createContext<EndContextType | null>(null);
 
 export const OverviewDataContext = createContext(null);
 
-export const APIContext = createContext<APIContextType | null>(null);
+const defaultAPIContextValue: APIContextType = {
+  apiKey: null,
+  setApiKey: () => {
+    // No operation function, used as a placeholder
+  },
+};
+
+export const APIContext = createContext<APIContextType>(defaultAPIContextValue);
 
 const defaultPageContextValue: PageContextType = {
   page: undefined,

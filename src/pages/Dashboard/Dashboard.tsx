@@ -34,12 +34,7 @@ const Dashboard = () => {
   });
 
   // fallback to an empty object to avoid runtime errors if  context is null
-  const { apiKey, setApiKey } = useContext(APIContext) || {
-    apiKey: null,
-    setApiKey: () => {
-      // No operation function, used as a placeholder
-    },
-  };
+  const { apiKey, setApiKey } = useContext(APIContext);
 
   // fetch apps list and api key
   // will not run after api key is set
