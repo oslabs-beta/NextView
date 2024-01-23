@@ -5,7 +5,7 @@ export interface Page {
   _id: string;
 }
 
-interface PageAvgDuration {
+export interface PageAvgDuration {
   page: string;
   ms_avg: number;
 }
