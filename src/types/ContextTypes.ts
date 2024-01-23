@@ -18,3 +18,12 @@ export interface PageContextType {
   end: string;
   setEnd: React.Dispatch<React.SetStateAction<string>>;
 }
+
+export interface UserContextType {
+  username: string;
+  setUsername: (value: string) => void;
+  password: string;
+  setPassword: (value: string) => void;
+  loggedIn: boolean;
+  setLoggedIn: (value: boolean) => void;
+}
