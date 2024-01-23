@@ -10,7 +10,7 @@ export interface PageAvgDuration {
   ms_avg: number;
 }
 
-interface KindAvgDuration {
+export interface KindAvgDuration {
   kind: string;
   kind_id: number;
   ms_avg: number;
