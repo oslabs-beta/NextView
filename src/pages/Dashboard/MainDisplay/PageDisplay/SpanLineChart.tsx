@@ -9,8 +9,15 @@ import {
   Label,
   ResponsiveContainer,
 } from 'recharts';
+import { TimeSeriesData } from '../../../../types/ComponentPropTypes';
 
-const SpanLineChart = ({ avgActionDurationsOverTime }) => {
+interface SpanLineChartProps {
+  avgActionDurationsOverTime: TimeSeriesData[];
+}
+
+const SpanLineChart: React.FC<SpanLineChartProps> = ({
+  avgActionDurationsOverTime,
+}) => {
   const colors = [
     '#006CD1',
     '#f95d6a',

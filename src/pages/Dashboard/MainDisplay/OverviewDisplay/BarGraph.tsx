@@ -8,8 +8,13 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { PageAvgDuration } from '../../../../types/ComponentPropTypes';
 
-const BarGraph = ({ data }) => {
+interface BarGraphProps {
+  data: PageAvgDuration[];
+}
+
+const BarGraph: React.FC<BarGraphProps> = ({ data }) => {
   const num = data.length;
 
   return (

@@ -4,24 +4,41 @@ import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
 import { APIContext, PageContext } from '../../contexts/dashboardContexts';
 import dayjs from 'dayjs';
+import {
+  OverviewDataType,
+  Page,
+  PageDataType,
+} from '../../types/ComponentPropTypes';
 
 const Dashboard = () => {
   // values used in fetch requests, setters used in topbar
   // initialized to the last 24 hrs
   const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
   const [end, setEnd] = useState(dayjs().toISOString());
+  // currently set by sidebar button, accessed by context
+  const [page, setPage] = useState<Page | undefined>(undefined);
 
   // set in dashboard
-  const [overviewData, setOverviewData] = useState(null);
+  const [overviewData, setOverviewData] = useState<OverviewDataType>({
+    pages: [],
+    overallAvg: 0,
+    traceCount: 0,
+    pageAvgDurations: [],
+    kindAvgDurations: [],
+    kindAvgDurationsOverTime: [],
+  });
 
   // set in pageDisplay
-  const [pageData, setPageData] = useState(null);
+  const [pageData, setPageData] = useState<PageDataType>({
+    overallAvg: 0,
+    traceCount: 0,
+    avgPageDurationsOverTime: [],
+    avgActionDurationsOverTime: [],
+    overallPageData: [],
+  });
 
-  // initialized to null in context, set to user key by fetchAppsList()
+  // fallback to an empty object to avoid runtime errors if  context is null
   const { apiKey, setApiKey } = useContext(APIContext);
-
-  // currently set by sidebar button, accessed by context
-  const [page, setPage] = useState();
 
   // fetch apps list and api key
   // will not run after api key is set
@@ -30,13 +47,16 @@ const Dashboard = () => {
       try {
         const response = await fetch('/apps');
         const data = await response.json();
-        setApiKey(data[0]['id']);
+        if (setApiKey) {
+          setApiKey(data[0]['id']);
+        }
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
     };
+    // Fetch the apps list only if apiKey is not yet set (null)
     if (!apiKey) fetchAppsList();
-  });
+  }, [apiKey, setApiKey]);
 
   // fetch overview data
   // only if user api key is set
@@ -53,7 +73,7 @@ const Dashboard = () => {
         );
         const data = await response.json();
         setOverviewData(data);
-        setPage();
+        setPage(undefined);
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
@@ -65,13 +85,14 @@ const Dashboard = () => {
     <>
       {overviewData ? (
         <PageContext.Provider
-          value={{ page, setPage, start, end, apiKey, setPageData, pageData }}
+          value={{ page, setPage, start, setStart, end, setEnd }}
         >
           <div className='relative flex w-full bg-[#f6f8fa]'>
             <Sidebar overviewData={overviewData} />
             <MainDisplay
               overviewData={overviewData}
               pageData={pageData}
+              setPageData={setPageData}
               setStart={setStart}
               setEnd={setEnd}
             />

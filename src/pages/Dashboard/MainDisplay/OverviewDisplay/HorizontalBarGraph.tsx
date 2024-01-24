@@ -8,10 +8,15 @@ import {
   Cell,
   ResponsiveContainer,
 } from 'recharts';
+import { KindAvgDuration } from '../../../../types/ComponentPropTypes';
 
 const barColors = ['#003f5c', '#bc5090', '#6996e4'];
 
-const HorizontalBarGragh = ({ data }) => {
+interface HorizontalBarGraghProps {
+  data: KindAvgDuration[];
+}
+
+const HorizontalBarGragh: React.FC<HorizontalBarGraghProps> = ({ data }) => {
   return (
     <>
       <p className='absolute left-5 font-bold'>Average Span Duration</p>

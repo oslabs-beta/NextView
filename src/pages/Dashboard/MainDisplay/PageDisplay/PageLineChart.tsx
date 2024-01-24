@@ -9,8 +9,15 @@ import {
   Label,
   ResponsiveContainer,
 } from 'recharts';
+import { TimeSeriesData } from '../../../../types/ComponentPropTypes';
 
-const PageLineChart = ({ avgPageDurationsOverTime }) => {
+interface PageLineChartProps {
+  avgPageDurationsOverTime: TimeSeriesData[];
+}
+
+const PageLineChart: React.FC<PageLineChartProps> = ({
+  avgPageDurationsOverTime,
+}) => {
   return (
     <>
       <p className='absolute left-5 top-0 pt-5 font-bold'>

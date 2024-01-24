@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import { APIContextType, PageContextType } from '../types/ContextTypes';
 
 interface Period {
   interval: number;
@@ -91,6 +92,30 @@ export const EndContext = createContext<EndContextType | null>(null);
 
 export const OverviewDataContext = createContext(null);
 
-export const APIContext = createContext(null);
+const defaultAPIContextValue: APIContextType = {
+  apiKey: null,
+  setApiKey: () => {
+    // No operation function, used as a placeholder
+  },
+};
 
-export const PageContext = createContext(null);
+export const APIContext = createContext<APIContextType>(defaultAPIContextValue);
+
+const defaultPageContextValue: PageContextType = {
+  page: undefined,
+  setPage: () => {
+    // No operation function, used as a placeholder
+  },
+  start: '',
+  setStart: () => {
+    // No operation function, used as a placeholder
+  },
+  end: '',
+  setEnd: () => {
+    // No operation function, used as a placeholder
+  },
+};
+
+export const PageContext = createContext<PageContextType>(
+  defaultPageContextValue,
+);

@@ -4,10 +4,19 @@ import PageTab from './PageTab';
 import Button from '../../../components/Button';
 import { useContext } from 'react';
 import { PageContext } from '../../../contexts/dashboardContexts';
+import { OverviewDataType } from '../../../types/ComponentPropTypes';
 
-function MainNavBar({ overviewData }) {
+interface MainNavBarProps {
+  overviewData: OverviewDataType;
+}
+
+const MainNavBar: React.FC<MainNavBarProps> = ({ overviewData }) => {
   const pagesList = overviewData.pages;
-  const { setPage } = useContext(PageContext);
+  const { setPage } = useContext(PageContext) || {
+    setPage: () => {
+      // No operation function, used as a placeholder
+    },
+  };
 
   return (
     <div className='flex h-screen min-w-[200px] flex-col items-center border-l border-r bg-white'>
@@ -15,7 +24,7 @@ function MainNavBar({ overviewData }) {
         <Button
           variant='secondary'
           className='mt-5 h-10 w-full bg-secondary text-base drop-shadow-sm'
-          onClick={() => setPage()}
+          onClick={() => setPage(undefined)}
         >
           Overview
         </Button>
@@ -31,6 +40,6 @@ function MainNavBar({ overviewData }) {
         ))}
     </div>
   );
-}
+};
 
 export default MainNavBar;

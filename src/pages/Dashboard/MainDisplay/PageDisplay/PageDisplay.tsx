@@ -4,16 +4,36 @@ import PageLineChart from './PageLineChart';
 import SpanLineChart from './SpanLineChart';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { PageContext } from '../../../../contexts/dashboardContexts';
+import {
+  PageContext,
+  APIContext,
+} from '../../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../../../../components/Spinner';
+import {
+  OverviewDataType,
+  PageDataType,
+} from '../../../../types/ComponentPropTypes';
 
-const PageDisplay = ({ overviewData }) => {
+interface PageDisplayProps {
+  overviewData: OverviewDataType;
+  pageData: PageDataType;
+  setPageData: (value: PageDataType) => void;
+}
+
+const PageDisplay: React.FC<PageDisplayProps> = ({
+  overviewData,
+  pageData,
+  setPageData,
+}) => {
   const { id } = useParams();
-  const { pageData, setPageData, apiKey, start, end, page, setPage } =
-    useContext(PageContext);
+
+  const { start, end, page, setPage } = useContext(PageContext);
+
+  const { apiKey } = useContext(APIContext);
 
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     setLoading(true);
 

@@ -1,0 +1,54 @@
+export interface Page {
+  api_id: string;
+  created_on: string;
+  page: string;
+  _id: string;
+}
+
+export interface PageAvgDuration {
+  page: string;
+  ms_avg: number;
+}
+
+export interface KindAvgDuration {
+  kind: string;
+  kind_id: number;
+  ms_avg: number;
+}
+
+export interface KindAvgDurationsOverTime {
+  period: string;
+  client: number;
+  internal: number;
+  server: number;
+}
+
+export interface OverviewDataType {
+  pages: Page[];
+  overallAvg: number;
+  traceCount: number;
+  pageAvgDurations: PageAvgDuration[];
+  kindAvgDurations: KindAvgDuration[];
+  kindAvgDurationsOverTime: KindAvgDurationsOverTime[];
+}
+
+export interface TimeSeriesData {
+  period: string;
+  'Avg. duration (ms)'?: number;
+}
+
+export interface OverallPageDataItem {
+  'Avg. duration (ms)': number;
+  Kind: string;
+  Name: string;
+  'Total no. of executions': string;
+  'Total no. of traces': string;
+}
+
+export interface PageDataType {
+  overallAvg: number;
+  traceCount: number;
+  avgPageDurationsOverTime: TimeSeriesData[];
+  avgActionDurationsOverTime: TimeSeriesData[];
+  overallPageData: OverallPageDataItem[];
+}

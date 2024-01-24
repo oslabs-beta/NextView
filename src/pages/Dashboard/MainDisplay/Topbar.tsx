@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import Button from '../../../components/Button';
 import { CopyInput } from '../../../components/CopyInput';
 import { APIContext } from '../../../contexts/dashboardContexts';
+import { OverviewDataType } from '../../../types/ComponentPropTypes';
 // import { IoLogOut, IoMenu } from 'react-icons/io5';
 // import { UserContext } from '../../../contexts/userContexts';
 // import { Link, useNavigate } from 'react-router-dom';
@@ -13,7 +14,13 @@ import { APIContext } from '../../../contexts/dashboardContexts';
 // import PageTab from '../Sidebar/PageTab';
 // import { v4 as uuidv4 } from 'uuid';
 
-const Topbar = ({ setStart, setEnd, overviewData }) => {
+interface TopbarProps {
+  setStart: (value: string) => void;
+  setEnd: (value: string) => void;
+  overviewData: OverviewDataType;
+}
+
+const Topbar: React.FC<TopbarProps> = ({ setStart, setEnd, overviewData }) => {
   const [startVal, setStartVal] = useState('');
   const [endVal, setEndVal] = useState('');
   const [dropdown, setDropdown] = useState(false);
@@ -58,17 +65,18 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className='flex h-16 w-full flex-row items-center justify-between border-b bg-[#f6f8fa]'>
-        <div className='ml-4 flex min-w-0 items-center gap-2'>
-          <span className='hidden whitespace-nowrap text-sm font-semibold xl:flex'>
-            API Key:
-          </span>
-          <CopyInput
-            text={apiKey}
-            className='hidden w-32 bg-white md:flex lg:w-auto'
-          >
-            {apiKey}
-          </CopyInput>
-          {/* <a
+        {apiKey && (
+          <div className='ml-4 flex min-w-0 items-center gap-2'>
+            <span className='hidden whitespace-nowrap text-sm font-semibold xl:flex'>
+              API Key:
+            </span>
+            <CopyInput
+              text={apiKey}
+              className='hidden w-32 bg-white md:flex lg:w-auto'
+            >
+              {apiKey}
+            </CopyInput>
+            {/* <a
             href='/'
             className='min-w-[2.5rem] max-w-[2.5rem] transition duration-200 hover:scale-105 md:hidden'
           >
@@ -102,7 +110,8 @@ const Topbar = ({ setStart, setEnd, overviewData }) => {
               <></>
             )}
           </div> */}
-        </div>
+          </div>
+        )}
         <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
           <DateTimePicker
             defaultValue={dayjs().subtract(1, 'day')}

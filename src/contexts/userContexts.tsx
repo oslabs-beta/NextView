@@ -1,12 +1,21 @@
 import { createContext } from 'react';
+import { UserContextType } from '../types/ContextTypes';
 
-interface UserContextType {
-  username: string;
-  setUsername: (value: string) => void;
-  password: string;
-  setPassword: (value: string) => void;
-  loggedIn: boolean;
-  setLoggedIn: (value: boolean) => void;
-}
+const defaultUserContextValue: UserContextType = {
+  username: '',
+  setUsername: () => {
+    // No operation function, used as a placeholder
+  },
+  password: '',
+  setPassword: () => {
+    // No operation function, used as a placeholder
+  },
+  loggedIn: false,
+  setLoggedIn: () => {
+    // No operation function, used as a placeholder
+  },
+};
 
-export const UserContext = createContext<UserContextType | null>(null);
+export const UserContext = createContext<UserContextType>(
+  defaultUserContextValue,
+);

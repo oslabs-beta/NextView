@@ -8,8 +8,13 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import { KindAvgDurationsOverTime } from '../../../../types/ComponentPropTypes';
 
-const LineChartComponent = ({ data }) => {
+interface LineChartComponentProps {
+  data: KindAvgDurationsOverTime[];
+}
+
+const LineChartComponent: React.FC<LineChartComponentProps> = ({ data }) => {
   return (
     <>
       <p className='absolute left-5 font-bold'>

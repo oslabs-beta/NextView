@@ -1,7 +1,12 @@
 import Box from '../../../../components/Box';
 import { v4 as uuidv4 } from 'uuid';
 
-const Textbox = ({ traceCount, overallAvg }) => {
+interface TextboxProps {
+  traceCount: number;
+  overallAvg: number;
+}
+
+const Textbox: React.FC<TextboxProps> = ({ traceCount, overallAvg }) => {
   const boxData = [
     { title: 'Average Page Load Duration', data: overallAvg },
     { title: 'Total No. of Traces', data: traceCount },
