@@ -3,7 +3,7 @@ import Table from './Table';
 import PageLineChart from './PageLineChart';
 import SpanLineChart from './SpanLineChart';
 import { useParams } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useCallback } from 'react';
 import {
   PageContext,
   APIContext,
@@ -27,44 +27,32 @@ const PageDisplay: React.FC<PageDisplayProps> = ({
   setPageData,
 }) => {
   const { id } = useParams();
-
   const { start, end, page, setPage } = useContext(PageContext);
-
   const { apiKey } = useContext(APIContext);
-
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
-
-    const pageId = id;
-
-    for (let i = 0; i < overviewData.pages.length; i++) {
-      if (overviewData.pages[i]._id == pageId) {
-        setPage(overviewData.pages[i]);
-        break;
-      }
-    }
-
-    const fetchPageData = async () => {
-      try {
-        const response = await fetch(
-          `/apps/${apiKey}/pages/${pageId}/data?start=${start}&end=${end}`,
-          {
-            headers: {
-              'User-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
-            },
+  // Memoized fetchPageData
+  const fetchPageData = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `/apps/${apiKey}/pages/${id}/data?start=${start}&end=${end}`,
+        {
+          headers: {
+            'User-Timezone': Intl.DateTimeFormat().resolvedOptions().timeZone,
           },
-        );
-        const data = await response.json();
-        setPageData(data);
-        setLoading(false);
-      } catch (error: unknown) {
-        console.log('Data fetching failed', error);
-      }
-    };
-    if (apiKey) fetchPageData();
-  }, [id, start, end]);
+        },
+      );
+      const data = await response.json();
+      setPageData(data);
+      setLoading(false);
+    } catch (error: unknown) {
+      console.log('Data fetching failed', error);
+    }
+  }, [apiKey, id, start, end, setPageData]);
+
+  useEffect(() => {
+    fetchPageData();
+  }, [fetchPageData]);
 
   return loading ? (
     <>
