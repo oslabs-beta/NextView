@@ -7,12 +7,6 @@ import Button from '../../../components/Button';
 import { CopyInput } from '../../../components/CopyInput';
 import { APIContext } from '../../../contexts/dashboardContexts';
 import { OverviewDataType } from '../../../types/ComponentPropTypes';
-// import { IoLogOut, IoMenu } from 'react-icons/io5';
-// import { UserContext } from '../../../contexts/userContexts';
-// import { Link, useNavigate } from 'react-router-dom';
-// import logo from '../../../assets/NextView-logo-pink-transparent.webp';
-// import PageTab from '../Sidebar/PageTab';
-// import { v4 as uuidv4 } from 'uuid';
 
 interface TopbarProps {
   setStart: (value: string) => void;
@@ -20,7 +14,7 @@ interface TopbarProps {
   overviewData: OverviewDataType;
 }
 
-const Topbar: React.FC<TopbarProps> = ({ setStart, setEnd, overviewData }) => {
+const Topbar: React.FC<TopbarProps> = ({ setStart, setEnd }) => {
   const [startVal, setStartVal] = useState('');
   const [endVal, setEndVal] = useState('');
   const [dropdown, setDropdown] = useState(false);
@@ -76,40 +70,6 @@ const Topbar: React.FC<TopbarProps> = ({ setStart, setEnd, overviewData }) => {
             >
               {apiKey}
             </CopyInput>
-            {/* <a
-            href='/'
-            className='min-w-[2.5rem] max-w-[2.5rem] transition duration-200 hover:scale-105 md:hidden'
-          >
-            <img src={logo} alt='nextview-logo' className=''></img>
-          </a>
-          <div className='pl-2 sm:hidden'>
-            <IoMenu
-              size='28'
-              className='cursor-pointer'
-              onClick={() => setDropdown(true)}
-            />
-            {dropdown ? (
-              <div
-                ref={wrapperRef}
-                className='absolute z-50 flex flex-col border bg-white'
-              >
-                <Button
-                  variant='secondary'
-                  className='mt-5 h-10 w-[90%] bg-secondary text-base drop-shadow-sm'
-                >
-                  <Link to='/dashboard' className=''>
-                    Dashboard
-                  </Link>
-                </Button>
-                <span className='w-11/12 border-b p-2 font-bold'>Pages</span>
-                {pagesList.toReversed().map((page) => (
-                  <PageTab key={uuidv4()} page={page} />
-                ))}
-              </div>
-            ) : (
-              <></>
-            )}
-          </div> */}
           </div>
         )}
         <div className='flex flex-shrink-[25] items-center justify-end gap-x-3 px-4'>
