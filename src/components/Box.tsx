@@ -3,7 +3,7 @@ interface BoxProps {
   data: number;
 }
 
-const Box = ({ title, data }: BoxProps) => {
+const Box: React.FC<BoxProps> = ({ title, data }) => {
   return (
     <div className='flex h-32 w-40 flex-col justify-evenly rounded-xl bg-white p-5 drop-shadow sm:w-60'>
       <span className='textTitle'>{title}</span>
