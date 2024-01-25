@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useCallback } from 'react';
+import { useEffect, useState, useContext, useCallback, useMemo } from 'react';
 import MainDisplay from './MainDisplay/MainDisplay';
 import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
@@ -93,12 +93,22 @@ const Dashboard = () => {
     setEnd(endValue);
   }, []);
 
+  const PageContextValue = useMemo(
+    () => ({
+      page,
+      setPage,
+      start,
+      setStart,
+      end,
+      setEnd,
+    }),
+    [page, setPage, start, setStart, end, setEnd],
+  );
+
   return (
     <>
       {overviewData ? (
-        <PageContext.Provider
-          value={{ page, setPage, start, setStart, end, setEnd }}
-        >
+        <PageContext.Provider value={PageContextValue}>
           <div className='relative flex w-full bg-[#f6f8fa]'>
             <Sidebar overviewData={overviewData} />
             <MainDisplay
