@@ -47,9 +47,7 @@ const PageDisplay: React.FC<PageDisplayProps> = ({ pageData, setPageData }) => {
   }, [fetchPageData]);
 
   return loading ? (
-    <>
-      <Spinner />
-    </>
+    <Spinner />
   ) : (
     <div className='relative min-h-screen overflow-y-auto'>
       <div className='absolute flex min-h-full w-full flex-col items-center justify-evenly gap-10 pt-3 sm:pl-8 sm:pr-8'>
