@@ -1,4 +1,4 @@
-import Textbox from './Textbox';
+import Textbox from './PageTextBox';
 import Table from './Table';
 import PageLineChart from './PageLineChart';
 import SpanLineChart from './SpanLineChart';

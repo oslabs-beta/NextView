@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import { OverallPageDataItem } from '../../../../types/ComponentPropTypes';
+import React from 'react';
 
 interface TableProps {
   overallPageData: OverallPageDataItem[];
 }
 
-const Table: React.FC<TableProps> = ({ overallPageData }) => {
+const Table: React.FC<TableProps> = React.memo(({ overallPageData }) => {
   const tableData = [];
   for (let i = 0; i < overallPageData.length; i++) {
     tableData.push(
@@ -48,6 +49,6 @@ const Table: React.FC<TableProps> = ({ overallPageData }) => {
       <tbody className='text-sm'>{tableData}</tbody>
     </table>
   );
-};
+});
 
 export default Table;

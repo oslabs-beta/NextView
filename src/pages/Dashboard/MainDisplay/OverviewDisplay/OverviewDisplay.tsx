@@ -1,4 +1,4 @@
-import Textbox from './Texbox';
+import Textbox from './OverviewTextBox';
 import HorizontalBarGraph from './HorizontalBarGraph';
 import BarGraph from './BarGraph';
 import LineChart from './LineChart';

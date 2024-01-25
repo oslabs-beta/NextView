@@ -9,12 +9,13 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { PageAvgDuration } from '../../../../types/ComponentPropTypes';
+import React from 'react';
 
 interface BarGraphProps {
   data: PageAvgDuration[];
 }
 
-const BarGraph: React.FC<BarGraphProps> = ({ data }) => {
+const BarGraph: React.FC<BarGraphProps> = React.memo(({ data }) => {
   const num = data.length;
 
   return (
@@ -64,6 +65,6 @@ const BarGraph: React.FC<BarGraphProps> = ({ data }) => {
       </ResponsiveContainer>
     </>
   );
-};
+});
 
 export default BarGraph;
