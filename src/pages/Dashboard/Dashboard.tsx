@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, useCallback } from 'react';
 import MainDisplay from './MainDisplay/MainDisplay';
 import Sidebar from './Sidebar/Sidebar';
 import Loading from './Loading';
@@ -81,6 +81,18 @@ const Dashboard = () => {
     if (apiKey) fetchOverviewData();
   }, [start, end, apiKey]);
 
+  const memoizedSetPageData = useCallback((data: PageDataType) => {
+    setPageData(data);
+  }, []);
+
+  const memoizedSetStart = useCallback((startValue: string) => {
+    setStart(startValue);
+  }, []);
+
+  const memoizedSetEnd = useCallback((endValue: string) => {
+    setEnd(endValue);
+  }, []);
+
   return (
     <>
       {overviewData ? (
@@ -92,9 +104,9 @@ const Dashboard = () => {
             <MainDisplay
               overviewData={overviewData}
               pageData={pageData}
-              setPageData={setPageData}
-              setStart={setStart}
-              setEnd={setEnd}
+              setPageData={memoizedSetPageData}
+              setStart={memoizedSetStart}
+              setEnd={memoizedSetEnd}
             />
           </div>
         </PageContext.Provider>
