@@ -10,24 +10,16 @@ import {
 } from '../../../../contexts/dashboardContexts';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../../../../components/Spinner';
-import {
-  OverviewDataType,
-  PageDataType,
-} from '../../../../types/ComponentPropTypes';
+import { PageDataType } from '../../../../types/ComponentPropTypes';
 
 interface PageDisplayProps {
-  overviewData: OverviewDataType;
   pageData: PageDataType;
   setPageData: (value: PageDataType) => void;
 }
 
-const PageDisplay: React.FC<PageDisplayProps> = ({
-  overviewData,
-  pageData,
-  setPageData,
-}) => {
+const PageDisplay: React.FC<PageDisplayProps> = ({ pageData, setPageData }) => {
   const { id } = useParams();
-  const { start, end, page, setPage } = useContext(PageContext);
+  const { start, end } = useContext(PageContext);
   const { apiKey } = useContext(APIContext);
   const [loading, setLoading] = useState(true);
 
