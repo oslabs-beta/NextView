@@ -10,11 +10,14 @@ import {
   PageDataType,
 } from '../../types/ComponentPropTypes';
 
+// initialized to the last 24 hrs
+const initialStart = dayjs().subtract(1, 'day').toISOString();
+const initialEnd = dayjs().toISOString();
+
 const Dashboard = () => {
   // values used in fetch requests, setters used in topbar
-  // initialized to the last 24 hrs
-  const [start, setStart] = useState(dayjs().subtract(1, 'day').toISOString());
-  const [end, setEnd] = useState(dayjs().toISOString());
+  const [start, setStart] = useState(initialStart);
+  const [end, setEnd] = useState(initialEnd);
   // currently set by sidebar button, accessed by context
   const [page, setPage] = useState<Page | undefined>(undefined);
 
