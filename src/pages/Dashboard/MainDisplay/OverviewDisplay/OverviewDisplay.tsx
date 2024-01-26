@@ -13,6 +13,7 @@ interface OverviewDisplayProps {
 const OverviewDisplay: React.FC<OverviewDisplayProps> = ({ overviewData }) => {
   const { setPage } = useContext(PageContext);
 
+  // reset page context to undefined on component mount/unmount
   useEffect(() => {
     if (setPage) {
       setPage(undefined);
