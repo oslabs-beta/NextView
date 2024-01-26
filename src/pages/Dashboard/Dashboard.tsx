@@ -10,18 +10,16 @@ import {
   PageDataType,
 } from '../../types/ComponentPropTypes';
 
-// initialized to the last 24 hrs
+// initialize start and end dates to cover last 24hrs
 const initialStart = dayjs().subtract(1, 'day').toISOString();
 const initialEnd = dayjs().toISOString();
 
 const Dashboard = () => {
-  // values used in fetch requests, setters used in topbar
+  // state initialization
   const [start, setStart] = useState(initialStart);
   const [end, setEnd] = useState(initialEnd);
-  // currently set by sidebar button, accessed by context
   const [page, setPage] = useState<Page | undefined>(undefined);
 
-  // set in dashboard
   const [overviewData, setOverviewData] = useState<OverviewDataType>({
     pages: [],
     overallAvg: 0,
@@ -31,7 +29,6 @@ const Dashboard = () => {
     kindAvgDurationsOverTime: [],
   });
 
-  // set in pageDisplay
   const [pageData, setPageData] = useState<PageDataType>({
     overallAvg: 0,
     traceCount: 0,
@@ -40,11 +37,10 @@ const Dashboard = () => {
     overallPageData: [],
   });
 
-  // fallback to an empty object to avoid runtime errors if  context is null
+  // use apicontext for apikey management
   const { apiKey, setApiKey } = useContext(APIContext);
 
-  // fetch apps list and api key
-  // will not run after api key is set
+  // fetch apps list once at the start if apikey not yet set
   useEffect(() => {
     const fetchAppsList = async () => {
       try {
@@ -57,12 +53,11 @@ const Dashboard = () => {
         console.log('Data fetching failed', error);
       }
     };
-    // Fetch the apps list only if apiKey is not yet set (null)
+
     if (!apiKey) fetchAppsList();
   }, [apiKey, setApiKey]);
 
-  // fetch overview data
-  // only if user api key is set
+  // retrieve overview data when start, end dates, or apikey changes
   useEffect(() => {
     const fetchOverviewData = async () => {
       try {
@@ -84,6 +79,7 @@ const Dashboard = () => {
     if (apiKey) fetchOverviewData();
   }, [start, end, apiKey]);
 
+  // usecallback for stable references of functions updating state
   const memoizedSetPageData = useCallback((data: PageDataType) => {
     setPageData(data);
   }, []);
@@ -96,6 +92,7 @@ const Dashboard = () => {
     setEnd(endValue);
   }, []);
 
+  // usememo for context value to prevent unnecessary renders
   const PageContextValue = useMemo(
     () => ({
       page,
