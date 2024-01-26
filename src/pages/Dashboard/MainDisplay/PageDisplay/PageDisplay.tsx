@@ -30,6 +30,8 @@ const PageDisplay: React.FC<PageDisplayProps> = ({ pageData, setPageData }) => {
 
   // memoized fetchPageData
   const fetchPageData = useCallback(async () => {
+    setLoading(true);
+
     try {
       const response = await fetch(
         `/apps/${apiKey}/pages/${id}/data?start=${start}&end=${end}`,
