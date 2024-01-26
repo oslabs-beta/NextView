@@ -40,9 +40,14 @@ const Dashboard = () => {
   // use apicontext for apikey management
   const { apiKey, setApiKey } = useContext(APIContext);
 
+  // local loading state
+  const [loading, setLoading] = useState(true);
+
   // fetch apps list once at the start if apikey not yet set
   useEffect(() => {
     const fetchAppsList = async () => {
+      setLoading(true);
+
       try {
         const response = await fetch('/apps');
         const data = await response.json();
@@ -52,6 +57,7 @@ const Dashboard = () => {
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
+      setLoading(false);
     };
 
     if (!apiKey) fetchAppsList();
@@ -60,6 +66,8 @@ const Dashboard = () => {
   // retrieve overview data when start, end dates, or apikey changes
   useEffect(() => {
     const fetchOverviewData = async () => {
+      setLoading(true);
+
       try {
         const response = await fetch(
           `/apps/${apiKey}/data?start=${start}&end=${end}`,
@@ -75,6 +83,7 @@ const Dashboard = () => {
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
       }
+      setLoading(false);
     };
     if (apiKey) fetchOverviewData();
   }, [start, end, apiKey]);
