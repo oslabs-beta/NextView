@@ -18,12 +18,17 @@ interface PageDisplayProps {
 }
 
 const PageDisplay: React.FC<PageDisplayProps> = ({ pageData, setPageData }) => {
+  // get page id from url param
   const { id } = useParams();
+
+  // use context to get start & end dates & api key
   const { start, end } = useContext(PageContext);
   const { apiKey } = useContext(APIContext);
+
+  // local loading state
   const [loading, setLoading] = useState(true);
 
-  // Memoized fetchPageData
+  // memoized fetchPageData
   const fetchPageData = useCallback(async () => {
     try {
       const response = await fetch(
@@ -35,17 +40,22 @@ const PageDisplay: React.FC<PageDisplayProps> = ({ pageData, setPageData }) => {
         },
       );
       const data = await response.json();
+
+      // update page data & set loading to false
       setPageData(data);
       setLoading(false);
     } catch (error: unknown) {
+      // log erros during data fetch
       console.log('Data fetching failed', error);
     }
   }, [apiKey, id, start, end, setPageData]);
 
+  // call fetchPageData when dependencies change
   useEffect(() => {
     fetchPageData();
   }, [fetchPageData]);
 
+  // conditional rendering based on loading state
   return loading ? (
     <Spinner />
   ) : (
