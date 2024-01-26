@@ -52,7 +52,7 @@ const Dashboard = () => {
         const response = await fetch('/apps');
         const data = await response.json();
         if (setApiKey) {
-          setApiKey(data[0]['id']);
+          setApiKey(data[0]?.id);
         }
       } catch (error: unknown) {
         console.log('Data fetching failed', error);
@@ -116,7 +116,9 @@ const Dashboard = () => {
 
   return (
     <>
-      {overviewData ? (
+      {loading ? (
+        <Loading />
+      ) : (
         <PageContext.Provider value={PageContextValue}>
           <div className='relative flex w-full bg-[#f6f8fa]'>
             <Sidebar overviewData={overviewData} />
@@ -129,10 +131,6 @@ const Dashboard = () => {
             />
           </div>
         </PageContext.Provider>
-      ) : (
-        <div>
-          <Loading />
-        </div>
       )}
     </>
   );
